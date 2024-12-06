@@ -42,7 +42,7 @@ class UdpServerSpec extends OxygeniumActorSpec {
   it should "fail when send data to invalid address" in new Fixture {
     val (_, udpServer) = createUdpServer()
     val message        = ByteString.fromString("oxygenium")
-    val remote         = new InetSocketAddress(s"www.${Blake2b.generate.toHexString}.io", 9973)
+    val remote         = new InetSocketAddress(s"www.${Blake2b.generate.toHexString}.io", 9983)
     val send           = UdpServer.Send(message, remote)
 
     EventFilter

@@ -198,10 +198,10 @@ lazy val app = mainProject("app")
 
         run("chmod", "644", artifactTargetPath)
 
-        expose(12973) // http
-        expose(11973) // ws
-        expose(10973) // miner
-        expose(9973)  // p2p
+        expose(12983) // http
+        expose(11983) // ws
+        expose(10983) // miner
+        expose(9983)  // p2p
 
         volume(s"$oxygeniumHome/.oxygenium")
         volume(s"$oxygeniumHome/.oxygenium-wallets")

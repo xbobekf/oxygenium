@@ -36,7 +36,7 @@ object OpenApiUpdate extends App {
   }
 
   new Documentation {
-    override val port                     = 12973
+    override val port                     = 12983
     override val apiKeys: AVector[ApiKey] = AVector.empty
     override val walletEndpoints          = wallet.walletEndpoints
     implicit override val groupConfig: GroupConfig =

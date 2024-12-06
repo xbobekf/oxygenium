@@ -965,7 +965,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |@using(preapprovedAssets = false)
          |TxScript Inverse {
-         |  let x = 10973
+         |  let x = 10983
          |  let mut y = 1
          |  let mut i = 0
          |  while (i <= 8) {

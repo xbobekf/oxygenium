@@ -11,13 +11,13 @@ COPY user-mainnet-release.conf /oxygenium-home/.oxygenium/user.conf
 COPY entrypoint.sh /entrypoint.sh
 
 # http
-EXPOSE 12973
+EXPOSE 12983
 # ws
-EXPOSE 11973
+EXPOSE 11983
 # miner
-EXPOSE 10973
+EXPOSE 10983
 # p2p
-EXPOSE 9973
+EXPOSE 9983
 
 VOLUME /oxygenium-home/.oxygenium
 

@@ -23,7 +23,7 @@ The provided [docker-compose.yml](./docker-compose.yml) file will be used to run
 docker-compose stop && docker-compose rm -f oxygenium && docker-compose pull && docker-compose up -d
 ```
 
-The default config connects your container to the mainnet, and makes the API available to [http://127.0.0.1:12973/docs](http://127.0.0.1:12973/docs).
+The default config connects your container to the mainnet, and makes the API available to [http://127.0.0.1:12983/docs](http://127.0.0.1:12983/docs).
 
 ## Monitoring
 
