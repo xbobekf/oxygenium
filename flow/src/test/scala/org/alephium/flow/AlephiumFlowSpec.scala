@@ -45,7 +45,7 @@ trait FlowFixture
     with StoragesFixture.Default
     with NumericHelpers {
   lazy val blockFlow: BlockFlow  = genesisBlockFlow()
-  lazy val defaultUtxoLimit: Int = ALPH.MaxTxInputNum * 2
+  lazy val defaultUtxoLimit: Int = OXYG.MaxTxInputNum * 2
 
   lazy val keyManager: mutable.Map[LockupScript, PrivateKey] = mutable.Map.empty
 
@@ -83,7 +83,7 @@ trait FlowFixture
   def transferOnlyForIntraGroup(
       blockFlow: BlockFlow,
       chainIndex: ChainIndex,
-      amount: U256 = ALPH.alph(1)
+      amount: U256 = OXYG.oxyg(1)
   ): Block = {
     if (chainIndex.isIntraGroup && blockFlow.brokerConfig.contains(chainIndex.from)) {
       transfer(blockFlow, chainIndex, amount)
@@ -112,7 +112,7 @@ trait FlowFixture
   ): Block = {
     assume(blockFlow.brokerConfig.contains(chainIndex.from) && chainIndex.isIntraGroup)
     mineWithTxs(blockFlow, chainIndex)(
-      transferTxs(_, _, ALPH.alph(1), 1, Some(txScript), true, scriptGas = gas)
+      transferTxs(_, _, OXYG.oxyg(1), 1, Some(txScript), true, scriptGas = gas)
     )
   }
 
@@ -126,7 +126,7 @@ trait FlowFixture
     val zipped = invokers.mapWithIndex { case (invoker, index) =>
       invoker -> txScripts(index)
     }
-    mineWithTxs(blockFlow, chainIndex)(transferTxsMulti(_, _, zipped, ALPH.alph(1) / 100))
+    mineWithTxs(blockFlow, chainIndex)(transferTxsMulti(_, _, zipped, OXYG.oxyg(1) / 100))
   }
 
   def prepareUtxos(
@@ -144,7 +144,7 @@ trait FlowFixture
     outputsLimitOpt match {
       case None => initialUtxos -> getBalance
       case Some(outputsLimit) =>
-        require(outputsLimit < ALPH.MaxTxOutputNum, "Number of outputs must fit in a transaction")
+        require(outputsLimit < OXYG.MaxTxOutputNum, "Number of outputs must fit in a transaction")
         if (initialUtxos.length >= outputsLimit) {
           initialUtxos.take(outputsLimit) -> getBalance
         } else if (outputsLimit == 0) {
@@ -188,13 +188,13 @@ trait FlowFixture
     val (_, toPublicKey) = chainIndex.to.generateKey
     val miner            = LockupScript.p2pkh(toPublicKey)
     val txs =
-      transferTxs(blockFlow, chainIndex, ALPH.alph(1), 1, None, true, None)
+      transferTxs(blockFlow, chainIndex, OXYG.oxyg(1), 1, None, true, None)
     mine(blockFlow, chainIndex, txs, miner, Some(blockTs))
   }
   def transfer(
       blockFlow: BlockFlow,
       chainIndex: ChainIndex,
-      amount: U256 = ALPH.alph(1),
+      amount: U256 = OXYG.oxyg(1),
       numReceivers: Int = 1,
       gasFeeInTheAmount: Boolean = true,
       lockTimeOpt: Option[TimeStamp] = None
@@ -377,7 +377,7 @@ trait FlowFixture
     balances.length is 2 // this function is used in this particular case
 
     val total  = balances.fold(U256.Zero)(_ addUnsafe _.output.amount)
-    val amount = ALPH.alph(1)
+    val amount = OXYG.oxyg(1)
 
     val (_, toPublicKey) = chainIndex.to.generateKey
     val lockupScript     = LockupScript.p2pkh(toPublicKey)
@@ -826,7 +826,7 @@ trait FlowFixture
         tx.allOutputs.foreachWithIndex { case (output, index) =>
           val outputRef = TxOutputRef.from(output, TxOutputRef.key(tx.id, index))
           val exist = worldState.existOutput(outputRef).rightValue || (
-            ALPH.isSequentialTxSupported(chainIndex, hardFork) && usedRefs.contains(outputRef)
+            OXYG.isSequentialTxSupported(chainIndex, hardFork) && usedRefs.contains(outputRef)
           )
           exist is true
         }
@@ -873,13 +873,13 @@ trait FlowFixture
     val mutStateRaw = Hex.toHexString(serialize(initialMutState))
     val creation = tokenIssuanceInfo match {
       case Some(TokenIssuance.Info(amount, None)) =>
-        s"createContractWithToken!{@$address -> ALPH: ${attoAlphAmount.v}}(#$codeRaw, #$immStateRaw, #$mutStateRaw, ${amount.v})"
+        s"createContractWithToken!{@$address -> OXYG: ${attoAlphAmount.v}}(#$codeRaw, #$immStateRaw, #$mutStateRaw, ${amount.v})"
       case Some(TokenIssuance.Info(amount, Some(transferTo))) => {
         val toAddress = Address.from(transferTo).toBase58
-        s"createContractWithToken!{@$address -> ALPH: ${attoAlphAmount.v}}(#$codeRaw, #$immStateRaw, #$mutStateRaw, ${amount.v}, @${toAddress})"
+        s"createContractWithToken!{@$address -> OXYG: ${attoAlphAmount.v}}(#$codeRaw, #$immStateRaw, #$mutStateRaw, ${amount.v}, @${toAddress})"
       }
       case None =>
-        s"createContract!{@$address -> ALPH: ${attoAlphAmount.v}}(#$codeRaw, #$immStateRaw, #$mutStateRaw)"
+        s"createContract!{@$address -> OXYG: ${attoAlphAmount.v}}(#$codeRaw, #$immStateRaw, #$mutStateRaw)"
     }
     val scriptRaw =
       s"""
@@ -907,7 +907,7 @@ trait FlowFixture
         AVector.empty,
         AVector.empty,
         getGenesisLockupScript(chainIndex),
-        ALPH.alph(1)
+        OXYG.oxyg(1)
       )
     payableCallTxTemplate(
       blockFlow,
@@ -998,11 +998,11 @@ trait FlowFixture
     val tmpBlockFlow                  = isolatedBlockFlow()
     val startGroup                    = brokerConfig.randomGroupIndex()
     val (startPriKey, startPubKey, _) = genesisKeys(startGroup.value)
-    var keys                          = AVector((startPriKey, startPubKey, ALPH.alph(1024)))
+    var keys                          = AVector((startPriKey, startPubKey, OXYG.oxyg(1024)))
     def createTx(): Transaction = {
       val (fromPriKey, _, lastAmount) = keys.last
       val (toPriKey, toPubKey)        = brokerConfig.randomGroupIndex().generateKey
-      val amount                      = lastAmount.subUnsafe(ALPH.oneAlph)
+      val amount                      = lastAmount.subUnsafe(OXYG.oneAlph)
       val block                       = transfer(tmpBlockFlow, fromPriKey, toPubKey, amount)
       val chainIndex                  = block.chainIndex
       addAndCheck(tmpBlockFlow, block)

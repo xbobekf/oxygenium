@@ -80,7 +80,7 @@ object UnlockScript {
   final case class PoLW(publicKey: PublicKey)                           extends UnlockScript
   object PoLW {
     private lazy val prefix: ByteString = ByteString(
-      "alph-polw".getBytes(StandardCharsets.US_ASCII)
+      "oxyg-polw".getBytes(StandardCharsets.US_ASCII)
     )
 
     def buildPreImage(from: LockupScript, to: LockupScript): ByteString = {

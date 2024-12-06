@@ -16,13 +16,13 @@
 
 package org.oxygenium.protocol.vm
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.{coinbaseGasPrice, nonCoinbaseMinGasPrice, HardFork}
 import org.oxygenium.serde.{u256Serde, Serde}
 import org.oxygenium.util.U256
 
 final case class GasPrice(value: U256) extends Ordered[GasPrice] {
-  // this is safe as value <= ALPH.MaxALPHValue
+  // this is safe as value <= OXYG.MaxALPHValue
   def *(gas: GasBox): U256 = {
     value.mulUnsafe(gas.toU256)
   }
@@ -36,6 +36,6 @@ object GasPrice {
   @inline def validate(gasPrice: GasPrice, isCoinbase: Boolean, hardFork: HardFork): Boolean = {
     val minGasPrice =
       if (isCoinbase || !hardFork.isLemanEnabled()) coinbaseGasPrice else nonCoinbaseMinGasPrice
-    gasPrice >= minGasPrice && gasPrice.value < ALPH.MaxALPHValue
+    gasPrice >= minGasPrice && gasPrice.value < OXYG.MaxALPHValue
   }
 }

@@ -23,7 +23,7 @@ import scala.util.Using
 
 import org.scalatest.Assertion
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.GroupConfig
 import org.oxygenium.protocol.model.Target
 import org.oxygenium.util.{OxygeniumSpec, Duration, NumericHelpers, TimeStamp, U256}
@@ -45,7 +45,7 @@ class EmissionSpec extends OxygeniumSpec with NumericHelpers {
   }
 
   def getInflationRate(amount: U256): Double = {
-    (BigDecimal(amount.toBigInt) / BigDecimal(ALPH.MaxALPHValue.toBigInt)).doubleValue
+    (BigDecimal(amount.toBigInt) / BigDecimal(OXYG.MaxALPHValue.toBigInt)).doubleValue
   }
 
   implicit class RichTarget(target: Target) {
@@ -86,15 +86,15 @@ class EmissionSpec extends OxygeniumSpec with NumericHelpers {
   it should "compute max reward based on timestamp" in new Fixture {
     import emission._
 
-    rewardWrtTime(TimeStamp.zero, TimeStamp.zero) is ALPH.cent(375)
+    rewardWrtTime(TimeStamp.zero, TimeStamp.zero) is OXYG.cent(375)
     rewardWrtTime(TimeStamp.zero + Duration.ofHoursUnsafe(1 * 365 * 24), TimeStamp.zero) is
-      ALPH.cent(313)
+      OXYG.cent(313)
     rewardWrtTime(TimeStamp.zero + Duration.ofHoursUnsafe(2 * 365 * 24), TimeStamp.zero) is
-      ALPH.cent(251)
+      OXYG.cent(251)
     rewardWrtTime(TimeStamp.zero + Duration.ofHoursUnsafe(3 * 365 * 24), TimeStamp.zero) is
-      ALPH.cent(189)
+      OXYG.cent(189)
     rewardWrtTime(TimeStamp.zero + Duration.ofHoursUnsafe(4 * 365 * 24), TimeStamp.zero) is
-      ALPH.cent(125)
+      OXYG.cent(125)
   }
 
   def average(reward0: U256, reward1: U256): U256 = {

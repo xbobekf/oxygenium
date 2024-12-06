@@ -40,7 +40,7 @@ final case class MutBalances(all: ArrayBuffer[(LockupScript, MutBalancesPerLocku
       case Some(balances) =>
         balances.addAlph(amount)
       case None =>
-        all.addOne(lockupScript -> MutBalancesPerLockup.alph(amount))
+        all.addOne(lockupScript -> MutBalancesPerLockup.oxyg(amount))
         Some(())
     }
   }

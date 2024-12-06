@@ -45,11 +45,11 @@ class KeywordSpec extends OxygeniumSpec {
       "extends",
       "embeds",
       "implements",
-      "alph",
+      "oxyg",
       "const",
       "enum",
       "Abstract",
-      "ALPH",
+      "OXYG",
       "mapping"
     )
 

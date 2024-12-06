@@ -21,7 +21,7 @@ import scala.collection.mutable
 import akka.util.ByteString
 
 import org.oxygenium.flow.{OxygeniumFlowSpec, FlowFixture}
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.Generators.hashGen
 import org.oxygenium.protocol.model.{
   AssetOutput,
@@ -89,7 +89,7 @@ class BlockFlowGroupViewSpec extends OxygeniumFlowSpec {
 
     val outputInfos = tx1.unsigned.inputs.map { input =>
       input.outputRef -> AssetOutput(
-        ALPH.oneAlph,
+        OXYG.oneAlph,
         lockupScript,
         TimeStamp.zero,
         AVector.empty,

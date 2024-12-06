@@ -58,7 +58,7 @@ package object vm {
     Array.tabulate(128)(group => specialContractId(createContractEventIndexInt, group))
   def createContractEventId(group: Int): ContractId = createContractEventIdCache(group)
   lazy val createContractEventIndex: Val.I256     = Val.I256(I256.from(createContractEventIndexInt))
-  val createContractInterfaceIdPrefix: ByteString = hex"414c5048" // "ALPH"
+  val createContractInterfaceIdPrefix: ByteString = hex"414c5048" // "OXYG"
 
   val destroyContractEventIndexInt: Int = -2
   private[vm] lazy val destroyContractEventIdCache: Array[(ContractId)] =

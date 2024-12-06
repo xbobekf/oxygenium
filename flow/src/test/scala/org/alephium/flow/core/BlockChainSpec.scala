@@ -28,7 +28,7 @@ import org.oxygenium.flow.core.BlockChain.{TxIndex, TxIndexes, TxStatus}
 import org.oxygenium.flow.io.StoragesFixture
 import org.oxygenium.flow.setting.OxygeniumConfigFixture
 import org.oxygenium.io.IOError
-import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.{OXYG, Hash}
 import org.oxygenium.protocol.model._
 import org.oxygenium.util.{OxygeniumSpec, AVector, Bytes, Duration, TimeStamp}
 
@@ -87,13 +87,13 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
   it should "initialize genesis correctly" in new Fixture {
     val chain = buildBlockChain()
     chain.contains(genesis) isE true
-    chain.getHeight(genesis.hash) isE ALPH.GenesisHeight
-    chain.getWeight(genesis.hash) isE ALPH.GenesisWeight
+    chain.getHeight(genesis.hash) isE OXYG.GenesisHeight
+    chain.getWeight(genesis.hash) isE OXYG.GenesisWeight
     chain.containsUnsafe(genesis.hash) is true
-    chain.getHeightUnsafe(genesis.hash) is ALPH.GenesisHeight
-    chain.getWeightUnsafe(genesis.hash) is ALPH.GenesisWeight
-    chain.getTimestamp(genesis.hash) isE ALPH.GenesisTimestamp
-    chain.getTimestampUnsafe(genesis.hash) is ALPH.GenesisTimestamp
+    chain.getHeightUnsafe(genesis.hash) is OXYG.GenesisHeight
+    chain.getWeightUnsafe(genesis.hash) is OXYG.GenesisWeight
+    chain.getTimestamp(genesis.hash) isE OXYG.GenesisTimestamp
+    chain.getTimestampUnsafe(genesis.hash) is OXYG.GenesisTimestamp
   }
 
   it should "validate block height" in new Fixture {
@@ -127,8 +127,8 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
     val blocksSize2 = chain.numHashes
     blocksSize1 + 1 is blocksSize2
 
-    chain.getHeightUnsafe(block.hash) is (ALPH.GenesisHeight + 1)
-    chain.getHeight(block.hash) isE (ALPH.GenesisHeight + 1)
+    chain.getHeightUnsafe(block.hash) is (OXYG.GenesisHeight + 1)
+    chain.getHeight(block.hash) isE (OXYG.GenesisHeight + 1)
     chain.getTimestamp(block.hash) isE block.timestamp
     chain.getTimestampUnsafe(block.hash) is block.timestamp
 
@@ -300,7 +300,7 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
     val lastBlock     = blocks.last
     val chainExpected = AVector(genesis) ++ blocks
 
-    chain.getHeight(headBlock) isE ALPH.GenesisHeight
+    chain.getHeight(headBlock) isE OXYG.GenesisHeight
     chain.getHeight(lastBlock) isE blocks.length
     chain.getBlockSlice(headBlock) isE AVector(headBlock)
     chain.getBlockSlice(lastBlock) isE chainExpected
@@ -369,12 +369,12 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
 
     val chain = buildBlockChain()
     addBlocks(chain, shortChain)
-    chain.getHashes(ALPH.GenesisHeight + 1) isE AVector(shortChain(0).hash)
-    chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(shortChain(1).hash)
+    chain.getHashes(OXYG.GenesisHeight + 1) isE AVector(shortChain(0).hash)
+    chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(shortChain(1).hash)
 
     addBlocks(chain, longChain)
-    chain.getHashes(ALPH.GenesisHeight + 1) isE AVector(longChain(0).hash, shortChain(0).hash)
-    chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(longChain(1).hash, shortChain(1).hash)
+    chain.getHashes(OXYG.GenesisHeight + 1) isE AVector(longChain(0).hash, shortChain(0).hash)
+    chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(longChain(1).hash, shortChain(1).hash)
   }
 
   it should "update mainchain hash when heights of blocks are equal" in new Fixture {
@@ -383,16 +383,16 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
 
     val chain = buildBlockChain()
     addBlocks(chain, chain0)
-    chain.getHashes(ALPH.GenesisHeight + 1) isE AVector(chain0(0).hash)
-    chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(chain0(1).hash)
+    chain.getHashes(OXYG.GenesisHeight + 1) isE AVector(chain0(0).hash)
+    chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(chain0(1).hash)
 
     addBlocks(chain, chain1)
     if (chain.blockHashOrdering.compare(chain1(1).hash, chain0(1).hash) > 0) {
-      chain.getHashes(ALPH.GenesisHeight + 1) isE AVector(chain1(0).hash, chain0(0).hash)
-      chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(chain1(1).hash, chain0(1).hash)
+      chain.getHashes(OXYG.GenesisHeight + 1) isE AVector(chain1(0).hash, chain0(0).hash)
+      chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(chain1(1).hash, chain0(1).hash)
     } else {
-      chain.getHashes(ALPH.GenesisHeight + 1) isE AVector(chain0(0).hash, chain1(0).hash)
-      chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(chain0(1).hash, chain1(1).hash)
+      chain.getHashes(OXYG.GenesisHeight + 1) isE AVector(chain0(0).hash, chain1(0).hash)
+      chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(chain0(1).hash, chain1(1).hash)
     }
   }
 
@@ -419,9 +419,9 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
     val chain = buildBlockChain()
     addBlocks(chain, longChain)
     addBlocks(chain, shortChain)
-    chain.getHashes(ALPH.GenesisHeight + 1) isE AVector(longChain(0).hash, shortChain(0).hash)
-    chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(longChain(1).hash, shortChain(1).hash)
-    chain.getHashes(ALPH.GenesisHeight + 3) isE AVector(longChain(2).hash)
+    chain.getHashes(OXYG.GenesisHeight + 1) isE AVector(longChain(0).hash, shortChain(0).hash)
+    chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(longChain(1).hash, shortChain(1).hash)
+    chain.getHashes(OXYG.GenesisHeight + 3) isE AVector(longChain(2).hash)
   }
 
   it should "test chain diffs with two chains of blocks" in new Fixture {
@@ -447,18 +447,18 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
     val longChain  = chainGenOf(3, genesis).sample.get
     val chain      = buildBlockChain()
     addBlocks(chain, shortChain)
-    chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(shortChain(1).hash)
-    chain.hashesCache.get(ALPH.GenesisHeight + 2).value is AVector(shortChain(1).hash)
+    chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(shortChain(1).hash)
+    chain.hashesCache.get(OXYG.GenesisHeight + 2).value is AVector(shortChain(1).hash)
     chain.maxWeight isE chain.getWeightUnsafe(shortChain.last.hash)
     addBlocks(chain, longChain)
     chain.maxWeight isE chain.getWeightUnsafe(longChain.last.hash)
-    chain.getHashes(ALPH.GenesisHeight + 2) isE AVector(longChain(1).hash, shortChain(1).hash)
-    chain.hashesCache.get(ALPH.GenesisHeight + 2).value is AVector(
+    chain.getHashes(OXYG.GenesisHeight + 2) isE AVector(longChain(1).hash, shortChain(1).hash)
+    chain.hashesCache.get(OXYG.GenesisHeight + 2).value is AVector(
       longChain(1).hash,
       shortChain(1).hash
     )
-    chain.getHashes(ALPH.GenesisHeight + 3) isE AVector(longChain.last.hash)
-    chain.hashesCache.get(ALPH.GenesisHeight + 3).value is AVector(longChain.last.hash)
+    chain.getHashes(OXYG.GenesisHeight + 3) isE AVector(longChain.last.hash)
+    chain.hashesCache.get(OXYG.GenesisHeight + 3).value is AVector(longChain.last.hash)
   }
 
   it should "compute correct weights for a single chain" in new Fixture {
@@ -521,17 +521,17 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
   }
 
   it should "test chainBack" in new UnforkedFixture {
-    chain.chainBackUntil(genesis.hash, ALPH.GenesisHeight) isE AVector.empty[BlockHash]
-    chain.chainBackUntil(blocks.last.hash, ALPH.GenesisHeight) isE blocks.map(_.hash)
-    chain.chainBackUntil(blocks.last.hash, ALPH.GenesisHeight + 1) isE blocks.tail.map(_.hash)
-    chain.chainBackUntil(blocks.init.last.hash, ALPH.GenesisHeight) isE blocks.init.map(_.hash)
+    chain.chainBackUntil(genesis.hash, OXYG.GenesisHeight) isE AVector.empty[BlockHash]
+    chain.chainBackUntil(blocks.last.hash, OXYG.GenesisHeight) isE blocks.map(_.hash)
+    chain.chainBackUntil(blocks.last.hash, OXYG.GenesisHeight + 1) isE blocks.tail.map(_.hash)
+    chain.chainBackUntil(blocks.init.last.hash, OXYG.GenesisHeight) isE blocks.init.map(_.hash)
   }
 
   it should "test getPredecessor" in new UnforkedFixture {
     blocks.foreach { block =>
-      chain.getPredecessor(block.hash, ALPH.GenesisHeight) isE genesis.hash
+      chain.getPredecessor(block.hash, OXYG.GenesisHeight) isE genesis.hash
     }
-    chain.getPredecessor(blocks.last.hash, ALPH.GenesisHeight + 1) isE blocks.head.hash
+    chain.getPredecessor(blocks.last.hash, OXYG.GenesisHeight + 1) isE blocks.head.hash
   }
 
   it should "test getBlockHashSlice" in new UnforkedFixture {
@@ -683,7 +683,7 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
       addBlocks(chain, blocks)
       blocks.init.foreach { block =>
         val uncleGen = blockGen(block.chainIndex, block.timestamp, block.parentHash)
-        val uncles   = AVector.fill(ALPH.MaxGhostUncleSize)(uncleGen.sample.get)
+        val uncles   = AVector.fill(OXYG.MaxGhostUncleSize)(uncleGen.sample.get)
         allUncles ++= uncles.map(_.header)
         addBlocks(chain, uncles)
       }
@@ -697,8 +697,8 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
       // generate `length + 1` blocks to make sure this is the canonical chain
       (0 until length + 1).foreach { k =>
         val parentHash = allMainchainBlocks.lastOption.getOrElse(genesis.hash)
-        val ghostUncleHashes = if (allUncles.size >= ALPH.MaxGhostUncleSize) {
-          AVector.from(allUncles.takeRight(ALPH.MaxGhostUncleSize).map(_.hash))
+        val ghostUncleHashes = if (allUncles.size >= OXYG.MaxGhostUncleSize) {
+          AVector.from(allUncles.takeRight(OXYG.MaxGhostUncleSize).map(_.hash))
         } else {
           AVector.empty
         }
@@ -709,7 +709,7 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
         val block    = blockGen(chainIndex, TimeStamp.now(), parentHash, selectedUncles).sample.get
         val uncleGen = blockGen(block.chainIndex, block.timestamp, block.parentHash)
         val uncleSize =
-          if (k == length) 0 else ALPH.MaxGhostUncleSize // no uncles for the latest block
+          if (k == length) 0 else OXYG.MaxGhostUncleSize // no uncles for the latest block
         val newUncles = AVector.fill(uncleSize)(uncleGen.sample.get)
         allUncles ++= newUncles.map(_.header)
         addBlocks(chain, block +: newUncles)
@@ -770,17 +770,17 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
         val (usedGhostUncleHashes, ancestors) =
           chain.getUsedGhostUnclesAndAncestors(currentBlock.header).rightValue
         usedGhostUncleHashes.isEmpty is true
-        val fromHeight = if (height > ALPH.MaxGhostUncleAge) height - ALPH.MaxGhostUncleAge else 0
+        val fromHeight = if (height > OXYG.MaxGhostUncleAge) height - OXYG.MaxGhostUncleAge else 0
         ancestors is AVector.from(
           (fromHeight until height).view
             .map(chain.getMainChainBlockByHeight(_).rightValue.get.hash)
             .reverse
         )
-        ancestors.length is math.min(height, ALPH.MaxGhostUncleAge)
+        ancestors.length is math.min(height, OXYG.MaxGhostUncleAge)
 
         chain.selectGhostUncles(currentBlock.header, _ => false).rightValue.isEmpty is true
         val selectedUncles = chain.selectGhostUncles(currentBlock.header, _ => true).rightValue
-        selectedUncles.length is ALPH.MaxGhostUncleSize
+        selectedUncles.length is OXYG.MaxGhostUncleSize
         selectedUncles.foreach { uncle =>
           uncle.lockupScript is chain
             .getBlockUnsafe(uncle.blockHash)
@@ -794,17 +794,17 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
       })
     }
 
-    test(ALPH.MaxGhostUncleAge - 2)
-    test(ALPH.MaxGhostUncleAge)
-    test(ALPH.MaxGhostUncleAge + 2)
+    test(OXYG.MaxGhostUncleAge - 2)
+    test(OXYG.MaxGhostUncleAge)
+    test(OXYG.MaxGhostUncleAge + 2)
   }
 
   it should "select uncles from unused uncles set" in new RhoneFixture {
-    val (chain, _)    = createBlockChainWithUnusedGhostUncles(ALPH.MaxGhostUncleAge)
-    val currentHeight = ALPH.MaxGhostUncleAge + 1
+    val (chain, _)    = createBlockChainWithUnusedGhostUncles(OXYG.MaxGhostUncleAge)
+    val currentHeight = OXYG.MaxGhostUncleAge + 1
     var currentBlock  = chain.getMainChainBlockByHeight(currentHeight).rightValue.get
     chain.getHashes(currentHeight).rightValue.length is 1
-    (1 to ALPH.MaxGhostUncleAge).foreach(index => {
+    (1 to OXYG.MaxGhostUncleAge).foreach(index => {
       chain.selectGhostUncles(currentBlock.header, _ => false).rightValue.isEmpty is true
       val uncles = chain.selectGhostUncles(currentBlock.header, _ => true).rightValue
       val block =
@@ -816,21 +816,21 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
         ).sample.get
       addBlock(chain, block)
       chain.getHeight(block.hash).isE(currentHeight + index)
-      if (index >= ALPH.MaxGhostUncleAge + 1 - index) {
+      if (index >= OXYG.MaxGhostUncleAge + 1 - index) {
         uncles.isEmpty is true
       } else {
         uncles.map { uncle => chain.getHeightUnsafe(uncle.blockHash) } is AVector.fill(2)(
-          ALPH.MaxGhostUncleAge + 1 - index
+          OXYG.MaxGhostUncleAge + 1 - index
         )
       }
 
       val (usedUncles, ancestors) = chain.getUsedGhostUnclesAndAncestors(block.header).rightValue
       uncles.foreach(uncle => usedUncles.exists(_ == uncle.blockHash) is true)
-      ancestors.length is ALPH.MaxGhostUncleAge
+      ancestors.length is OXYG.MaxGhostUncleAge
       currentBlock = block
     })
 
-    (1 to ALPH.MaxGhostUncleSize).foreach(_ => {
+    (1 to OXYG.MaxGhostUncleSize).foreach(_ => {
       chain.selectGhostUncles(currentBlock.header, _ => true).rightValue.isEmpty is true
       val block =
         blockGen(currentBlock.chainIndex, currentBlock.timestamp, currentBlock.hash).sample.get
@@ -840,9 +840,9 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
   }
 
   it should "select empty uncles if uncles is invalid" in new RhoneFixture {
-    val chain      = createBlockWithInvalidGhostUncles(ALPH.MaxGhostUncleAge)
-    val fromHeight = ALPH.MaxGhostUncleAge + 1
-    (fromHeight to ALPH.MaxGhostUncleAge * 2).foreach(height => {
+    val chain      = createBlockWithInvalidGhostUncles(OXYG.MaxGhostUncleAge)
+    val fromHeight = OXYG.MaxGhostUncleAge + 1
+    (fromHeight to OXYG.MaxGhostUncleAge * 2).foreach(height => {
       val header = chain.getMainChainBlockByHeight(height).rightValue.get.header
       chain.selectGhostUncles(header, _ => true).rightValue.isEmpty is true
       val block = blockGen(header.chainIndex, header.timestamp, header.hash).sample.get
@@ -852,7 +852,7 @@ class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
   }
 
   it should "select uncles and calc the block diff" in new RhoneFixture {
-    val length = ALPH.MaxGhostUncleAge + 1
+    val length = OXYG.MaxGhostUncleAge + 1
     val chain  = createBlockChain(length)
     chain.maxHeightByWeightUnsafe is length
     val parentHeight = Random.between(1, length - 2)

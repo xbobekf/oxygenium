@@ -31,7 +31,7 @@ import org.oxygenium.flow.FlowFixture
 import org.oxygenium.flow.mempool.MemPool.AddedToMemPool
 import org.oxygenium.flow.validation.{TxScriptExeFailed, TxValidation}
 import org.oxygenium.io.IOResult
-import org.oxygenium.protocol.{vm, ALPH, Generators, Hash, PublicKey}
+import org.oxygenium.protocol.{vm, OXYG, Generators, Hash, PublicKey}
 import org.oxygenium.protocol.model._
 import org.oxygenium.protocol.vm._
 import org.oxygenium.ralph.Compiler
@@ -105,7 +105,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     lazy val chainIndex = ChainIndex.unsafe(0, 0)
     lazy val fromLockup = getGenesisLockupScript(chainIndex)
     lazy val txScript0 =
-      contractCreation(script0, AVector.empty, initialMutFields, fromLockup, ALPH.alph(1))
+      contractCreation(script0, AVector.empty, initialMutFields, fromLockup, OXYG.oxyg(1))
     lazy val block0 = payableCall(blockFlow, chainIndex, txScript0)
     lazy val contractOutputRef0 =
       TxOutputRef.unsafe(block0.transactions.head, 0).asInstanceOf[ContractOutputRef]
@@ -410,7 +410,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val script: String =
         s"""
            |TxScript Main {
-           |  createContractWithToken!{ @$genesisAddress -> ALPH: 1 alph }(#$contractByteCode, #, #$encodedMutFields, 1, @${contractAddress.toBase58})
+           |  createContractWithToken!{ @$genesisAddress -> OXYG: 1 oxyg }(#$contractByteCode, #, #$encodedMutFields, 1, @${contractAddress.toBase58})
            |}
            |""".stripMargin
 
@@ -423,9 +423,9 @@ class VMSpec extends OxygeniumSpec with Generators {
     val script =
       s"""
          |TxScript Main {
-         |  assert!(tokenRemaining!(@$genesisAddress, ALPH) > 0, 0)
+         |  assert!(tokenRemaining!(@$genesisAddress, OXYG) > 0, 0)
          |  assert!(tokenRemaining!(@$genesisAddress, #${TokenId.random.toHexString}) == 0, 0)
-         |  assert!(tokenRemaining!(@$randomAddress, ALPH) == 0, 0)
+         |  assert!(tokenRemaining!(@$randomAddress, OXYG) == 0, 0)
          |  assert!(tokenRemaining!(@$randomAddress, #${TokenId.random.toHexString}) == 0, 0)
          |}
          |""".stripMargin
@@ -433,23 +433,23 @@ class VMSpec extends OxygeniumSpec with Generators {
     callTxScript(script)
   }
 
-  it should "transfer ALPH by token id" in new ContractFixture {
+  it should "transfer OXYG by token id" in new ContractFixture {
     val foo =
       s"""
          |Contract Foo() {
          |  @using(preapprovedAssets = true, assetsInContract = true)
          |  pub fn foo(sender: Address) -> () {
-         |    let senderAlph = tokenRemaining!(sender, ALPH)
-         |    assert!(tokenRemaining!(sender, ALPH) == senderAlph, 0)
-         |    let contractAlph = tokenRemaining!(selfAddress!(), ALPH)
-         |    assert!(tokenRemaining!(selfAddress!(), ALPH) == contractAlph, 0)
+         |    let senderAlph = tokenRemaining!(sender, OXYG)
+         |    assert!(tokenRemaining!(sender, OXYG) == senderAlph, 0)
+         |    let contractAlph = tokenRemaining!(selfAddress!(), OXYG)
+         |    assert!(tokenRemaining!(selfAddress!(), OXYG) == contractAlph, 0)
          |
-         |    transferTokenToSelf!(sender, ALPH, 1 alph)
-         |    assert!(tokenRemaining!(sender, ALPH) == senderAlph - 1 alph, 0)
-         |    transferTokenFromSelf!(sender, ALPH, 0.1 alph)
-         |    assert!(tokenRemaining!(selfAddress!(), ALPH) == contractAlph - 0.1 alph, 0)
-         |    transferToken!(sender, selfAddress!(), ALPH, 1 alph)
-         |    assert!(tokenRemaining!(sender, ALPH) == senderAlph - 2 alph, 0)
+         |    transferTokenToSelf!(sender, OXYG, 1 oxyg)
+         |    assert!(tokenRemaining!(sender, OXYG) == senderAlph - 1 oxyg, 0)
+         |    transferTokenFromSelf!(sender, OXYG, 0.1 oxyg)
+         |    assert!(tokenRemaining!(selfAddress!(), OXYG) == contractAlph - 0.1 oxyg, 0)
+         |    transferToken!(sender, selfAddress!(), OXYG, 1 oxyg)
+         |    assert!(tokenRemaining!(sender, OXYG) == senderAlph - 2 oxyg, 0)
          |  }
          |}
          |""".stripMargin
@@ -458,7 +458,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     val script =
       s"""
          |TxScript Main {
-         |  Foo(#${fooId.toHexString}).foo{@$genesisAddress -> ALPH: 3 alph}(@$genesisAddress)
+         |  Foo(#${fooId.toHexString}).foo{@$genesisAddress -> OXYG: 3 oxyg}(@$genesisAddress)
          |}
          |$foo
          |""".stripMargin
@@ -467,7 +467,7 @@ class VMSpec extends OxygeniumSpec with Generators {
 
     val worldState    = blockFlow.getBestPersistedWorldState(chainIndex.from).rightValue
     val contractAsset = worldState.getContractAsset(fooId).rightValue
-    contractAsset.amount is ALPH.alph(2)
+    contractAsset.amount is OXYG.oxyg(2)
   }
 
   it should "work with negative operation on I256 expression" in new ContractFixture {
@@ -545,7 +545,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |  @using(assetsInContract = true)
          |  pub fn transfer(to: Address, amount: U256) -> () {
          |    transferTokenFromSelf!(to, selfTokenId!(), amount)
-         |    transferTokenFromSelf!(to, ALPH, dustAmount!())
+         |    transferTokenFromSelf!(to, OXYG, dustAmount!())
          |  }
          |}
          |""".stripMargin
@@ -565,7 +565,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       initialImmState = AVector.empty,
       initialMutState = AVector.empty,
       Some(TokenIssuance.Info(Val.U256.unsafe(1000), None)),
-      ALPH.alph(10000)
+      OXYG.oxyg(10000)
     )._1
     val tokenId = TokenId.from(contractId)
 
@@ -573,7 +573,7 @@ class VMSpec extends OxygeniumSpec with Generators {
 
     val contractAsset = getContractAsset(contractId, chainIndex)
     contractAsset.tokens is AVector((tokenId, U256.unsafe(1000)))
-    contractAsset.amount is ALPH.alph(10000)
+    contractAsset.amount is OXYG.oxyg(10000)
 
     info("transfer token to genesisAddress")
     callTxScript(script(tokenId.toHexString, genesisAddress.toBase58, 10))
@@ -593,17 +593,17 @@ class VMSpec extends OxygeniumSpec with Generators {
     intercept[AssertionError](callTxScript(script(tokenId.toHexString, address1.toBase58, 50)))
       .getMessage() is "Right(InvalidOutputGroupIndex)"
 
-    info("transfer some ALPH to adress in group 0")
+    info("transfer some OXYG to adress in group 0")
     val genesisPrivateKey = genesisKeys(chainIndex.from.value)._1
     val block = transfer(
       blockFlow,
       genesisPrivateKey,
       address0.lockupScript,
       AVector.empty[(TokenId, U256)],
-      ALPH.oneAlph
+      OXYG.oneAlph
     )
     addAndCheck(blockFlow, block)
-    getAlphBalance(blockFlow, address0.lockupScript) is (dustUtxoAmount + ALPH.oneAlph)
+    getAlphBalance(blockFlow, address0.lockupScript) is (dustUtxoAmount + OXYG.oneAlph)
 
     info("transfer token from address in group 0 to address in group 1")
     val tokens: AVector[(TokenId, U256)] = AVector(tokenId -> 10)
@@ -622,7 +622,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Bar() {
          |  @using(assetsInContract = true)
          |  pub fn bar() -> () {
-         |    transferTokenFromSelf!(callerAddress!(), ALPH, minimalContractDeposit!())
+         |    transferTokenFromSelf!(callerAddress!(), OXYG, minimalContractDeposit!())
          |  }
          |}
          |""".stripMargin
@@ -661,13 +661,13 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(assetsInContract = true)
          |  pub fn mint() -> () {
-         |    transferTokenFromSelf!(@$genesisAddress, selfTokenId!(), 2 alph)
+         |    transferTokenFromSelf!(@$genesisAddress, selfTokenId!(), 2 oxyg)
          |  }
          |
          |  @using(preapprovedAssets = true, assetsInContract = true)
          |  pub fn burn() -> () {
-         |    burnToken!(@$genesisAddress, selfTokenId!(), 1 alph)
-         |    burnToken!(selfAddress!(), selfTokenId!(), 1 alph)
+         |    burnToken!(@$genesisAddress, selfTokenId!(), 1 oxyg)
+         |    burnToken!(selfAddress!(), selfTokenId!(), 1 oxyg)
          |  }
          |}
          |""".stripMargin
@@ -676,7 +676,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         contract,
         AVector.empty,
         AVector.empty,
-        Some(TokenIssuance.Info(ALPH.alph(5)))
+        Some(TokenIssuance.Info(OXYG.oxyg(5)))
       )._1
     val tokenId = TokenId.from(contractId)
 
@@ -692,15 +692,15 @@ class VMSpec extends OxygeniumSpec with Generators {
     callTxScript(mint)
     val contractAsset0 = getContractAsset(contractId, chainIndex)
     contractAsset0.lockupScript is LockupScript.p2c(contractId)
-    contractAsset0.tokens is AVector(tokenId -> ALPH.alph(3))
+    contractAsset0.tokens is AVector(tokenId -> OXYG.oxyg(3))
     val tokenAmount0 = getTokenBalance(blockFlow, genesisAddress.lockupScript, tokenId)
-    tokenAmount0 is ALPH.alph(2)
+    tokenAmount0 is OXYG.oxyg(2)
 
     val burn =
       s"""
          |TxScript Main {
          |  let foo = Foo(#${contractId.toHexString})
-         |  foo.burn{@$genesisAddress -> #${contractId.toHexString}: 2 alph}()
+         |  foo.burn{@$genesisAddress -> #${contractId.toHexString}: 2 oxyg}()
          |}
          |
          |$contract
@@ -708,9 +708,9 @@ class VMSpec extends OxygeniumSpec with Generators {
     callTxScript(burn)
     val contractAsset1 = getContractAsset(contractId, chainIndex)
     contractAsset1.lockupScript is LockupScript.p2c(contractId)
-    contractAsset1.tokens is AVector(tokenId -> ALPH.alph(2))
+    contractAsset1.tokens is AVector(tokenId -> OXYG.oxyg(2))
     val tokenAmount1 = getTokenBalance(blockFlow, genesisAddress.lockupScript, tokenId)
-    tokenAmount1 is ALPH.alph(1)
+    tokenAmount1 is OXYG.oxyg(1)
   }
 
   it should "lock assets" in new ContractFixture {
@@ -719,7 +719,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(assetsInContract = true)
          |  pub fn mint() -> () {
-         |    transferTokenFromSelf!(@$genesisAddress, selfTokenId!(), 10 alph)
+         |    transferTokenFromSelf!(@$genesisAddress, selfTokenId!(), 10 oxyg)
          |  }
          |}
          |""".stripMargin
@@ -731,7 +731,7 @@ class VMSpec extends OxygeniumSpec with Generators {
           token,
           AVector.empty,
           AVector.empty,
-          Some(TokenIssuance.Info(ALPH.alph(100)))
+          Some(TokenIssuance.Info(OXYG.oxyg(100)))
         )._1
       )
     val _tokenId1 =
@@ -740,7 +740,7 @@ class VMSpec extends OxygeniumSpec with Generators {
           token,
           AVector.empty,
           AVector.empty,
-          Some(TokenIssuance.Info(ALPH.alph(100)))
+          Some(TokenIssuance.Info(OXYG.oxyg(100)))
         )._1
       )
     val Seq(tokenId0, tokenId1) = Seq(_tokenId0, _tokenId1).sorted
@@ -770,14 +770,14 @@ class VMSpec extends OxygeniumSpec with Generators {
          |  let timestamp1 = ${timestamp1.millis}
          |  let timestamp2 = ${timestamp2.millis}
          |
-         |  lockApprovedAssets!{ @$genesisAddress -> ALPH: 0.01 alph }(@$genesisAddress, timestamp0)
+         |  lockApprovedAssets!{ @$genesisAddress -> OXYG: 0.01 oxyg }(@$genesisAddress, timestamp0)
          |
          |  lockApprovedAssets!{
-         |    @$genesisAddress -> ALPH: 0.02 alph, #$tokenId0Hex: 0.03 alph
+         |    @$genesisAddress -> OXYG: 0.02 oxyg, #$tokenId0Hex: 0.03 oxyg
          |  }(@$genesisAddress, timestamp1)
          |
          |  lockApprovedAssets!{
-         |    @$genesisAddress -> ALPH: 0.04 alph, #$tokenId0Hex: 0.05 alph, #$tokenId1Hex: 0.06 alph
+         |    @$genesisAddress -> OXYG: 0.04 oxyg, #$tokenId0Hex: 0.05 oxyg, #$tokenId1Hex: 0.06 oxyg
          |  }(@$genesisAddress, timestamp2)
          |}
          |
@@ -801,12 +801,12 @@ class VMSpec extends OxygeniumSpec with Generators {
       )
     }
 
-    checkOutput(0, timestamp0, ALPH.cent(1))
-    checkOutput(1, timestamp1, dustUtxoAmount, tokenId0 -> ALPH.cent(3))
-    checkOutput(2, timestamp1, ALPH.cent(2) - dustUtxoAmount)
-    checkOutput(3, timestamp2, dustUtxoAmount, tokenId0 -> ALPH.cent(5))
-    checkOutput(4, timestamp2, dustUtxoAmount, tokenId1 -> ALPH.cent(6))
-    checkOutput(5, timestamp2, ALPH.cent(4) - (dustUtxoAmount * 2))
+    checkOutput(0, timestamp0, OXYG.cent(1))
+    checkOutput(1, timestamp1, dustUtxoAmount, tokenId0 -> OXYG.cent(3))
+    checkOutput(2, timestamp1, OXYG.cent(2) - dustUtxoAmount)
+    checkOutput(3, timestamp2, dustUtxoAmount, tokenId0 -> OXYG.cent(5))
+    checkOutput(4, timestamp2, dustUtxoAmount, tokenId1 -> OXYG.cent(6))
+    checkOutput(5, timestamp2, OXYG.cent(4) - (dustUtxoAmount * 2))
   }
 
   it should "not use up contract assets" in new ContractFixture {
@@ -815,7 +815,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         |Contract Foo() {
         |  @using(assetsInContract = true)
         |  pub fn foo(address: Address) -> () {
-        |    transferTokenFromSelf!(address, ALPH, tokenRemaining!(selfAddress!(), ALPH))
+        |    transferTokenFromSelf!(address, OXYG, tokenRemaining!(selfAddress!(), OXYG))
         |  }
         |}
         |""".stripMargin
@@ -982,7 +982,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |    assert!(3 ** 0 + 1 == 2, 0)
          |    assert!(3 ** 3 - 1 == 26, 0)
          |    assert!(3 * 3 ** 2 == 27, 0)
-         |    assert!(10 ** 18 == 1 alph, 0)
+         |    assert!(10 ** 18 == 1 oxyg, 0)
          |    assert!(-3 ** 2 == 9i, 0)
          |    assert!(-3 ** 3 == -27, 0)
          |    assert!(8 / 2 ** 2 + 1 == 3, 0)
@@ -1083,8 +1083,8 @@ class VMSpec extends OxygeniumSpec with Generators {
          |  assert!(zeros!(2) == #0000, 0)
          |  assert!(nullContractAddress!() == @${Address.contract(ContractId.zero)}, 0)
          |  assert!(nullContractAddress!() == @tgx7VNFoP9DJiFMFgXXtafQZkUvyEdDHT9ryamHJYrjq, 0)
-         |  assert!(ALPH == zeros!(32), 0)
-         |  assert!(ALPH == #0000000000000000000000000000000000000000000000000000000000000000, 0)
+         |  assert!(OXYG == zeros!(32), 0)
+         |  assert!(OXYG == #0000000000000000000000000000000000000000000000000000000000000000, 0)
          |}
          |""".stripMargin
 
@@ -1096,7 +1096,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |@using(preapprovedAssets = false)
          |TxScript Main {
-         |  assert!(minimalContractDeposit!() == 0.1 alph, 0)
+         |  assert!(minimalContractDeposit!() == 0.1 oxyg, 0)
          |  assert!(mapEntryDeposit!() == minimalContractDeposit!(), 0)
          |}
          |""".stripMargin
@@ -1133,14 +1133,14 @@ class VMSpec extends OxygeniumSpec with Generators {
     val encodedState     = Hex.toHexString(serialize[AVector[Val]](AVector.empty))
     val encodedImmFields = encodedState
     val encodedMutFields = encodedState
-    val tokenAmount      = ALPH.oneNanoAlph
+    val tokenAmount      = OXYG.oneNanoAlph
 
     {
       info("copy create contract with token")
       val script: String =
         s"""
            |TxScript Main {
-           |  copyCreateContractWithToken!{ @$genesisAddress -> ALPH: 1 alph }(#$contractId, #$encodedImmFields, #$encodedMutFields, ${tokenAmount.v})
+           |  copyCreateContractWithToken!{ @$genesisAddress -> OXYG: 1 oxyg }(#$contractId, #$encodedImmFields, #$encodedMutFields, ${tokenAmount.v})
            |}
            |""".stripMargin
 
@@ -1156,7 +1156,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val script: String =
         s"""
            |TxScript Main {
-           |  copyCreateContractWithToken!{ @$genesisAddress -> ALPH: 1 alph }(#$contractId, #$encodedImmFields, #$encodedMutFields, ${tokenAmount.v}, @${genesisAddress.toBase58})
+           |  copyCreateContractWithToken!{ @$genesisAddress -> OXYG: 1 oxyg }(#$contractId, #$encodedImmFields, #$encodedMutFields, ${tokenAmount.v}, @${genesisAddress.toBase58})
            |}
            |""".stripMargin
 
@@ -1174,7 +1174,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val script: String =
         s"""
            |TxScript Main {
-           |  copyCreateContractWithToken!{ @$genesisAddress -> ALPH: 1 alph }(#$contractId, #$encodedImmFields, #$encodedMutFields, ${tokenAmount.v}, @${contractAddress.toBase58})
+           |  copyCreateContractWithToken!{ @$genesisAddress -> OXYG: 1 oxyg }(#$contractId, #$encodedImmFields, #$encodedMutFields, ${tokenAmount.v}, @${contractAddress.toBase58})
            |}
            |""".stripMargin
 
@@ -1241,8 +1241,8 @@ class VMSpec extends OxygeniumSpec with Generators {
     def main(state: String) =
       s"""
          |TxScript Main {
-         |  Bar(#$barId).bar{ @$genesisAddress -> ALPH: 1 alph }(#$fooId, #$fooHash, #$fooCodeHash, #$barId, #$barHash, #$barCodeHash, @$barAddress)
-         |  copyCreateContract!{ @$genesisAddress -> ALPH: 1 alph }(#$fooId, #00, #$state)
+         |  Bar(#$barId).bar{ @$genesisAddress -> OXYG: 1 oxyg }(#$fooId, #$fooHash, #$fooCodeHash, #$barId, #$barHash, #$barCodeHash, @$barAddress)
+         |  copyCreateContract!{ @$genesisAddress -> OXYG: 1 oxyg }(#$fooId, #00, #$state)
          |}
          |$bar
          |""".stripMargin
@@ -1547,7 +1547,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(assetsInContract = true)
          |  pub fn destroy(targetAddress: Address) -> () {
-         |    approveToken!(selfAddress!(), ALPH, 2 alph)
+         |    approveToken!(selfAddress!(), OXYG, 2 oxyg)
          |    destroySelf!(targetAddress)
          |  }
          |}
@@ -1567,7 +1567,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         contract.methods
           .replace(0, contract.methods.head.copy(useContractAssets = useAssetsInContract))
       )
-      val fooId = createCompiledContract(newContract, initialAttoAlphAmount = ALPH.alph(10))._1
+      val fooId = createCompiledContract(newContract, initialAttoAlphAmount = OXYG.oxyg(10))._1
       failCallTxScript(main(fooId), error)
     }
 
@@ -1711,7 +1711,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(assetsInContract = true)
          |  pub fn foo(targetAddress: Address) -> () {
-         |    approveToken!(selfAddress!(), ALPH, tokenRemaining!(selfAddress!(), ALPH))
+         |    approveToken!(selfAddress!(), OXYG, tokenRemaining!(selfAddress!(), OXYG))
          |    destroy(targetAddress)
          |  }
          |
@@ -1758,12 +1758,12 @@ class VMSpec extends OxygeniumSpec with Generators {
          |
          |  @using(assetsInContract = true, preapprovedAssets = true)
          |  pub fn func3(from: Address, amount: U256) -> () {
-         |    transferTokenToSelf!(from, ALPH, amount)
+         |    transferTokenToSelf!(from, OXYG, amount)
          |  }
          |
          |  @using(assetsInContract = true)
          |  pub fn func4() -> () {
-         |    transferTokenFromSelf!(@$randomContractAddress, ALPH, 0)
+         |    transferTokenFromSelf!(@$randomContractAddress, OXYG, 0)
          |  }
          |}
          |""".stripMargin
@@ -1785,21 +1785,21 @@ class VMSpec extends OxygeniumSpec with Generators {
       ) is true
     }
 
-    callTxScript(script(s"foo.func0{@$genesisAddress -> ALPH: 0}(ALPH, 0)"))
-    fail(script(s"foo.func0{@$genesisAddress -> ALPH: 0}(ALPH, 1)"))
+    callTxScript(script(s"foo.func0{@$genesisAddress -> OXYG: 0}(OXYG, 0)"))
+    fail(script(s"foo.func0{@$genesisAddress -> OXYG: 0}(OXYG, 1)"))
     callTxScript(script(s"foo.func0{@$genesisAddress -> #$randomTokenId: 0}(#$randomTokenId, 0)"))
     fail(script(s"foo.func0{@$genesisAddress -> #$randomTokenId: 1}(#$randomTokenId, 1)"))
     fail(script(s"foo.func0{@$genesisAddress -> #$randomTokenId: 0}(#$randomTokenId, 1)"))
-    callTxScript(script(s"foo.func1(ALPH, 0)"))
+    callTxScript(script(s"foo.func1(OXYG, 0)"))
     callTxScript(script(s"foo.func1(#$randomTokenId, 0)"))
     fail(script(s"foo.func1(#$randomTokenId, 1)"))
-    callTxScript(script(s"foo.func2{@$genesisAddress -> ALPH: 0}(ALPH, 0)"))
+    callTxScript(script(s"foo.func2{@$genesisAddress -> OXYG: 0}(OXYG, 0)"))
     callTxScript(script(s"foo.func2{@$genesisAddress -> #$randomTokenId: 0}(#$randomTokenId, 0)"))
     fail(script(s"foo.func2{@$genesisAddress -> #$randomTokenId: 0}(#$randomTokenId, 1)"))
     callTxScript(
-      script(s"foo.func3{@$randomContractAddress -> ALPH: 0}(@$randomContractAddress, 0)")
+      script(s"foo.func3{@$randomContractAddress -> OXYG: 0}(@$randomContractAddress, 0)")
     )
-    fail(script(s"foo.func3{@$randomContractAddress -> ALPH: 1}(@$randomContractAddress, 1)"))
+    fail(script(s"foo.func3{@$randomContractAddress -> OXYG: 1}(@$randomContractAddress, 1)"))
 
     intercept[AssertionError](callTxScript(script("foo.func4()"))).getMessage is
       s"Right(TxScriptExeFailed(Pay to contract address $randomContractAddress is not allowed when this contract address is not in the call stack))"
@@ -1852,7 +1852,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |@using(preapprovedAssets = false)
          |TxScript Main {
-         |  assert!(dustAmount!() == 0.001 alph, 0)
+         |  assert!(dustAmount!() == 0.001 oxyg, 0)
          |  assert!(dustAmount!() == $dustUtxoAmount, 0)
          |}
          |""".stripMargin
@@ -2142,7 +2142,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |    @using(preapprovedAssets = true, assetsInContract = true)
          |    pub fn buy(buyer: Address) -> ()
          |    {
-         |        transferToken!(buyer, author, ALPH, price)
+         |        transferToken!(buyer, author, OXYG, price)
          |        transferTokenFromSelf!(buyer, selfTokenId!(), 1)
          |        destroySelf!(author)
          |    }
@@ -2163,7 +2163,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Main
          |{
-         |  Nft(#${tokenId.toHexString}).buy{@$genesisAddress -> ALPH: 1000000}(@${genesisAddress.toBase58})
+         |  Nft(#${tokenId.toHexString}).buy{@$genesisAddress -> OXYG: 1000000}(@${genesisAddress.toBase58})
          |}
          |
          |$nftContract
@@ -2233,7 +2233,7 @@ class VMSpec extends OxygeniumSpec with Generators {
                     |TxScript Main {
                     |  let swap = Swap(#${swapContractId.toHexString})
                     |  swap.addLiquidity{
-                    |   @$genesisAddress -> ALPH: 10, #${tokenId.toHexString}: 100
+                    |   @$genesisAddress -> OXYG: 10, #${tokenId.toHexString}: 100
                     |  }(@${genesisAddress.toBase58}, 10, 100)
                     |}
                     |
@@ -2244,7 +2244,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     callTxScript(s"""
                     |TxScript Main {
                     |  let swap = Swap(#${swapContractId.toHexString})
-                    |  swap.swapToken{@$genesisAddress -> ALPH: 10}(@${genesisAddress.toBase58}, 10)
+                    |  swap.swapToken{@$genesisAddress -> OXYG: 10}(@${genesisAddress.toBase58}, 10)
                     |}
                     |
                     |${AMMContract.swapContract}
@@ -2401,7 +2401,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |  @using(assetsInContract = true, updateFields = true)
          |  pub fn foo(address: Address) -> () {
          |    x = x + 1
-         |    transferTokenFromSelf!(address, ALPH, ${ALPH.cent(1).v})
+         |    transferTokenFromSelf!(address, OXYG, ${OXYG.cent(1).v})
          |  }
          |}
          |""".stripMargin
@@ -2410,7 +2410,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         testContract,
         2,
         2,
-        initialAttoAlphAmount = ALPH.alph(10)
+        initialAttoAlphAmount = OXYG.oxyg(10)
       )._1
 
     def checkContract(alphReserve: U256, x: Int) = {
@@ -2421,9 +2421,9 @@ class VMSpec extends OxygeniumSpec with Generators {
       output.amount is alphReserve
     }
 
-    checkContract(ALPH.alph(10), 0)
+    checkContract(OXYG.oxyg(10), 0)
 
-    val block0 = transfer(blockFlow, chainIndex, amount = ALPH.alph(10), numReceivers = 10)
+    val block0 = transfer(blockFlow, chainIndex, amount = OXYG.oxyg(10), numReceivers = 10)
     addAndCheck(blockFlow, block0)
     val newAddresses = block0.nonCoinbase.head.unsigned.fixedOutputs.init.map(_.lockupScript)
 
@@ -2469,7 +2469,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     blockTemplate.transactions.filter(_.scriptExecutionOk == false).length is 5
     val block = mine(blockFlow, blockTemplate)
     addAndCheck0(blockFlow, block)
-    checkContract(ALPH.cent(995), 5)
+    checkContract(OXYG.cent(995), 5)
   }
 
   it should "test contract inheritance" in new ContractFixture {
@@ -2900,7 +2900,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     lazy val fromLockup      = getGenesisLockupScript(chainIndex)
     lazy val genesisAddress  = Address.Asset(fromLockup)
     lazy val contractCreationScript =
-      contractCreation(contract, initialImmState, initialMutState, fromLockup, ALPH.alph(1))
+      contractCreation(contract, initialImmState, initialMutState, fromLockup, OXYG.oxyg(1))
     lazy val createContractBlock =
       payableCall(blockFlow, chainIndex, contractCreationScript)
     lazy val contractOutputRef =
@@ -3086,7 +3086,7 @@ class VMSpec extends OxygeniumSpec with Generators {
   it should "Log contract and subcontract ids when subcontract is created" in new SubContractFixture {
     val subContractPath1 = Hex.toHexString(serialize("nft-01"))
     val (contractId, subContractId) = verify(
-      s"createSubContract!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath1, #$subContractByteCode, #00, #00)",
+      s"createSubContract!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath1, #$subContractByteCode, #00, #00)",
       subContractPath = "nft-01",
       numOfAssets = 2,
       numOfContracts = 2
@@ -3372,7 +3372,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |
          |  @using(preapprovedAssets = true, updateFields = true)
          |  pub fn foo() -> () {
-         |    subContractId = copyCreateContract!{callerAddress!() -> ALPH: $minimalAlphInContract}(selfContractId!(), #00, #010300)
+         |    subContractId = copyCreateContract!{callerAddress!() -> OXYG: $minimalAlphInContract}(selfContractId!(), #00, #010300)
          |    emit Create(subContractId)
          |  }
          |}
@@ -3390,7 +3390,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     val main: String =
       s"""
          |TxScript Main {
-         |  Foo(#${contractId.toHexString}).foo{callerAddress!() -> ALPH: 1 alph}()
+         |  Foo(#${contractId.toHexString}).foo{callerAddress!() -> OXYG: 1 oxyg}()
          |}
          |
          |$contract
@@ -3458,7 +3458,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val createSubContractRaw: String =
         s"""
            |TxScript Main {
-           |  Foo(#${contractId.toHexString}).createSubContract{callerAddress!() -> ALPH: 1 alph}()
+           |  Foo(#${contractId.toHexString}).createSubContract{callerAddress!() -> OXYG: 1 oxyg}()
            |}
            |$contractRaw
            |""".stripMargin
@@ -3511,7 +3511,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val createSubContractRaw: String =
         s"""
            |TxScript Main {
-           |  Foo(#${contractId.toHexString}).createSubContract{callerAddress!() -> ALPH: 1 alph}()
+           |  Foo(#${contractId.toHexString}).createSubContract{callerAddress!() -> OXYG: 1 oxyg}()
            |}
            |$contractRaw
            |""".stripMargin
@@ -3527,7 +3527,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       info("create sub-contract without token")
       val subContractPath1 = Hex.toHexString(serialize("nft-01"))
       verify(
-        s"createSubContract!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath1, #$subContractByteCode, #00, #00)",
+        s"createSubContract!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath1, #$subContractByteCode, #00, #00)",
         subContractPath = "nft-01",
         numOfAssets = 2,
         numOfContracts = 2
@@ -3538,7 +3538,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       info("create sub-contract with token")
       val subContractPath2 = Hex.toHexString(serialize("nft-02"))
       val (_, subContractId) = verify(
-        s"createSubContractWithToken!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath2, #$subContractByteCode, #00, #00, 10)",
+        s"createSubContractWithToken!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath2, #$subContractByteCode, #00, #00, 10)",
         subContractPath = "nft-02",
         numOfAssets = 5,
         numOfContracts = 4
@@ -3552,7 +3552,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       info("create sub-contract and transfer token to asset address")
       val subContractPath3 = Hex.toHexString(serialize("nft-03"))
       val (_, subContractId) = verify(
-        s"createSubContractWithToken!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath3, #$subContractByteCode, #00, #00, 10, @${genesisAddress.toBase58})",
+        s"createSubContractWithToken!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath3, #$subContractByteCode, #00, #00, 10, @${genesisAddress.toBase58})",
         subContractPath = "nft-03",
         numOfAssets = 8,
         numOfContracts = 6
@@ -3571,7 +3571,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val subContractPath4 = Hex.toHexString(serialize("nft-04"))
       val contractAddress  = Address.contract(ContractId.random)
       verify(
-        s"createSubContractWithToken!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath4, #$subContractByteCode, #00, #00, 10, @${contractAddress.toBase58})",
+        s"createSubContractWithToken!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath4, #$subContractByteCode, #00, #00, 10, @${contractAddress.toBase58})",
         InvalidAssetAddress(contractAddress)
       )
     }
@@ -3585,7 +3585,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       info("copy create sub-contract without token")
       val subContractPath1 = Hex.toHexString(serialize("nft-01"))
       verify(
-        s"copyCreateSubContract!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath1, #${subContractId.toHexString}, #00, #00)",
+        s"copyCreateSubContract!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath1, #${subContractId.toHexString}, #00, #00)",
         subContractPath = "nft-01",
         numOfAssets = 3,
         numOfContracts = 3
@@ -3596,7 +3596,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       info("copy create sub-contract with token")
       val subContractPath2 = Hex.toHexString(serialize("nft-02"))
       val (_, contractId) = verify(
-        s"copyCreateSubContractWithToken!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath2, #${subContractId.toHexString}, #00, #00, 10)",
+        s"copyCreateSubContractWithToken!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath2, #${subContractId.toHexString}, #00, #00, 10)",
         subContractPath = "nft-02",
         numOfAssets = 6,
         numOfContracts = 5
@@ -3611,7 +3611,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       info("copy create sub-contract and transfer token to asset address")
       val subContractPath3 = Hex.toHexString(serialize("nft-03"))
       val (_, contractId) = verify(
-        s"copyCreateSubContractWithToken!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath3, #${subContractId.toHexString}, #00, #00, 10, @${genesisAddress.toBase58})",
+        s"copyCreateSubContractWithToken!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath3, #${subContractId.toHexString}, #00, #00, 10, @${genesisAddress.toBase58})",
         subContractPath = "nft-03",
         numOfAssets = 9,
         numOfContracts = 7
@@ -3629,7 +3629,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       val subContractPath4 = Hex.toHexString(serialize("nft-04"))
       val contractAddress  = Address.contract(ContractId.random)
       verify(
-        s"copyCreateSubContractWithToken!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath4, #${subContractId.toHexString}, #00, #00, 10, @${contractAddress.toBase58})",
+        s"copyCreateSubContractWithToken!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath4, #${subContractId.toHexString}, #00, #00, 10, @${contractAddress.toBase58})",
         InvalidAssetAddress(contractAddress)
       )
     }
@@ -3644,7 +3644,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Parent() {
          |  @using(preapprovedAssets = true)
          |  pub fn createSubContract() -> () {
-         |    createSubContract!{callerAddress!() -> ALPH: 1 alph}(#$subContractPath, #$subContractByteCode, #00, #00)
+         |    createSubContract!{callerAddress!() -> OXYG: 1 oxyg}(#$subContractPath, #$subContractByteCode, #00, #00)
          |  }
          |}
          |""".stripMargin
@@ -3654,7 +3654,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     val createSubContractScript =
       s"""
          |TxScript Main() {
-         |  Parent(#$contractIdHex).createSubContract{callerAddress!() -> ALPH: 1 alph}()
+         |  Parent(#$contractIdHex).createSubContract{callerAddress!() -> OXYG: 1 oxyg}()
          |}
          |$parentContract
          |""".stripMargin
@@ -3767,14 +3767,14 @@ class VMSpec extends OxygeniumSpec with Generators {
          |  @using(preapprovedAssets = true, updateFields = true)
          |  pub fn foo() -> () {
          |    let subContractId = copyCreateSubContract!{
-         |      callerAddress!() -> ALPH: 1 alph
+         |      callerAddress!() -> OXYG: 1 oxyg
          |    }(#00, selfContractId!(), #00, #010201)
          |    let subContract = Foo(subContractId)
          |    subContract.bar()
          |  }
          |  @using(${if (useAssets) "assetsInContract = true, " else ""}updateFields = true)
          |  pub fn bar() -> () {
-         |    ${if (useAssets) "transferTokenFromSelf!(selfAddress!(), ALPH, 1 alph)" else ""}
+         |    ${if (useAssets) "transferTokenFromSelf!(selfAddress!(), OXYG, 1 oxyg)" else ""}
          |    n = n + 1
          |  }
          |}
@@ -3797,7 +3797,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     lazy val main: String =
       s"""
          |TxScript Main {
-         |  Foo(#${contractId.toHexString}).foo{callerAddress!() -> ALPH: 1 alph}()
+         |  Foo(#${contractId.toHexString}).foo{callerAddress!() -> OXYG: 1 oxyg}()
          |}
          |
          |$contract
@@ -3967,7 +3967,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Deploy() {
          |  let (encodedImmFields, encodedMutFields) = Foo.encodeFields!(0, [1, 2], 3, [4, 5])
-         |  createContract!{@$genesisAddress -> ALPH: $minimalAlphInContract}(#$fooBytecode, encodedImmFields, encodedMutFields)
+         |  createContract!{@$genesisAddress -> OXYG: $minimalAlphInContract}(#$fooBytecode, encodedImmFields, encodedMutFields)
          |}
          |$foo
          |""".stripMargin
@@ -4149,7 +4149,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Main {
          |  Foo(#${fooId.toHexString}).foo()
-         |  transferToken!(callerAddress!(), @${fooAddress.toBase58}, ALPH, 1 alph)
+         |  transferToken!(callerAddress!(), @${fooAddress.toBase58}, OXYG, 1 oxyg)
          |}
          |
          |$foo
@@ -4338,7 +4338,7 @@ class VMSpec extends OxygeniumSpec with Generators {
 
     def createFooContract(transferAlph: Boolean): String = {
       val maybeTransfer = if (transferAlph) {
-        s"transferTokenFromSelf!(contractAddress, ALPH, ${minimalAlphInContract.v})"
+        s"transferTokenFromSelf!(contractAddress, OXYG, ${minimalAlphInContract.v})"
       } else {
         ""
       }
@@ -4348,7 +4348,7 @@ class VMSpec extends OxygeniumSpec with Generators {
            |Contract Bar() {
            |  @using(preapprovedAssets = true, assetsInContract = $transferAlph)
            |  pub fn bar() -> () {
-           |    let contractId = createContract!{@$genesisAddress -> ALPH: $minimalAlphInContract}(#$fooByteCode, #00, #00)
+           |    let contractId = createContract!{@$genesisAddress -> OXYG: $minimalAlphInContract}(#$fooByteCode, #00, #00)
            |    let contractAddress = contractIdToAddress!(contractId)
            |
            |    $maybeTransfer
@@ -4361,13 +4361,13 @@ class VMSpec extends OxygeniumSpec with Generators {
           bar,
           AVector.empty,
           AVector.empty,
-          initialAttoAlphAmount = ALPH.alph(2)
+          initialAttoAlphAmount = OXYG.oxyg(2)
         )._1
 
       s"""
          |TxScript Main {
          |  let bar = Bar(#${barContractId.toHexString})
-         |  bar.bar{@$genesisAddress -> ALPH: $minimalAlphInContract}()
+         |  bar.bar{@$genesisAddress -> OXYG: $minimalAlphInContract}()
          |}
          |
          |$bar
@@ -4389,7 +4389,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         s"""
            |TxScript Main {
            |  let caller = callerAddress!()
-           |  transferToken!(caller, @${randomContract.toBase58}, ALPH, 0.01 alph)
+           |  transferToken!(caller, @${randomContract.toBase58}, OXYG, 0.01 oxyg)
            |}
            |""".stripMargin
 
@@ -4404,18 +4404,18 @@ class VMSpec extends OxygeniumSpec with Generators {
            |Contract Foo() {
            |  @using(assetsInContract = true)
            |  pub fn foo() -> () {
-           |    transferTokenFromSelf!(@${randomContract.toBase58}, ALPH, 0.01 alph)
+           |    transferTokenFromSelf!(@${randomContract.toBase58}, OXYG, 0.01 oxyg)
            |  }
            |}
            |""".stripMargin
-      val fooId      = createContract(foo, initialAttoAlphAmount = ALPH.alph(2))._1
+      val fooId      = createContract(foo, initialAttoAlphAmount = OXYG.oxyg(2))._1
       val fooAddress = Address.contract(fooId)
 
       val script =
         s"""
            |TxScript Main {
            |  let caller = callerAddress!()
-           |  transferToken!(caller, @${fooAddress}, ALPH, 0.01 alph)
+           |  transferToken!(caller, @${fooAddress}, OXYG, 0.01 oxyg)
            |  let foo = Foo(#${fooId.toHexString})
            |  foo.foo()
            |}
@@ -4432,12 +4432,12 @@ class VMSpec extends OxygeniumSpec with Generators {
            |Contract Foo() {
            |  @using(assetsInContract = true)
            |  pub fn foo(to: Address) -> () {
-           |    transferTokenFromSelf!(to, ALPH, 0.01 alph)
+           |    transferTokenFromSelf!(to, OXYG, 0.01 oxyg)
            |  }
            |}
            |""".stripMargin
       val fooId =
-        createContract(foo, initialAttoAlphAmount = ALPH.alph(2))._1
+        createContract(foo, initialAttoAlphAmount = OXYG.oxyg(2))._1
 
       val bar: String =
         s"""
@@ -4449,7 +4449,7 @@ class VMSpec extends OxygeniumSpec with Generators {
            |      foo.foo(to)
            |    } else {
            |      let bar = Bar(nextBarId)
-           |      transferTokenFromSelf!(selfAddress!(), ALPH, 0) // dirty hack
+           |      transferTokenFromSelf!(selfAddress!(), OXYG, 0) // dirty hack
            |      bar.bar(to)
            |    }
            |  }
@@ -4462,7 +4462,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         val initialFields =
           AVector[Val](Val.U256(U256.unsafe(index)), Val.ByteVec(lastBarId.bytes))
         val barId =
-          createContract(bar, initialFields, AVector.empty, initialAttoAlphAmount = ALPH.alph(2))._1
+          createContract(bar, initialFields, AVector.empty, initialAttoAlphAmount = OXYG.oxyg(2))._1
         lastBarId = barId
       }
 
@@ -4485,16 +4485,16 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(assetsInContract = true)
          |  pub fn foo() -> () {
-         |    bar{selfAddress!() -> ALPH: 0.1 alph}()
+         |    bar{selfAddress!() -> OXYG: 0.1 oxyg}()
          |  }
          |
          |  @using(preapprovedAssets = true)
          |  pub fn bar() -> () {
-         |    transferToken!(selfAddress!(), selfAddress!(), ALPH, 0.1 alph)
+         |    transferToken!(selfAddress!(), selfAddress!(), OXYG, 0.1 oxyg)
          |  }
          |}
          |""".stripMargin
-    val fooId = createContract(foo, initialAttoAlphAmount = ALPH.alph(2))._1
+    val fooId = createContract(foo, initialAttoAlphAmount = OXYG.oxyg(2))._1
 
     val script =
       s"""
@@ -4508,7 +4508,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     callTxScript(script)
 
     val worldState = blockFlow.getBestPersistedWorldState(chainIndex.from).fold(throw _, identity)
-    worldState.getContractAsset(fooId).rightValue.amount is ALPH.alph(2)
+    worldState.getContractAsset(fooId).rightValue.amount is OXYG.oxyg(2)
   }
 
   it should "test AssertWithErrorCode instruction" in new ContractFixture {
@@ -4582,7 +4582,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(preapprovedAssets = true, assetsInContract = true)
          |  pub fn foo() -> () {
-         |    transferTokenToSelf!(callerAddress!(), ALPH, 0.01 alph)
+         |    transferTokenToSelf!(callerAddress!(), OXYG, 0.01 oxyg)
          |  }
          |}
          |""".stripMargin
@@ -4592,7 +4592,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Main {
          |  let foo = Foo(#${fooId.toHexString})
-         |  foo.foo{callerAddress!() -> ALPH: 1 alph}()
+         |  foo.foo{callerAddress!() -> OXYG: 1 oxyg}()
          |}
          |$foo
          |""".stripMargin
@@ -4725,7 +4725,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(assetsInContract = true)
          |  pub fn foo() -> () {
-         |    assert!(tokenRemaining!(selfAddress!(), ALPH) == 0.1 alph, 0)
+         |    assert!(tokenRemaining!(selfAddress!(), OXYG) == 0.1 oxyg, 0)
          |  }
          |}
          |""".stripMargin
@@ -4814,7 +4814,7 @@ class VMSpec extends OxygeniumSpec with Generators {
            |Contract Foo() {
            |  @using(assetsInContract=${useContractAsset}, preapprovedAssets = true)
            |  pub fn payMe(amount: U256) -> () {
-           |    transferToken!(callerAddress!(), selfAddress!(), ALPH, amount)
+           |    transferToken!(callerAddress!(), selfAddress!(), OXYG, amount)
            |  }
            |}
            |""".stripMargin
@@ -4826,7 +4826,7 @@ class VMSpec extends OxygeniumSpec with Generators {
             |@using(preapprovedAssets = true)
             |TxScript Bar {
             |  let foo = Foo(#${contractId.toHexString})
-            |  foo.payMe{callerAddress!() -> ALPH: $amount}($amount)
+            |  foo.payMe{callerAddress!() -> OXYG: $amount}($amount)
             |}
             |
             |${code}
@@ -4839,10 +4839,10 @@ class VMSpec extends OxygeniumSpec with Generators {
       }
     }
 
-    test(ALPH.oneNanoAlph, true)
-    test(ALPH.oneNanoAlph, false)
-    test(ALPH.oneAlph, true)
-    test(ALPH.oneAlph, false)
+    test(OXYG.oneNanoAlph, true)
+    test(OXYG.oneNanoAlph, false)
+    test(OXYG.oneAlph, true)
+    test(OXYG.oneAlph, false)
   }
 
   it should "return LowerThanContractMinimalBalance if contract balance falls below the minimal deposit" in new ContractFixture {
@@ -4852,12 +4852,12 @@ class VMSpec extends OxygeniumSpec with Generators {
            |Contract Foo() {
            |  @using(assetsInContract=true, preapprovedAssets = true)
            |  pub fn payMe(amount: U256) -> () {
-           |    transferTokenFromSelf!(callerAddress!(), ALPH, amount)
+           |    transferTokenFromSelf!(callerAddress!(), OXYG, amount)
            |  }
            |}
            |""".stripMargin
 
-      val contractInitialAlphAmount = ALPH.oneAlph * 2
+      val contractInitialAlphAmount = OXYG.oneAlph * 2
       val contractId = createContract(code, initialAttoAlphAmount = contractInitialAlphAmount)._1
 
       val script: String =
@@ -4865,13 +4865,13 @@ class VMSpec extends OxygeniumSpec with Generators {
             |@using(preapprovedAssets = true)
             |TxScript Bar {
             |  let foo = Foo(#${contractId.toHexString})
-            |  foo.payMe{callerAddress!() -> ALPH: $amount}($amount)
+            |  foo.payMe{callerAddress!() -> OXYG: $amount}($amount)
             |}
             |
             |${code}
             |""".stripMargin
 
-      if (amount > ALPH.oneAlph) {
+      if (amount > OXYG.oneAlph) {
         failCallTxScript(
           script,
           LowerThanContractMinimalBalance(
@@ -4884,7 +4884,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       }
     }
 
-    test(ALPH.oneNanoAlph)
+    test(OXYG.oneNanoAlph)
     test(minimalAlphInContract - 1)
     test(minimalAlphInContract)
     test(minimalAlphInContract + 1)
@@ -4975,7 +4975,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     val tx = transferTxs(
       blockFlow,
       chainIndex,
-      ALPH.alph(1),
+      OXYG.oxyg(1),
       1,
       Some(script),
       true,
@@ -5015,7 +5015,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Deploy() {
          |  let (encodedImmFields, encodedMutFields) = C.encodeFields!($fields)
-         |  createContract!{@$genesisAddress -> ALPH: $minimalAlphInContract}(
+         |  createContract!{@$genesisAddress -> OXYG: $minimalAlphInContract}(
          |    #$contractBytecode,
          |    encodedImmFields,
          |    encodedMutFields
@@ -5129,7 +5129,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Insert {
          |  let mapContract = MapContract(#${mapContractId.toHexString})
-         |  mapContract.insert{@$genesisAddress -> ALPH: 2 alph}()
+         |  mapContract.insert{@$genesisAddress -> OXYG: 2 oxyg}()
          |}
          |$mapContract
          |""".stripMargin
@@ -5174,7 +5174,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Main {
          |  let mapContract = MapContract(#${mapContractId.toHexString})
-         |  mapContract.insert{@$genesisAddress -> ALPH: 2 alph}()
+         |  mapContract.insert{@$genesisAddress -> OXYG: 2 oxyg}()
          |  mapContract.checkAndUpdate()
          |}
          |$mapContract
@@ -5739,7 +5739,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         s"""
            |TxScript Main() {
            |  let foo = Foo(#${mapContractId.toHexString})
-           |  foo.insertToMap$mapIndex{@$genesisAddress -> ALPH: mapEntryDeposit!()}($key, $value)
+           |  foo.insertToMap$mapIndex{@$genesisAddress -> OXYG: mapEntryDeposit!()}($key, $value)
            |}
            |$mapContract
            |""".stripMargin
@@ -5824,7 +5824,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Main {
          |  let foo = Foo(#${mapContractId.toHexString})
-         |  foo.insert{@$genesisAddress -> ALPH: mapEntryDeposit!()}()
+         |  foo.insert{@$genesisAddress -> OXYG: mapEntryDeposit!()}()
          |}
          |$mapContract
          |""".stripMargin
@@ -5915,7 +5915,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |  pub fn createBaz() -> () {
          |    map.insert!(@$genesisAddress, 0, Foo { x: 0, y: 1 })
          |    let (encodedImmFields, encodedMutFields) = Baz.encodeFields!(map[0])
-         |    let bazId = createContract!{@$genesisAddress -> ALPH: $minimalAlphInContract}(
+         |    let bazId = createContract!{@$genesisAddress -> OXYG: $minimalAlphInContract}(
          |      #${Hex.toHexString(bazContractCode)},
          |      encodedImmFields,
          |      encodedMutFields
@@ -5935,7 +5935,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       s"""
          |TxScript Main {
          |  let bar = Bar(#$barId)
-         |  bar.createBaz{@$genesisAddress -> ALPH: ${minimalAlphInContract * 2}}()
+         |  bar.createBaz{@$genesisAddress -> OXYG: ${minimalAlphInContract * 2}}()
          |}
          |$bar
          |""".stripMargin
@@ -5977,7 +5977,7 @@ class VMSpec extends OxygeniumSpec with Generators {
         s"""
            |TxScript Main {
            |  let bar = Bar(#${contractId.toHexString})
-           |  bar.test{@$genesisAddress -> ALPH: mapEntryDeposit!()}()
+           |  bar.test{@$genesisAddress -> OXYG: mapEntryDeposit!()}()
            |}
            |$contractCode
            |""".stripMargin
@@ -6055,15 +6055,15 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() implements IFoo {
          |  @using(assetsInContract = true)
          |  pub fn withdraw0(target: Address) -> () {
-         |    transferTokenFromSelf!(target, ALPH, 1 alph)
+         |    transferTokenFromSelf!(target, OXYG, 1 oxyg)
          |  }
          |  @using(assetsInContract = true)
          |  pub fn withdraw1(target: Address) -> () {
-         |    transferTokenFromSelf!(target, ALPH, 1 alph)
+         |    transferTokenFromSelf!(target, OXYG, 1 oxyg)
          |  }
          |  @using(assetsInContract = true)
          |  pub fn withdraw2(target: Address) -> () {
-         |    transferTokenFromSelf!(target, ALPH, 1 alph)
+         |    transferTokenFromSelf!(target, OXYG, 1 oxyg)
          |    withdraw1(target)
          |  }
          |}
@@ -6078,7 +6078,7 @@ class VMSpec extends OxygeniumSpec with Generators {
          |}
          |""".stripMargin
 
-    lazy val fooId = createContract(foo, initialAttoAlphAmount = ALPH.alph(10))._1
+    lazy val fooId = createContract(foo, initialAttoAlphAmount = OXYG.oxyg(10))._1
 
     def script(statements: String) =
       s"""
@@ -6096,7 +6096,7 @@ class VMSpec extends OxygeniumSpec with Generators {
                            |  foo.withdraw0(callerAddress!())
                            |  foo.withdraw2(callerAddress!())
                            |""".stripMargin))
-    getContractAsset(fooId).amount is ALPH.alph(10 - 3)
+    getContractAsset(fooId).amount is OXYG.oxyg(10 - 3)
 
     failCallTxScript(
       script(s"""
@@ -6153,33 +6153,33 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract Foo() {
          |  @using(preapprovedAssets = true, payToContractOnly = true)
          |  pub fn deposit(sender: Address) -> () {
-         |    transferTokenToSelf!(sender, ALPH, 10 alph)
+         |    transferTokenToSelf!(sender, OXYG, 10 oxyg)
          |  }
          |  @using(preapprovedAssets = true, payToContractOnly = true)
          |  pub fn depositN(sender: Address, n: U256) -> () {
-         |    transferTokenToSelf!(sender, ALPH, 10 alph)
+         |    transferTokenToSelf!(sender, OXYG, 10 oxyg)
          |    if (n > 0) {
-         |      depositN{sender -> ALPH: 10 alph * n}(sender, n - 1)
+         |      depositN{sender -> OXYG: 10 oxyg * n}(sender, n - 1)
          |    }
          |  }
          |  @using(preapprovedAssets = true, assetsInContract = true)
          |  pub fn both(sender: Address, target: Address) -> () {
-         |    transferTokenFromSelf!(target, ALPH, 1 alph)
-         |    depositN{sender -> ALPH: 10 alph * 6}(target, 5)
+         |    transferTokenFromSelf!(target, OXYG, 1 oxyg)
+         |    depositN{sender -> OXYG: 10 oxyg * 6}(target, 5)
          |  }
          |}
          |""".stripMargin
 
-    lazy val fooId = createContract(foo, initialAttoAlphAmount = ALPH.alph(100))._1
+    lazy val fooId = createContract(foo, initialAttoAlphAmount = OXYG.oxyg(100))._1
 
     lazy val script =
       s"""
          |TxScript Main {
          |  let foo = Foo(#${fooId.toHexString})
          |  let caller = callerAddress!()
-         |  foo.deposit{caller -> ALPH: 10 alph}(caller)
-         |  foo.deposit{caller -> ALPH: 10 alph}(caller)
-         |  foo.both{caller -> ALPH: 10 alph * 6}(caller, caller)
+         |  foo.deposit{caller -> OXYG: 10 oxyg}(caller)
+         |  foo.deposit{caller -> OXYG: 10 oxyg}(caller)
+         |  foo.both{caller -> OXYG: 10 oxyg * 6}(caller, caller)
          |}
          |$foo
          |""".stripMargin
@@ -6188,9 +6188,9 @@ class VMSpec extends OxygeniumSpec with Generators {
   it should "call the same deposit function multiple times in the same contract: Rhone" in new PayToContractOnlyFixture {
     networkConfig.getHardFork(TimeStamp.now()) is HardFork.Rhone
 
-    getContractAsset(fooId).amount is ALPH.alph(100)
+    getContractAsset(fooId).amount is OXYG.oxyg(100)
     callTxScript(script)
-    getContractAsset(fooId).amount is ALPH.alph(100 + 20 + 10 * 6 - 1)
+    getContractAsset(fooId).amount is OXYG.oxyg(100 + 20 + 10 * 6 - 1)
   }
 
   it should "not call the same deposit function multiple times in the same contract: Leman" in new PayToContractOnlyFixture {
@@ -6463,7 +6463,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     keyManager.addOne(lockupScript -> privateKey)
 
     val genesisKey = genesisKeys(chainIndex.from.value)._1
-    val block0     = transfer(blockFlow, genesisKey, publicKey, ALPH.alph(10))
+    val block0     = transfer(blockFlow, genesisKey, publicKey, OXYG.oxyg(10))
     addAndCheck(blockFlow, block0)
 
     def buildCreateContractTx(input: String, outputAmount: U256) = {
@@ -6494,11 +6494,11 @@ class VMSpec extends OxygeniumSpec with Generators {
          |}
          |""".stripMargin
 
-    val tx0 = buildCreateContractTx(foo, ALPH.alph(5))
+    val tx0 = buildCreateContractTx(foo, OXYG.oxyg(5))
     val now = TimeStamp.now()
     blockFlow.grandPool.add(chainIndex, tx0, now)
 
-    val tx1 = transferTx(blockFlow, chainIndex, lockupScript, ALPH.oneAlph, None).toTemplate
+    val tx1 = transferTx(blockFlow, chainIndex, lockupScript, OXYG.oneAlph, None).toTemplate
     tx1.unsigned.inputs.length is 1
     tx1.unsigned.inputs.head.outputRef is tx0.fixedOutputRefs.head
     blockFlow.grandPool.add(chainIndex, tx1, now.plusMillisUnsafe(1))
@@ -6513,7 +6513,7 @@ class VMSpec extends OxygeniumSpec with Generators {
     contractAsset.amount is minimalAlphInContract
 
     val receiver = tx1.unsigned.fixedOutputs.head.lockupScript
-    getAlphBalance(blockFlow, receiver) is ALPH.oneAlph.subUnsafe(nonCoinbaseMinGasFee)
+    getAlphBalance(blockFlow, receiver) is OXYG.oneAlph.subUnsafe(nonCoinbaseMinGasFee)
   }
 
   trait SubContractIndexesFixture extends ContractFixture {
@@ -6537,13 +6537,13 @@ class VMSpec extends OxygeniumSpec with Generators {
          |Contract ParentContract() {
          |  @using(preapprovedAssets = true)
          |  pub fn createSingleSubContract(index: U256) -> () {
-         |    copyCreateSubContract!{callerAddress!() -> ALPH: 1 alph}(toByteVec!(index), #$subContractTemplateId, #00, #00)
+         |    copyCreateSubContract!{callerAddress!() -> OXYG: 1 oxyg}(toByteVec!(index), #$subContractTemplateId, #00, #00)
          |  }
          |  @using(preapprovedAssets = true)
          |  pub fn createMultipleSubContracts(index1: U256, index2: U256, index3: U256) -> () {
-         |    copyCreateSubContract!{callerAddress!() -> ALPH: 1 alph}(toByteVec!(index1), #$subContractTemplateId, #00, #00)
-         |    copyCreateSubContract!{callerAddress!() -> ALPH: 1 alph}(toByteVec!(index2), #$subContractTemplateId, #00, #00)
-         |    copyCreateSubContract!{callerAddress!() -> ALPH: 1 alph}(toByteVec!(index3), #$subContractTemplateId, #00, #00)
+         |    copyCreateSubContract!{callerAddress!() -> OXYG: 1 oxyg}(toByteVec!(index1), #$subContractTemplateId, #00, #00)
+         |    copyCreateSubContract!{callerAddress!() -> OXYG: 1 oxyg}(toByteVec!(index2), #$subContractTemplateId, #00, #00)
+         |    copyCreateSubContract!{callerAddress!() -> OXYG: 1 oxyg}(toByteVec!(index3), #$subContractTemplateId, #00, #00)
          |  }
          |}
          |""".stripMargin
@@ -6558,7 +6558,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       callTxScript(
         s"""
            |TxScript Main {
-           |  ParentContract(#${parentContractId.toHexString}).createSingleSubContract{@$genesisAddress -> ALPH: 1 alph}($index)
+           |  ParentContract(#${parentContractId.toHexString}).createSingleSubContract{@$genesisAddress -> OXYG: 1 oxyg}($index)
            |}
            |$parentContractRaw
            |""".stripMargin
@@ -6575,7 +6575,7 @@ class VMSpec extends OxygeniumSpec with Generators {
       callTxScript(
         s"""
            |TxScript Main {
-           |  ParentContract(#${parentContractId.toHexString}).createMultipleSubContracts{@$genesisAddress -> ALPH: 3 alph}($index1, $index2, $index3)
+           |  ParentContract(#${parentContractId.toHexString}).createMultipleSubContracts{@$genesisAddress -> OXYG: 3 oxyg}($index1, $index2, $index3)
            |}
            |$parentContractRaw
            |""".stripMargin

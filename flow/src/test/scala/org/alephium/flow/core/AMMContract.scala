@@ -32,7 +32,7 @@ object AMMContract {
        |  pub fn addLiquidity(lp: Address, attoAlphAmount: U256, tokenAmount: U256) -> () {
        |    emit AddLiquidity(lp, attoAlphAmount, tokenAmount)
        |
-       |    transferTokenToSelf!(lp, ALPH, attoAlphAmount)
+       |    transferTokenToSelf!(lp, OXYG, attoAlphAmount)
        |    transferTokenToSelf!(lp, tokenId, tokenAmount)
        |    alphReserve = alphReserve + attoAlphAmount
        |    tokenReserve = tokenReserve + tokenAmount
@@ -43,7 +43,7 @@ object AMMContract {
        |    emit SwapToken(buyer, attoAlphAmount)
        |
        |    let tokenAmount = tokenReserve - alphReserve * tokenReserve / (alphReserve + attoAlphAmount)
-       |    transferTokenToSelf!(buyer, ALPH, attoAlphAmount)
+       |    transferTokenToSelf!(buyer, OXYG, attoAlphAmount)
        |    transferTokenFromSelf!(buyer, tokenId, tokenAmount)
        |    alphReserve = alphReserve + attoAlphAmount
        |    tokenReserve = tokenReserve - tokenAmount
@@ -55,7 +55,7 @@ object AMMContract {
        |
        |    let attoAlphAmount = alphReserve - alphReserve * tokenReserve / (tokenReserve + tokenAmount)
        |    transferTokenToSelf!(buyer, tokenId, tokenAmount)
-       |    transferTokenFromSelf!(buyer, ALPH, attoAlphAmount)
+       |    transferTokenFromSelf!(buyer, OXYG, attoAlphAmount)
        |    alphReserve = alphReserve - attoAlphAmount
        |    tokenReserve = tokenReserve + tokenAmount
        |  }
@@ -69,13 +69,13 @@ object AMMContract {
        |  @using(preapprovedAssets = true)
        |  pub fn addLiquidity(lp: Address, attoAlphAmount: U256, tokenAmount: U256) -> () {
        |    swapContract.addLiquidity{
-       |      lp -> ALPH: attoAlphAmount, tokenId: tokenAmount
+       |      lp -> OXYG: attoAlphAmount, tokenId: tokenAmount
        |    }(lp, attoAlphAmount, tokenAmount)
        |  }
        |
        |  @using(preapprovedAssets = true)
        |  pub fn swapToken(buyer: Address, attoAlphAmount: U256) -> () {
-       |    swapContract.swapToken{buyer -> ALPH: attoAlphAmount}(buyer, attoAlphAmount)
+       |    swapContract.swapToken{buyer -> OXYG: attoAlphAmount}(buyer, attoAlphAmount)
        |  }
        |
        |  @using(preapprovedAssets = true)

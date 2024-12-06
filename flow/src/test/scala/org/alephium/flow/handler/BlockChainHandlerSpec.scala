@@ -28,7 +28,7 @@ import org.oxygenium.flow.network.{InterCliqueManager, IntraCliqueManager}
 import org.oxygenium.flow.network.broker.MisbehaviorManager
 import org.oxygenium.flow.setting.OxygeniumConfigFixture
 import org.oxygenium.flow.validation._
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.message.{Message, NewBlock, NewHeader}
 import org.oxygenium.protocol.model.{Block, BlockHeader, BrokerInfo, ChainIndex, CliqueId, NetworkId}
 import org.oxygenium.serde.serialize
@@ -265,7 +265,7 @@ class BlockChainHandlerSpec extends OxygeniumFlowActorSpec {
     blockChainHandler ! InterCliqueManager.SyncedResult(true)
 
     val block = emptyBlock(blockFlow, chainIndex)
-    ALPH.testnetWhitelistedMiners.contains(block.minerLockupScript) is false
+    OXYG.testnetWhitelistedMiners.contains(block.minerLockupScript) is false
 
     val brokerProbe = TestProbe()
     val broker      = ActorRefT[ChainHandler.Event](brokerProbe.ref)

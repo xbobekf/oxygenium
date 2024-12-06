@@ -19,7 +19,7 @@ package org.oxygenium.app
 import java.net.InetSocketAddress
 
 import org.oxygenium.api.model._
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.{Address, BrokerInfo, GroupIndex}
 import org.oxygenium.util._
 
@@ -128,7 +128,7 @@ class BroadcastTxTest extends OxygeniumActorSpec {
       transfer(
         publicKey,
         toAddress,
-        ALPH.oneAlph,
+        OXYG.oneAlph,
         privateKey,
         restPort(masterPortClique1)
       )

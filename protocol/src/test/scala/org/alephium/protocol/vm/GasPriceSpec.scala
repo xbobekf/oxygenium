@@ -16,7 +16,7 @@
 
 package org.oxygenium.protocol.vm
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.{coinbaseGasPrice, nonCoinbaseMinGasPrice, HardFork}
 import org.oxygenium.util.{OxygeniumSpec, AVector, NumericHelpers}
 
@@ -34,8 +34,8 @@ class GasPriceSpec extends OxygeniumSpec with NumericHelpers {
       isCoinbase,
       hardfork
     ) is false
-    GasPrice.validate(GasPrice(ALPH.MaxALPHValue), isCoinbase, hardfork) is false
-    GasPrice.validate(GasPrice(ALPH.MaxALPHValue - 1), isCoinbase, hardfork) is true
+    GasPrice.validate(GasPrice(OXYG.MaxALPHValue), isCoinbase, hardfork) is false
+    GasPrice.validate(GasPrice(OXYG.MaxALPHValue - 1), isCoinbase, hardfork) is true
   }
 
   it should "validate gas price bounds for non-coinbase + Leman fork" in {
@@ -51,12 +51,12 @@ class GasPriceSpec extends OxygeniumSpec with NumericHelpers {
       HardFork.SinceLemanForTest
     ) is false
     GasPrice.validate(
-      GasPrice(ALPH.MaxALPHValue),
+      GasPrice(OXYG.MaxALPHValue),
       isCoinbase = false,
       HardFork.SinceLemanForTest
     ) is false
     GasPrice.validate(
-      GasPrice(ALPH.MaxALPHValue - 1),
+      GasPrice(OXYG.MaxALPHValue - 1),
       isCoinbase = false,
       HardFork.SinceLemanForTest
     ) is true

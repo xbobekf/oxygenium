@@ -16,7 +16,7 @@
 
 package org.oxygenium.tools
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.GroupConfig
 import org.oxygenium.protocol.mining.Emission
 import org.oxygenium.util.{Duration, Number, U256}
@@ -30,7 +30,7 @@ object MiningRewards extends App {
   val emission: Emission        = Emission.mainnet(groupConfig, blockTargetTime)
 
   private def calInflation(yearlyReward: U256): BigDecimal = {
-    val alphReward = yearlyReward.divUnsafe(ALPH.oneAlph).v
+    val alphReward = yearlyReward.divUnsafe(OXYG.oneAlph).v
     BigDecimal(alphReward) / BigDecimal.valueOf(Number.billion)
   }
 

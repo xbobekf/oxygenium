@@ -28,7 +28,7 @@ import org.oxygenium.flow.model.BlockFlowTemplate
 import org.oxygenium.flow.setting.{ConsensusSettings, MemPoolSetting}
 import org.oxygenium.flow.validation._
 import org.oxygenium.io.{IOError, IOResult, IOUtils}
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.NetworkConfig
 import org.oxygenium.protocol.mining.Emission
 import org.oxygenium.protocol.model._
@@ -146,7 +146,7 @@ trait FlowUtils
 
   def collectPooledTxs(chainIndex: ChainIndex, hardFork: HardFork): AVector[TransactionTemplate] = {
     val mempool = getMemPool(chainIndex)
-    if (ALPH.isSequentialTxSupported(chainIndex, hardFork)) {
+    if (OXYG.isSequentialTxSupported(chainIndex, hardFork)) {
       mempool.collectAllTxs(chainIndex, mempoolSetting.txMaxNumberPerBlock)
     } else {
       mempool.collectNonSequentialTxs(chainIndex, mempoolSetting.txMaxNumberPerBlock)
@@ -160,7 +160,7 @@ trait FlowUtils
       hardFork: HardFork
   ): AVector[TransactionTemplate] = {
     val newOutputRefs           = mutable.HashSet.empty[AssetOutputRef]
-    val isSequentialTxSupported = ALPH.isSequentialTxSupported(chainIndex, hardFork)
+    val isSequentialTxSupported = OXYG.isSequentialTxSupported(chainIndex, hardFork)
     txs.filter { tx =>
       val isExists = Utils.unsafe(groupView.exists(tx.unsigned.inputs, newOutputRefs))
       if (isExists && isSequentialTxSupported) {
@@ -283,7 +283,7 @@ trait FlowUtils
       miner: LockupScript.Asset
   ): IOResult[BlockFlowTemplate] = {
     createBlockTemplate(chainIndex, miner).flatMap { case (template, uncles) =>
-      assume(uncles.length <= ALPH.MaxGhostUncleSize)
+      assume(uncles.length <= OXYG.MaxGhostUncleSize)
       validateTemplate(chainIndex, template, uncles, miner)
     }
   }
@@ -297,7 +297,7 @@ trait FlowUtils
       miner: LockupScript.Asset
   ): Transaction = {
     val emission = consensusConfigs.getConsensusConfig(templateTs).emission
-    emission.reward(target, templateTs, ALPH.LaunchTimestamp) match {
+    emission.reward(target, templateTs, OXYG.LaunchTimestamp) match {
       case reward: Emission.PoW =>
         val gasFee       = fullTxs.fold(U256.Zero)(_ addUnsafe _.gasFeeUnsafe)
         val rewardAmount = Coinbase.powMiningReward(gasFee, reward, templateTs)

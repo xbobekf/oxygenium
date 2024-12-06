@@ -17,7 +17,7 @@
 package org.oxygenium.app
 
 import org.oxygenium.api.model._
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.nonCoinbaseMinGasFee
 import org.oxygenium.util._
 import org.oxygenium.wallet.api.model._
@@ -38,7 +38,7 @@ abstract class SweepTest(isMiner: Boolean) extends OxygeniumActorSpec {
 
       // all other addresses are not swept
       addresses.filterNot(_.equals(activeAddress)).foreach { addr =>
-        balances.balances.find(_.address.equals(addr)).value.balance.value is ALPH.alph(1)
+        balances.balances.find(_.address.equals(addr)).value.balance.value is OXYG.oxyg(1)
       }
     }
 
@@ -57,11 +57,11 @@ abstract class SweepTest(isMiner: Boolean) extends OxygeniumActorSpec {
 
     eventually {
       val balances = request[Balances](walletBalances(walletName), restPort)
-      balances.totalBalance.value is ALPH.alph(0)
+      balances.totalBalance.value is OXYG.oxyg(0)
 
       // all addresses are swept
       addresses.foreach { addr =>
-        balances.balances.find(_.address.equals(addr)).value.balance.value is ALPH.alph(0)
+        balances.balances.find(_.address.equals(addr)).value.balance.value is OXYG.oxyg(0)
       }
     }
 
@@ -115,12 +115,12 @@ abstract class SweepTest(isMiner: Boolean) extends OxygeniumActorSpec {
     }
 
     val balances = request[Balances](walletBalances(walletName), restPort)
-    balances.totalBalance.value is ALPH.alph(1) * numberOfAddresses
+    balances.totalBalance.value is OXYG.oxyg(1) * numberOfAddresses
 
-    request[Balance](getBalance(activeAddress.toBase58), restPort).balance.value is ALPH.alph(1)
+    request[Balance](getBalance(activeAddress.toBase58), restPort).balance.value is OXYG.oxyg(1)
 
     addresses.foreach { address =>
-      balances.balances.find(_.address.equals(address)).value.balance.value is ALPH.alph(1)
+      balances.balances.find(_.address.equals(address)).value.balance.value is OXYG.oxyg(1)
     }
   }
 }

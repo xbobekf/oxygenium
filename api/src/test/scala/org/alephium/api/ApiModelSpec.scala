@@ -83,7 +83,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
     initialStateHash = Some(Hash.zero),
     immFields = AVector.empty,
     mutFields = AVector.empty,
-    AssetState.from(ALPH.alph(1), AVector.empty)
+    AssetState.from(OXYG.oxyg(1), AVector.empty)
   )
 
   def generateAddress(): Address.Asset = Address.p2pkh(PublicKey.generate)
@@ -123,18 +123,18 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
   }
 
   it should "encode/decode Amount.Hint" in {
-    checkData(Amount.Hint(ALPH.oneAlph), """"1 ALPH"""", dropWhiteSpace = false)
-    read[Amount.Hint](""""1000000000000000000"""") is Amount.Hint(ALPH.oneAlph)
+    checkData(Amount.Hint(OXYG.oneAlph), """"1 OXYG"""", dropWhiteSpace = false)
+    read[Amount.Hint](""""1000000000000000000"""") is Amount.Hint(OXYG.oneAlph)
 
-    val alph = ALPH.alph(1234) / 1000
-    checkData(Amount.Hint(alph), """"1.234 ALPH"""", dropWhiteSpace = false)
-    read[Amount.Hint](""""1234000000000000000"""") is Amount.Hint(alph)
+    val oxyg = OXYG.oxyg(1234) / 1000
+    checkData(Amount.Hint(oxyg), """"1.234 OXYG"""", dropWhiteSpace = false)
+    read[Amount.Hint](""""1234000000000000000"""") is Amount.Hint(oxyg)
 
-    val small = ALPH.alph(1234) / 1000000000
-    checkData(Amount.Hint(small), """"0.000001234 ALPH"""", dropWhiteSpace = false)
+    val small = OXYG.oxyg(1234) / 1000000000
+    checkData(Amount.Hint(small), """"0.000001234 OXYG"""", dropWhiteSpace = false)
     read[Amount.Hint](""""1234000000000"""") is Amount.Hint(small)
 
-    parseFail[Amount.Hint](""""1 alph"""")
+    parseFail[Amount.Hint](""""1 oxyg"""")
   }
 
   it should "encode/decode GhostUncleBlockEntry" in {
@@ -246,7 +246,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
 
   it should "encode/decode Token" in {
     val id     = TokenId.generate
-    val amount = ALPH.oneAlph
+    val amount = OXYG.oneAlph
 
     val token: Token = Token(id, amount)
     val jsonRaw =
@@ -254,7 +254,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
 
     checkData(token, jsonRaw)
 
-    parseFail[Token](s"""{"id":"${id.toHexString}","amount":"1 ALPH"}""")
+    parseFail[Token](s"""{"id":"${id.toHexString}","amount":"1 OXYG"}""")
   }
 
   it should "encode/decode Output with big amount" in {
@@ -331,8 +331,8 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
   }
 
   it should "encode/decode Balance" in {
-    val amount = Amount(ALPH.alph(100))
-    val locked = Amount(ALPH.alph(50))
+    val amount = Amount(OXYG.oxyg(100))
+    val locked = Amount(OXYG.oxyg(50))
 
     {
       info("with token balances")
@@ -345,7 +345,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
       val response =
         Balance(amount, amount.hint, locked, locked.hint, Some(tokens), Some(lockedTokens), 1)
       val jsonRaw =
-        s"""{"balance":"100000000000000000000","balanceHint":"100 ALPH","lockedBalance":"50000000000000000000","lockedBalanceHint":"50 ALPH","tokenBalances":[{"id":"${tokenId1.toHexString}","amount":"42"},{"id":"${tokenId2.toHexString}","amount":"1000"}],"lockedTokenBalances":[{"id":"${tokenId3.toHexString}","amount":"1"}],"utxoNum":1}"""
+        s"""{"balance":"100000000000000000000","balanceHint":"100 OXYG","lockedBalance":"50000000000000000000","lockedBalanceHint":"50 OXYG","tokenBalances":[{"id":"${tokenId1.toHexString}","amount":"42"},{"id":"${tokenId2.toHexString}","amount":"1000"}],"lockedTokenBalances":[{"id":"${tokenId3.toHexString}","amount":"1"}],"utxoNum":1}"""
       checkData(response, jsonRaw, dropWhiteSpace = false)
     }
 
@@ -353,7 +353,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
       info("without token balances")
       val response = Balance(amount, amount.hint, locked, locked.hint, None, None, 1)
       val jsonRaw =
-        s"""{"balance":"100000000000000000000","balanceHint":"100 ALPH","lockedBalance":"50000000000000000000","lockedBalanceHint":"50 ALPH","utxoNum":1}"""
+        s"""{"balance":"100000000000000000000","balanceHint":"100 OXYG","lockedBalance":"50000000000000000000","lockedBalanceHint":"50 OXYG","utxoNum":1}"""
       checkData(response, jsonRaw, dropWhiteSpace = false)
     }
   }
@@ -831,7 +831,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
     val fromAddress        = generateAddress()
     val fromPublicKeys     = AVector(PublicKey.generate, PublicKey.generate)
     val toAddress          = generateAddress()
-    val maxAttoAlphPerUTXO = Amount(ALPH.oneAlph)
+    val maxAttoAlphPerUTXO = Amount(OXYG.oneAlph)
     val lockTime           = TimeStamp.now()
     val gasAmount          = GasBox.unsafe(1)
     val gasPrice           = GasPrice(1)
@@ -1237,7 +1237,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
       initialStateHash = Some(Hash.zero),
       immFields = AVector(u256, i256, bool),
       mutFields = AVector(byteVec, address1),
-      AssetState.from(ALPH.alph(1), AVector(Token(TokenId.zero, ALPH.alph(2))))
+      AssetState.from(OXYG.oxyg(1), AVector(Token(TokenId.zero, OXYG.oxyg(2))))
     )
     val jsonRaw =
       s"""
@@ -1750,7 +1750,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
     checkData(callResult, jsonRaw)
   }
 
-  it should "get alph and token amounts" in {
+  it should "get oxyg and token amounts" in {
     BuildTxCommon
       .getAlphAndTokenAmounts(None, None) isE (None, AVector.empty[(TokenId, U256)])
     BuildTxCommon.getAlphAndTokenAmounts(Some(Amount(U256.One)), None) isE
@@ -1769,8 +1769,8 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
       Some(
         AVector(
           Token(tokenId, U256.One),
-          Token(TokenId.alph, U256.One),
-          Token(TokenId.alph, U256.One)
+          Token(TokenId.oxyg, U256.One),
+          Token(TokenId.oxyg, U256.One)
         )
       )
     ) isE (Some(U256.unsafe(3)), AVector(tokenId -> U256.One))
@@ -1779,8 +1779,8 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
       Some(
         AVector(
           Token(tokenId, U256.One),
-          Token(TokenId.alph, U256.One),
-          Token(TokenId.alph, U256.One),
+          Token(TokenId.oxyg, U256.One),
+          Token(TokenId.oxyg, U256.One),
           Token(tokenId, U256.One)
         )
       )
@@ -1789,9 +1789,9 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
     BuildTxCommon
       .getAlphAndTokenAmounts(
         Some(Amount(U256.MaxValue)),
-        Some(AVector(Token(TokenId.alph, U256.One)))
+        Some(AVector(Token(TokenId.oxyg, U256.One)))
       )
-      .leftValue is "ALPH amount overflow"
+      .leftValue is "OXYG amount overflow"
     BuildTxCommon
       .getAlphAndTokenAmounts(
         None,
@@ -1800,7 +1800,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
       .leftValue is s"Token $tokenId amount overflow"
   }
 
-  it should "get alph and token amounts while ignoring tokens with zero amounts" in {
+  it should "get oxyg and token amounts while ignoring tokens with zero amounts" in {
     val tokenId0 = TokenId.generate
     val tokenId1 = TokenId.generate
     val tokenId2 = TokenId.generate

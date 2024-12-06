@@ -319,7 +319,7 @@
     "signature": "fn <map>.insert!(depositorAddress: Address, key: <Bool | U256 | I256 | Address | ByteVec>, value: Any) -> ()",
     "doc": "Insert a key/value pair into the map. No brace syntax is required, as the minimal storage deposit will be deducted from the approved assets by the VM",
     "params": [
-      "@param depositorAddress the address to pay the minimal storage deposit (0.1 ALPH) for the new map entry",
+      "@param depositorAddress the address to pay the minimal storage deposit (0.1 OXYG) for the new map entry",
       "@param key the key to insert",
       "@param value the value to insert"
     ],
@@ -436,7 +436,7 @@
     "doc": "Pay gas fee.",
     "params": [
       "@param payer payer of the gas",
-      "@param amount the amount of gas to be paid in ALPH"
+      "@param amount the amount of gas to be paid in OXYG"
     ],
     "returns": "@returns "
   },
@@ -584,15 +584,15 @@
     "signature": "fn minimalContractDeposit!() -> (U256)",
     "doc": "The minimal contract deposit",
     "params": [],
-    "returns": "@returns the minimal ALPH amount for contract deposit"
+    "returns": "@returns the minimal OXYG amount for contract deposit"
   },
   {
     "name": "mapEntryDeposit",
     "category": "Utils",
     "signature": "fn mapEntryDeposit!() -> (U256)",
-    "doc": "The amount of ALPH required to create a map entry, which is '0.1 ALPH' since Rhone upgrade",
+    "doc": "The amount of OXYG required to create a map entry, which is '0.1 OXYG' since Rhone upgrade",
     "params": [],
-    "returns": "@returns the amount of ALPH required to create a map entry"
+    "returns": "@returns the amount of OXYG required to create a map entry"
   },
   {
     "name": "networkId",

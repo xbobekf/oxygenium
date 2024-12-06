@@ -17,7 +17,7 @@
 package org.oxygenium.flow.core
 
 import org.oxygenium.flow.FlowFixture
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.{BlockHash, ChainIndex, GroupIndex}
 import org.oxygenium.util.{OxygeniumSpec, AVector, Duration, TimeStamp}
 
@@ -182,7 +182,7 @@ class FlowTipsUtilSpec extends OxygeniumSpec {
 
   it should "detect tx conflicts" in new FlowFixture {
     val (genesisPriKey, _, _) = genesisKeys(0)
-    val block      = transfer(blockFlow, genesisPriKey, genesisPriKey.publicKey, ALPH.alph(10))
+    val block      = transfer(blockFlow, genesisPriKey, genesisPriKey.publicKey, OXYG.oxyg(10))
     val blockFlow1 = isolatedBlockFlow()
     addAndCheck(blockFlow, block)
     addAndCheck(blockFlow1, block)

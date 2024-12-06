@@ -257,7 +257,7 @@ object Transaction {
 
   // PoLW burning is not considered
   @inline def totalRewardPreLeman(gasFee: U256, miningReward: U256): U256 = {
-    val threshold = Math.max(miningReward, ALPH.oneAlph)
+    val threshold = Math.max(miningReward, OXYG.oneAlph)
     val gasReward = gasFee.divUnsafe(U256.Two)
     if (gasReward >= threshold) {
       miningReward.addUnsafe(threshold)
@@ -282,7 +282,7 @@ object Transaction {
     val consensusConfig = consensusConfigs.getConsensusConfig(blockTs)
     val gasFee          = txs.fold(U256.Zero)(_ addUnsafe _.gasFeeUnsafe)
     val powReward = consensusConfig.emission
-      .reward(target, blockTs, ALPH.LaunchTimestamp)
+      .reward(target, blockTs, OXYG.LaunchTimestamp)
       .asInstanceOf[Emission.PoW]
     val rewardAmount = Coinbase.powMiningReward(gasFee, powReward, blockTs)
     powCoinbase(chainIndex, rewardAmount, lockupScript, minerData, blockTs, uncles)

@@ -26,7 +26,7 @@ import org.oxygenium.flow.io.Storages
 import org.oxygenium.flow.setting.{OxygeniumConfig, ConsensusSettings, MemPoolSetting}
 import org.oxygenium.io.{IOResult, IOUtils}
 import org.oxygenium.io.RocksDBSource.ProdSettings
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig, NetworkConfig}
 import org.oxygenium.protocol.model._
 import org.oxygenium.protocol.vm.{LogConfig, WorldState}
@@ -69,10 +69,10 @@ trait BlockFlow
     if (brokerConfig.contains(chainIndex.from)) {
       val chain     = getHeaderChain(chainIndex)
       val maxHeight = chain.maxHeightUnsafe
-      if (maxHeight == ALPH.GenesisHeight) {
+      if (maxHeight == OXYG.GenesisHeight) {
         AVector.empty
       } else {
-        val startHeight = Math.max(ALPH.GenesisHeight + 1, maxHeight - 2 * maxForkDepth)
+        val startHeight = Math.max(OXYG.GenesisHeight + 1, maxHeight - 2 * maxForkDepth)
         HistoryLocators
           .sampleHeights(startHeight, maxHeight)
           .map(height => Utils.unsafe(chain.getHashes(height).map(_.head)))
@@ -94,7 +94,7 @@ trait BlockFlow
       val chainIndex = ChainIndex.unsafe(fromGroup, toGroup)
       val chain      = getBlockChain(chainIndex)
       if (locatorsPerChain.isEmpty) {
-        chain.getSyncDataFromHeightUnsafe(ALPH.GenesisHeight + 1)
+        chain.getSyncDataFromHeightUnsafe(OXYG.GenesisHeight + 1)
       } else {
         chain.getSyncDataUnsafe(locatorsPerChain)
       }
@@ -195,7 +195,7 @@ object BlockFlow extends StrictLogging {
   ): Unit = {
     val maxHeight = chain.maxHeightByWeightUnsafe
     val startHeight =
-      Math.max(ALPH.GenesisHeight, maxHeight - consensusSettings.blockCacheCapacityPerChain)
+      Math.max(OXYG.GenesisHeight, maxHeight - consensusSettings.blockCacheCapacityPerChain)
     (startHeight to maxHeight).foreach { height =>
       val block = chain.getBlockUnsafe(chain.getHashesUnsafe(height).head)
       blockflow.cacheBlock(block)
@@ -208,7 +208,7 @@ object BlockFlow extends StrictLogging {
   ): Unit = {
     val maxHeight = chain.maxHeightByWeightUnsafe
     val startHeight =
-      Math.max(ALPH.GenesisHeight, maxHeight - consensusSettings.blockCacheCapacityPerChain * 2)
+      Math.max(OXYG.GenesisHeight, maxHeight - consensusSettings.blockCacheCapacityPerChain * 2)
     (startHeight to maxHeight).foreach { height =>
       val header = chain.getBlockHeaderUnsafe(chain.getHashesUnsafe(height).head)
       chain.cacheHeader(header)
@@ -304,7 +304,7 @@ object BlockFlow extends StrictLogging {
 
     private def calWeightUnsafe(header: BlockHeader): Weight = {
       if (header.isGenesis) {
-        ALPH.GenesisWeight
+        OXYG.GenesisWeight
       } else {
         val targetGroup  = header.chainIndex.from
         val depsFlowTips = FlowTips.from(header.blockDeps, targetGroup)

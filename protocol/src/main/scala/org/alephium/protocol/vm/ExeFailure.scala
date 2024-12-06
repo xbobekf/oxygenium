@@ -21,7 +21,7 @@ import java.math.BigInteger
 import akka.util.ByteString
 
 import org.oxygenium.io.IOError
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model._
 import org.oxygenium.serde.SerdeError
 import org.oxygenium.util.{Bytes, Hex, TimeStamp, U256}
@@ -242,7 +242,7 @@ final case class NotEnoughApprovedBalance(
     got: U256
 ) extends ExeFailure {
   override def toString: String = {
-    val token = if (tokenId == TokenId.alph) "ALPH" else tokenId.toHexString
+    val token = if (tokenId == TokenId.oxyg) "OXYG" else tokenId.toHexString
     s"Not enough approved balance for address ${Address.from(lockupScript)}, tokenId: $token, expected: $expected, got: $got"
   }
 }
@@ -254,7 +254,7 @@ final case class NoAssetsApproved(address: Address.Asset) extends ExeFailure {
 case object BalanceOverflow extends ExeFailure
 
 final case class NoAlphBalanceForTheAddress(address: Address) extends ExeFailure {
-  override def toString: String = s"No ALPH balance for the address ${address.toBase58}"
+  override def toString: String = s"No OXYG balance for the address ${address.toBase58}"
 }
 
 final case class NoTokenBalanceForTheAddress(tokenId: TokenId, address: Address)
@@ -269,12 +269,12 @@ case object BalanceErrorWhenSwitchingBackFrame extends ExeFailure
 final case class LowerThanContractMinimalBalance(address: Address, amount: U256)
     extends ExeFailure {
   override def toString: String =
-    s"Contract output contains ${ALPH.prettifyAmount(amount)}," +
-      s"less than contract minimal balance ${ALPH.prettifyAmount(minimalAlphInContract)}"
+    s"Contract output contains ${OXYG.prettifyAmount(amount)}," +
+      s"less than contract minimal balance ${OXYG.prettifyAmount(minimalAlphInContract)}"
 }
 
 case object UnableToPayGasFee extends ExeFailure {
-  override def toString: String = "Not enough ALPH in the transaction to pay for gas fee"
+  override def toString: String = "Not enough OXYG in the transaction to pay for gas fee"
 }
 
 final case class InvalidOutputBalances(
@@ -294,8 +294,8 @@ final case class InvalidOutputBalances(
         tokenDustAmount.addUnsafe(dustUtxoAmount)
       }
     }
-    s"Invalid ALPH balance for address $address, expected ${ALPH.prettifyAmount(totalDustAmount)}, " +
-      s"got ${ALPH.prettifyAmount(attoAlphAmount)}, you need to transfer more ALPH to this address"
+    s"Invalid OXYG balance for address $address, expected ${OXYG.prettifyAmount(totalDustAmount)}, " +
+      s"got ${OXYG.prettifyAmount(attoAlphAmount)}, you need to transfer more OXYG to this address"
   }
 }
 
@@ -348,7 +348,7 @@ final case class ContractAssetUnloaded(address: Address.Contract) extends ExeFai
 
 final case class EmptyContractAsset(address: Address.Contract) extends ExeFailure {
   override def toString: String =
-    s"No assets for contract $address, a minimum of ${ALPH.prettifyAmount(minimalAlphInContract)} is required"
+    s"No assets for contract $address, a minimum of ${OXYG.prettifyAmount(minimalAlphInContract)} is required"
 }
 
 case object NoCaller extends ExeFailure {
@@ -398,7 +398,7 @@ case object ZeroContractId extends ExeFailure {
   override def toString: String = s"Can not create contract with id ${ContractId.zero.toHexString}"
 }
 case object BurningAlphNotAllowed extends ExeFailure {
-  override def toString: String = "Burning ALPH is not allowed for `burnToken` function"
+  override def toString: String = "Burning OXYG is not allowed for `burnToken` function"
 }
 
 final case class UncaughtKeyNotFoundError(error: IOError.KeyNotFound) extends ExeFailure

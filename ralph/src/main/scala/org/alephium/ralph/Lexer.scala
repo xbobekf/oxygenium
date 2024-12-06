@@ -23,7 +23,7 @@ import scala.util.control.NonFatal
 import fastparse._
 import fastparse.NoWhitespace._
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.Address
 import org.oxygenium.protocol.vm.{LockupScript, StatelessContext, Val}
 import org.oxygenium.protocol.vm.Val.ByteVec
@@ -92,14 +92,14 @@ class Lexer(fileURI: Option[java.net.URI]) {
   def integer[Unknown: P]: P[(BigInteger, Int)] = P(
     Index ~ (CharsWhileIn("0-9_") ~ ("." ~ CharsWhileIn("0-9_")).? ~
       ("e" ~ "-".? ~ CharsWhileIn("0-9")).?).! ~
-      CharsWhileIn(" ", 0).! ~ token(Keyword.alph).?.!
+      CharsWhileIn(" ", 0).! ~ token(Keyword.oxyg).?.!
   ).map { case (index, input, spaces, unit) =>
     try {
       var num       = new BigDecimal(input.replaceAll("_", ""))
       val baseWidth = input.length
       val width =
-        if (unit == "alph") {
-          num = num.multiply(new BigDecimal(ALPH.oneAlph.toBigInt))
+        if (unit == "oxyg") {
+          num = num.multiply(new BigDecimal(OXYG.oneAlph.toBigInt))
           baseWidth + spaces.length + unit.length
         } else {
           baseWidth

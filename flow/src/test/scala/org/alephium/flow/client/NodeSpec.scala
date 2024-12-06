@@ -17,7 +17,7 @@
 package org.oxygenium.flow.client
 
 import org.oxygenium.flow.FlowFixture
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.util.OxygeniumSpec
 
 class NodeSpec extends OxygeniumSpec {
@@ -26,7 +26,7 @@ class NodeSpec extends OxygeniumSpec {
     val defaultConfig    = defaultFixture.config
     val defaultBlockFlow = defaultFixture.blockFlow
     val anotherFixture = new FlowFixture {
-      override val genesisBalance = ALPH.alph(1)
+      override val genesisBalance = OXYG.oxyg(1)
     }
     val anotherConfig    = anotherFixture.config
     val anotherBlockFlow = anotherFixture.blockFlow

@@ -51,7 +51,7 @@ trait TapirSchemasLike {
   implicit val timestampSchema: Schema[TimeStamp]     = Schema(SInteger()).format("int64")
   implicit val u256Schema: Schema[U256]               = Schema(SString()).format("uint256")
   implicit val amountSchema: Schema[Amount]           = Schema(SString()).format("uint256")
-  implicit val amountHintSchema: Schema[Amount.Hint]  = Schema(SString()).format("x.x ALPH")
+  implicit val amountHintSchema: Schema[Amount.Hint]  = Schema(SString()).format("x.x OXYG")
   implicit val gasBoxSchema: Schema[GasBox]           = Schema(SInteger()).format("gas")
   implicit val gasPriceSchema: Schema[GasPrice]       = Schema(SString()).format("uint256")
   implicit val bigIntegerSchema: Schema[BigInteger]   = Schema(SString()).format("bigint")

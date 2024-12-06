@@ -28,7 +28,7 @@ import org.oxygenium.flow.model.PersistedTxId
 import org.oxygenium.flow.network.{InterCliqueManager, IntraCliqueManager}
 import org.oxygenium.flow.network.broker.BrokerHandler
 import org.oxygenium.flow.validation.NonExistInput
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model._
 import org.oxygenium.protocol.vm.GasPrice
 import org.oxygenium.serde.serialize
@@ -248,7 +248,7 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
     override val configValues: Map[String, Any] =
       Map(("oxygenium.mempool.batch-broadcast-txs-frequency", "200 ms"))
 
-    val tx = transferTxs(blockFlow, chainIndex, ALPH.alph(1), 1, None, true, None).head
+    val tx = transferTxs(blockFlow, chainIndex, OXYG.oxyg(1), 1, None, true, None).head
 
     setSynced()
     txHandler ! addTx(tx)
@@ -268,8 +268,8 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
     override val configValues: Map[String, Any] =
       Map(("oxygenium.mempool.batch-broadcast-txs-frequency", "200 ms"))
 
-    val tx0 = transferTxs(blockFlow, chainIndex, ALPH.alph(1), 1, None, true, None).head
-    val tx1 = transferTxs(blockFlow, chainIndex, ALPH.alph(2), 1, None, true, None).head
+    val tx0 = transferTxs(blockFlow, chainIndex, OXYG.oxyg(1), 1, None, true, None).head
+    val tx1 = transferTxs(blockFlow, chainIndex, OXYG.oxyg(2), 1, None, true, None).head
 
     setSynced()
     txHandler ! addTx(tx0)
@@ -483,7 +483,7 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
     val balance0         = blockFlow.getBalance(genesisAddress0, Int.MaxValue, true).rightValue._1
     val balance1         = blockFlow.getBalance(genesisAddress1, Int.MaxValue, true).rightValue._1
 
-    val block = transfer(blockFlow, privKey0, pubKey1, ALPH.oneAlph)
+    val block = transfer(blockFlow, privKey0, pubKey1, OXYG.oneAlph)
     val tx    = block.transactions.head
     txHandler ! addTx(tx)
     expectMsg(TxHandler.AddSucceeded(tx.id))
@@ -502,8 +502,8 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
 
     val balance01 = blockFlow.getBalance(genesisAddress0, Int.MaxValue, true).rightValue._1
     val balance11 = blockFlow.getBalance(genesisAddress1, Int.MaxValue, true).rightValue._1
-    (balance01 < balance0.subUnsafe(ALPH.oneAlph)) is true // due to gas fee
-    balance11 is balance1.addUnsafe(ALPH.oneAlph)
+    (balance01 < balance0.subUnsafe(OXYG.oneAlph)) is true // due to gas fee
+    balance11 is balance1.addUnsafe(OXYG.oneAlph)
 
     val block0 = transfer(blockFlow, ChainIndex.unsafe(0, 0))
     val block1 = transfer(blockFlow, ChainIndex.unsafe(1, 1))
@@ -511,8 +511,8 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
     addAndCheck(blockFlow, block1)
     val balance02 = blockFlow.getBalance(genesisAddress0, Int.MaxValue, true).rightValue._1
     val balance12 = blockFlow.getBalance(genesisAddress1, Int.MaxValue, true).rightValue._1
-    balance02 is balance01.subUnsafe(ALPH.oneAlph)
-    balance12 is balance11.subUnsafe(ALPH.oneAlph)
+    balance02 is balance01.subUnsafe(OXYG.oneAlph)
+    balance12 is balance11.subUnsafe(OXYG.oneAlph)
   }
 
   it should "remove tx from the orphan pool after tx is added to mempool" in new Fixture {
@@ -611,7 +611,7 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
         blockFlow,
         fromPrivateKey,
         toPublicKey,
-        ALPH.oneAlph,
+        OXYG.oneAlph,
         gasPrice
       ).nonCoinbase.head
       txHandler ! addTx(tx)
@@ -633,20 +633,20 @@ class TxHandlerSpec extends OxygeniumFlowActorSpec {
     val genesisKey              = genesisKeys(chainIndex.from.value)._1
     val (privateKey, publicKey) = chainIndex.from.generateKey
     (0 until 2).foreach { _ =>
-      val block = transfer(blockFlow, genesisKey, publicKey, ALPH.alph(10))
+      val block = transfer(blockFlow, genesisKey, publicKey, OXYG.oxyg(10))
       addAndCheck(blockFlow, block)
     }
 
     val toPublicKey = chainIndex.from.generateKey._2
     val mempool     = blockFlow.grandPool.getMemPool(chainIndex.from)
-    val tx0         = transfer(blockFlow, privateKey, toPublicKey, ALPH.alph(5)).nonCoinbase.head
+    val tx0         = transfer(blockFlow, privateKey, toPublicKey, OXYG.oxyg(5)).nonCoinbase.head
     txHandler ! addTx(tx0)
     eventually(mempool.contains(tx0.id) is true)
 
-    val tx1 = transfer(blockFlow, privateKey, toPublicKey, ALPH.alph(5)).nonCoinbase.head
+    val tx1 = transfer(blockFlow, privateKey, toPublicKey, OXYG.oxyg(5)).nonCoinbase.head
     tx1.allInputRefs isnot tx0.allInputRefs
 
-    val tx2 = transfer(blockFlow, privateKey, toPublicKey, ALPH.alph(12)).nonCoinbase.head
+    val tx2 = transfer(blockFlow, privateKey, toPublicKey, OXYG.oxyg(12)).nonCoinbase.head
     tx2.allInputRefs.toSet is (tx1.allInputRefs ++ tx0.fixedOutputRefs.tail).toSet
 
     mempool.clear()

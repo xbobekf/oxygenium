@@ -505,7 +505,7 @@ class AstSpec extends OxygeniumSpec {
            |Contract Foo(state: U256) {
            |  @using(assetsInContract = true)
            |  pub fn getState(address: Address) -> U256 {
-           |    transferTokenFromSelf!(address, ALPH, 1 alph)
+           |    transferTokenFromSelf!(address, OXYG, 1 oxyg)
            |    return state
            |  }
            |}
@@ -800,11 +800,11 @@ class AstSpec extends OxygeniumSpec {
          |Contract Foo(to: Address) {
          |  @using(preapprovedAssets = true)
          |  pub fn foo() -> () {
-         |    bar{callerAddress!() -> ALPH: 1 alph}(callerAddress!())
+         |    bar{callerAddress!() -> OXYG: 1 oxyg}(callerAddress!())
          |  }
          |  @using(preapprovedAssets = true)
          |  fn bar(from: Address) -> () {
-         |    transferToken!(from, to, ALPH, 1 alph)
+         |    transferToken!(from, to, OXYG, 1 oxyg)
          |  }
          |}
          |""".stripMargin
@@ -824,7 +824,7 @@ class AstSpec extends OxygeniumSpec {
          |  }
          |  @using(assetsInContract = true)
          |  fn bar() -> () {
-         |    transferTokenFromSelf!(to, ALPH, 1 alph)
+         |    transferTokenFromSelf!(to, OXYG, 1 oxyg)
          |  }
          |}
          |""".stripMargin

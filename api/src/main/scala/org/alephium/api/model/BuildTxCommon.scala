@@ -76,12 +76,12 @@ object BuildTxCommon {
       case None => Right((alphAmountOpt, AVector.empty))
       case Some(tokens) =>
         val amounts = tokens.foldE((alphAmountOpt, Map.empty[TokenId, U256])) {
-          case ((Some(alphAmount), tokenList), Token(TokenId.alph, tokenAmount)) =>
+          case ((Some(alphAmount), tokenList), Token(TokenId.oxyg, tokenAmount)) =>
             alphAmount
               .add(tokenAmount)
-              .toRight("ALPH amount overflow")
+              .toRight("OXYG amount overflow")
               .map(v => (Some(v), tokenList))
-          case ((None, tokenList), Token(TokenId.alph, tokenAmount)) =>
+          case ((None, tokenList), Token(TokenId.oxyg, tokenAmount)) =>
             Right((Some(tokenAmount), tokenList))
           case ((alphOpt, tokenList), Token(tokenId, tokenAmount)) =>
             if (tokenList.contains(tokenId)) {

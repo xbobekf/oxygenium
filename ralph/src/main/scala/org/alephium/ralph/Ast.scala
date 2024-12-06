@@ -32,7 +32,7 @@ import org.oxygenium.util.{AVector, DjbHash, Hex, I256, U256}
 // scalastyle:off number.of.methods number.of.types file.size.limit
 object Ast {
   type StdInterfaceId = Val.ByteVec
-  val StdInterfaceIdPrefix: ByteString = ByteString("ALPH", StandardCharsets.UTF_8)
+  val StdInterfaceIdPrefix: ByteString = ByteString("OXYG", StandardCharsets.UTF_8)
   private val stdArg: Argument =
     Argument(Ident("__stdInterfaceId"), Type.ByteVec, isMutable = false, isUnused = true)
 

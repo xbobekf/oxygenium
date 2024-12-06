@@ -58,13 +58,13 @@ object Keyword {
   case object `extends`  extends Used
   case object `embeds`   extends Used
   case object implements extends Used
-  case object alph       extends Used
+  case object oxyg       extends Used
   case object const      extends Used
   case object `enum`     extends Used
   case object Abstract   extends Used
   case object ALPH_CAPS extends Used {
     override def name: String =
-      "ALPH"
+      "OXYG"
   }
   case object `mapping` extends Used
 

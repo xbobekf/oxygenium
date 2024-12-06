@@ -18,7 +18,7 @@ package org.oxygenium.protocol.model
 
 import scala.annotation.tailrec
 
-import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.{OXYG, Hash}
 import org.oxygenium.protocol.config.{ConsensusConfig, GroupConfig}
 import org.oxygenium.protocol.mining.PoW
 import org.oxygenium.protocol.model.BlockHash
@@ -42,7 +42,7 @@ final case class BlockHeader(
     ChainIndex.from(hash, groups)
   }
 
-  def isGenesis: Boolean = timestamp == ALPH.GenesisTimestamp
+  def isGenesis: Boolean = timestamp == OXYG.GenesisTimestamp
 
   def parentHash: BlockHash = {
     assume(!isGenesis)
@@ -117,7 +117,7 @@ object BlockHeader {
       config: GroupConfig
   ): BlockHeader = {
     val deps = BlockDeps.build(AVector.fill(config.depsNum)(BlockHash.zero))
-    BlockHeader(nonce, DefaultBlockVersion, deps, Hash.zero, txsHash, ALPH.GenesisTimestamp, target)
+    BlockHeader(nonce, DefaultBlockVersion, deps, Hash.zero, txsHash, OXYG.GenesisTimestamp, target)
   }
 
   def genesis(chainIndex: ChainIndex, txsHash: Hash)(implicit

@@ -24,47 +24,47 @@ import org.oxygenium.protocol.vm.LockupScript
 import org.oxygenium.util.{OxygeniumSpec, AVector, NumericHelpers, U256}
 
 class ALPHSpec extends OxygeniumSpec {
-  import ALPH._
+  import OXYG._
 
   it should "use correct unit" in {
-    alph(1) is nanoAlph(1).mul(U256.Billion).get
-    alph(1).toBigInt.longValue() is math.pow(10, 18).longValue()
-    cent(1).mulUnsafe(U256.unsafe(100)) is alph(1)
+    oxyg(1) is nanoAlph(1).mul(U256.Billion).get
+    oxyg(1).toBigInt.longValue() is math.pow(10, 18).longValue()
+    cent(1).mulUnsafe(U256.unsafe(100)) is oxyg(1)
 
-    oneAlph is alph(1)
+    oneAlph is oxyg(1)
     oneNanoAlph is nanoAlph(1)
     oneAlph is (oneNanoAlph.mulUnsafe(U256.unsafe(1000000000)))
   }
 
-  it should "parse `x.y ALPH` format" in new Fixture {
-    check("1.2ALPH", alph(12) / 10)
-    check("1.2 ALPH", alph(12) / 10)
-    check("1 ALPH", alph(1))
-    check("1ALPH", alph(1))
-    check("0.1ALPH", alph(1) / 10)
-    check(".1ALPH", alph(1) / 10)
-    check(".1     ALPH", alph(1) / 10)
-    check("0 ALPH", U256.Zero)
-    check("1234.123456 ALPH", alph(1234123456) / 1000000)
+  it should "parse `x.y OXYG` format" in new Fixture {
+    check("1.2ALPH", oxyg(12) / 10)
+    check("1.2 OXYG", oxyg(12) / 10)
+    check("1 OXYG", oxyg(1))
+    check("1ALPH", oxyg(1))
+    check("0.1ALPH", oxyg(1) / 10)
+    check(".1ALPH", oxyg(1) / 10)
+    check(".1     OXYG", oxyg(1) / 10)
+    check("0 OXYG", U256.Zero)
+    check("1234.123456 OXYG", oxyg(1234123456) / 1000000)
 
     val alphMax = s"${MaxALPHValue.divUnsafe(oneAlph)}"
     alphMax is "1000000000"
-    check(s"$alphMax ALPH", MaxALPHValue)
+    check(s"$alphMax OXYG", MaxALPHValue)
 
     fail("1.2alph")
     fail("-1.2alph")
-    fail("1.2 alph")
+    fail("1.2 oxyg")
     fail("1 Alph")
-    fail("1. ALPH")
-    fail(". ALPH")
-    fail(" ALPH")
-    fail("0.000000000000000000001 ALPH")
+    fail("1. OXYG")
+    fail(". OXYG")
+    fail(" OXYG")
+    fail("0.000000000000000000001 OXYG")
   }
 
   it should "pretty format" in new Fixture {
     def check(alphAmount: String, str: String) = {
-      val amount = ALPH.alphFromString(s"$alphAmount ALPH").get
-      ALPH.prettifyAmount(amount) is s"$str ALPH"
+      val amount = OXYG.alphFromString(s"$alphAmount OXYG").get
+      OXYG.prettifyAmount(amount) is s"$str OXYG"
     }
 
     check("0", "0")
@@ -82,30 +82,30 @@ class ALPHSpec extends OxygeniumSpec {
   trait Fixture extends NumericHelpers {
 
     def check(str: String, expected: U256) = {
-      ALPH.alphFromString(str) is Some(expected)
+      OXYG.alphFromString(str) is Some(expected)
     }
     def fail(str: String) = {
-      ALPH.alphFromString(str) is None
+      OXYG.alphFromString(str) is None
     }
   }
 
   it should "test isSequentialTxSupported" in new GroupConfigFixture.Default {
-    ALPH.isSequentialTxSupported(ChainIndex.unsafe(0, 0), HardFork.Rhone) is true
-    ALPH.isSequentialTxSupported(ChainIndex.unsafe(0, 1), HardFork.Rhone) is false
-    ALPH.isSequentialTxSupported(ChainIndex.unsafe(0, 0), HardFork.PreRhoneForTest) is false
-    ALPH.isSequentialTxSupported(ChainIndex.unsafe(0, 1), HardFork.PreRhoneForTest) is false
+    OXYG.isSequentialTxSupported(ChainIndex.unsafe(0, 0), HardFork.Rhone) is true
+    OXYG.isSequentialTxSupported(ChainIndex.unsafe(0, 1), HardFork.Rhone) is false
+    OXYG.isSequentialTxSupported(ChainIndex.unsafe(0, 0), HardFork.PreRhoneForTest) is false
+    OXYG.isSequentialTxSupported(ChainIndex.unsafe(0, 1), HardFork.PreRhoneForTest) is false
   }
 
   it should "test isTestnetMinersWhitelisted" in {
     val validMiners = AVector.from(
-      ALPH.testnetWhitelistedMiners.map(lockupScript =>
+      OXYG.testnetWhitelistedMiners.map(lockupScript =>
         Address.from(lockupScript).asInstanceOf[Address.Asset]
       )
     )
-    ALPH.isTestnetMinersWhitelisted(validMiners) is true
-    validMiners.foreach(miner => ALPH.isTestnetMinersWhitelisted(AVector(miner)) is true)
+    OXYG.isTestnetMinersWhitelisted(validMiners) is true
+    validMiners.foreach(miner => OXYG.isTestnetMinersWhitelisted(AVector(miner)) is true)
     val index        = Random.nextInt(validMiners.length)
     val invalidMiner = Address.Asset(LockupScript.p2pkh(PublicKey.generate))
-    ALPH.isTestnetMinersWhitelisted(validMiners.replace(index, invalidMiner)) is false
+    OXYG.isTestnetMinersWhitelisted(validMiners.replace(index, invalidMiner)) is false
   }
 }

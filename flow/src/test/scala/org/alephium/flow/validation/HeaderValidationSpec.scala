@@ -25,7 +25,7 @@ import org.scalatest.EitherValues._
 import org.oxygenium.crypto.Blake3
 import org.oxygenium.flow.{OxygeniumFlowSpec, FlowFixture}
 import org.oxygenium.flow.setting.ConsensusSetting
-import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.{OXYG, Hash}
 import org.oxygenium.protocol.model._
 import org.oxygenium.serde.intSerde
 import org.oxygenium.util.{AVector, Duration, TimeStamp}
@@ -85,9 +85,9 @@ class HeaderValidationSpec extends OxygeniumFlowSpec with NoIndexModelGenerators
   }
 
   it should "check genesis timestamp" in new GenesisFixture {
-    genesis.timestamp is ALPH.GenesisTimestamp
+    genesis.timestamp is OXYG.GenesisTimestamp
 
-    val modified = genesis.copy(timestamp = ALPH.GenesisTimestamp.plusMillisUnsafe(1))
+    val modified = genesis.copy(timestamp = OXYG.GenesisTimestamp.plusMillisUnsafe(1))
     failValidation(modified, InvalidGenesisTimeStamp)
   }
 
@@ -204,7 +204,7 @@ class HeaderValidationSpec extends OxygeniumFlowSpec with NoIndexModelGenerators
     val modified0 = updateNonce(header.copy(timestamp = header0.timestamp))
     failValidation(modified0, NoIncreasingTimeStamp)
 
-    val modified1 = updateNonce(header.copy(timestamp = ALPH.LaunchTimestamp.plusMillisUnsafe(-1)))
+    val modified1 = updateNonce(header.copy(timestamp = OXYG.LaunchTimestamp.plusMillisUnsafe(-1)))
     failValidation(modified1, EarlierThanLaunchTimeStamp)
   }
 

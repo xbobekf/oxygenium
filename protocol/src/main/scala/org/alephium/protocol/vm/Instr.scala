@@ -564,7 +564,7 @@ case object PayGasFee
           Right(
             NotEnoughApprovedBalance(
               payer,
-              TokenId.alph,
+              TokenId.oxyg,
               amount.v,
               balanceState.remaining.getAttoAlphAmount(payer).getOrElse(U256.Zero)
             )
@@ -1637,7 +1637,7 @@ object BurnToken extends LemanAssetInstr with StatefulInstrCompanion0 {
       fromAddress  <- frame.popOpStackAddress()
       balanceState <- frame.getBalanceState()
       _ <-
-        if (tokenId == TokenId.alph) {
+        if (tokenId == TokenId.oxyg) {
           Left(Right(BurningAlphNotAllowed))
         } else {
           balanceState
@@ -1700,7 +1700,7 @@ sealed trait ApproveAssetBase {
           Right(
             NotEnoughApprovedBalance(
               from,
-              TokenId.alph,
+              TokenId.oxyg,
               amount,
               balanceState.alphRemainingUnsafe(from)
             )
@@ -1770,7 +1770,7 @@ object ApproveToken extends AssetInstr with StatefulInstrCompanion0 with Approve
       balanceState <- frame.getBalanceState()
       hardFork = frame.ctx.getHardFork()
       _ <-
-        if (hardFork.isLemanEnabled() && tokenId == TokenId.alph) {
+        if (hardFork.isLemanEnabled() && tokenId == TokenId.oxyg) {
           approveALPH(balanceState, address.lockupScript, amount.v, hardFork)
         } else {
           approveToken(balanceState, address.lockupScript, tokenId, amount.v, hardFork)
@@ -1810,7 +1810,7 @@ object TokenRemaining extends AssetInstr with StatefulInstrCompanion0 {
       address: Val.Address,
       tokenId: TokenId
   ): ExeResult[U256] = {
-    val isALPH = tokenId == TokenId.alph
+    val isALPH = tokenId == TokenId.oxyg
     val amountOpt = if (hardFork.isLemanEnabled() && isALPH) {
       balanceState.alphRemaining(address.lockupScript)
     } else {
@@ -1886,7 +1886,7 @@ sealed trait Transfer extends AssetInstr {
             Right(
               NotEnoughApprovedBalance(
                 from,
-                TokenId.alph,
+                TokenId.oxyg,
                 amount.v,
                 balanceState.alphRemainingUnsafe(from)
               )
@@ -1955,7 +1955,7 @@ sealed trait Transfer extends AssetInstr {
       to         <- toThunk
       from       <- fromThunk
       _ <-
-        if (frame.ctx.getHardFork().isLemanEnabled() && tokenId == TokenId.alph) {
+        if (frame.ctx.getHardFork().isLemanEnabled() && tokenId == TokenId.oxyg) {
           transferAlph(frame, from, to, amount)
         } else {
           transferToken(frame, tokenId, from, to, amount)
@@ -2561,7 +2561,7 @@ object ALPHTokenId
     extends LemanInstrWithSimpleGas[StatefulContext]
     with StatefulInstrCompanion0
     with GasBase {
-  private val alphTokenId = Val.ByteVec(TokenId.alph.bytes)
+  private val alphTokenId = Val.ByteVec(TokenId.oxyg.bytes)
   def runWithLeman[C <: StatefulContext](frame: Frame[C]): ExeResult[Unit] = {
     frame.pushOpStack(alphTokenId)
   }

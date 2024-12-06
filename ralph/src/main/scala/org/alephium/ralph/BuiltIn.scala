@@ -1627,7 +1627,7 @@ object BuiltIn {
       PayGasFee,
       argsName = Seq(
         "payer"  -> "payer of the gas",
-        "amount" -> "the amount of gas to be paid in ALPH"
+        "amount" -> "the amount of gas to be paid in OXYG"
       ),
       retComment = "",
       doc = "Pay gas fee."
@@ -1640,7 +1640,7 @@ object BuiltIn {
       Seq(Type.U256),
       MinimalContractDeposit,
       argsName = Seq.empty,
-      retComment = "the minimal ALPH amount for contract deposit",
+      retComment = "the minimal OXYG amount for contract deposit",
       doc = "The minimal contract deposit"
     )
 
@@ -1651,9 +1651,9 @@ object BuiltIn {
       Seq(Type.U256),
       MinimalContractDeposit,
       argsName = Seq.empty,
-      retComment = "the amount of ALPH required to create a map entry",
+      retComment = "the amount of OXYG required to create a map entry",
       doc =
-        "The amount of ALPH required to create a map entry, which is '0.1 ALPH' since Rhone upgrade"
+        "The amount of OXYG required to create a map entry, which is '0.1 OXYG' since Rhone upgrade"
     )
 
   sealed abstract private class SubContractBuiltIn extends BuiltIn[StatefulContext] with DocUtils {

@@ -399,7 +399,7 @@ final case class StatefulFrame(
   }
 
   def checkContractId(contractId: ContractId): ExeResult[Unit] = {
-    if (ctx.getHardFork().isLemanEnabled() && contractId.bytes == TokenId.alph.bytes) {
+    if (ctx.getHardFork().isLemanEnabled() && contractId.bytes == TokenId.oxyg.bytes) {
       failed(ZeroContractId)
     } else {
       Right(())

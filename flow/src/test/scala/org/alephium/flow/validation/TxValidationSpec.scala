@@ -27,7 +27,7 @@ import org.oxygenium.flow.{OxygeniumFlowSpec, FlowFixture}
 import org.oxygenium.flow.core.ExtraUtxosInfo
 import org.oxygenium.flow.validation.ValidationStatus.{invalidTx, validTx}
 import org.oxygenium.io.IOError
-import org.oxygenium.protocol.{ALPH, Hash, PrivateKey, PublicKey, Signature, SignatureSchema}
+import org.oxygenium.protocol.{OXYG, Hash, PrivateKey, PublicKey, Signature, SignatureSchema}
 import org.oxygenium.protocol.model._
 import org.oxygenium.protocol.model.ModelGenerators.AssetInputInfo
 import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
@@ -100,7 +100,7 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
       val group                 = lockup.groupIndex
       val (genesisPriKey, _, _) = genesisKeys(group.value)
       val outputs =
-        AVector.fill(outputsNum + 1)(TxOutputInfo(lockup, ALPH.alph(1), AVector.empty, None))
+        AVector.fill(outputsNum + 1)(TxOutputInfo(lockup, OXYG.oxyg(1), AVector.empty, None))
       val unsignedTx = blockFlow
         .transfer(
           genesisPriKey.publicKey,
@@ -342,13 +342,13 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     val tx    = transactionGen().sample.get
     val input = tx.unsigned.inputs.head
 
-    val modified0 = tx.inputs(AVector.fill(ALPH.MaxTxInputNum)(input))
-    val modified1 = tx.inputs(AVector.fill(ALPH.MaxTxInputNum + 1)(input))
+    val modified0 = tx.inputs(AVector.fill(OXYG.MaxTxInputNum)(input))
+    val modified1 = tx.inputs(AVector.fill(OXYG.MaxTxInputNum + 1)(input))
     val contractOutputRef =
       ContractOutputRef.unsafe(Hint.unsafe(1), TxOutputRef.unsafeKey(Hash.zero))
     val modified2 = tx.copy(contractInputs = AVector(contractOutputRef))
     val modified3 =
-      tx.copy(contractInputs = AVector.fill(ALPH.MaxTxInputNum + 1)(contractOutputRef))
+      tx.copy(contractInputs = AVector.fill(OXYG.MaxTxInputNum + 1)(contractOutputRef))
 
     {
       implicit val validator: TxValidator[Unit] = checkInputNum(_, isIntraGroup = false)
@@ -383,10 +383,10 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     val output = tx.unsigned.fixedOutputs.head
     tx.generatedOutputs.isEmpty is true
 
-    val maxGeneratedOutputsNum = ALPH.MaxTxOutputNum - tx.outputsLength
+    val maxGeneratedOutputsNum = OXYG.MaxTxOutputNum - tx.outputsLength
 
-    val modified0 = tx.fixedOutputs(AVector.fill(ALPH.MaxTxOutputNum)(output))
-    val modified1 = tx.fixedOutputs(AVector.fill(ALPH.MaxTxOutputNum + 1)(output))
+    val modified0 = tx.fixedOutputs(AVector.fill(OXYG.MaxTxOutputNum)(output))
+    val modified1 = tx.fixedOutputs(AVector.fill(OXYG.MaxTxOutputNum + 1)(output))
     val modified2 = tx.copy(generatedOutputs = AVector.fill(maxGeneratedOutputsNum)(output))
     val modified3 = tx.copy(generatedOutputs = AVector.fill(maxGeneratedOutputsNum + 1)(output))
 
@@ -413,8 +413,8 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     val tx        = transactionGen().sample.get
     val signature = Signature.generate
     val modified0 = tx.copy(scriptSignatures = AVector.empty)
-    val modified1 = tx.copy(scriptSignatures = AVector.fill(ALPH.MaxScriptSigNum)(signature))
-    val modified2 = tx.copy(scriptSignatures = AVector.fill(ALPH.MaxScriptSigNum + 1)(signature))
+    val modified1 = tx.copy(scriptSignatures = AVector.fill(OXYG.MaxScriptSigNum)(signature))
+    val modified2 = tx.copy(scriptSignatures = AVector.fill(OXYG.MaxScriptSigNum + 1)(signature))
 
     {
       implicit val validator = checkScriptSigNum(_, isIntraGroup = true)
@@ -451,8 +451,8 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     tx.gasPrice(GasPrice(0)).fail(InvalidGasPrice)
     tx.gasPrice(coinbaseGasPrice).pass()
     tx.gasPrice(GasPrice(coinbaseGasPrice.value - 1)).fail(InvalidGasPrice)
-    tx.gasPrice(GasPrice(ALPH.MaxALPHValue - 1)).pass()
-    tx.gasPrice(GasPrice(ALPH.MaxALPHValue)).fail(InvalidGasPrice)
+    tx.gasPrice(GasPrice(OXYG.MaxALPHValue - 1)).pass()
+    tx.gasPrice(GasPrice(OXYG.MaxALPHValue)).fail(InvalidGasPrice)
   }
 
   it should "check gas bounds for non-coinbase" in new Fixture {
@@ -473,8 +473,8 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     tx.gasPrice(coinbaseGasPrice).fail(InvalidGasPrice)
     tx.gasPrice(nonCoinbaseMinGasPrice).pass()
     tx.gasPrice(GasPrice(nonCoinbaseMinGasPrice.value - 1)).fail(InvalidGasPrice)
-    tx.gasPrice(GasPrice(ALPH.MaxALPHValue - 1)).pass()
-    tx.gasPrice(GasPrice(ALPH.MaxALPHValue)).fail(InvalidGasPrice)
+    tx.gasPrice(GasPrice(OXYG.MaxALPHValue - 1)).pass()
+    tx.gasPrice(GasPrice(OXYG.MaxALPHValue)).fail(InvalidGasPrice)
   }
 
   it should "check gas bounds for rhone-hardfork" in new Fixture {
@@ -494,7 +494,7 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     tx.gasAmount(maximalGasPerTx.addUnsafe(1)).fail(InvalidStartGas)
   }
 
-  it should "check ALPH balance stats" in new Fixture {
+  it should "check OXYG balance stats" in new Fixture {
     forAll(transactionGenWithPreOutputs()) { case (tx, _) =>
       implicit val validator = checkOutputStats(_, HardFork.Leman)
 
@@ -590,7 +590,7 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
       val chainIndex = tx.chainIndex
       val p2pkh      = p2pkhLockupGen(chainIndex.from).sample.get
       val invalidP2MPK = LockupScript.P2MPKH
-        .unsafe(AVector(p2pkh.pkHash) ++ AVector.fill(ALPH.MaxKeysInP2MPK)(Hash.generate), 1)
+        .unsafe(AVector(p2pkh.pkHash) ++ AVector.fill(OXYG.MaxKeysInP2MPK)(Hash.generate), 1)
 
       val updateFixedOutput = Random.nextInt(tx.outputsLength) < tx.unsigned.fixedOutputs.length
       val txNew = if (updateFixedOutput) {
@@ -604,7 +604,7 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
       txNew.fail(TooManyKeysInMultisig)
     }
 
-    val keys       = AVector.fill(ALPH.MaxKeysInP2MPK)(PublicKey.generate)
+    val keys       = AVector.fill(OXYG.MaxKeysInP2MPK)(PublicKey.generate)
     val validP2MPK = LockupScript.p2mpkh(keys, 1).value
     val tx =
       transactionGen().sample.get.updateRandomFixedOutputs(_.copy(lockupScript = validP2MPK))
@@ -612,9 +612,9 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
   }
 
   it should "check the number of public keys in p2mpk for Mainnet fork" in new Fixture {
-    val tooManyKeys = AVector.fill(ALPH.MaxKeysInP2MPK + 1)(PublicKey.generate)
+    val tooManyKeys = AVector.fill(OXYG.MaxKeysInP2MPK + 1)(PublicKey.generate)
     val p2mpkh0     = LockupScript.p2mpkh(tooManyKeys.init, 1).value
-    val p2mpkh1     = LockupScript.p2mpkh(tooManyKeys, ALPH.MaxKeysInP2MPK + 1).value
+    val p2mpkh1     = LockupScript.p2mpkh(tooManyKeys, OXYG.MaxKeysInP2MPK + 1).value
     val tx0 =
       transactionGen().sample.get.updateRandomFixedOutputs(_.copy(lockupScript = p2mpkh0))
     val tx1 =
@@ -676,10 +676,10 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
   }
 
   it should "check output data size" in new Fixture {
-    val oversizedData  = ByteString.fromArrayUnsafe(Array.fill(ALPH.MaxOutputDataSize + 1)(0))
-    val justEnoughData = ByteString.fromArrayUnsafe(Array.fill(ALPH.MaxOutputDataSize)(0))
-    oversizedData.length is ALPH.MaxOutputDataSize + 1
-    justEnoughData.length is ALPH.MaxOutputDataSize
+    val oversizedData  = ByteString.fromArrayUnsafe(Array.fill(OXYG.MaxOutputDataSize + 1)(0))
+    val justEnoughData = ByteString.fromArrayUnsafe(Array.fill(OXYG.MaxOutputDataSize)(0))
+    oversizedData.length is OXYG.MaxOutputDataSize + 1
+    justEnoughData.length is OXYG.MaxOutputDataSize
 
     forAll(transactionGenWithPreOutputs(), Gen.oneOf(HardFork.Mainnet, HardFork.Leman)) {
       case ((tx, preOutputs), hardFork) =>
@@ -728,7 +728,7 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     }
   }
 
-  it should "test both ALPH and token balances" in new Fixture {
+  it should "test both OXYG and token balances" in new Fixture {
     forAll(transactionGenWithPreOutputs()) { case (tx, preOutputs) =>
       checkAlphBalance(tx, preOutputs.map(_.referredOutput), None).pass()
       checkTokenBalance(tx, preOutputs.map(_.referredOutput)).pass()
@@ -736,7 +736,7 @@ class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike
     }
   }
 
-  it should "validate ALPH balances" in new Fixture {
+  it should "validate OXYG balances" in new Fixture {
     forAll(transactionGenWithPreOutputs()) { case (tx, preOutputs) =>
       implicit val validator = nestedValidator(
         checkAlphBalance(_, preOutputs.map(_.referredOutput), None),

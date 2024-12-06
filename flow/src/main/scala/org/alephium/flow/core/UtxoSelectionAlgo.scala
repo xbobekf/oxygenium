@@ -30,8 +30,8 @@ import org.oxygenium.util._
  * We sort the Utxos based on the amount and type
  *   - the Utxos with higher persisted level are selected first (confirmed Utxos are of high priority)
  *   - the Utxos with smaller amounts are selected first
- *   - alph selection non-token Utxos first
- *   - the above logic applies to both ALPH and tokens.
+ *   - oxyg selection non-token Utxos first
+ *   - the above logic applies to both OXYG and tokens.
  */
 // scalastyle:off parameter.number
 object UtxoSelectionAlgo extends StrictLogging {
@@ -77,13 +77,13 @@ object UtxoSelectionAlgo extends StrictLogging {
 
   type Asset = FlowUtils.AssetOutputInfo
   final case class Selected(assets: AVector[Asset], gas: GasBox)
-  final case class SelectedSoFar(alph: U256, selected: AVector[Asset], rest: AVector[Asset])
+  final case class SelectedSoFar(oxyg: U256, selected: AVector[Asset], rest: AVector[Asset])
   final case class ProvidedGas(
       gasOpt: Option[GasBox],
       gasPrice: GasPrice,
       gasEstimationMultiplier: Option[GasEstimationMultiplier]
   )
-  final case class AssetAmounts(alph: U256, tokens: AVector[(TokenId, U256)])
+  final case class AssetAmounts(oxyg: U256, tokens: AVector[(TokenId, U256)])
   final case class TxInputWithAsset(input: TxInput, asset: Asset)
   object TxInputWithAsset {
     def from(asset: Asset, unlockScript: UnlockScript): TxInputWithAsset = {
@@ -152,7 +152,7 @@ object UtxoSelectionAlgo extends StrictLogging {
       val gasPrice = providedGas.gasPrice
       providedGas.gasOpt match {
         case Some(gas) =>
-          val amountsWithGas = amounts.copy(alph = amounts.alph.addUnsafe(gasPrice * gas))
+          val amountsWithGas = amounts.copy(oxyg = amounts.oxyg.addUnsafe(gasPrice * gas))
           SelectionWithoutGasEstimation(assetOrder)
             .select(amountsWithGas, utxos)
             .map { selectedSoFar =>
@@ -173,8 +173,8 @@ object UtxoSelectionAlgo extends StrictLogging {
             }
             scriptGasFee = gasPrice * scriptGas
             totalAttoAlphAmount <- scriptGasFee
-              .add(amounts.alph)
-              .toRight("ALPH balance overflow with estimated script gas")
+              .add(amounts.oxyg)
+              .toRight("OXYG balance overflow with estimated script gas")
             amountsWithScriptGas = AssetAmounts(totalAttoAlphAmount, amounts.tokens)
             utxosWithGas <- selectUtxos(
               amountsWithScriptGas,
@@ -207,7 +207,7 @@ object UtxoSelectionAlgo extends StrictLogging {
           unlockScript,
           txOutputsLength,
           resultWithoutGas,
-          assetAmounts.alph,
+          assetAmounts.oxyg,
           assetScriptGasEstimator
         )
       } yield (resultWithoutGas.selected ++ resultWithGas._1.selected, resultWithGas._2)
@@ -222,7 +222,7 @@ object UtxoSelectionAlgo extends StrictLogging {
       val maximalGasPerTx = getMaximalGasPerTx()
       SelectionWithoutGasEstimation(assetOrder)
         .select(
-          amounts.copy(alph = amounts.alph.addUnsafe(gasPrice * maximalGasPerTx)),
+          amounts.copy(oxyg = amounts.oxyg.addUnsafe(gasPrice * maximalGasPerTx)),
           utxos
         )
         .map(_.selected.map(TxInputWithAsset.from(_, unlockScript)))
@@ -240,7 +240,7 @@ object UtxoSelectionAlgo extends StrictLogging {
         tokensFoundResult <- selectForTokens(amounts.tokens, AVector.empty, allUtxos)
         (utxosForTokens, remainingUtxos) = tokensFoundResult
         alphSelected = utxosForTokens.fold(U256.Zero)(_ addUnsafe _.output.amount)
-        alphToSelect = amounts.alph.sub(alphSelected).getOrElse(U256.Zero)
+        alphToSelect = amounts.oxyg.sub(alphSelected).getOrElse(U256.Zero)
         alphFoundResult <- selectForAmount(alphToSelect, sortAlph(remainingUtxos))(asset =>
           Some(asset.output.amount)
         )
@@ -371,7 +371,7 @@ object UtxoSelectionAlgo extends StrictLogging {
         }
       }
 
-      iter(selectedSoFar.alph, 0).flatMap {
+      iter(selectedSoFar.oxyg, 0).flatMap {
         case (_, -1, _) => Left("Not enough balance for fee, maybe transfer a smaller amount")
         case (sum, index, gas) =>
           Right((SelectedSoFar(sum, restOfUtxos.take(index), restOfUtxos.drop(index)), gas))

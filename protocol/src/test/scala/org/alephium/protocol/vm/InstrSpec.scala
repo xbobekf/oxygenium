@@ -1733,7 +1733,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   trait GasInstrFixture extends StatelessInstrFixture {
     val gasPriceGen = Gen
-      .choose[BigInteger](coinbaseGasPrice.value.v, ALPH.oneAlph.v)
+      .choose[BigInteger](coinbaseGasPrice.value.v, OXYG.oneAlph.v)
       .map(v => GasPrice(U256.unsafe(v)))
     val gasAmountGen = Gen.choose[Int](minimalGas.value, maximalGasPerTx.value).map(GasBox.unsafe)
     val txEnv = TxEnv.mockup(
@@ -2017,7 +2017,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     lazy val tokenId = TokenId.generate
 
     def alphBalance(lockupScript: LockupScript, amount: U256): MutBalances = {
-      MutBalances(ArrayBuffer((lockupScript, MutBalancesPerLockup.alph(amount))))
+      MutBalances(ArrayBuffer((lockupScript, MutBalancesPerLockup.oxyg(amount))))
     }
 
     def tokenBalance(lockupScript: LockupScript, tokenId: TokenId, amount: U256): MutBalances = {
@@ -2272,47 +2272,47 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       intercept[AssertionError](
         test(frame, amount, MutBalanceState.empty, lockupScriptOpt)
       ).getMessage is Right(
-        NotEnoughApprovedBalance(from, TokenId.alph, amount, remain)
+        NotEnoughApprovedBalance(from, TokenId.oxyg, amount, remain)
       ).toString
     }
 
-    val balanceState0 = MutBalanceState.from(alphBalance(lockupScript, ALPH.oneAlph))
+    val balanceState0 = MutBalanceState.from(alphBalance(lockupScript, OXYG.oneAlph))
     val preRhoneFrame = preparePreRhoneFrame(Some(balanceState0))
     test(
       preRhoneFrame,
       U256.Zero,
       MutBalanceState(
-        alphBalance(lockupScript, ALPH.oneAlph),
+        alphBalance(lockupScript, OXYG.oneAlph),
         alphBalance(lockupScript, U256.Zero)
       )
     )
     test(
       preRhoneFrame,
-      ALPH.oneNanoAlph,
+      OXYG.oneNanoAlph,
       MutBalanceState(
-        alphBalance(lockupScript, ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph)),
-        alphBalance(lockupScript, ALPH.oneNanoAlph)
+        alphBalance(lockupScript, OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph)),
+        alphBalance(lockupScript, OXYG.oneNanoAlph)
       )
     )
     fail(preRhoneFrame, U256.Zero, U256.Zero, Some(randomLockupScript))
     fail(preRhoneFrame, U256.One, U256.Zero, Some(randomLockupScript))
-    fail(preRhoneFrame, ALPH.alph(2), ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+    fail(preRhoneFrame, OXYG.oxyg(2), OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
 
-    val balanceState1      = MutBalanceState.from(alphBalance(lockupScript, ALPH.oneAlph))
-    val remainBalanceState = MutBalanceState.from(alphBalance(lockupScript, ALPH.oneAlph))
+    val balanceState1      = MutBalanceState.from(alphBalance(lockupScript, OXYG.oneAlph))
+    val remainBalanceState = MutBalanceState.from(alphBalance(lockupScript, OXYG.oneAlph))
     val rhoneFrame         = prepareFrame(Some(balanceState1))(NetworkConfigFixture.Rhone)
     test(rhoneFrame, U256.Zero, remainBalanceState)
     test(rhoneFrame, U256.Zero, remainBalanceState, Some(randomLockupScript))
     fail(rhoneFrame, U256.One, U256.Zero, Some(randomLockupScript))
     test(
       rhoneFrame,
-      ALPH.oneNanoAlph,
+      OXYG.oneNanoAlph,
       MutBalanceState(
-        alphBalance(lockupScript, ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph)),
-        alphBalance(lockupScript, ALPH.oneNanoAlph)
+        alphBalance(lockupScript, OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph)),
+        alphBalance(lockupScript, OXYG.oneNanoAlph)
       )
     )
-    fail(rhoneFrame, ALPH.alph(2), ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+    fail(rhoneFrame, OXYG.oxyg(2), OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
 
     val frameWithEmptyBalanceState = prepareFrame(Some(MutBalanceState.empty))
     test(frameWithEmptyBalanceState, U256.Zero, MutBalanceState.empty)
@@ -2356,155 +2356,155 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
     val initBalanceState0 =
       MutBalanceState.from(
-        balances(lockupScript, None, Map(tokenId -> ALPH.oneAlph, TokenId.alph -> ALPH.oneAlph))
+        balances(lockupScript, None, Map(tokenId -> OXYG.oneAlph, TokenId.oxyg -> OXYG.oneAlph))
       )
     val genesisFrame = preparePreLemanFrame(Some(initBalanceState0))
-    fail(genesisFrame, tokenId, ALPH.alph(2), ALPH.oneAlph)
+    fail(genesisFrame, tokenId, OXYG.oxyg(2), OXYG.oneAlph)
     fail(genesisFrame, tokenId, U256.Zero, U256.Zero, Some(randomLockupScript))
-    fail(genesisFrame, TokenId.alph, U256.Zero, U256.Zero, Some(randomLockupScript))
+    fail(genesisFrame, TokenId.oxyg, U256.Zero, U256.Zero, Some(randomLockupScript))
     fail(genesisFrame, randomTokenId, U256.Zero, U256.Zero, Some(randomLockupScript))
     test(
       genesisFrame,
       tokenId,
       U256.Zero,
       MutBalanceState(
-        balances(lockupScript, None, Map(tokenId -> ALPH.oneAlph, TokenId.alph -> ALPH.oneAlph)),
+        balances(lockupScript, None, Map(tokenId -> OXYG.oneAlph, TokenId.oxyg -> OXYG.oneAlph)),
         balances(lockupScript, None, Map(tokenId -> U256.Zero))
       )
     )
     test(
       genesisFrame,
-      TokenId.alph,
+      TokenId.oxyg,
       U256.Zero,
       MutBalanceState(
-        balances(lockupScript, None, Map(tokenId -> ALPH.oneAlph, TokenId.alph -> ALPH.oneAlph)),
-        balances(lockupScript, None, Map(tokenId -> U256.Zero, TokenId.alph -> U256.Zero))
+        balances(lockupScript, None, Map(tokenId -> OXYG.oneAlph, TokenId.oxyg -> OXYG.oneAlph)),
+        balances(lockupScript, None, Map(tokenId -> U256.Zero, TokenId.oxyg -> U256.Zero))
       )
     )
     test(
       genesisFrame,
       tokenId,
-      ALPH.oneNanoAlph,
+      OXYG.oneNanoAlph,
       MutBalanceState(
         balances(
           lockupScript,
           None,
-          Map(tokenId -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph), TokenId.alph -> ALPH.oneAlph)
+          Map(tokenId -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph), TokenId.oxyg -> OXYG.oneAlph)
         ),
-        balances(lockupScript, None, Map(tokenId -> ALPH.oneNanoAlph, TokenId.alph -> U256.Zero))
+        balances(lockupScript, None, Map(tokenId -> OXYG.oneNanoAlph, TokenId.oxyg -> U256.Zero))
       )
     )
     test(
       genesisFrame,
-      TokenId.alph,
-      ALPH.oneNanoAlph,
+      TokenId.oxyg,
+      OXYG.oneNanoAlph,
       MutBalanceState(
         balances(
           lockupScript,
           None,
           Map(
-            tokenId      -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph),
-            TokenId.alph -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph)
+            tokenId      -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph),
+            TokenId.oxyg -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph)
           )
         ),
         balances(
           lockupScript,
           None,
-          Map(tokenId -> ALPH.oneNanoAlph, TokenId.alph -> ALPH.oneNanoAlph)
+          Map(tokenId -> OXYG.oneNanoAlph, TokenId.oxyg -> OXYG.oneNanoAlph)
         )
       )
     )
 
     val initBalanceState1 =
-      MutBalanceState.from(balances(lockupScript, Some(ALPH.oneAlph), Map(tokenId -> ALPH.oneAlph)))
+      MutBalanceState.from(balances(lockupScript, Some(OXYG.oneAlph), Map(tokenId -> OXYG.oneAlph)))
     val lemanFrame = prepareFrame(Some(initBalanceState1))(NetworkConfigFixture.Leman)
-    fail(lemanFrame, tokenId, ALPH.alph(2), ALPH.oneAlph)
+    fail(lemanFrame, tokenId, OXYG.oxyg(2), OXYG.oneAlph)
     fail(lemanFrame, tokenId, U256.Zero, U256.Zero, Some(randomLockupScript))
-    fail(lemanFrame, TokenId.alph, U256.Zero, U256.Zero, Some(randomLockupScript))
+    fail(lemanFrame, TokenId.oxyg, U256.Zero, U256.Zero, Some(randomLockupScript))
     fail(lemanFrame, randomTokenId, U256.One, U256.Zero, Some(randomLockupScript))
     test(
       lemanFrame,
       tokenId,
       U256.Zero,
       MutBalanceState(
-        balances(lockupScript, Some(ALPH.oneAlph), Map(tokenId -> ALPH.oneAlph)),
+        balances(lockupScript, Some(OXYG.oneAlph), Map(tokenId -> OXYG.oneAlph)),
         balances(lockupScript, None, Map(tokenId -> U256.Zero))
       )
     )
     test(
       lemanFrame,
-      TokenId.alph,
+      TokenId.oxyg,
       U256.Zero,
       MutBalanceState(
-        balances(lockupScript, Some(ALPH.oneAlph), Map(tokenId -> ALPH.oneAlph)),
+        balances(lockupScript, Some(OXYG.oneAlph), Map(tokenId -> OXYG.oneAlph)),
         balances(lockupScript, Some(U256.Zero), Map(tokenId -> U256.Zero))
       )
     )
     test(
       lemanFrame,
       tokenId,
-      ALPH.oneNanoAlph,
+      OXYG.oneNanoAlph,
       MutBalanceState(
         balances(
           lockupScript,
-          Some(ALPH.oneAlph),
-          Map(tokenId -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+          Some(OXYG.oneAlph),
+          Map(tokenId -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
         ),
-        balances(lockupScript, Some(U256.Zero), Map(tokenId -> ALPH.oneNanoAlph))
+        balances(lockupScript, Some(U256.Zero), Map(tokenId -> OXYG.oneNanoAlph))
       )
     )
     test(
       lemanFrame,
-      TokenId.alph,
-      ALPH.oneNanoAlph,
+      TokenId.oxyg,
+      OXYG.oneNanoAlph,
       MutBalanceState(
         balances(
           lockupScript,
-          Some(ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph)),
-          Map(tokenId -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+          Some(OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph)),
+          Map(tokenId -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
         ),
-        balances(lockupScript, Some(ALPH.oneNanoAlph), Map(tokenId -> ALPH.oneNanoAlph))
+        balances(lockupScript, Some(OXYG.oneNanoAlph), Map(tokenId -> OXYG.oneNanoAlph))
       )
     )
 
     val initBalanceState2 =
-      MutBalanceState.from(balances(lockupScript, Some(ALPH.oneAlph), Map(tokenId -> ALPH.oneAlph)))
+      MutBalanceState.from(balances(lockupScript, Some(OXYG.oneAlph), Map(tokenId -> OXYG.oneAlph)))
     val remainBalanceState =
-      MutBalanceState.from(balances(lockupScript, Some(ALPH.oneAlph), Map(tokenId -> ALPH.oneAlph)))
+      MutBalanceState.from(balances(lockupScript, Some(OXYG.oneAlph), Map(tokenId -> OXYG.oneAlph)))
     val rhoneFrame = prepareFrame(Some(initBalanceState2))(NetworkConfigFixture.Rhone)
-    fail(rhoneFrame, tokenId, ALPH.alph(2), ALPH.oneAlph)
+    fail(rhoneFrame, tokenId, OXYG.oxyg(2), OXYG.oneAlph)
     test(rhoneFrame, tokenId, U256.Zero, remainBalanceState, Some(randomLockupScript))
     fail(rhoneFrame, tokenId, U256.One, U256.Zero, Some(randomLockupScript))
-    test(rhoneFrame, TokenId.alph, U256.Zero, remainBalanceState, Some(randomLockupScript))
-    fail(rhoneFrame, TokenId.alph, U256.One, U256.Zero, Some(randomLockupScript))
+    test(rhoneFrame, TokenId.oxyg, U256.Zero, remainBalanceState, Some(randomLockupScript))
+    fail(rhoneFrame, TokenId.oxyg, U256.One, U256.Zero, Some(randomLockupScript))
     test(rhoneFrame, randomTokenId, U256.Zero, remainBalanceState, Some(randomLockupScript))
     fail(rhoneFrame, randomTokenId, U256.One, U256.Zero, Some(randomLockupScript))
     test(rhoneFrame, tokenId, U256.Zero, remainBalanceState)
-    test(rhoneFrame, TokenId.alph, U256.Zero, remainBalanceState)
+    test(rhoneFrame, TokenId.oxyg, U256.Zero, remainBalanceState)
     test(
       rhoneFrame,
       tokenId,
-      ALPH.oneNanoAlph,
+      OXYG.oneNanoAlph,
       MutBalanceState(
         balances(
           lockupScript,
-          Some(ALPH.oneAlph),
-          Map(tokenId -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+          Some(OXYG.oneAlph),
+          Map(tokenId -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
         ),
-        balances(lockupScript, None, Map(tokenId -> ALPH.oneNanoAlph))
+        balances(lockupScript, None, Map(tokenId -> OXYG.oneNanoAlph))
       )
     )
     test(
       rhoneFrame,
-      TokenId.alph,
-      ALPH.oneNanoAlph,
+      TokenId.oxyg,
+      OXYG.oneNanoAlph,
       MutBalanceState(
         balances(
           lockupScript,
-          Some(ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph)),
-          Map(tokenId -> ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+          Some(OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph)),
+          Map(tokenId -> OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
         ),
-        balances(lockupScript, Some(ALPH.oneNanoAlph), Map(tokenId -> ALPH.oneNanoAlph))
+        balances(lockupScript, Some(OXYG.oneNanoAlph), Map(tokenId -> OXYG.oneNanoAlph))
       )
     )
   }
@@ -2538,14 +2538,14 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     }
 
     val balanceState =
-      MutBalanceState.from(alphBalance(lockupScript, ALPH.oneAlph))
+      MutBalanceState.from(alphBalance(lockupScript, OXYG.oneAlph))
 
     val preRhoneFrame = preparePreRhoneFrame(Option(balanceState))
-    test(preRhoneFrame, ALPH.oneAlph)
+    test(preRhoneFrame, OXYG.oneAlph)
     fail(preRhoneFrame, U256.Zero, randomLockupScript)
 
     val rhoneFrame = prepareFrame(Option(balanceState))(NetworkConfigFixture.SinceRhone)
-    test(rhoneFrame, ALPH.oneAlph)
+    test(rhoneFrame, OXYG.oneAlph)
     test(rhoneFrame, U256.Zero, Option(randomLockupScript))
   }
 
@@ -2579,7 +2579,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       intercept[AssertionError](
         test(frame, tokenId, amount, lockupScriptOpt)
       ).getMessage is Right(
-        if (tokenId == TokenId.alph) {
+        if (tokenId == TokenId.oxyg) {
           NoAlphBalanceForTheAddress(address)
         } else {
           NoTokenBalanceForTheAddress(tokenId, address)
@@ -2588,26 +2588,26 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     }
 
     val balanceState = MutBalanceState.from(
-      balances(lockupScript, Option(ALPH.oneAlph), Map(tokenId -> ALPH.oneAlph))
+      balances(lockupScript, Option(OXYG.oneAlph), Map(tokenId -> OXYG.oneAlph))
     )
 
     val genesisFrame = preparePreLemanFrame(Option(balanceState))
-    test(genesisFrame, tokenId, ALPH.oneAlph)
+    test(genesisFrame, tokenId, OXYG.oneAlph)
     fail(genesisFrame, tokenId, U256.Zero, Option(randomLockupScript))
-    fail(genesisFrame, TokenId.alph, ALPH.oneAlph)
-    fail(genesisFrame, TokenId.alph, U256.Zero, Option(randomLockupScript))
+    fail(genesisFrame, TokenId.oxyg, OXYG.oneAlph)
+    fail(genesisFrame, TokenId.oxyg, U256.Zero, Option(randomLockupScript))
 
     val lemanFrame = prepareFrame(Option(balanceState))(NetworkConfigFixture.Leman)
-    test(lemanFrame, tokenId, ALPH.oneAlph)
+    test(lemanFrame, tokenId, OXYG.oneAlph)
     fail(lemanFrame, tokenId, U256.Zero, Option(randomLockupScript))
-    test(lemanFrame, TokenId.alph, ALPH.oneAlph)
-    fail(lemanFrame, TokenId.alph, U256.Zero, Option(randomLockupScript))
+    test(lemanFrame, TokenId.oxyg, OXYG.oneAlph)
+    fail(lemanFrame, TokenId.oxyg, U256.Zero, Option(randomLockupScript))
 
     val rhoneFrame = prepareFrame(Option(balanceState))(NetworkConfigFixture.SinceRhone)
-    test(rhoneFrame, tokenId, ALPH.oneAlph)
+    test(rhoneFrame, tokenId, OXYG.oneAlph)
     test(rhoneFrame, tokenId, U256.Zero, Option(randomLockupScript))
-    test(rhoneFrame, TokenId.alph, ALPH.oneAlph)
-    test(rhoneFrame, TokenId.alph, U256.Zero, Option(randomLockupScript))
+    test(rhoneFrame, TokenId.oxyg, OXYG.oneAlph)
+    test(rhoneFrame, TokenId.oxyg, U256.Zero, Option(randomLockupScript))
   }
 
   it should "IsPaying" in new StatefulFixture {
@@ -2615,7 +2615,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       info("Alph")
       val lockupScript = lockupScriptGen.sample.get
       val balanceState =
-        MutBalanceState.from(alphBalance(lockupScript, ALPH.oneAlph))
+        MutBalanceState.from(alphBalance(lockupScript, OXYG.oneAlph))
       val frame = prepareFrame(Some(balanceState))
       val stack = frame.opStack
 
@@ -2639,7 +2639,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       val lockupScript = lockupScriptGen.sample.get
       val balanceState =
         MutBalanceState.from(
-          tokenBalance(lockupScript, tokenId, ALPH.oneAlph)
+          tokenBalance(lockupScript, tokenId, OXYG.oneAlph)
         )
       val frame = prepareFrame(Some(balanceState))
       val stack = frame.opStack
@@ -2667,37 +2667,37 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       tokenBalance(
         from,
         tokenId,
-        ALPH.alph(2)
+        OXYG.oxyg(2)
       )
     )
     override lazy val frame = prepareFrame(Some(balanceState))
 
     stack.push(Val.Address(from))
     stack.push(Val.ByteVec(tokenId.bytes))
-    stack.push(Val.U256(ALPH.oneAlph))
+    stack.push(Val.U256(OXYG.oneAlph))
 
     runAndCheckGas(BurnToken)
 
     frame.balanceStateOpt is Some(
       MutBalanceState.from(
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
     )
 
     stack.push(Val.Address(from))
     stack.push(Val.ByteVec(tokenId.bytes))
-    stack.push(Val.U256(ALPH.alph(2)))
+    stack.push(Val.U256(OXYG.oxyg(2)))
 
     BurnToken.runWith(frame).leftValue isE NotEnoughApprovedBalance(
       from,
       tokenId,
-      ALPH.alph(2),
-      ALPH.oneAlph
+      OXYG.oxyg(2),
+      OXYG.oneAlph
     )
 
     stack.push(Val.Address(from))
-    stack.push(Val.ByteVec(TokenId.alph.bytes))
-    stack.push(Val.U256(ALPH.alph(2)))
+    stack.push(Val.ByteVec(TokenId.oxyg.bytes))
+    stack.push(Val.U256(OXYG.oxyg(2)))
 
     BurnToken.runWith(frame).leftValue isE BurningAlphNotAllowed
   }
@@ -2705,8 +2705,8 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
   it should "LockApprovedAssets" in new StatefulInstrFixture {
     val assetAddress = assetLockupScriptGen.sample.get
     val balanceState = MutBalanceState.from {
-      val balance = tokenBalance(assetAddress, tokenId, ALPH.alph(2))
-      balance.merge(alphBalance(assetAddress, ALPH.alph(2)))
+      val balance = tokenBalance(assetAddress, tokenId, OXYG.oxyg(2))
+      balance.merge(alphBalance(assetAddress, OXYG.oxyg(2)))
       balance
     }
     override lazy val frame = prepareFrame(Some(balanceState))
@@ -2720,12 +2720,12 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
     val validTimestamp = TimeStamp.now().plusHoursUnsafe(1)
 
-    prepareStack(ALPH.oneAlph, ALPH.cent(1), validTimestamp.millis)
+    prepareStack(OXYG.oneAlph, OXYG.cent(1), validTimestamp.millis)
     runAndCheckGas(LockApprovedAssets, Some(GasSchedule.txOutputBaseGas.mulUnsafe(2)))
     frame.balanceStateOpt is Some(
       MutBalanceState.from {
-        val balance = tokenBalance(assetAddress, tokenId, ALPH.cent(199))
-        balance.merge(alphBalance(assetAddress, ALPH.oneAlph))
+        val balance = tokenBalance(assetAddress, tokenId, OXYG.cent(199))
+        balance.merge(alphBalance(assetAddress, OXYG.oneAlph))
         balance
       }
     )
@@ -2734,28 +2734,28 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       TxOutput.asset(
         dustUtxoAmount,
         assetAddress,
-        AVector(tokenId -> ALPH.cent(1)),
+        AVector(tokenId -> OXYG.cent(1)),
         validTimestamp
       )
     frame.ctx.generatedOutputs(1) is
       TxOutput.asset(
-        ALPH.oneAlph - dustUtxoAmount,
+        OXYG.oneAlph - dustUtxoAmount,
         assetAddress,
         AVector.empty,
         validTimestamp
       )
 
-    prepareStack(ALPH.oneAlph, ALPH.oneNanoAlph, U256.MaxValue)
+    prepareStack(OXYG.oneAlph, OXYG.oneNanoAlph, U256.MaxValue)
     LockApprovedAssets.runWith(frame).leftValue isE LockTimeOverflow
 
     // use up remaining approved assets
-    prepareStack(ALPH.oneAlph, ALPH.oneNanoAlph, validTimestamp.millis)
+    prepareStack(OXYG.oneAlph, OXYG.oneNanoAlph, validTimestamp.millis)
     LockApprovedAssets.runWith(frame) isE ()
 
-    prepareStack(ALPH.oneAlph, ALPH.alph(2), validTimestamp.millis)
+    prepareStack(OXYG.oneAlph, OXYG.oxyg(2), validTimestamp.millis)
     LockApprovedAssets.runWith(frame).leftValue isE a[NoAssetsApproved]
 
-    prepareStack(ALPH.oneAlph, ALPH.alph(2), 0)
+    prepareStack(OXYG.oneAlph, OXYG.oxyg(2), 0)
     LockApprovedAssets.runWith(frame).leftValue isE a[InvalidLockTime]
   }
 
@@ -2798,37 +2798,37 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       } else {
         val f = fromLockupScriptOpt.getOrElse(from)
         error.getMessage is Right(
-          NotEnoughApprovedBalance(f, TokenId.alph, amount, remain)
+          NotEnoughApprovedBalance(f, TokenId.oxyg, amount, remain)
         ).toString
       }
     }
 
-    val balanceState0 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState0 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val genesisFrame  = preparePreLemanFrame(Some(balanceState0))
-    test(genesisFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
-    fail(genesisFrame, ALPH.alph(10), ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
+    test(genesisFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
+    fail(genesisFrame, OXYG.oxyg(10), OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
     fail(genesisFrame, U256.Zero, U256.Zero, Some(randomLockupScript))
 
-    val balanceState1 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState1 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val lemanFrame    = prepareFrame(Some(balanceState1))(NetworkConfigFixture.Leman)
-    test(lemanFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
-    fail(lemanFrame, ALPH.alph(10), ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
-    fail(lemanFrame, ALPH.oneNanoAlph, U256.Zero, None, Some(contractAddress))
+    test(lemanFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
+    fail(lemanFrame, OXYG.oxyg(10), OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
+    fail(lemanFrame, OXYG.oneNanoAlph, U256.Zero, None, Some(contractAddress))
     fail(lemanFrame, U256.Zero, U256.Zero, Some(randomLockupScript))
 
-    val balanceState2 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState2 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val rhoneFrame    = prepareFrame(Some(balanceState2))(NetworkConfigFixture.Rhone)
     test(rhoneFrame, U256.Zero, U256.Zero, Some(randomLockupScript))
-    test(rhoneFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
-    fail(rhoneFrame, ALPH.alph(10), ALPH.oneAlph.subUnsafe(ALPH.oneNanoAlph))
-    fail(rhoneFrame, ALPH.oneNanoAlph, U256.Zero, None, Some(contractAddress))
-    test(rhoneFrame, U256.Zero, ALPH.oneNanoAlph, Some(randomLockupScript))
+    test(rhoneFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
+    fail(rhoneFrame, OXYG.oxyg(10), OXYG.oneAlph.subUnsafe(OXYG.oneNanoAlph))
+    fail(rhoneFrame, OXYG.oneNanoAlph, U256.Zero, None, Some(contractAddress))
+    test(rhoneFrame, U256.Zero, OXYG.oneNanoAlph, Some(randomLockupScript))
     fail(rhoneFrame, U256.One, U256.Zero, Some(randomLockupScript))
   }
 
   trait ContractOutputFixture extends StatefulInstrFixture {
     val contractOutput =
-      ContractOutput(ALPH.alph(0), contractLockupScriptGen.sample.get, AVector.empty)
+      ContractOutput(OXYG.oxyg(0), contractLockupScriptGen.sample.get, AVector.empty)
     val txId              = TransactionId.generate
     val contractOutputRef = ContractOutputRef.from(txId, contractOutput, 0)
     val contractId        = ContractId.random
@@ -2866,30 +2866,30 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
         error.getMessage is Right(PayToContractAddressNotInCallerTrace(address)).toString
       } else {
         error.getMessage is Right(
-          NotEnoughApprovedBalance(from, TokenId.alph, amount, remain)
+          NotEnoughApprovedBalance(from, TokenId.oxyg, amount, remain)
         ).toString
       }
     }
 
-    val balanceState0 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState0 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val genesisFrame =
       preparePreLemanFrame(
         Some(balanceState0),
         Some((contractId, contractOutput, contractOutputRef))
       )
     test(genesisFrame, U256.Zero, U256.Zero)
-    fail(genesisFrame, ALPH.alph(2), ALPH.oneAlph)
-    test(genesisFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
+    fail(genesisFrame, OXYG.oxyg(2), OXYG.oneAlph)
+    test(genesisFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
 
-    val balanceState1 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState1 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val sinceLemanFrame =
       prepareFrame(Some(balanceState1), Some((contractId, contractOutput, contractOutputRef)))(
         NetworkConfigFixture.SinceLeman
       )
     test(sinceLemanFrame, U256.Zero, U256.Zero)
-    fail(sinceLemanFrame, ALPH.alph(2), ALPH.oneAlph)
-    test(sinceLemanFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
-    fail(sinceLemanFrame, ALPH.oneNanoAlph, U256.Zero, Some(contractAddress))
+    fail(sinceLemanFrame, OXYG.oxyg(2), OXYG.oneAlph)
+    test(sinceLemanFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
+    fail(sinceLemanFrame, OXYG.oneNanoAlph, U256.Zero, Some(contractAddress))
 
     val frameWithEmptyBalanceState =
       prepareFrame(
@@ -2928,28 +2928,28 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       val error =
         intercept[AssertionError](test(frame, amount, U256.Zero, fromLockupScriptOpt))
       val f = fromLockupScriptOpt.getOrElse(from)
-      error.getMessage is Right(NotEnoughApprovedBalance(f, TokenId.alph, amount, remain)).toString
+      error.getMessage is Right(NotEnoughApprovedBalance(f, TokenId.oxyg, amount, remain)).toString
     }
 
-    val balanceState0 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState0 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val preRhoneFrame =
       preparePreRhoneFrame(
         Some(balanceState0),
         Some((contractId, contractOutput, contractOutputRef))
       )
     test(preRhoneFrame, U256.Zero, U256.Zero)
-    test(preRhoneFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
+    test(preRhoneFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
     fail(preRhoneFrame, U256.Zero, U256.Zero, Some(randomLockupScript))
 
-    val balanceState1 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+    val balanceState1 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     val rhoneFrame =
       prepareFrame(Some(balanceState1), Some((contractId, contractOutput, contractOutputRef)))(
         NetworkConfigFixture.Rhone
       )
     test(rhoneFrame, U256.Zero, U256.Zero)
     test(rhoneFrame, U256.Zero, U256.Zero, Some(randomLockupScript))
-    test(rhoneFrame, ALPH.oneNanoAlph, ALPH.oneNanoAlph)
-    test(rhoneFrame, U256.Zero, ALPH.oneNanoAlph, Some(randomLockupScript))
+    test(rhoneFrame, OXYG.oneNanoAlph, OXYG.oneNanoAlph)
+    test(rhoneFrame, U256.Zero, OXYG.oneNanoAlph, Some(randomLockupScript))
     fail(rhoneFrame, U256.One, U256.Zero, Some(randomLockupScript))
   }
 
@@ -3010,7 +3010,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     success()
   }
 
-  it should "pay gas from ALPH, not enough approved balance [PayGasFee]" in new PayGasFeeFixture {
+  it should "pay gas from OXYG, not enough approved balance [PayGasFee]" in new PayGasFeeFixture {
     lazy val halfGas                   = txEnv.gasFeeUnsafe.div(2).get
     override def contractBalance: U256 = halfGas.subUnsafe(1)
     override def gasFeePaid: U256      = halfGas
@@ -3018,7 +3018,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     PayGasFee.runWith(frame).leftValue isE a[NotEnoughApprovedBalance]
   }
 
-  it should "pay gas from ALPH, paying too much gas [PayGasFee]" in new PayGasFeeFixture {
+  it should "pay gas from OXYG, paying too much gas [PayGasFee]" in new PayGasFeeFixture {
     override def contractBalance: U256 = txEnv.gasFeeUnsafe.addUnsafe(1)
     override def gasFeePaid: U256      = txEnv.gasFeeUnsafe.addUnsafe(1)
 
@@ -3064,64 +3064,64 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     // scalastyle:off method.length
     def testTransferToken() = {
       val randomTokenId = TokenId.generate
-      val balanceState0 = createBalanceState(tokenId, from, ALPH.oneAlph)
+      val balanceState0 = createBalanceState(tokenId, from, OXYG.oneAlph)
       val genesisFrame0 =
         preparePreLemanFrame(Some(balanceState0), contractOutputOpt)
       val outputBalances0 = MutBalances(
-        ArrayBuffer((to, MutBalancesPerLockup.token(tokenId, ALPH.oneNanoAlph)))
+        ArrayBuffer((to, MutBalancesPerLockup.token(tokenId, OXYG.oneNanoAlph)))
       )
-      test(genesisFrame0, tokenId, ALPH.oneNanoAlph, outputBalances0)
+      test(genesisFrame0, tokenId, OXYG.oneNanoAlph, outputBalances0)
       fail(genesisFrame0, randomTokenId, U256.Zero)
 
-      val balanceState1 = createBalanceState(TokenId.alph, from, ALPH.oneAlph)
+      val balanceState1 = createBalanceState(TokenId.oxyg, from, OXYG.oneAlph)
       val genesisFrame1 =
         preparePreLemanFrame(Some(balanceState1), contractOutputOpt)
       val outputBalances1 = MutBalances(
-        ArrayBuffer((to, MutBalancesPerLockup.token(TokenId.alph, ALPH.oneNanoAlph)))
+        ArrayBuffer((to, MutBalancesPerLockup.token(TokenId.oxyg, OXYG.oneNanoAlph)))
       )
-      test(genesisFrame1, TokenId.alph, ALPH.oneNanoAlph, outputBalances1)
+      test(genesisFrame1, TokenId.oxyg, OXYG.oneNanoAlph, outputBalances1)
 
-      val balanceState2 = createBalanceState(tokenId, from, ALPH.oneAlph)
+      val balanceState2 = createBalanceState(tokenId, from, OXYG.oneAlph)
       val lemanFrame0 =
         prepareFrame(Some(balanceState2), contractOutputOpt)(NetworkConfigFixture.Leman)
       val outputBalances2 = MutBalances(
-        ArrayBuffer((to, MutBalancesPerLockup.token(tokenId, ALPH.oneNanoAlph)))
+        ArrayBuffer((to, MutBalancesPerLockup.token(tokenId, OXYG.oneNanoAlph)))
       )
-      test(lemanFrame0, tokenId, ALPH.oneNanoAlph, outputBalances2)
+      test(lemanFrame0, tokenId, OXYG.oneNanoAlph, outputBalances2)
       fail(lemanFrame0, TokenId.generate, U256.Zero)
 
-      val balanceState3 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+      val balanceState3 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
       val lemanFrame1 =
         prepareFrame(Some(balanceState3), contractOutputOpt)(NetworkConfigFixture.Leman)
       val outputBalances3 = MutBalances(
-        ArrayBuffer((to, MutBalancesPerLockup.alph(ALPH.oneNanoAlph)))
+        ArrayBuffer((to, MutBalancesPerLockup.oxyg(OXYG.oneNanoAlph)))
       )
-      test(lemanFrame1, TokenId.alph, ALPH.oneNanoAlph, outputBalances3)
+      test(lemanFrame1, TokenId.oxyg, OXYG.oneNanoAlph, outputBalances3)
 
-      val balanceState4 = createBalanceState(tokenId, from, ALPH.oneAlph)
+      val balanceState4 = createBalanceState(tokenId, from, OXYG.oneAlph)
       val rhoneFrame0 =
         prepareFrame(Some(balanceState4), contractOutputOpt)(NetworkConfigFixture.Rhone)
       val outputBalances4 = MutBalances(
-        ArrayBuffer((to, MutBalancesPerLockup.token(tokenId, ALPH.oneNanoAlph)))
+        ArrayBuffer((to, MutBalancesPerLockup.token(tokenId, OXYG.oneNanoAlph)))
       )
-      test(rhoneFrame0, tokenId, ALPH.oneNanoAlph, outputBalances4)
+      test(rhoneFrame0, tokenId, OXYG.oneNanoAlph, outputBalances4)
       test(rhoneFrame0, randomTokenId, U256.Zero, outputBalances4)
       fail(rhoneFrame0, randomTokenId, U256.One)
 
-      val balanceState5 = MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+      val balanceState5 = MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
       val rhoneFrame1 =
         prepareFrame(Some(balanceState5), contractOutputOpt)(NetworkConfigFixture.Rhone)
       val outputBalances5 = MutBalances(
-        ArrayBuffer((to, MutBalancesPerLockup.alph(ALPH.oneNanoAlph)))
+        ArrayBuffer((to, MutBalancesPerLockup.oxyg(OXYG.oneNanoAlph)))
       )
-      test(rhoneFrame1, TokenId.alph, ALPH.oneNanoAlph, outputBalances5)
+      test(rhoneFrame1, TokenId.oxyg, OXYG.oneNanoAlph, outputBalances5)
 
       val rhoneFrame2 =
         prepareFrame(Some(MutBalanceState.empty), contractOutputOpt)(NetworkConfigFixture.Rhone)
       test(rhoneFrame2, tokenId, U256.Zero, MutBalances.empty)
       fail(rhoneFrame2, tokenId, U256.One)
-      test(rhoneFrame2, TokenId.alph, U256.Zero, MutBalances.empty)
-      fail(rhoneFrame2, TokenId.alph, U256.One)
+      test(rhoneFrame2, TokenId.oxyg, U256.Zero, MutBalances.empty)
+      fail(rhoneFrame2, TokenId.oxyg, U256.One)
       test(rhoneFrame2, randomTokenId, U256.Zero, MutBalances.empty)
       fail(rhoneFrame2, randomTokenId, U256.One)
     }
@@ -3141,25 +3141,25 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
     testTransferToken()
 
-    override lazy val frame = prepareFrame(Some(createBalanceState(tokenId, from, ALPH.oneAlph)))(
+    override lazy val frame = prepareFrame(Some(createBalanceState(tokenId, from, OXYG.oneAlph)))(
       NetworkConfigFixture.SinceLeman
     )
 
     stack.push(Val.Address(from))
     stack.push(Val.Address(contractAddress))
     stack.push(Val.ByteVec(tokenId.bytes))
-    stack.push(Val.U256(ALPH.oneNanoAlph))
+    stack.push(Val.U256(OXYG.oneNanoAlph))
     TransferToken.runWith(frame).leftValue isE a[PayToContractAddressNotInCallerTrace]
 
     stack.push(Val.Address(from))
     stack.push(Val.Address(to))
     stack.push(Val.ByteVec(tokenId.bytes))
-    stack.push(Val.U256(ALPH.alph(2)))
+    stack.push(Val.U256(OXYG.oxyg(2)))
     TransferToken.runWith(frame).leftValue isE NotEnoughApprovedBalance(
       from,
       tokenId,
-      ALPH.alph(2),
-      ALPH.oneAlph
+      OXYG.oxyg(2),
+      OXYG.oneAlph
     )
   }
 
@@ -3177,13 +3177,13 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     testTransferToken()
 
     override lazy val frame =
-      prepareFrame(Some(createBalanceState(tokenId, from, ALPH.oneAlph)), contractOutputOpt)(
+      prepareFrame(Some(createBalanceState(tokenId, from, OXYG.oneAlph)), contractOutputOpt)(
         NetworkConfigFixture.SinceLeman
       )
 
     stack.push(Val.Address(contractAddress))
     stack.push(Val.ByteVec(tokenId.bytes))
-    stack.push(Val.U256(ALPH.oneNanoAlph))
+    stack.push(Val.U256(OXYG.oneNanoAlph))
     TransferTokenFromSelf.runWith(frame).leftValue isE a[PayToContractAddressNotInCallerTrace]
   }
 
@@ -3352,11 +3352,11 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "CreateContract" in new CreateContractAbstractFixture {
     val balanceState =
-      MutBalanceState(MutBalances.empty, alphBalance(from, ALPH.oneAlph))
+      MutBalanceState(MutBalances.empty, alphBalance(from, OXYG.oneAlph))
 
     val values: AVector[Val] = AVector(Val.ByteVec(contractBytes), immState, mutState)
     values.foreach(stack.push)
-    test(CreateContract, ALPH.oneAlph, AVector.empty, None)
+    test(CreateContract, OXYG.oneAlph, AVector.empty, None)
 
     testInactiveInstrs(CreateContract, values.replace(0, Val.ByteVec(invalidContractBytes)))
   }
@@ -3365,17 +3365,17 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     val values: AVector[Val] =
-      AVector(Val.ByteVec(contractBytes), immState, mutState, Val.U256(ALPH.oneNanoAlph))
+      AVector(Val.ByteVec(contractBytes), immState, mutState, Val.U256(OXYG.oneNanoAlph))
     values.foreach(stack.push)
     test(
       CreateContractWithToken,
       U256.Zero,
-      AVector((tokenId, ALPH.oneAlph)),
-      Some(ALPH.oneNanoAlph)
+      AVector((tokenId, OXYG.oneAlph)),
+      Some(OXYG.oneNanoAlph)
     )
 
     testInactiveInstrs(
@@ -3388,7 +3388,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     {
@@ -3398,14 +3398,14 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
         Val.ByteVec(contractBytes),
         immState,
         mutState,
-        Val.U256(ALPH.oneNanoAlph),
+        Val.U256(OXYG.oneNanoAlph),
         Val.Address(assetLockupScriptGen.sample.get)
       )
       values.foreach(stack.push)
       test(
         CreateContractAndTransferToken,
         U256.Zero,
-        AVector((tokenId, ALPH.oneAlph)),
+        AVector((tokenId, OXYG.oneAlph)),
         tokenAmount = None
       )
 
@@ -3421,7 +3421,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(contractBytes))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(Val.Address(contractLockupScriptGen.sample.get))
 
       CreateContractAndTransferToken.runWith(frame).leftValue isE a[InvalidAssetAddress]
@@ -3430,13 +3430,13 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "CreateSubContract" in new CreateContractAbstractFixture {
     val balanceState =
-      MutBalanceState(MutBalances.empty, alphBalance(from, ALPH.oneAlph))
+      MutBalanceState(MutBalances.empty, alphBalance(from, OXYG.oneAlph))
 
     val values: AVector[Val] =
       AVector(Val.ByteVec(serialize("nft-01")), Val.ByteVec(contractBytes), immState, mutState)
     values.foreach(stack.push)
     val subContractId = getSubContractId("nft-01")
-    test(CreateSubContract, ALPH.oneAlph, AVector.empty, None, Some(subContractId))
+    test(CreateSubContract, OXYG.oneAlph, AVector.empty, None, Some(subContractId))
 
     testInactiveInstrs(CreateSubContract, values.replace(1, Val.ByteVec(invalidContractBytes)))
   }
@@ -3445,7 +3445,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     val values: AVector[Val] = AVector(
@@ -3453,15 +3453,15 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       Val.ByteVec(contractBytes),
       immState,
       mutState,
-      Val.U256(ALPH.oneNanoAlph)
+      Val.U256(OXYG.oneNanoAlph)
     )
     values.foreach(stack.push)
     val subContractId = getSubContractId("nft-01")
     test(
       CreateSubContractWithToken,
       U256.Zero,
-      AVector((tokenId, ALPH.oneAlph)),
-      Some(ALPH.oneNanoAlph),
+      AVector((tokenId, OXYG.oneAlph)),
+      Some(OXYG.oneNanoAlph),
       Some(subContractId)
     )
 
@@ -3475,7 +3475,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     {
@@ -3486,7 +3486,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
         Val.ByteVec(contractBytes),
         immState,
         mutState,
-        Val.U256(ALPH.oneNanoAlph),
+        Val.U256(OXYG.oneNanoAlph),
         Val.Address(assetLockupScriptGen.sample.get)
       )
       values.foreach(stack.push)
@@ -3494,7 +3494,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       test(
         CreateSubContractAndTransferToken,
         U256.Zero,
-        AVector((tokenId, ALPH.oneAlph)),
+        AVector((tokenId, OXYG.oneAlph)),
         tokenAmount = None,
         Some(subContractId)
       )
@@ -3512,7 +3512,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(contractBytes))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(Val.Address(contractLockupScriptGen.sample.get))
 
       CreateSubContractAndTransferToken.runWith(frame).leftValue isE a[InvalidAssetAddress]
@@ -3521,7 +3521,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "CreateMapEntry" in new CreateContractAbstractFixture {
     val balanceState =
-      MutBalanceState(MutBalances.empty, alphBalance(from, ALPH.oneAlph))
+      MutBalanceState(MutBalances.empty, alphBalance(from, OXYG.oneAlph))
 
     override lazy val contract = CreateMapEntry.genContract(immFields.length, mutFields.length)
 
@@ -3533,7 +3533,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val instr         = CreateMapEntry(immFields.length.toByte, mutFields.length.toByte)
     createContract(instr)
     frame.opStack.size is 0
-    checkContractState(instr, subContractId, ALPH.oneAlph, AVector.empty, None)
+    checkContractState(instr, subContractId, OXYG.oneAlph, AVector.empty, None)
   }
 
   it should "check external method arg and return length" in new ContextGenerators {
@@ -3669,7 +3669,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
         succeeded: Boolean
     ) = {
       val balanceState =
-        MutBalanceState(MutBalances.empty, tokenBalance(from, tokenId, ALPH.oneAlph))
+        MutBalanceState(MutBalances.empty, tokenBalance(from, tokenId, OXYG.oneAlph))
       val frame = frameBuilder(balanceState)
       frame.opStack.push(Val.ByteVec(serialize(contract)))
       if (frame.ctx.getHardFork().isLemanEnabled()) {
@@ -3678,7 +3678,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       }
       frame.opStack.push(Val.ByteVec(serialize(AVector.empty[Val])))
       if (instr.isInstanceOf[CreateContractWithToken.type]) {
-        frame.opStack.push(Val.U256(ALPH.oneNanoAlph))
+        frame.opStack.push(Val.U256(OXYG.oneNanoAlph))
       }
       if (succeeded) {
         instr.runWith(frame) isE ()
@@ -3740,7 +3740,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "CopyCreateContract" in new CreateContractAbstractFixture {
     val balanceState =
-      MutBalanceState(MutBalances.empty, alphBalance(from, ALPH.oneAlph))
+      MutBalanceState(MutBalances.empty, alphBalance(from, OXYG.oneAlph))
 
     stack.push(Val.ByteVec(serialize(Hash.generate)))
     stack.push(immState)
@@ -3750,31 +3750,31 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     stack.push(Val.ByteVec(fromContractId.bytes))
     stack.push(immState)
     stack.push(mutState)
-    test(CopyCreateContract, ALPH.oneAlph, AVector.empty, None)
+    test(CopyCreateContract, OXYG.oneAlph, AVector.empty, None)
   }
 
   it should "CopyCreateContractWithToken" in new CreateContractAbstractFixture {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     stack.push(Val.ByteVec(serialize(Hash.generate)))
     stack.push(immState)
     stack.push(mutState)
-    stack.push(Val.U256(ALPH.oneNanoAlph))
+    stack.push(Val.U256(OXYG.oneNanoAlph))
     CopyCreateContractWithToken.runWith(frame).leftValue isE a[NonExistContract]
 
     stack.push(Val.ByteVec(fromContractId.bytes))
     stack.push(immState)
     stack.push(mutState)
-    stack.push(Val.U256(ALPH.oneNanoAlph))
+    stack.push(Val.U256(OXYG.oneNanoAlph))
     test(
       CopyCreateContractWithToken,
       U256.Zero,
-      AVector((tokenId, ALPH.oneAlph)),
-      Some(ALPH.oneNanoAlph)
+      AVector((tokenId, OXYG.oneAlph)),
+      Some(OXYG.oneNanoAlph)
     )
   }
 
@@ -3782,7 +3782,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     val assetAddress = Val.Address(assetLockupScriptGen.sample.get)
@@ -3793,12 +3793,12 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(fromContractId.bytes))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(assetAddress)
       test(
         CopyCreateContractAndTransferToken,
         U256.Zero,
-        AVector((tokenId, ALPH.oneAlph)),
+        AVector((tokenId, OXYG.oneAlph)),
         tokenAmount = None
       )
     }
@@ -3809,7 +3809,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(serialize(Hash.generate)))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(Val.Address(assetLockupScriptGen.sample.get))
       CopyCreateContractAndTransferToken.runWith(frame).leftValue isE a[NonExistContract]
     }
@@ -3820,7 +3820,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(serialize(Hash.generate)))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(Val.Address(contractLockupScriptGen.sample.get))
       CopyCreateContractAndTransferToken.runWith(frame).leftValue isE a[InvalidAssetAddress]
     }
@@ -3828,7 +3828,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "CopyCreateSubContract" in new CreateContractAbstractFixture {
     val balanceState =
-      MutBalanceState(MutBalances.empty, alphBalance(from, ALPH.oneAlph))
+      MutBalanceState(MutBalances.empty, alphBalance(from, OXYG.oneAlph))
 
     stack.push(Val.ByteVec(serialize(Hash.generate)))
     stack.push(immState)
@@ -3841,34 +3841,34 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     stack.push(mutState)
 
     val subContractId = getSubContractId("nft-01")
-    test(CopyCreateSubContract, ALPH.oneAlph, AVector.empty, None, Some(subContractId))
+    test(CopyCreateSubContract, OXYG.oneAlph, AVector.empty, None, Some(subContractId))
   }
 
   it should "CopyCreateSubContractWithToken" in new CreateContractAbstractFixture {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     stack.push(Val.ByteVec(serialize(Hash.generate)))
     stack.push(immState)
     stack.push(mutState)
-    stack.push(Val.U256(ALPH.oneNanoAlph))
+    stack.push(Val.U256(OXYG.oneNanoAlph))
     CopyCreateSubContractWithToken.runWith(frame).leftValue isE a[NonExistContract]
 
     stack.push(Val.ByteVec(serialize("nft-01")))
     stack.push(Val.ByteVec(fromContractId.bytes))
     stack.push(immState)
     stack.push(mutState)
-    stack.push(Val.U256(ALPH.oneNanoAlph))
+    stack.push(Val.U256(OXYG.oneNanoAlph))
 
     val subContractId = getSubContractId("nft-01")
     test(
       CopyCreateSubContractWithToken,
       U256.Zero,
-      AVector((tokenId, ALPH.oneAlph)),
-      Some(ALPH.oneNanoAlph),
+      AVector((tokenId, OXYG.oneAlph)),
+      Some(OXYG.oneNanoAlph),
       Some(subContractId)
     )
   }
@@ -3877,7 +3877,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val balanceState =
       MutBalanceState(
         MutBalances.empty,
-        tokenBalance(from, tokenId, ALPH.oneAlph)
+        tokenBalance(from, tokenId, OXYG.oneAlph)
       )
 
     val assetAddress = Val.Address(assetLockupScriptGen.sample.get)
@@ -3889,14 +3889,14 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(fromContractId.bytes))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(assetAddress)
 
       val subContractId = getSubContractId("nft-01")
       test(
         CopyCreateSubContractAndTransferToken,
         U256.Zero,
-        AVector((tokenId, ALPH.oneAlph)),
+        AVector((tokenId, OXYG.oneAlph)),
         tokenAmount = None,
         Some(subContractId)
       )
@@ -3909,7 +3909,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(serialize(Hash.generate)))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(assetAddress)
 
       CopyCreateSubContractAndTransferToken.runWith(frame).leftValue isE a[NonExistContract]
@@ -3922,7 +3922,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
       stack.push(Val.ByteVec(serialize(Hash.generate)))
       stack.push(immState)
       stack.push(mutState)
-      stack.push(Val.U256(ALPH.oneNanoAlph))
+      stack.push(Val.U256(OXYG.oneNanoAlph))
       stack.push(Val.Address(contractLockupScriptGen.sample.get))
 
       CopyCreateContractAndTransferToken.runWith(frame).leftValue isE a[InvalidAssetAddress]
@@ -3931,7 +3931,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "ContractExists" in new StatefulInstrFixture {
     val contractOutput =
-      ContractOutput(ALPH.alph(1), contractLockupScriptGen.sample.get, AVector.empty)
+      ContractOutput(OXYG.oxyg(1), contractLockupScriptGen.sample.get, AVector.empty)
     val contractOutputRef = ContractOutputRef.from(TransactionId.generate, contractOutput, 0)
     val contractId        = ContractId.random
     override lazy val frame =
@@ -3948,7 +3948,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
 
   it should "not DestroySelf if contract asset is not used" in new StatefulInstrFixture {
     val contractOutput =
-      ContractOutput(ALPH.alph(0), contractLockupScriptGen.sample.get, AVector.empty)
+      ContractOutput(OXYG.oxyg(0), contractLockupScriptGen.sample.get, AVector.empty)
     val txId = TransactionId.generate
 
     val contractOutputRef = ContractOutputRef.from(txId, contractOutput, 0)
@@ -3959,7 +3959,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     val from = LockupScript.P2C(contractId)
 
     val balanceState =
-      MutBalanceState.from(alphBalance(from, ALPH.oneAlph))
+      MutBalanceState.from(alphBalance(from, OXYG.oneAlph))
     override lazy val frame =
       prepareFrame(
         Some(balanceState),
@@ -4017,7 +4017,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
           ArrayBuffer(
             (
               LockupScript.P2C(destroyContractObj.contractId),
-              MutBalancesPerLockup.alph(ALPH.oneAlph)
+              MutBalancesPerLockup.oxyg(OXYG.oneAlph)
             )
           )
         )
@@ -4189,7 +4189,7 @@ class InstrSpec extends OxygeniumSpec with NumericHelpers {
     stack.size is 0
     runAndCheckGas(ALPHTokenId)
     stack.size is 1
-    stack.top.get is Val.ByteVec(TokenId.alph.bytes)
+    stack.top.get is Val.ByteVec(TokenId.oxyg.bytes)
   }
 
   it should "SelfAddress" in new ContractInstrFixture {

@@ -20,7 +20,7 @@ import java.math.BigInteger
 
 import org.oxygenium.flow.setting.ConsensusSetting
 import org.oxygenium.io.IOResult
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.NetworkConfig
 import org.oxygenium.protocol.model.{BlockHash, Target}
 import org.oxygenium.util.{AVector, Duration, TimeStamp}
@@ -30,8 +30,8 @@ trait ChainDifficultyAdjustment {
 
   val difficultyBombPatchConfig =
     new ChainDifficultyAdjustment.DifficultyBombPatchConfig {
-      val enabledTimeStamp: TimeStamp = ALPH.DifficultyBombPatchEnabledTimeStamp
-      val heightDiff: Int             = ALPH.DifficultyBombPatchHeightDiff
+      val enabledTimeStamp: TimeStamp = OXYG.DifficultyBombPatchEnabledTimeStamp
+      val heightDiff: Int             = OXYG.DifficultyBombPatchHeightDiff
     }
 
   def getHeight(hash: BlockHash): IOResult[Int]
@@ -49,7 +49,7 @@ trait ChainDifficultyAdjustment {
       nextTimeStamp: TimeStamp
   )(implicit consensusConfig: ConsensusSetting): IOResult[Option[Duration]] = {
     val earlyHeight = height - consensusConfig.powAveragingWindow - 1
-    assume(earlyHeight >= ALPH.GenesisHeight)
+    assume(earlyHeight >= OXYG.GenesisHeight)
     calTimeSpan(hash, height).map { case (timestampLast, timestampNow) =>
       if (
         timestampLast < difficultyBombPatchConfig.enabledTimeStamp &&
@@ -67,7 +67,7 @@ trait ChainDifficultyAdjustment {
       height: Int
   )(implicit consensusConfig: ConsensusSetting): IOResult[(TimeStamp, TimeStamp)] = {
     val earlyHeight = height - consensusConfig.powAveragingWindow - 1
-    assume(earlyHeight >= ALPH.GenesisHeight)
+    assume(earlyHeight >= OXYG.GenesisHeight)
     for {
       hashes        <- chainBackUntil(hash, earlyHeight)
       timestampNow  <- getTimestamp(hash)
@@ -81,10 +81,10 @@ trait ChainDifficultyAdjustment {
       nextTimeStamp: TimeStamp
   ): Target = {
     val hardFork = networkConfig.getHardFork(currentTimeStamp)
-    if (hardFork.isLemanEnabled() || ALPH.DifficultyBombPatchEnabledTimeStamp <= nextTimeStamp) {
+    if (hardFork.isLemanEnabled() || OXYG.DifficultyBombPatchEnabledTimeStamp <= nextTimeStamp) {
       currentTarget
     } else {
-      _calIceAgeTarget(currentTarget, currentTimeStamp, ALPH.PreLemanDifficultyBombEnabledTimestamp)
+      _calIceAgeTarget(currentTarget, currentTimeStamp, OXYG.PreLemanDifficultyBombEnabledTimestamp)
     }
   }
 
@@ -98,7 +98,7 @@ trait ChainDifficultyAdjustment {
     } else {
       val periodCount = timestamp
         .deltaUnsafe(difficultyBombEnabledTimestamp)
-        .millis / ALPH.ExpDiffPeriod.millis
+        .millis / OXYG.ExpDiffPeriod.millis
       Target.unsafe(currentTarget.value.shiftRight(periodCount.toInt))
     }
   }
@@ -134,7 +134,7 @@ object ChainDifficultyAdjustment {
   }
 
   def enoughHeight(height: Int)(implicit consensusConfig: ConsensusSetting): Boolean = {
-    height >= ALPH.GenesisHeight + consensusConfig.powAveragingWindow + 1
+    height >= OXYG.GenesisHeight + consensusConfig.powAveragingWindow + 1
   }
 
   def calNextHashTargetRaw(

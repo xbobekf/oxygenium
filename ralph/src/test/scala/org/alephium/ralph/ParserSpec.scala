@@ -346,7 +346,7 @@ class ParserSpec(fileURI: Option[java.net.URI]) extends OxygeniumSpec {
         )
       )
     fastparse
-      .parse("foo{ x -> ALPH: 1e-18 alph, token: 2; y -> ALPH: 3 }(z)", StatefulParser.expr(_))
+      .parse("foo{ x -> OXYG: 1e-18 oxyg, token: 2; y -> OXYG: 3 }(z)", StatefulParser.expr(_))
       .get
       .value is
       CallExpr[StatefulContext](
@@ -385,10 +385,10 @@ class ParserSpec(fileURI: Option[java.net.URI]) extends OxygeniumSpec {
       )
 
     info("Braces syntax")
-    fastparse.parse("{ x -> ALPH: 1 alph }", StatelessParser.approveAssets(_)).isSuccess is true
+    fastparse.parse("{ x -> OXYG: 1 oxyg }", StatelessParser.approveAssets(_)).isSuccess is true
     fastparse.parse("{ x -> tokenId: 2 }", StatelessParser.approveAssets(_)).isSuccess is true
     fastparse
-      .parse("{ x -> ALPH: 1 alph, tokenId: 2; y -> ALPH: 3 }", StatelessParser.approveAssets(_))
+      .parse("{ x -> OXYG: 1 oxyg, tokenId: 2; y -> OXYG: 3 }", StatelessParser.approveAssets(_))
       .isSuccess is true
 
     info("Contract call")
@@ -400,7 +400,7 @@ class ParserSpec(fileURI: Option[java.net.URI]) extends OxygeniumSpec {
         List(Variable(Ident("x")))
       )
     fastparse
-      .parse("Foo(x).bar{ z -> ALPH: 1 }(x)", StatefulParser.contractCallOrLoadData(_))
+      .parse("Foo(x).bar{ z -> OXYG: 1 }(x)", StatefulParser.contractCallOrLoadData(_))
       .get
       .value is
       ContractCallExpr(
@@ -513,7 +513,7 @@ class ParserSpec(fileURI: Option[java.net.URI]) extends OxygeniumSpec {
         Seq(Ast.NamedVar(false, Ident("bytes"))),
         Const(Val.ByteVec(ByteString.empty))
       )
-    parse("ALPH", StatefulParser.expr(_)).get.value is ALPHTokenId[StatefulContext]()
+    parse("OXYG", StatefulParser.expr(_)).get.value is ALPHTokenId[StatefulContext]()
   }
 
   it should "parse return" in {

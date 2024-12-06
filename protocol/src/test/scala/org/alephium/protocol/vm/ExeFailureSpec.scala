@@ -16,7 +16,7 @@
 
 package org.oxygenium.protocol.vm
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.{dustUtxoAmount, Address, TokenId}
 import org.oxygenium.protocol.vm.NotEnoughApprovedBalance
 import org.oxygenium.util.{OxygeniumSpec, Hex, U256}
@@ -29,10 +29,10 @@ class ExeFailureSpec extends OxygeniumSpec {
       .from(Hex.unsafe("cee16cdfad98e8943fd9a5b45e1765e0a6895608efe3eeeb41a60db55f605b46"))
       .get
 
-    NotEnoughApprovedBalance(lockupScript, tokenId, ALPH.alph(1), U256.Zero).toString is
+    NotEnoughApprovedBalance(lockupScript, tokenId, OXYG.oxyg(1), U256.Zero).toString is
       "Not enough approved balance for address 1G5fKUFGRFEHXcTeCfgKQNppbumd8E9G8vA6p2wf4n2L6, tokenId: cee16cdfad98e8943fd9a5b45e1765e0a6895608efe3eeeb41a60db55f605b46, expected: 1000000000000000000, got: 0"
-    NotEnoughApprovedBalance(lockupScript, TokenId.alph, ALPH.alph(2), ALPH.oneAlph).toString is
-      "Not enough approved balance for address 1G5fKUFGRFEHXcTeCfgKQNppbumd8E9G8vA6p2wf4n2L6, tokenId: ALPH, expected: 2000000000000000000, got: 1000000000000000000"
+    NotEnoughApprovedBalance(lockupScript, TokenId.oxyg, OXYG.oxyg(2), OXYG.oneAlph).toString is
+      "Not enough approved balance for address 1G5fKUFGRFEHXcTeCfgKQNppbumd8E9G8vA6p2wf4n2L6, tokenId: OXYG, expected: 2000000000000000000, got: 1000000000000000000"
   }
 
   it should "test InvalidOutputBalances" in {
@@ -40,22 +40,22 @@ class ExeFailureSpec extends OxygeniumSpec {
     val lockupScript = Address.fromBase58(address).get.lockupScript
 
     InvalidOutputBalances(lockupScript, 2, U256.Zero).toString is
-      s"Invalid ALPH balance for address $address, expected 0.002 ALPH, got 0 ALPH, you need to transfer more ALPH to this address"
+      s"Invalid OXYG balance for address $address, expected 0.002 OXYG, got 0 OXYG, you need to transfer more OXYG to this address"
 
     val attoAlphAmount0 = dustUtxoAmount.subUnsafe(U256.One)
     InvalidOutputBalances(lockupScript, 0, attoAlphAmount0).toString is
-      s"Invalid ALPH balance for address $address, expected 0.001 ALPH, got 0.000999999999999999 ALPH, you need to transfer more ALPH to this address"
+      s"Invalid OXYG balance for address $address, expected 0.001 OXYG, got 0.000999999999999999 OXYG, you need to transfer more OXYG to this address"
 
     InvalidOutputBalances(lockupScript, 2, dustUtxoAmount).toString is
-      s"Invalid ALPH balance for address $address, expected 0.002 ALPH, got 0.001 ALPH, you need to transfer more ALPH to this address"
+      s"Invalid OXYG balance for address $address, expected 0.002 OXYG, got 0.001 OXYG, you need to transfer more OXYG to this address"
 
     val attoAlphAmount1 = dustUtxoAmount.addUnsafe(U256.One)
     InvalidOutputBalances(lockupScript, 2, attoAlphAmount1).toString is
-      s"Invalid ALPH balance for address $address, expected 0.002 ALPH, got 0.001000000000000001 ALPH, you need to transfer more ALPH to this address"
+      s"Invalid OXYG balance for address $address, expected 0.002 OXYG, got 0.001000000000000001 OXYG, you need to transfer more OXYG to this address"
 
     val attoAlphAmount2 = dustUtxoAmount.mulUnsafe(U256.unsafe(3)).subUnsafe(U256.One)
     InvalidOutputBalances(lockupScript, 2, attoAlphAmount2).toString is
-      s"Invalid ALPH balance for address $address, expected 0.003 ALPH, got 0.002999999999999999 ALPH, you need to transfer more ALPH to this address"
+      s"Invalid OXYG balance for address $address, expected 0.003 OXYG, got 0.002999999999999999 OXYG, you need to transfer more OXYG to this address"
   }
 
   it should "test EmptyContractAsset" in {
@@ -63,6 +63,6 @@ class ExeFailureSpec extends OxygeniumSpec {
     val contractAddress = Address.fromBase58(address).get.asInstanceOf[Address.Contract]
 
     EmptyContractAsset(contractAddress).toString is
-      s"No assets for contract 22sTaM5xer7h81LzaGA2JiajRwHwECpAv9bBuFUH5rrnr, a minimum of 0.1 ALPH is required"
+      s"No assets for contract 22sTaM5xer7h81LzaGA2JiajRwHwECpAv9bBuFUH5rrnr, a minimum of 0.1 OXYG is required"
   }
 }

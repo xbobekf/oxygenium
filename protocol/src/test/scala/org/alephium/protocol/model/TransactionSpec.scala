@@ -62,7 +62,7 @@ class TransactionSpec
           AVector.empty,
           script,
           Target.Max,
-          ALPH.LaunchTimestamp,
+          OXYG.LaunchTimestamp,
           AVector.empty,
           Hash.generate.bytes
         )
@@ -86,7 +86,7 @@ class TransactionSpec
       AVector.empty,
       script,
       target = Target.Max,
-      blockTs = ALPH.LaunchTimestamp,
+      blockTs = OXYG.LaunchTimestamp,
       AVector.empty
     )
     val coinbase1 = Transaction.powCoinbaseForTest(
@@ -94,7 +94,7 @@ class TransactionSpec
       AVector.empty,
       script,
       target = Target.Max,
-      blockTs = ALPH.LaunchTimestamp,
+      blockTs = OXYG.LaunchTimestamp,
       AVector.empty
     )
     val coinbase2 = Transaction.powCoinbaseForTest(
@@ -124,7 +124,7 @@ class TransactionSpec
   }
 
   it should "cap the gas reward" in {
-    val hardReward = ALPH.oneAlph
+    val hardReward = OXYG.oneAlph
     Transaction.totalReward(1, 100, HardFork.Mainnet) is U256.unsafe(100)
     Transaction.totalReward(2, 100, HardFork.Mainnet) is U256.unsafe(101)
     Transaction.totalReward(200, 100, HardFork.Mainnet) is U256.unsafe(200)
@@ -136,7 +136,7 @@ class TransactionSpec
   }
 
   it should "ignore gas fee for Leman upgrade" in {
-    val hardReward = ALPH.oneAlph
+    val hardReward = OXYG.oneAlph
     Transaction.totalReward(1, 100, HardFork.Leman) is U256.unsafe(100)
     Transaction.totalReward(2, 100, HardFork.Leman) is U256.unsafe(100)
     Transaction.totalReward(200, 100, HardFork.Leman) is U256.unsafe(100)

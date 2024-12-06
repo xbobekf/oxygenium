@@ -187,7 +187,7 @@ class BlockSpec extends OxygeniumSpec with NoIndexModelGenerators {
         AVector.empty,
         LockupScript.p2pkh(PublicKey.generate),
         Target.Max,
-        Math.max(networkConfig.lemanHardForkTimestamp, ALPH.LaunchTimestamp),
+        Math.max(networkConfig.lemanHardForkTimestamp, OXYG.LaunchTimestamp),
         AVector.empty
       )
 

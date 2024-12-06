@@ -153,11 +153,11 @@ object MutBalancesPerLockup {
   // Need to be `def` as it's mutable
   def empty: MutBalancesPerLockup = MutBalancesPerLockup(U256.Zero, mutable.Map.empty, 0)
 
-  def alph(amount: U256): MutBalancesPerLockup = {
+  def oxyg(amount: U256): MutBalancesPerLockup = {
     MutBalancesPerLockup(amount, mutable.Map.empty, 0)
   }
 
-  protected[vm] def alph(amount: U256, scopeDepth: Int): MutBalancesPerLockup = {
+  protected[vm] def oxyg(amount: U256, scopeDepth: Int): MutBalancesPerLockup = {
     MutBalancesPerLockup(amount, mutable.Map.empty, scopeDepth)
   }
 

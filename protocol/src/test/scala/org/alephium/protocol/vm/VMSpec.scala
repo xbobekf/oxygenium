@@ -22,7 +22,7 @@ import scala.collection.mutable.ArrayBuffer
 import akka.util.ByteString
 import org.scalatest.Assertion
 
-import org.oxygenium.protocol.{ALPH, Signature, SignatureSchema}
+import org.oxygenium.protocol.{OXYG, Signature, SignatureSchema}
 import org.oxygenium.protocol.config.{GroupConfigFixture, NetworkConfigFixture}
 import org.oxygenium.protocol.model._
 import org.oxygenium.serde._
@@ -258,11 +258,11 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
   trait BalancesFixture {
     val (_, pubKey0) = SignatureSchema.generatePriPub()
     val address0     = Val.Address(LockupScript.p2pkh(pubKey0))
-    val balances0    = MutBalancesPerLockup(ALPH.alph(100), mutable.Map.empty, 0)
+    val balances0    = MutBalancesPerLockup(OXYG.oxyg(100), mutable.Map.empty, 0)
     val (_, pubKey1) = SignatureSchema.generatePriPub()
     val address1     = Val.Address(LockupScript.p2pkh(pubKey1))
     val tokenId      = TokenId.random
-    val balances1    = MutBalancesPerLockup(ALPH.oneAlph, mutable.Map(tokenId -> 99), 0)
+    val balances1    = MutBalancesPerLockup(OXYG.oneAlph, mutable.Map(tokenId -> 99), 0)
 
     def mockContext(): StatefulContext =
       new StatefulContext with NetworkConfigFixture.Default with GroupConfigFixture.Default {
@@ -338,7 +338,7 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
       BytesConst(Val.ByteVec(tokenId.bytes)),
       TokenRemaining
     )
-    pass(instrs, AVector[Val](Val.U256(ALPH.alph(100)), Val.U256(ALPH.oneAlph), Val.U256(99)))
+    pass(instrs, AVector[Val](Val.U256(OXYG.oxyg(100)), Val.U256(OXYG.oneAlph), Val.U256(99)))
   }
 
   it should "succeed when there is no token balances" in new BalancesFixture {
@@ -353,7 +353,7 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
   it should "approve balances" in new BalancesFixture {
     val instrs = AVector[Instr[StatefulContext]](
       AddressConst(address0),
-      U256Const(Val.U256(ALPH.alph(10))),
+      U256Const(Val.U256(OXYG.oxyg(10))),
       ApproveAlph,
       AddressConst(address0),
       AlphRemaining,
@@ -367,7 +367,7 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
       BytesConst(Val.ByteVec(tokenId.bytes)),
       TokenRemaining
     )
-    pass(instrs, AVector[Val](Val.U256(ALPH.alph(90)), Val.U256(ALPH.oneAlph), Val.U256(89)))
+    pass(instrs, AVector[Val](Val.U256(OXYG.oxyg(90)), Val.U256(OXYG.oneAlph), Val.U256(89)))
   }
 
   it should "pass approved tokens to function call" in new BalancesFixture {
@@ -415,7 +415,7 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
     val instrs = AVector[Instr[StatefulContext]](
       AddressConst(address0),
       AddressConst(address1),
-      U256Const(Val.U256(ALPH.alph(10))),
+      U256Const(Val.U256(OXYG.oxyg(10))),
       TransferAlph,
       AddressConst(address1),
       AddressConst(address0),
@@ -432,9 +432,9 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
     )
 
     val context =
-      pass(instrs, AVector[Val](Val.U256(ALPH.alph(90)), Val.U256(ALPH.oneAlph), Val.U256(98)))
-    context.outputBalances.getAttoAlphAmount(address0.lockupScript).get is ALPH.alph(90)
-    context.outputBalances.getAttoAlphAmount(address1.lockupScript).get is ALPH.alph(11)
+      pass(instrs, AVector[Val](Val.U256(OXYG.oxyg(90)), Val.U256(OXYG.oneAlph), Val.U256(98)))
+    context.outputBalances.getAttoAlphAmount(address0.lockupScript).get is OXYG.oxyg(90)
+    context.outputBalances.getAttoAlphAmount(address1.lockupScript).get is OXYG.oxyg(11)
     context.outputBalances.getTokenAmount(address0.lockupScript, tokenId).get is 1
     context.outputBalances.getTokenAmount(address1.lockupScript, tokenId).get is 98
   }
@@ -702,8 +702,8 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
     val assetFrom    = assetLockupGen(group).sample.get
     val contractFrom = p2cLockupGen(group).sample.get
 
-    var expectedContractBalance: U256 = ALPH.alph(0)
-    var expectedAssetBalance: U256    = ALPH.alph(0)
+    var expectedContractBalance: U256 = OXYG.oxyg(0)
+    var expectedAssetBalance: U256    = OXYG.oxyg(0)
     def addAndCheckBalance(delta: U256, isContract: Boolean = false) = {
       val expectedBalance = if (isContract) {
         expectedContractBalance = expectedContractBalance + delta
@@ -739,12 +739,12 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
         case NoBalance => None
         case RemainingBalanceOnly =>
           val bs = MutBalances(
-            ArrayBuffer(from -> MutBalancesPerLockup.alph(ALPH.alph(1), scopeDept))
+            ArrayBuffer(from -> MutBalancesPerLockup.oxyg(OXYG.oxyg(1), scopeDept))
           )
           Some(MutBalanceState(bs, MutBalances.empty))
         case ApprovedBalanceOnly =>
           val bs = MutBalances(
-            ArrayBuffer(from -> MutBalancesPerLockup.alph(ALPH.oneAlph, scopeDept))
+            ArrayBuffer(from -> MutBalancesPerLockup.oxyg(OXYG.oneAlph, scopeDept))
           )
           Some(MutBalanceState(MutBalances.empty, bs))
       }
@@ -782,11 +782,11 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
             ) {
               addAndCheckBalance(0, isContract = currentUseAsset != UsePreapproved)
             } else {
-              addAndCheckBalance(ALPH.oneAlph, isContract = currentUseAsset != UsePreapproved)
+              addAndCheckBalance(OXYG.oneAlph, isContract = currentUseAsset != UsePreapproved)
             }
           } else {
             if (previousBalanceType == NoBalance) {
-              addAndCheckBalance(ALPH.oneAlph, isContract = currentUseAsset != UsePreapproved)
+              addAndCheckBalance(OXYG.oneAlph, isContract = currentUseAsset != UsePreapproved)
             } else {
               addAndCheckBalance(0, isContract = true)
               addAndCheckBalance(0, isContract = false)
@@ -816,10 +816,10 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
         case NoBalance => addAndCheckBalance(0)
         case _ =>
           if (currentScoptDepth == 0) {
-            addAndCheckBalance(ALPH.oneAlph, isContract = currentUseAsset != UsePreapproved)
+            addAndCheckBalance(OXYG.oneAlph, isContract = currentUseAsset != UsePreapproved)
           } else {
             if (previousBalanceType == NoBalance) {
-              addAndCheckBalance(ALPH.oneAlph, isContract = currentUseAsset != UsePreapproved)
+              addAndCheckBalance(OXYG.oneAlph, isContract = currentUseAsset != UsePreapproved)
             } else {
               addAndCheckBalance(0, isContract = true)
               addAndCheckBalance(0, isContract = false)
@@ -854,7 +854,7 @@ class VMSpec extends OxygeniumSpec with ContextGenerators with NetworkConfigFixt
           case NoBalance => addAndCheckBalance(0)
           case _ =>
             if (currentScoptDepth == 0) {
-              addAndCheckBalance(ALPH.oneAlph, isContract = currentUseAsset != UsePreapproved)
+              addAndCheckBalance(OXYG.oneAlph, isContract = currentUseAsset != UsePreapproved)
             } else {
               addAndCheckBalance(0, isContract = true)
               addAndCheckBalance(0, isContract = false)

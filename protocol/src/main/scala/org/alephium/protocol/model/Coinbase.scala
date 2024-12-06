@@ -18,7 +18,7 @@ package org.oxygenium.protocol.model
 
 import akka.util.ByteString
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.NetworkConfig
 import org.oxygenium.protocol.mining.Emission
 import org.oxygenium.protocol.vm.LockupScript
@@ -42,7 +42,7 @@ object Coinbase {
 
   @inline
   def calcGhostUncleReward(mainChainReward: U256, heightDiff: Int): U256 = {
-    val heightDiffMax = ALPH.MaxGhostUncleAge + 1
+    val heightDiffMax = OXYG.MaxGhostUncleAge + 1
     assume(heightDiff > 0 && heightDiff < heightDiffMax)
     val numerator = U256.unsafe(heightDiffMax - heightDiff)
     mainChainReward.mulUnsafe(numerator).divUnsafe(U256.unsafe(heightDiffMax))

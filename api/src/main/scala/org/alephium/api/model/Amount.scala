@@ -16,7 +16,7 @@
 
 package org.oxygenium.api.model
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.util.U256
 
 final case class Amount(value: U256) {
@@ -25,16 +25,16 @@ final case class Amount(value: U256) {
 }
 
 object Amount {
-  // x.x ALPH format
+  // x.x OXYG format
   def from(string: String): Option[Amount] =
-    ALPH.alphFromString(string).map(Amount(_))
+    OXYG.alphFromString(string).map(Amount(_))
 
   val Zero: Amount = Amount(U256.Zero)
 
   final case class Hint(value: U256)
 
   def toAlphString(value: U256): String = {
-    val dec = new java.math.BigDecimal(value.v).divide(new java.math.BigDecimal(ALPH.oneAlph.v))
-    s"${dec} ALPH"
+    val dec = new java.math.BigDecimal(value.v).divide(new java.math.BigDecimal(OXYG.oneAlph.v))
+    s"${dec} OXYG"
   }
 }

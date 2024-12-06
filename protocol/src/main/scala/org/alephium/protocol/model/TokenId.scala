@@ -34,7 +34,7 @@ object TokenId extends HashUtils[TokenId] {
   implicit val tokenIdOrder: Ordering[TokenId] = Ordering.by(_.bytes)
 
   lazy val zero: TokenId = TokenId(Hash.zero)
-  lazy val alph: TokenId = zero
+  lazy val oxyg: TokenId = zero
   def length: Int        = Hash.length
 
   def generate: TokenId = TokenId(Hash.generate)

@@ -20,7 +20,7 @@ import scala.collection.immutable.ListMap
 
 import akka.util.ByteString
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
 import org.oxygenium.protocol.vm._
 import org.oxygenium.serde._
@@ -220,7 +220,7 @@ object UnsignedTransaction {
       gasPrice: GasPrice
   ): Either[String, U256] = {
     assume(gas >= minimalGas)
-    assume(gasPrice.value <= ALPH.MaxALPHValue)
+    assume(gasPrice.value <= OXYG.MaxALPHValue)
     for {
       _ <- checkWithMaxTxInputNum(inputs)
       _ <- checkUniqueInputs(inputs)
@@ -337,7 +337,7 @@ object UnsignedTransaction {
       gasPrice: GasPrice
   )(implicit networkConfig: NetworkConfig): Either[String, UnsignedTransaction] = {
     assume(gas >= minimalGas)
-    assume(gasPrice.value <= ALPH.MaxALPHValue)
+    assume(gasPrice.value <= OXYG.MaxALPHValue)
     val gasFee    = gasPrice * gas
     val inputs    = from.flatMap(_.assets)
     val inputRefs = from.flatMap { _.assets.map { case (_, o) => o } }
@@ -393,7 +393,7 @@ object UnsignedTransaction {
       assets: AVector[(AssetOutputRef, AssetOutput)]
   ): Either[String, Unit] = {
     check(
-      failCondition = assets.length > ALPH.MaxTxInputNum,
+      failCondition = assets.length > OXYG.MaxTxInputNum,
       "Too many inputs for the transfer, consider to reduce the amount to send, or use the `sweep-address` endpoint to consolidate the inputs first"
     )
   }
@@ -466,15 +466,15 @@ object UnsignedTransaction {
         )
       } else if (tokensRemainder.isEmpty) {
         Left(
-          s"Not enough ALPH for ALPH change output, expected $dustUtxoAmount, got $alphRemainder"
+          s"Not enough OXYG for OXYG change output, expected $dustUtxoAmount, got $alphRemainder"
         )
       } else if (alphRemainder < tokenDustAmount) {
         Left(
-          s"Not enough ALPH for token change output, expected $tokenDustAmount, got $alphRemainder"
+          s"Not enough OXYG for token change output, expected $tokenDustAmount, got $alphRemainder"
         )
       } else {
         Left(
-          s"Not enough ALPH for ALPH and token change output, expected $totalDustAmount, got $alphRemainder"
+          s"Not enough OXYG for OXYG and token change output, expected $totalDustAmount, got $alphRemainder"
         )
       }
     }
@@ -509,18 +509,18 @@ object UnsignedTransaction {
         case ((totalAlphAmount, totalTokens, totalOutputLength), outputInfo) =>
           val tokenDustAmount = dustUtxoAmount.mulUnsafe(U256.unsafe(outputInfo.tokens.length))
           val outputLength = outputInfo.tokens.length + // UTXOs for token
-            (if (outputInfo.attoAlphAmount <= tokenDustAmount) 0 else 1) // UTXO for ALPH
+            (if (outputInfo.attoAlphAmount <= tokenDustAmount) 0 else 1) // UTXO for OXYG
           val alphAmount =
             Math.max(outputInfo.attoAlphAmount, dustUtxoAmount.mulUnsafe(U256.unsafe(outputLength)))
           for {
-            newAlphAmount  <- totalAlphAmount.add(alphAmount).toRight("ALPH amount overflow")
+            newAlphAmount  <- totalAlphAmount.add(alphAmount).toRight("OXYG amount overflow")
             newTotalTokens <- updateTokens(totalTokens, outputInfo.tokens)
           } yield (newAlphAmount, newTotalTokens, totalOutputLength + outputLength)
       }
       .flatMap { case ((totalAlphAmount, totalTokens, totalOutputLength)) =>
         val outputLengthSender = totalTokens.size + 1
         val alphAmountSender   = dustUtxoAmount.mulUnsafe(U256.unsafe(outputLengthSender))
-        totalAlphAmount.add(alphAmountSender).toRight("ALPH amount overflow").map {
+        totalAlphAmount.add(alphAmountSender).toRight("OXYG amount overflow").map {
           finalAlphAmount =>
             (
               finalAlphAmount,

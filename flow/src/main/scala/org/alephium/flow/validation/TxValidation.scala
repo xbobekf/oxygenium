@@ -22,7 +22,7 @@ import akka.util.ByteString
 
 import org.oxygenium.flow.core.{BlockFlow, BlockFlowGroupView, FlowUtils}
 import org.oxygenium.io.IOResult
-import org.oxygenium.protocol.{ALPH, Hash, PublicKey, SignatureSchema}
+import org.oxygenium.protocol.{OXYG, Hash, PublicKey, SignatureSchema}
 import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
 import org.oxygenium.protocol.model._
 import org.oxygenium.protocol.vm.{InvalidSignature => _, OutOfGas => VMOutOfGas, _}
@@ -381,7 +381,7 @@ object TxValidation {
     }
     protected[validation] def checkInputNumCommon(inputNum: Int): TxValidationResult[Unit] = {
       // inputNum can be 0 due to coinbase tx
-      if (inputNum > ALPH.MaxTxInputNum) {
+      if (inputNum > OXYG.MaxTxInputNum) {
         invalidTx(TooManyInputs)
       } else {
         validTx(())
@@ -413,7 +413,7 @@ object TxValidation {
     ): TxValidationResult[Unit] = {
       if (outputNum == 0) {
         invalidTx(NoOutputs)
-      } else if (outputNum > ALPH.MaxTxOutputNum) {
+      } else if (outputNum > OXYG.MaxTxOutputNum) {
         invalidTx(TooManyOutputs)
       } else {
         validTx(())
@@ -429,7 +429,7 @@ object TxValidation {
     @inline protected[validation] def checkIntraGroupScriptSigNum(
         tx: Transaction
     ): TxValidationResult[Unit] = {
-      if (tx.scriptSignatures.length > ALPH.MaxScriptSigNum) {
+      if (tx.scriptSignatures.length > OXYG.MaxScriptSigNum) {
         invalidTx(TooManyScriptSignatures)
       } else {
         validTx(())
@@ -509,7 +509,7 @@ object TxValidation {
       val validated = output.amount >= dustUtxoAmount &&
         output.tokens.length <= numTokenBound &&
         output.tokens.forall(_._2.nonZero) &&
-        // If the asset output contains token, it has to contains exact dust amount of ALPH
+        // If the asset output contains token, it has to contains exact dust amount of OXYG
         (output.isContract || output.tokens.isEmpty || output.amount == dustUtxoAmount)
       if (validated) Right(()) else invalidTx(InvalidOutputStats)
     }
@@ -530,7 +530,7 @@ object TxValidation {
       if (hardFork.isLemanEnabled()) {
         output.lockupScript match {
           case LockupScript.P2MPKH(pkHashes, _) =>
-            if (pkHashes.length > ALPH.MaxKeysInP2MPK) {
+            if (pkHashes.length > OXYG.MaxKeysInP2MPK) {
               invalidTx(TooManyKeysInMultisig)
             } else {
               Right(())
@@ -547,7 +547,7 @@ object TxValidation {
     ): TxValidationResult[Unit] = {
       output match {
         case output: AssetOutput =>
-          if (output.additionalData.length > ALPH.MaxOutputDataSize) {
+          if (output.additionalData.length > OXYG.MaxOutputDataSize) {
             invalidTx(OutputDataSizeExceeded)
           } else {
             Right(())

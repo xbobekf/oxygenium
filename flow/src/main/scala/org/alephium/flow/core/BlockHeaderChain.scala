@@ -22,7 +22,7 @@ import org.oxygenium.flow.Utils
 import org.oxygenium.flow.io._
 import org.oxygenium.flow.setting.{ConsensusSetting, ConsensusSettings}
 import org.oxygenium.io.{IOError, IOResult}
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.{BrokerConfig, NetworkConfig}
 import org.oxygenium.protocol.model.{BlockHash, BlockHeader, ChainIndex, Target, Weight}
 import org.oxygenium.protocol.vm.BlockEnv
@@ -216,7 +216,7 @@ trait BlockHeaderChain extends BlockHeaderPool with BlockHashChain with LazyLogg
     val maxHeight   = maxHeightByWeightUnsafe
     var startHeight = maxHeight - maxForkDepth
 
-    if (startHeight > ALPH.GenesisHeight) {
+    if (startHeight > OXYG.GenesisHeight) {
       while (getHashesUnsafe(startHeight).length > 1) {
         startHeight = startHeight - 1
       }

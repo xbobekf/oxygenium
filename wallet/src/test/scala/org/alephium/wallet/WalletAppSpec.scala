@@ -31,7 +31,7 @@ import org.oxygenium.crypto.wallet.Mnemonic
 import org.oxygenium.http.HttpFixture._
 import org.oxygenium.http.HttpRouteFixture
 import org.oxygenium.json.Json._
-import org.oxygenium.protocol.{ALPH, Hash, PrivateKey, PublicKey, SignatureSchema}
+import org.oxygenium.protocol.{OXYG, Hash, PrivateKey, PublicKey, SignatureSchema}
 import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
 import org.oxygenium.protocol.model.{
   Address,
@@ -78,8 +78,8 @@ class WalletAppSpec
   val (_, transferPublicKey) = SignatureSchema.generatePriPub()
   val transferAddress        = Address.p2pkh(transferPublicKey).toBase58
   val transferAmount         = 10
-  val balanceAmount          = Amount(ALPH.alph(42))
-  val lockedAmount           = Amount(ALPH.alph(21))
+  val balanceAmount          = Amount(OXYG.oxyg(42))
+  val lockedAmount           = Amount(OXYG.oxyg(21))
 
   def creationJson(size: Int, name: String) =
     s"""{"password":"$password","mnemonicSize":${size},"walletName":"$name"}"""
@@ -521,7 +521,7 @@ object WalletAppSpec extends {
       complete(
         ctx,
         Balance
-          .from(Amount(ALPH.alph(42)), Amount(ALPH.alph(21)), Some(tokens), Some(lockedTokens), 1)
+          .from(Amount(OXYG.oxyg(42)), Amount(OXYG.oxyg(21)), Some(tokens), Some(lockedTokens), 1)
       )
     }
 

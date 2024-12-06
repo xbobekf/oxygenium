@@ -8,7 +8,7 @@
 - **Permissioned Testnet Mining**: Mining on the testnet is now permissioned to maintain stable mining difficulties.
 
 ### Ralph & VM Changes:
-- **Reduced Contract Deposit**: Minimum contract deposit has been lowered from 1 ALPH to 0.1 ALPH.
+- **Reduced Contract Deposit**: Minimum contract deposit has been lowered from 1 OXYG to 0.1 OXYG.
 - **Map Support**: New instructions and language syntax now support map structures in Ralph.
 - **Multiple Inheritance**: Added support for multiple inheritance for improved code organization and reusability.
 - **Dynamic Method Dispatch**: Methods can now be dispatched dynamically based on their signatures.

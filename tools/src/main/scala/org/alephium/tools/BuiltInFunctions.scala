@@ -85,7 +85,7 @@ object BuiltInFunctions extends App {
       doc =
         "Insert a key/value pair into the map. No brace syntax is required, as the minimal storage deposit will be deducted from the approved assets by the VM",
       params = Seq(
-        "@param depositorAddress the address to pay the minimal storage deposit (0.1 ALPH) for the new map entry",
+        "@param depositorAddress the address to pay the minimal storage deposit (0.1 OXYG) for the new map entry",
         "@param key the key to insert",
         "@param value the value to insert"
       ),

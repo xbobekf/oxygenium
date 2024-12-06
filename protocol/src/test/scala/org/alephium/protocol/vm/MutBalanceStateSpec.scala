@@ -19,7 +19,7 @@ package org.oxygenium.protocol.vm
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config.{GroupConfig, NetworkConfigFixture}
 import org.oxygenium.protocol.model.{TokenId, TxGenerators}
 import org.oxygenium.util.{OxygeniumSpec, U256}
@@ -27,19 +27,19 @@ import org.oxygenium.util.{OxygeniumSpec, U256}
 class MutBalanceStateSpec extends OxygeniumSpec {
 
   it should "approveALPH" in new Fixture {
-    balanceState.approveALPH(lockupScript, ALPH.oneAlph) is Some(())
+    balanceState.approveALPH(lockupScript, OXYG.oneAlph) is Some(())
     balanceState is MutBalanceState(
       MutBalances(ArrayBuffer((lockupScript, balancesPerLockup.copy(attoAlphAmount = U256.Zero)))),
       MutBalances(
-        ArrayBuffer((lockupScript, MutBalancesPerLockup(ALPH.oneAlph, mutable.Map.empty, 0)))
+        ArrayBuffer((lockupScript, MutBalancesPerLockup(OXYG.oneAlph, mutable.Map.empty, 0)))
       )
     )
 
-    balanceState.approveALPH(lockupScript, ALPH.oneAlph) is None
+    balanceState.approveALPH(lockupScript, OXYG.oneAlph) is None
   }
 
   it should "approveToken" in new Fixture {
-    balanceState.approveToken(lockupScript, tokenId, ALPH.oneAlph) is Some(())
+    balanceState.approveToken(lockupScript, tokenId, OXYG.oneAlph) is Some(())
     balanceState is MutBalanceState(
       MutBalances(
         ArrayBuffer(
@@ -48,21 +48,21 @@ class MutBalanceStateSpec extends OxygeniumSpec {
       ),
       MutBalances(
         ArrayBuffer(
-          (lockupScript, MutBalancesPerLockup(U256.Zero, mutable.Map(tokenId -> ALPH.oneAlph), 0))
+          (lockupScript, MutBalancesPerLockup(U256.Zero, mutable.Map(tokenId -> OXYG.oneAlph), 0))
         )
       )
     )
 
-    balanceState.approveToken(lockupScript, tokenId, ALPH.oneAlph) is None
+    balanceState.approveToken(lockupScript, tokenId, OXYG.oneAlph) is None
   }
 
   it should "alphRemaining" in new Fixture {
-    balanceState.alphRemaining(lockupScript) is Some(ALPH.oneAlph)
+    balanceState.alphRemaining(lockupScript) is Some(OXYG.oneAlph)
     balanceState.alphRemaining(lockupScriptGen.sample.get) is None
   }
 
   it should "tokenRemaining" in new Fixture {
-    balanceState.tokenRemaining(lockupScript, tokenId) is Some(ALPH.oneAlph)
+    balanceState.tokenRemaining(lockupScript, tokenId) is Some(OXYG.oneAlph)
     balanceState.tokenRemaining(lockupScriptGen.sample.get, tokenId) is None
     balanceState.tokenRemaining(lockupScript, TokenId.generate) is None
   }
@@ -73,12 +73,12 @@ class MutBalanceStateSpec extends OxygeniumSpec {
   }
 
   it should "useApproved" in new Fixture {
-    balanceState.approveALPH(lockupScript, ALPH.oneAlph) is Some(())
+    balanceState.approveALPH(lockupScript, OXYG.oneAlph) is Some(())
 
     balanceState.useApproved() is MutBalanceState.from(
       MutBalances(
         ArrayBuffer(
-          (lockupScript, MutBalancesPerLockup(ALPH.oneAlph, mutable.Map.empty, scopeDepth))
+          (lockupScript, MutBalancesPerLockup(OXYG.oneAlph, mutable.Map.empty, scopeDepth))
         )
       )
     )
@@ -97,18 +97,18 @@ class MutBalanceStateSpec extends OxygeniumSpec {
   }
 
   it should "useAlph" in new Fixture {
-    balanceState.useAlph(lockupScript, ALPH.oneAlph) is Some(())
+    balanceState.useAlph(lockupScript, OXYG.oneAlph) is Some(())
 
     balanceState is MutBalanceState.from(
       MutBalances(ArrayBuffer((lockupScript, balancesPerLockup.copy(attoAlphAmount = U256.Zero))))
     )
 
-    balanceState.useAlph(lockupScript, ALPH.oneAlph) is None
-    balanceState.useAlph(lockupScriptGen.sample.get, ALPH.oneAlph) is None
+    balanceState.useAlph(lockupScript, OXYG.oneAlph) is None
+    balanceState.useAlph(lockupScriptGen.sample.get, OXYG.oneAlph) is None
   }
 
   it should "useToken" in new Fixture {
-    balanceState.useToken(lockupScript, tokenId, ALPH.oneAlph) is Some(())
+    balanceState.useToken(lockupScript, tokenId, OXYG.oneAlph) is Some(())
 
     balanceState is MutBalanceState.from(
       MutBalances(
@@ -118,8 +118,8 @@ class MutBalanceStateSpec extends OxygeniumSpec {
       )
     )
 
-    balanceState.useToken(lockupScript, tokenId, ALPH.oneAlph) is None
-    balanceState.useToken(lockupScriptGen.sample.get, tokenId, ALPH.oneAlph) is None
+    balanceState.useToken(lockupScript, tokenId, OXYG.oneAlph) is None
+    balanceState.useToken(lockupScriptGen.sample.get, tokenId, OXYG.oneAlph) is None
   }
 
   trait Fixture extends TxGenerators with NetworkConfigFixture.Default {
@@ -130,9 +130,9 @@ class MutBalanceStateSpec extends OxygeniumSpec {
 
     val tokenId    = TokenId.generate
     val scopeDepth = 1
-    val tokens     = mutable.Map(tokenId -> ALPH.oneAlph)
+    val tokens     = mutable.Map(tokenId -> OXYG.oneAlph)
     val balancesPerLockup =
-      MutBalancesPerLockup(ALPH.oneAlph, tokens, scopeDepth)
+      MutBalancesPerLockup(OXYG.oneAlph, tokens, scopeDepth)
     val lockupScript = lockupScriptGen.sample.get
 
     val remaining = MutBalances(ArrayBuffer((lockupScript, balancesPerLockup)))

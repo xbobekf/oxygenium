@@ -36,7 +36,7 @@ import org.oxygenium.flow.core.UtxoSelectionAlgo._
 import org.oxygenium.flow.gasestimation._
 import org.oxygenium.flow.handler.TxHandler
 import org.oxygenium.io.IOError
-import org.oxygenium.protocol.{vm, ALPH, Hash, PublicKey, Signature, SignatureSchema}
+import org.oxygenium.protocol.{vm, OXYG, Hash, PublicKey, Signature, SignatureSchema}
 import org.oxygenium.protocol.config._
 import org.oxygenium.protocol.model.{ContractOutput => ProtocolContractOutput, _}
 import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
@@ -1322,7 +1322,7 @@ class ServerUtils(implicit
       utxos <- blockFlow.getUsableUtxos(fromLockupScript, utxosLimit).left.map(failedInIO)
       totalSelectAmount <- amount
         .add(estimatedTotalDustAmount)
-        .toRight(failed("ALPH amount overflow"))
+        .toRight(failed("OXYG amount overflow"))
       selectedUtxos <- wrapError(
         UtxoSelectionAlgo
           .Build(
@@ -1370,7 +1370,7 @@ class ServerUtils(implicit
       )
       totalAttoAlphAmount <- initialAttoAlphAmount
         .add(query.issueTokenTo.map(_ => dustUtxoAmount).getOrElse(U256.Zero))
-        .toRight(failed("ALPH amount overflow"))
+        .toRight(failed("OXYG amount overflow"))
       result <- unsignedTxFromScript(
         blockFlow,
         script,
@@ -2240,8 +2240,8 @@ object ServerUtils {
     if (gasFee <= apiConfig.gasFeeCap) {
       Right(())
     } else {
-      val capAmount    = ALPH.prettifyAmount(apiConfig.gasFeeCap)
-      val gasFeeAmount = ALPH.prettifyAmount(gasFee)
+      val capAmount    = OXYG.prettifyAmount(apiConfig.gasFeeCap)
+      val gasFeeAmount = OXYG.prettifyAmount(gasFee)
       Left(
         ApiError.BadRequest(
           s"Gas fee exceeds the limit: maximum allowed is $capAmount, but got $gasFeeAmount. " +
@@ -2295,7 +2295,7 @@ object ServerUtils {
       case Some((issueAmount, Some(issueTo))) =>
         s"""
            |createContractWithToken!$approveAssets(#$codeRaw, #$immStateRaw, #$mutStateRaw, ${issueAmount.v}, @$issueTo)
-           |  transferToken!{@$address -> ALPH: dustAmount!()}(@$address, @$issueTo, ALPH, dustAmount!())
+           |  transferToken!{@$address -> OXYG: dustAmount!()}(@$address, @$issueTo, OXYG, dustAmount!())
            |""".stripMargin.stripLeading.stripTrailing
       case Some((issueAmount, None)) =>
         s"createContractWithToken!$approveAssets(#$codeRaw, #$immStateRaw, #$mutStateRaw, ${issueAmount.v})"
@@ -2304,7 +2304,7 @@ object ServerUtils {
     }
 
     val create = if (initialTokenAmounts.isEmpty) {
-      val approveAssets = s"{@$address -> ALPH: ${initialAttoAlphAmount.v}}"
+      val approveAssets = s"{@$address -> OXYG: ${initialAttoAlphAmount.v}}"
       toCreate(approveAssets)
     } else {
       val approveTokens = initialTokenAmounts
@@ -2312,7 +2312,7 @@ object ServerUtils {
           s"#${tokenId.toHexString}: ${amount.v}"
         }
         .mkString(", ")
-      val approveAssets = s"{@$address -> ALPH: ${initialAttoAlphAmount.v}, $approveTokens}"
+      val approveAssets = s"{@$address -> OXYG: ${initialAttoAlphAmount.v}, $approveTokens}"
       toCreate(approveAssets)
     }
     s"""

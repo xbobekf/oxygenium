@@ -2715,11 +2715,11 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
     }
   }
 
-  it should "use ApproveAlph instr for approve ALPH" in {
+  it should "use ApproveAlph instr for approve OXYG" in {
     val code =
       s"""
          |TxScript Main(address: Address, fooId: ByteVec) {
-         |  Foo(fooId).foo{address -> ALPH: 1}()
+         |  Foo(fooId).foo{address -> OXYG: 1}()
          |}
          |
          |@using(methodSelector = false)
@@ -2734,7 +2734,7 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
 
   it should "use braces syntax for functions that uses preapproved assets" in {
     def code(
-        bracesPart: String = "{callerAddress!() -> ALPH: amount}",
+        bracesPart: String = "{callerAddress!() -> OXYG: amount}",
         usePreapprovedAssets: Boolean = true,
         useAssetsInContract: Boolean = false
     ): String =
@@ -2777,12 +2777,12 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
     compileContract(replace(code())).isRight is true
 
     val statements = Seq(
-      "transferTokenFromSelf!(callerAddress!(), ALPH, 1 alph)",
-      "transferTokenFromSelf!(callerAddress!(), selfTokenId!(), 1 alph)",
+      "transferTokenFromSelf!(callerAddress!(), OXYG, 1 oxyg)",
+      "transferTokenFromSelf!(callerAddress!(), selfTokenId!(), 1 oxyg)",
       "destroySelf!(callerAddress!())",
-      "transferTokenToSelf!(callerAddress!(), ALPH, 1 alph)",
-      "transferTokenToSelf!(callerAddress!(), selfTokenId!(), 1 alph)",
-      "approveToken!(selfAddress!(), ALPH, 1 alph)"
+      "transferTokenToSelf!(callerAddress!(), OXYG, 1 oxyg)",
+      "transferTokenToSelf!(callerAddress!(), selfTokenId!(), 1 oxyg)",
+      "approveToken!(selfAddress!(), OXYG, 1 oxyg)"
     )
     statements.foreach { stmt =>
       compileContract(replace(code("true", stmt))).isRight is true
@@ -2793,7 +2793,7 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
         "Please remove the `assetsInContract` annotation or set it to `enforced`"
     )
     testContractError(
-      code("true", "payGasFee!(callerAddress!(), 1 alph)"),
+      code("true", "payGasFee!(callerAddress!(), 1 oxyg)"),
       "Function \"Foo.foo\" does not use contract assets, but the annotation `assetsInContract` is enabled. " +
         "Please remove the `assetsInContract` annotation or set it to `enforced`"
     )
@@ -2805,8 +2805,8 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
       )
     }
     Seq(
-      "transferTokenToSelf!(callerAddress!(), ALPH, 1 alph)",
-      "transferTokenToSelf!(callerAddress!(), selfTokenId!(), 1 alph)"
+      "transferTokenToSelf!(callerAddress!(), OXYG, 1 oxyg)",
+      "transferTokenToSelf!(callerAddress!(), selfTokenId!(), 1 oxyg)"
     ).foreach { stmt =>
       testContractError(
         code("false", stmt),
@@ -3793,7 +3793,7 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
            |  @using(assetsInContract = true, preapprovedAssets = true)
            |  pub fn foo() -> () {
            |    let _ = selfContractId!()
-           |    transferTokenToSelf!(callerAddress!(), ALPH, 1 alph)
+           |    transferTokenToSelf!(callerAddress!(), OXYG, 1 oxyg)
            |  }
            |}
            |""".stripMargin
@@ -3876,7 +3876,7 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
            |  @using(preapprovedAssets = true)
            |  pub fn foo(tokenId: ByteVec) -> () {
            |    assert!(tokenRemaining!(callerAddress!(), tokenId) == 1, 0)
-           |    assert!(tokenRemaining!(callerAddress!(), ALPH) == 1, 0)
+           |    assert!(tokenRemaining!(callerAddress!(), OXYG) == 1, 0)
            |  }
            |}
            |""".stripMargin
@@ -3979,17 +3979,17 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
     scripts(1).ast.ident.name is "M2"
   }
 
-  it should "use alph instructions in code generation" in {
+  it should "use oxyg instructions in code generation" in {
     val code =
       s"""
          |Contract Foo() {
          |  @using(preapprovedAssets = true, assetsInContract = true)
          |  pub fn foo(from: Address, to: Address) -> () {
-         |    approveToken!(from, ALPH, 1 alph)
-         |    tokenRemaining!(from, ALPH)
-         |    transferToken!(from, to, ALPH, 1 alph)
-         |    transferTokenToSelf!(from, ALPH, 1 alph)
-         |    transferTokenFromSelf!(to, ALPH, 1 alph)
+         |    approveToken!(from, OXYG, 1 oxyg)
+         |    tokenRemaining!(from, OXYG)
+         |    transferToken!(from, to, OXYG, 1 oxyg)
+         |    transferTokenToSelf!(from, OXYG, 1 oxyg)
+         |    transferTokenFromSelf!(to, OXYG, 1 oxyg)
          |  }
          |
          |  @using(preapprovedAssets = true, assetsInContract = true)
@@ -6696,11 +6696,11 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
          |Contract Foo() {
          |  @using(preapprovedAssets = false, assetsInContract = false, payToContractOnly = true)
          |  pub fn foo0() -> () {
-         |    transferToken!(callerAddress!(), selfAddress!(), ALPH, 1 alph)
+         |    transferToken!(callerAddress!(), selfAddress!(), OXYG, 1 oxyg)
          |  }
          |  @using(preapprovedAssets = true, assetsInContract = true)
          |  pub fn foo1() -> () {
-         |    transferTokenToSelf!(callerAddress!(), ALPH, 1 alph)
+         |    transferTokenToSelf!(callerAddress!(), OXYG, 1 oxyg)
          |  }
          |}
          |""".stripMargin
@@ -6728,9 +6728,9 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
     compileContractFull(replace(code())).rightValue.warnings.isEmpty is true
 
     val statements = Seq(
-      "transferTokenToSelf!(callerAddress!(), ALPH, 1 alph)",
-      "transferTokenToSelf!(callerAddress!(), selfTokenId!(), 1 alph)",
-      "transferToken!(callerAddress!(), selfAddress!(), ALPH, 1 alph)"
+      "transferTokenToSelf!(callerAddress!(), OXYG, 1 oxyg)",
+      "transferTokenToSelf!(callerAddress!(), selfTokenId!(), 1 oxyg)",
+      "transferToken!(callerAddress!(), selfAddress!(), OXYG, 1 oxyg)"
     )
     statements.foreach { stmt =>
       compileContractFull(replace(code("true", stmt))).isRight is true
@@ -6750,7 +6750,7 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
   it should "check the preapprovedAssets annotation if the function pays to the contract" in {
     def code(
         annotations: String,
-        statement: String = "transferTokenToSelf!(callerAddress!(), ALPH, 1 alph)"
+        statement: String = "transferTokenToSelf!(callerAddress!(), OXYG, 1 oxyg)"
     ) =
       s"""
          |Contract Foo() {
@@ -6777,12 +6777,12 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
       .isRight is true
     Compiler
       .compileContract(
-        replace(code("payToContractOnly = true", "approveToken!(selfAddress!(), ALPH, 1 alph)"))
+        replace(code("payToContractOnly = true", "approveToken!(selfAddress!(), OXYG, 1 oxyg)"))
       )
       .isRight is true
     Compiler
       .compileContract(
-        replace(code("assetsInContract = true", "approveToken!(selfAddress!(), ALPH, 1 alph)"))
+        replace(code("assetsInContract = true", "approveToken!(selfAddress!(), OXYG, 1 oxyg)"))
       )
       .isRight is true
   }
@@ -6800,11 +6800,11 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
 
     val tokenId = TokenId.generate.toHexString
     val statements = Seq(
-      "approveToken!(selfAddress!(), ALPH, 1 alph)",
-      s"approveToken!(selfAddress!(), #$tokenId, 1 alph)",
-      "transferToken!(callerAddress!(), selfAddress!(), ALPH, 1 alph)",
-      s"transferToken!(callerAddress!(), selfAddress!(), #$tokenId, 1 alph)",
-      s"burnToken!(selfAddress!(), #$tokenId, 1 alph)"
+      "approveToken!(selfAddress!(), OXYG, 1 oxyg)",
+      s"approveToken!(selfAddress!(), #$tokenId, 1 oxyg)",
+      "transferToken!(callerAddress!(), selfAddress!(), OXYG, 1 oxyg)",
+      s"transferToken!(callerAddress!(), selfAddress!(), #$tokenId, 1 oxyg)",
+      s"burnToken!(selfAddress!(), #$tokenId, 1 oxyg)"
     )
     statements.foreach { statement =>
       testContractError(
@@ -8187,7 +8187,7 @@ class CompilerSpec extends OxygeniumSpec with ContextGenerators {
            |  array3: [[U256; 3]; SIZE]
            |) {
            |  let (encodedImmFields, encodedMutFields) = Foo.encodeFields!(array0, array1, array2, array3)
-           |  let _ = createContract!{callerAddress!() -> ALPH: minimalContractDeposit!()}(
+           |  let _ = createContract!{callerAddress!() -> OXYG: minimalContractDeposit!()}(
            |    #${Hex.toHexString(serialize(compiledContract.code))},
            |    encodedImmFields,
            |    encodedMutFields

@@ -18,7 +18,7 @@ package org.oxygenium.flow.core
 
 import org.oxygenium.flow.FlowFixture
 import org.oxygenium.flow.setting.ConsensusSetting
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.model.{ChainIndex, NetworkId, Target}
 import org.oxygenium.protocol.vm.LockupScript
 import org.oxygenium.util.{OxygeniumSpec, TimeStamp}
@@ -69,13 +69,13 @@ class FlowDifficultyAdjustmentSpec extends OxygeniumSpec {
 
   it should "calculate common intra deps" in new LemanDifficultyFixture {
     prepareBlocks(2)
-    (ALPH.GenesisHeight + 1 until ALPH.GenesisHeight + consensusConfig.powAveragingWindow + 2)
+    (OXYG.GenesisHeight + 1 until OXYG.GenesisHeight + consensusConfig.powAveragingWindow + 2)
       .foreach { height =>
         brokerConfig.cliqueChainIndexes.foreach { index =>
           val hash      = blockFlow.getBlockChain(index).getHashesUnsafe(height).head
           val blockDeps = blockFlow.getBlockHeaderUnsafe(hash).blockDeps
           val intraDeps = blockFlow.calCommonIntraGroupDepsUnsafe(blockDeps, index.from)
-          if (height < ALPH.GenesisHeight + 2) {
+          if (height < OXYG.GenesisHeight + 2) {
             intraDeps is brokerConfig.cliqueGroupIndexes
               .map(group => blockFlow.genesisHashes(group.value)(group.value))
           } else {
@@ -106,7 +106,7 @@ class FlowDifficultyAdjustmentSpec extends OxygeniumSpec {
   it should "calculate diff and time span" in new LemanDifficultyFixture {
     val startTs = TimeStamp.now()
     prepareBlocks(2)
-    (ALPH.GenesisHeight until ALPH.GenesisHeight + consensusConfig.powAveragingWindow + 1).foreach {
+    (OXYG.GenesisHeight until OXYG.GenesisHeight + consensusConfig.powAveragingWindow + 1).foreach {
       height =>
         brokerConfig.cliqueChainIndexes.foreach { index =>
           val hash = blockFlow.getBlockChain(index).getHashesUnsafe(height).head
@@ -132,7 +132,7 @@ class FlowDifficultyAdjustmentSpec extends OxygeniumSpec {
         }
     }
     brokerConfig.cliqueChainIndexes.foreach { index =>
-      val height = ALPH.GenesisHeight + consensusConfig.powAveragingWindow + 1
+      val height = OXYG.GenesisHeight + consensusConfig.powAveragingWindow + 1
       val hash = blockFlow
         .getBlockChain(index)
         .getHashesUnsafe(height)
@@ -163,7 +163,7 @@ class FlowDifficultyAdjustmentSpec extends OxygeniumSpec {
       earliestDepTs is getEarliestDepTs(height)
     }
     brokerConfig.cliqueChainIndexes.foreach { index =>
-      val height = ALPH.GenesisHeight + consensusConfig.powAveragingWindow + 2
+      val height = OXYG.GenesisHeight + consensusConfig.powAveragingWindow + 2
       val hash = blockFlow
         .getBlockChain(index)
         .getHashesUnsafe(height)
@@ -337,8 +337,8 @@ class FlowDifficultyAdjustmentSpec extends OxygeniumSpec {
         earliestOutDepIndex: ChainIndex,
         earliestHeight: Int
     ): TimeStamp = {
-      if (earliestHeight <= ALPH.GenesisHeight) {
-        ALPH.GenesisTimestamp
+      if (earliestHeight <= OXYG.GenesisHeight) {
+        OXYG.GenesisTimestamp
       } else {
         blockFlow
           .getBlockChain(earliestOutDepIndex)

@@ -19,7 +19,7 @@ package org.oxygenium.protocol.vm
 import org.scalacheck.Gen
 import org.scalatest.Assertion
 
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.config._
 import org.oxygenium.protocol.model._
 import org.oxygenium.util.{OxygeniumSpec, AVector, NumericHelpers, TimeStamp}
@@ -40,7 +40,7 @@ class ContractPoolSpec extends OxygeniumSpec with NumericHelpers {
         fieldLength: Int = 0
     ): (ContractId, StatefulContract, ContractOutputRef, ContractOutput) = {
       val contractId = ContractId.generate
-      val output     = ContractOutput(ALPH.alph(n), LockupScript.p2c(contractId), AVector.empty)
+      val output     = ContractOutput(OXYG.oxyg(n), LockupScript.p2c(contractId), AVector.empty)
       val outputRef  = contractId.inaccurateFirstOutputRef()
       val method = Method[StatefulContext](
         isPublic = true,

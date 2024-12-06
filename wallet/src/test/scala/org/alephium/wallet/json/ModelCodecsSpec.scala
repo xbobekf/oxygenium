@@ -21,7 +21,7 @@ import org.scalatest.Assertion
 import org.oxygenium.api.model.{Amount, Destination}
 import org.oxygenium.crypto.wallet.Mnemonic
 import org.oxygenium.json.Json._
-import org.oxygenium.protocol.{ALPH, Hash, PublicKey}
+import org.oxygenium.protocol.{OXYG, Hash, PublicKey}
 import org.oxygenium.protocol.config.GroupConfig
 import org.oxygenium.protocol.model._
 import org.oxygenium.util._
@@ -37,8 +37,8 @@ class ModelCodecsSpec extends OxygeniumSpec with ModelCodecs {
   val blockflowFetchMaxAge = Duration.unsafe(1000)
   val address              = Address.p2pkh(PublicKey.generate)
   val group                = GroupIndex.unsafe(1)
-  val balance              = Amount(ALPH.oneAlph)
-  val lockedBalance        = Amount(ALPH.alph(2))
+  val balance              = Amount(OXYG.oneAlph)
+  val lockedBalance        = Amount(OXYG.oxyg(2))
   val hash                 = Hash.generate
   val txId                 = TransactionId.generate
   val password             = "password"
@@ -77,14 +77,14 @@ class ModelCodecsSpec extends OxygeniumSpec with ModelCodecs {
 
   it should "Balances.AddressBalance" in {
     val json =
-      s"""{"address":"$address","balance":"$balance","balanceHint":"1 ALPH","lockedBalance":"$lockedBalance","lockedBalanceHint":"2 ALPH"}"""
+      s"""{"address":"$address","balance":"$balance","balanceHint":"1 OXYG","lockedBalance":"$lockedBalance","lockedBalanceHint":"2 OXYG"}"""
     val addressBalance = Balances.AddressBalance.from(address, balance, lockedBalance)
     check(addressBalance, json)
   }
 
   it should "Balances" in {
     val json =
-      s"""{"totalBalance":"$balance","totalBalanceHint":"1 ALPH","balances":[{"address":"$address","balance":"$balance","balanceHint":"1 ALPH","lockedBalance":"$lockedBalance","lockedBalanceHint":"2 ALPH"}]}"""
+      s"""{"totalBalance":"$balance","totalBalanceHint":"1 OXYG","balances":[{"address":"$address","balance":"$balance","balanceHint":"1 OXYG","lockedBalance":"$lockedBalance","lockedBalanceHint":"2 OXYG"}]}"""
     val balances =
       Balances.from(balance, AVector(Balances.AddressBalance.from(address, balance, lockedBalance)))
     check(balances, json)

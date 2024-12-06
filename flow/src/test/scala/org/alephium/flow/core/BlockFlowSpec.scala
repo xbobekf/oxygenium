@@ -27,7 +27,7 @@ import org.oxygenium.flow.core.BlockChain.TxIndex
 import org.oxygenium.flow.core.BlockFlowState.{BlockCache, Confirmed}
 import org.oxygenium.flow.io.StoragesFixture
 import org.oxygenium.flow.setting.OxygeniumConfigFixture
-import org.oxygenium.protocol.{ALPH, Generators}
+import org.oxygenium.protocol.{OXYG, Generators}
 import org.oxygenium.protocol.config.GroupConfigFixture
 import org.oxygenium.protocol.model._
 import org.oxygenium.protocol.vm.{LockupScript, TokenIssuance}
@@ -51,31 +51,31 @@ class BlockFlowSpec extends OxygeniumSpec {
       val block1      = transfer(blockFlow, chainIndex1)
       addAndCheck(blockFlow, block1, 1)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block1)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(1))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(1))
 
       val chainIndex2 = ChainIndex.unsafe(1, 1)
       val block2      = emptyBlock(blockFlow, chainIndex2)
       addAndCheck(blockFlow, block2, 2)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block2)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(1))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(1))
 
       val chainIndex3 = ChainIndex.unsafe(0, 1)
       val block3      = transfer(blockFlow, chainIndex3)
       addAndCheck(blockFlow, block3, 3)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block3)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(2))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(2))
 
       val chainIndex4 = ChainIndex.unsafe(0, 0)
       val block4      = emptyBlock(blockFlow, chainIndex4)
       addAndCheck(blockFlow, block4, 4)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block4)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(2))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(2))
 
       val chainIndex5 = ChainIndex.unsafe(0, 0)
       val block5      = transfer(blockFlow, chainIndex5)
       addAndCheck(blockFlow, block5, 5)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block5)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(3))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(3))
     }
   }
 
@@ -130,7 +130,7 @@ class BlockFlowSpec extends OxygeniumSpec {
         blockFlow.getWeight(block) isE consensusConfig.minBlockWeight * 1
       }
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, newBlocks1)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(1))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(1))
       newBlocks1.map(_.hash).contains(blockFlow.getBestTipUnsafe()) is true
 
       val newBlocks2 = for {
@@ -139,7 +139,7 @@ class BlockFlowSpec extends OxygeniumSpec {
       } yield transferOnlyForIntraGroup(blockFlow, ChainIndex.unsafe(i, j))
       newBlocks2.foreach { block => addAndCheck(blockFlow, block, 4) }
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, newBlocks2)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(2))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(2))
       newBlocks2.map(_.hash).contains(blockFlow.getBestTipUnsafe()) is true
 
       val newBlocks3 = for {
@@ -148,7 +148,7 @@ class BlockFlowSpec extends OxygeniumSpec {
       } yield transferOnlyForIntraGroup(blockFlow, ChainIndex.unsafe(i, j))
       newBlocks3.foreach { block => addAndCheck(blockFlow, block, 8) }
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, newBlocks3)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(3))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(3))
       newBlocks3.map(_.hash).contains(blockFlow.getBestTipUnsafe()) is true
     }
   }
@@ -167,12 +167,12 @@ class BlockFlowSpec extends OxygeniumSpec {
         blockFlow,
         TimeStamp.now()
       ) // remove double spending tx
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(1))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(1))
 
       val block13 = transfer(blockFlow, chainIndex1)
       addAndCheck(blockFlow, block13, 2)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block13)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(2))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(2))
 
       val chainIndex2 = ChainIndex.unsafe(1, 1)
       val block21     = emptyBlock(blockFlow, chainIndex2)
@@ -180,13 +180,13 @@ class BlockFlowSpec extends OxygeniumSpec {
       addAndCheck(blockFlow, block21, 3)
       addAndCheck(blockFlow, block22, 3)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, IndexedSeq(block21, block22))
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(2))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(2))
 
       val chainIndex3 = ChainIndex.unsafe(0, 1)
       val block3      = transfer(blockFlow, chainIndex3)
       addAndCheck(blockFlow, block3, 4)
       checkInBestDeps(GroupIndex.unsafe(0), blockFlow, block3)
-      checkBalance(blockFlow, 0, genesisBalance - ALPH.alph(3))
+      checkBalance(blockFlow, 0, genesisBalance - OXYG.oxyg(3))
     }
   }
 
@@ -276,7 +276,7 @@ class BlockFlowSpec extends OxygeniumSpec {
     } yield transferOnlyForIntraGroup(blockFlow1, ChainIndex.unsafe(i, j))
     newBlocks2.foreach { block => addAndCheck(blockFlow1, block, 4) }
     checkInBestDeps(GroupIndex.unsafe(0), blockFlow1, newBlocks2)
-    checkBalance(blockFlow1, 0, genesisBalance - ALPH.alph(2))
+    checkBalance(blockFlow1, 0, genesisBalance - OXYG.oxyg(2))
     newBlocks2.map(_.hash).contains(blockFlow1.getBestTipUnsafe()) is true
   }
 
@@ -431,8 +431,8 @@ class BlockFlowSpec extends OxygeniumSpec {
     addAndCheck(blockFlow, block, 1)
 
     val pubScript = block.nonCoinbase.head.unsigned.fixedOutputs.head.lockupScript
-    checkBalance(blockFlow, pubScript, ALPH.alph(1) - nonCoinbaseMinGasFee)
-    checkBalance(blockFlow, testGroup, genesisBalance - ALPH.alph(1))
+    checkBalance(blockFlow, pubScript, OXYG.oxyg(1) - nonCoinbaseMinGasFee)
+    checkBalance(blockFlow, testGroup, genesisBalance - OXYG.oxyg(1))
   }
 
   trait InterGroupFixture extends FlowFixture { Test =>
@@ -461,7 +461,7 @@ class BlockFlowSpec extends OxygeniumSpec {
     val block = transfer(blockFlow0, ChainIndex.unsafe(fromGroup, toGroup))
     block.nonCoinbase.nonEmpty is true
     addAndCheck(blockFlow0, block, 1)
-    checkBalance(blockFlow0, fromGroup, genesisBalance - ALPH.alph(1))
+    checkBalance(blockFlow0, fromGroup, genesisBalance - OXYG.oxyg(1))
     addAndCheck(blockFlow1, block, 1)
     val pubScript = block.nonCoinbase.head.unsigned.fixedOutputs.head.lockupScript
     checkBalance(blockFlow1, pubScript, 0)
@@ -469,13 +469,13 @@ class BlockFlowSpec extends OxygeniumSpec {
     val fromGroupBlock = emptyBlock(blockFlow0, ChainIndex.unsafe(fromGroup, fromGroup))
     addAndCheck(blockFlow0, fromGroupBlock, 2)
     addAndCheck(blockFlow1, fromGroupBlock.header, 2)
-    checkBalance(blockFlow0, fromGroup, genesisBalance - ALPH.alph(1))
-    checkBalance(blockFlow1, pubScript, ALPH.alph(1) - nonCoinbaseMinGasFee)
+    checkBalance(blockFlow0, fromGroup, genesisBalance - OXYG.oxyg(1))
+    checkBalance(blockFlow1, pubScript, OXYG.oxyg(1) - nonCoinbaseMinGasFee)
 
     val toGroupBlock = emptyBlock(blockFlow1, ChainIndex.unsafe(toGroup, toGroup))
     addAndCheck(blockFlow1, toGroupBlock, 3)
     addAndCheck(blockFlow0, toGroupBlock.header, 3)
-    checkBalance(blockFlow1, pubScript, ALPH.alph(1) - nonCoinbaseMinGasFee)
+    checkBalance(blockFlow1, pubScript, OXYG.oxyg(1) - nonCoinbaseMinGasFee)
 
     fromGroup isnot toGroup
     val newBlock = emptyBlock(blockFlow0, ChainIndex.unsafe(fromGroup, toGroup))
@@ -613,7 +613,7 @@ class BlockFlowSpec extends OxygeniumSpec {
             publicKey,
             toLockupScript,
             lockTimeOpt,
-            ALPH.alph(1),
+            OXYG.oxyg(1),
             None,
             nonCoinbaseMinGasPrice,
             defaultUtxoLimit
@@ -637,7 +637,7 @@ class BlockFlowSpec extends OxygeniumSpec {
     val toPrivateKey   = keyManager(toLockupScript)
 
     addAndCheck(blockFlow, block)
-    val lockedBalance = ALPH.alph(1) - nonCoinbaseMinGasFee
+    val lockedBalance = OXYG.oxyg(1) - nonCoinbaseMinGasFee
     blockFlow.getBalance(toLockupScript, Int.MaxValue, true) is Right(
       (
         lockedBalance,
@@ -703,7 +703,7 @@ class BlockFlowSpec extends OxygeniumSpec {
           fromPubKey,
           toLockupScript,
           None,
-          ALPH.oneAlph,
+          OXYG.oneAlph,
           None,
           nonCoinbaseMinGasPrice,
           defaultUtxoLimit
@@ -716,7 +716,7 @@ class BlockFlowSpec extends OxygeniumSpec {
       theGrandPool.add(chainIndex, tx, TimeStamp.now())
       theMemPool.contains(tx.id) is true
 
-      val balance = initialAmount - (ALPH.oneAlph + nonCoinbaseMinGasFee).mulUnsafe(txCount)
+      val balance = initialAmount - (OXYG.oneAlph + nonCoinbaseMinGasFee).mulUnsafe(txCount)
       blockFlow
         .getBalance(fromLockup, Int.MaxValue, true)
         .rightValue is ((
@@ -771,8 +771,8 @@ class BlockFlowSpec extends OxygeniumSpec {
       def test(): Assertion = {
         val blocks = blockFlow
           .getHeightedBlocks(
-            ALPH.GenesisTimestamp.plusMinutesUnsafe(-1),
-            ALPH.GenesisTimestamp.plusMinutesUnsafe(1)
+            OXYG.GenesisTimestamp.plusMinutesUnsafe(-1),
+            OXYG.GenesisTimestamp.plusMinutesUnsafe(1)
           )
           .rightValue
           .map(_._2)
@@ -1065,7 +1065,7 @@ trait TxOutputRefIndexFixture extends FlowFixture {
   val genesisAddress                       = Address.p2pkh(fromPubKey)
   val fromLockupScript: LockupScript.Asset = LockupScript.p2pkh(fromPubKey)
 
-  val transferBlock = transfer(blockFlow, fromPriKey, toPubKey, ALPH.alph(10))
+  val transferBlock = transfer(blockFlow, fromPriKey, toPubKey, OXYG.oxyg(10))
   addAndCheck(blockFlow, transferBlock)
   verifyTxIdIndex(LockupScript.p2pkh(toPubKey), transferBlock)
 

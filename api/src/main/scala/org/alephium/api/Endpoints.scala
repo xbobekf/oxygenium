@@ -30,7 +30,7 @@ import org.oxygenium.api.TapirSchemasLike
 import org.oxygenium.api.UtilJson.{avectorReadWriter, inetAddressRW}
 import org.oxygenium.api.model._
 import org.oxygenium.json.Json.ReadWriter
-import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.{OXYG, Hash}
 import org.oxygenium.protocol.config.GroupConfig
 import org.oxygenium.protocol.model.{Transaction => _, _}
 import org.oxygenium.protocol.vm.StatefulContract
@@ -368,7 +368,7 @@ trait Endpoints
       .in(jsonBody[BuildSweepAddressTransactions])
       .out(jsonBody[BuildSweepAddressTransactionsResult])
       .summary(
-        "Build unsigned transactions to send all unlocked ALPH and token balances of one address to another address"
+        "Build unsigned transactions to send all unlocked OXYG and token balances of one address to another address"
       )
 
   val submitTransaction: BaseEndpoint[SubmitTransaction, SubmitTxResult] =
@@ -418,7 +418,7 @@ trait Endpoints
       .in(jsonBody[BuildSweepMultisig])
       .out(jsonBody[BuildSweepAddressTransactionsResult])
       .summary(
-        "Sweep all unlocked ALPH and token balances of a multisig address to another address"
+        "Sweep all unlocked OXYG and token balances of a multisig address to another address"
       )
 
   val submitMultisigTransaction: BaseEndpoint[SubmitMultisig, SubmitTxResult] =
@@ -735,8 +735,8 @@ object Endpoints {
     alphJsonBody[T]
       .examples(examples)
       .description(
-        s"Format 1: `${ALPH.oneAlph}`\n\n" +
-          s"Format 2: `x.y ALPH`, where `1 ALPH = ${ALPH.oneAlph}\n\n" +
+        s"Format 1: `${OXYG.oneAlph}`\n\n" +
+          s"Format 2: `x.y OXYG`, where `1 OXYG = ${OXYG.oneAlph}\n\n" +
           s"Field fromPublicKeyType can be  `default` or `bip340-schnorr`"
       )
   }

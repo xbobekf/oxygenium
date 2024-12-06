@@ -21,7 +21,7 @@ import scala.jdk.CollectionConverters._
 import com.typesafe.config.{ConfigFactory, ConfigValueFactory}
 
 import org.oxygenium.flow.setting._
-import org.oxygenium.protocol.{ALPH, PrivateKey, PublicKey}
+import org.oxygenium.protocol.{OXYG, PrivateKey, PublicKey}
 import org.oxygenium.protocol.config.GroupConfig
 import org.oxygenium.protocol.model.{Address, GroupIndex}
 import org.oxygenium.protocol.vm.{LogConfig, NodeIndexesConfig}
@@ -31,7 +31,7 @@ trait OxygeniumConfigFixture extends RandomPortsConfigFixture {
 
   val configValues: Map[String, Any] = Map.empty
 
-  val genesisBalance: U256 = ALPH.alph(Number.million)
+  val genesisBalance: U256 = OXYG.oxyg(Number.million)
 
   lazy val env      = Env.resolve()
   lazy val rootPath = Platform.getRootPath(env)

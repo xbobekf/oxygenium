@@ -169,7 +169,7 @@ class UtxoSelectionAlgoSpec extends OxygeniumSpec with LockupScriptGenerators {
     }
   }
 
-  it should "prefer non-token utxos for ALPH selection" in new Fixture {
+  it should "prefer non-token utxos for OXYG selection" in new Fixture {
     val tokenId = TokenId.generate
     implicit val utxos: AVector[Asset] = buildUtxosWithTokens(
       (20, AVector((tokenId, 10))),
@@ -353,7 +353,7 @@ class UtxoSelectionAlgoSpec extends OxygeniumSpec with LockupScriptGenerators {
       })
     }
 
-    case class UtxoSelection(alph: U256, tokens: (TokenId, U256)*)(implicit
+    case class UtxoSelection(oxyg: U256, tokens: (TokenId, U256)*)(implicit
         utxos: AVector[Asset]
     ) {
       val utxosSorted            = utxos.sorted(AssetAscendingOrder.byAlph)
@@ -367,7 +367,7 @@ class UtxoSelectionAlgoSpec extends OxygeniumSpec with LockupScriptGenerators {
 
       lazy val valueWithoutGas = {
         SelectionWithoutGasEstimation(AssetAscendingOrder)
-          .select(AssetAmounts(alph, AVector.from(tokens)), utxosSorted)
+          .select(AssetAmounts(oxyg, AVector.from(tokens)), utxosSorted)
           .map(_.selected)
       }
 
@@ -375,7 +375,7 @@ class UtxoSelectionAlgoSpec extends OxygeniumSpec with LockupScriptGenerators {
         UtxoSelectionAlgo
           .Build(ProvidedGas(gasOpt, GasPrice(1), None))
           .select(
-            AssetAmounts(alph, AVector.from(tokens)),
+            AssetAmounts(oxyg, AVector.from(tokens)),
             defaultUnlockScript,
             utxos,
             outputs.length,

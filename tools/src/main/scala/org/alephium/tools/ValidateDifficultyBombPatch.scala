@@ -22,7 +22,7 @@ import org.oxygenium.flow.core.BlockFlow
 import org.oxygenium.flow.io.Storages
 import org.oxygenium.flow.setting.{OxygeniumConfig, Configs, Platform}
 import org.oxygenium.io.RocksDBSource.ProdSettings
-import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.OXYG
 import org.oxygenium.protocol.mining.HashRate
 import org.oxygenium.protocol.model.{BlockDeps, Target}
 import org.oxygenium.protocol.vm.LockupScript
@@ -43,7 +43,7 @@ object ValidateDifficultyBombPatch extends App {
     val miner          = LockupScript.p2pkh(publicKey)
     val template       = blockFlow.prepareBlockFlowUnsafe(chainIndex, miner)
     val parent         = BlockDeps.build(template.deps)(config.broker).uncleHash(chainIndex.to)
-    val height         = chain.getHeightUnsafe(parent) - ALPH.DifficultyBombPatchHeightDiff
+    val height         = chain.getHeightUnsafe(parent) - OXYG.DifficultyBombPatchHeightDiff
     val target         = chain.getBlockUnsafe(chain.getHashesUnsafe(height).head).target
     val depTargets =
       template.deps.map(hash => blockFlow.getHeaderChain(hash).getBlockHeaderUnsafe(hash).target)

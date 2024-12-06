@@ -48,7 +48,7 @@ trait LockupScriptGenerators extends Generators {
 
   def p2mpkhLockupGen(groupIndex: GroupIndex): Gen[LockupScript.Asset] =
     for {
-      numKeys   <- Gen.chooseNum(1, ALPH.MaxKeysInP2MPK)
+      numKeys   <- Gen.chooseNum(1, OXYG.MaxKeysInP2MPK)
       keys      <- Gen.listOfN(numKeys, publicKeyGen(groupIndex)).map(AVector.from)
       threshold <- Gen.choose(1, keys.length)
     } yield LockupScript.p2mpkh(keys, threshold).get
@@ -202,10 +202,10 @@ trait TxInputGenerators extends Generators {
 }
 
 trait TokenGenerators extends Generators with NumericHelpers {
-  val minAmountInNanoAlph = dustUtxoAmount.divUnsafe(ALPH.oneNanoAlph).toBigInt.longValue()
-  val minAmount           = ALPH.nanoAlph(minAmountInNanoAlph)
+  val minAmountInNanoAlph = dustUtxoAmount.divUnsafe(OXYG.oneNanoAlph).toBigInt.longValue()
+  val minAmount           = OXYG.nanoAlph(minAmountInNanoAlph)
   def amountGen(inputNum: Int): Gen[U256] = {
-    Gen.choose(minAmountInNanoAlph * inputNum, Number.quadrillion).map(ALPH.nanoAlph)
+    Gen.choose(minAmountInNanoAlph * inputNum, Number.quadrillion).map(OXYG.nanoAlph)
   }
 
   def tokenGen(inputNum: Int): Gen[(TokenId, U256)] =
@@ -257,7 +257,7 @@ trait TxGenerators
     with TokenGenerators {
   implicit def networkConfig: NetworkConfig
 
-  lazy val createdHeightGen: Gen[Int] = Gen.choose(ALPH.GenesisHeight, Int.MaxValue)
+  lazy val createdHeightGen: Gen[Int] = Gen.choose(OXYG.GenesisHeight, Int.MaxValue)
 
   def assetOutputGen(groupIndex: GroupIndex)(
       _amountGen: Gen[U256] = amountGen(1),
@@ -368,7 +368,7 @@ trait TxGenerators
 
       val initialBalances = Balances(attoAlphAmount, tokenTable.toMap)
       val outputNum =
-        min(attoAlphAmount / minAmount, inputs.length * 2, ALPH.MaxTxOutputNum).v.toInt
+        min(attoAlphAmount / minAmount, inputs.length * 2, OXYG.MaxTxOutputNum).v.toInt
       val splitBalances = split(initialBalances, outputNum)
       val selectedIndex = Gen.choose(0, outputNum - 1).sample.get
       val outputs = splitBalances.mapWithIndex[AssetOutput] { case (balance, index) =>

@@ -21,7 +21,7 @@ import java.text.{DecimalFormat, DecimalFormatSymbols}
 import org.oxygenium.protocol.model.{Address, ChainIndex, HardFork, Weight}
 import org.oxygenium.util.{AVector, Duration, Number, TimeStamp, U256}
 
-object ALPH {
+object OXYG {
   // scalastyle:off magic.number
   val CoinInOneALPH: U256     = U256.unsafe(Number.quintillion)
   val CoinInOneCent: U256     = CoinInOneALPH divUnsafe U256.unsafe(100)
@@ -52,9 +52,9 @@ object ALPH {
   val MaxGhostUncleSize: Int = 2
   // scalastyle:on magic.number
 
-  def alph(amount: U256): Option[U256] = amount.mul(CoinInOneALPH)
+  def oxyg(amount: U256): Option[U256] = amount.mul(CoinInOneALPH)
 
-  def alph(amount: Long): U256 = {
+  def oxyg(amount: Long): U256 = {
     assume(amount >= 0)
     U256.unsafe(amount).mulUnsafe(CoinInOneALPH)
   }
@@ -72,9 +72,9 @@ object ALPH {
   val oneAlph: U256     = CoinInOneALPH
   val oneNanoAlph: U256 = CoinInOneNanoAlph
 
-  // x.x ALPH format
+  // x.x OXYG format
   def alphFromString(string: String): Option[U256] = {
-    val regex = """([0-9]*\.?[0-9]+) *ALPH""".r
+    val regex = """([0-9]*\.?[0-9]+) *OXYG""".r
     string match {
       case regex(v) =>
         val bigDecimal = new java.math.BigDecimal(v)
@@ -92,10 +92,10 @@ object ALPH {
 
   def prettifyAmount(amount: U256): String = {
     if (amount == U256.Zero) {
-      "0 ALPH"
+      "0 OXYG"
     } else {
       val converted = (BigDecimal(amount.v) / BigDecimal(oneAlph.v)).toDouble
-      s"${format(converted)} ALPH"
+      s"${format(converted)} OXYG"
     }
   }
 
