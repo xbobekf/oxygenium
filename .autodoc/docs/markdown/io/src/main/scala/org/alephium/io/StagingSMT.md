@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/StagingSMT.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/StagingSMT.scala)
 
-The code is a part of the Alephium project and is written in Scala. It defines a class called `StagingSMT` which is used to stage modifications to a `CachedSMT` data structure. 
+The code is a part of the Oxygenium project and is written in Scala. It defines a class called `StagingSMT` which is used to stage modifications to a `CachedSMT` data structure. 
 
 The `CachedSMT` is a key-value store that is optimized for sparse data. It is implemented as a Sparse Merkle Tree (SMT) which is a type of Merkle Tree that is optimized for sparse data sets. The `CachedSMT` is used to store and retrieve key-value pairs efficiently. 
 

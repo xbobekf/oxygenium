@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/Cache.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/Cache.scala)
 
 The code defines a cache implementation that can be used to store key-value pairs in memory. The cache is implemented as a LinkedHashMap, which allows for efficient access and removal of elements based on their insertion order or access order. The cache can be configured to have a maximum capacity, after which the least recently used elements will be removed to make room for new elements.
 
@@ -6,7 +6,7 @@ The Cache object provides several factory methods for creating different types o
 
 The Cache trait defines a simple interface for interacting with the cache, including methods for checking if a key is present, getting and setting values, and removing elements. The trait also provides thread-safety through the use of a lock, which can be either a read-write lock or no lock at all, depending on the implementation.
 
-Overall, this code provides a flexible and efficient caching solution that can be easily integrated into other parts of the Alephium project. For example, it could be used to cache frequently accessed data from the blockchain or network, reducing the need for expensive disk or network I/O operations.
+Overall, this code provides a flexible and efficient caching solution that can be easily integrated into other parts of the Oxygenium project. For example, it could be used to cache frequently accessed data from the blockchain or network, reducing the need for expensive disk or network I/O operations.
 ## Questions: 
  1. What is the purpose of the `Cache` object and what does it do?
 - The `Cache` object provides several methods for creating different types of caches with different eviction policies and thread safety options. It uses a `LinkedHashMap` to store key-value pairs and provides methods for adding, removing, and accessing elements in the cache.

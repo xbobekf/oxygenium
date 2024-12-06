@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/TestContractResult.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/TestContractResult.scala)
 
 This file contains two case classes: `TestContractResult` and `DebugMessage`. These classes are used to represent the result of testing a smart contract and debug messages respectively. 
 
@@ -6,7 +6,7 @@ The `TestContractResult` case class has several fields that represent the result
 
 The `DebugMessage` case class has two fields: `contractAddress` of type `Address.Contract` and `message` of type `String`. This class is used to represent debug messages that can be printed during the execution of a smart contract. The `toString()` method is overridden to provide a string representation of the debug message that includes the contract address and the message itself. 
 
-These case classes are used in the larger Alephium project to facilitate the testing and debugging of smart contracts. The `TestContractResult` case class is used to represent the result of testing a smart contract, which can be used to verify that the smart contract is functioning as expected. The `DebugMessage` case class is used to provide developers with a way to print debug messages during the execution of a smart contract, which can be useful for identifying and fixing bugs. 
+These case classes are used in the larger Oxygenium project to facilitate the testing and debugging of smart contracts. The `TestContractResult` case class is used to represent the result of testing a smart contract, which can be used to verify that the smart contract is functioning as expected. The `DebugMessage` case class is used to provide developers with a way to print debug messages during the execution of a smart contract, which can be useful for identifying and fixing bugs. 
 
 Example usage of `TestContractResult`:
 ```
@@ -34,4 +34,4 @@ println(debugMessage.toString()) // prints "DEBUG - 0x1234 - Something went wron
 2. What is the `DebugMessage` case class used for?
    - The `DebugMessage` case class represents a debug message associated with a contract address and is used to provide additional information during testing and debugging.
 3. What are the dependencies of this file?
-   - This file depends on several other classes and packages, including `Hash` and `Address` from the `org.alephium.protocol` package, `AVector` from the `org.alephium.util` package, and `ContractState`, `Address`, and `Output` from unspecified packages.
+   - This file depends on several other classes and packages, including `Hash` and `Address` from the `org.oxygenium.protocol` package, `AVector` from the `org.oxygenium.util` package, and `ContractState`, `Address`, and `Output` from unspecified packages.

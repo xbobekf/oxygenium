@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.intraclique
+package org.oxygenium.flow.network.intraclique
 
 import java.net.InetSocketAddress
 
 import akka.actor.Props
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.handler.AllHandlers
-import org.alephium.flow.network.CliqueManager
-import org.alephium.flow.network.broker.{OutboundBrokerHandler => BaseOutboundBrokerHandler}
-import org.alephium.flow.network.sync.BlockFlowSynchronizer
-import org.alephium.flow.setting.NetworkSetting
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.{BrokerInfo, CliqueInfo}
-import org.alephium.util.ActorRefT
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.handler.AllHandlers
+import org.oxygenium.flow.network.CliqueManager
+import org.oxygenium.flow.network.broker.{OutboundBrokerHandler => BaseOutboundBrokerHandler}
+import org.oxygenium.flow.network.sync.BlockFlowSynchronizer
+import org.oxygenium.flow.setting.NetworkSetting
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.{BrokerInfo, CliqueInfo}
+import org.oxygenium.util.ActorRefT
 
 object OutboundBrokerHandler {
   // scalastyle:off parameter.number

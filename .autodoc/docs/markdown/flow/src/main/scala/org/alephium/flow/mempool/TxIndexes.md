@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/mempool/TxIndexes.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/mempool/TxIndexes.scala)
 
-The `TxIndexes` class is a data structure that indexes transactions in the mempool of the Alephium blockchain. It is used to efficiently query transactions by their inputs, outputs, and addresses. 
+The `TxIndexes` class is a data structure that indexes transactions in the mempool of the Oxygenium blockchain. It is used to efficiently query transactions by their inputs, outputs, and addresses. 
 
 The class contains several mutable hash maps that store the following information:
 - `inputIndex`: maps an `AssetOutputRef` (a reference to an output of a previous transaction) to the transaction that spends it (`TransactionTemplate`).
@@ -17,7 +17,7 @@ The `TxIndexes` class provides several methods to add and remove transactions fr
 - `getRelevantUtxos`: returns a list of unspent outputs that are locked by a specific address.
 - `clear`: clears all the indexes.
 
-The `TxIndexes` class is used extensively throughout the Alephium codebase to manage the mempool. For example, it is used in the `Mempool` class to add and remove transactions from the mempool, and in the `TxValidator` class to validate transactions before they are added to the mempool. 
+The `TxIndexes` class is used extensively throughout the Oxygenium codebase to manage the mempool. For example, it is used in the `Mempool` class to add and remove transactions from the mempool, and in the `TxValidator` class to validate transactions before they are added to the mempool. 
 
 Example usage:
 ```scala
@@ -28,9 +28,9 @@ val relevantUtxos = txIndexes.getRelevantUtxos(lockupScript)
 txIndexes.remove(tx)
 ```
 ## Questions: 
- 1. What is the purpose of this code and how does it fit into the overall alephium project?
-- This code defines a class called `TxIndexes` which is used to index transactions in the mempool of the alephium project.
-- It is part of the `org.alephium.flow.mempool` package and is used to manage transactions in the mempool.
+ 1. What is the purpose of this code and how does it fit into the overall oxygenium project?
+- This code defines a class called `TxIndexes` which is used to index transactions in the mempool of the oxygenium project.
+- It is part of the `org.oxygenium.flow.mempool` package and is used to manage transactions in the mempool.
 
 2. What are the main data structures used in this code and how are they used?
 - The main data structures used in this code are `mutable.HashMap` and `mutable.ArrayBuffer`.

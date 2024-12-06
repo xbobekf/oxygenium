@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/crypto/src/main/scala/org/alephium/crypto/Keccak256.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/crypto/src/main/scala/org/oxygenium/crypto/Keccak256.scala)
 
-This file contains code related to the Keccak256 hash function, which is used in the Alephium project for cryptographic purposes. The code is licensed under the GNU Lesser General Public License, which allows for free distribution and modification of the code.
+This file contains code related to the Keccak256 hash function, which is used in the Oxygenium project for cryptographic purposes. The code is licensed under the GNU Lesser General Public License, which allows for free distribution and modification of the code.
 
 The `Keccak256` class takes a `ByteString` as input and generates a 256-bit hash value using the Keccak algorithm. The resulting hash value is then stored in a `Byte32` object, which is a wrapper around a 32-byte array. The `Keccak256` class also extends the `RandomBytes` trait, which provides a method for generating random bytes.
 
@@ -8,7 +8,7 @@ The `Keccak256` object provides a factory method for creating instances of the `
 
 The `Keccak256` object also extends the `BCHashSchema` trait, which is a generic trait for hash functions that use the Bouncy Castle library. This trait provides a way to define a hash schema for a specific hash function, which includes the algorithm name, the length of the hash value, and the provider for the hashing algorithm. The `Keccak256` object uses the `HashSchema.unsafeKeccak256` method to define the hash schema for the Keccak256 algorithm.
 
-Overall, this code provides a way to generate Keccak256 hash values in a secure and efficient manner, which is an important component of many cryptographic protocols. It can be used in the Alephium project for a variety of purposes, such as generating unique identifiers for transactions or verifying the integrity of data stored on the blockchain.
+Overall, this code provides a way to generate Keccak256 hash values in a secure and efficient manner, which is an important component of many cryptographic protocols. It can be used in the Oxygenium project for a variety of purposes, such as generating unique identifiers for transactions or verifying the integrity of data stored on the blockchain.
 ## Questions: 
  1. What is the purpose of the `Keccak256` class and how is it used?
    - The `Keccak256` class is used to represent a 256-bit Keccak hash value and can be converted to a `Byte32`. It extends the `RandomBytes` trait and takes a `ByteString` as input.

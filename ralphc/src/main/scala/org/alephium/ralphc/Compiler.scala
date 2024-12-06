@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.ralphc
+package org.oxygenium.ralphc
 
 import java.io.{File, PrintWriter}
 import java.nio.file.{Files, Path, Paths}
@@ -24,13 +24,13 @@ import scala.io.Source
 import scala.jdk.CollectionConverters.IteratorHasAsScala
 import scala.util.{Failure, Success, Using}
 
-import org.alephium.api.ApiModelCodec
-import org.alephium.api.UtilJson._
-import org.alephium.api.model.{CompileContractResult, CompileProjectResult, CompileScriptResult}
-import org.alephium.crypto
-import org.alephium.json.Json._
-import org.alephium.ralph
-import org.alephium.util.AVector
+import org.oxygenium.api.ApiModelCodec
+import org.oxygenium.api.UtilJson._
+import org.oxygenium.api.model.{CompileContractResult, CompileProjectResult, CompileScriptResult}
+import org.oxygenium.crypto
+import org.oxygenium.json.Json._
+import org.oxygenium.ralph
+import org.oxygenium.util.AVector
 
 @SuppressWarnings(Array("org.wartremover.warts.ToString"))
 object Codec extends ApiModelCodec {

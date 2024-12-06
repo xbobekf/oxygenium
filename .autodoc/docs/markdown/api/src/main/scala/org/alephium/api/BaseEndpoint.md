@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/BaseEndpoint.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/BaseEndpoint.scala)
 
-This code defines a trait called `BaseEndpoint` that provides a set of common functionality for building HTTP endpoints in the Alephium project. The trait defines several types and methods that can be used to create endpoints with or without an API key. 
+This code defines a trait called `BaseEndpoint` that provides a set of common functionality for building HTTP endpoints in the Oxygenium project. The trait defines several types and methods that can be used to create endpoints with or without an API key. 
 
 The `BaseEndpoint` trait extends several other traits and imports several libraries, including `sttp`, `Tapir`, and `ScalaLogging`. The `sttp` library is used to define HTTP endpoints, while `Tapir` is used to define the structure of the request and response bodies. `ScalaLogging` is used for logging.
 
@@ -8,7 +8,7 @@ The `BaseEndpoint` trait defines two types of endpoints: `BaseEndpointWithoutApi
 
 The `BaseEndpoint` trait also defines a `serverLogic` method that takes an endpoint and a logic function. The logic function takes an input and returns a `Future` that resolves to either an error or an output. The `serverLogic` method returns a `ServerEndpoint` that can be used to handle requests to the endpoint.
 
-The `BaseEndpoint` trait is used as a base for other endpoint traits in the Alephium project. These traits define specific endpoints for different parts of the project, such as the wallet or the mining pool. By using the `BaseEndpoint` trait, these endpoint traits can share common functionality and ensure consistency across the project.
+The `BaseEndpoint` trait is used as a base for other endpoint traits in the Oxygenium project. These traits define specific endpoints for different parts of the project, such as the wallet or the mining pool. By using the `BaseEndpoint` trait, these endpoint traits can share common functionality and ensure consistency across the project.
 
 Example usage:
 
@@ -28,8 +28,8 @@ trait MyEndpoint extends BaseEndpoint {
 }
 ```
 ## Questions: 
- 1. What is the purpose of the `alephium` project?
-- The purpose of the `alephium` project is not clear from this code, as it only contains licensing information and imports.
+ 1. What is the purpose of the `oxygenium` project?
+- The purpose of the `oxygenium` project is not clear from this code, as it only contains licensing information and imports.
 
 2. What is the role of the `BaseEndpoint` trait?
 - The `BaseEndpoint` trait defines a base endpoint for the API, with security checks for an API key and error handling for common HTTP status codes.

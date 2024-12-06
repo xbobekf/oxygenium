@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/HistoryLocators.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/HistoryLocators.scala)
 
-The `HistoryLocators` object in the `core` package of the `alephium` project provides a method for sampling block heights within a given range. The `sampleHeights` method takes two integer arguments, `fromHeight` and `toHeight`, which represent the inclusive range of block heights to sample. The method returns an `AVector` of integers representing the sampled block heights.
+The `HistoryLocators` object in the `core` package of the `oxygenium` project provides a method for sampling block heights within a given range. The `sampleHeights` method takes two integer arguments, `fromHeight` and `toHeight`, which represent the inclusive range of block heights to sample. The method returns an `AVector` of integers representing the sampled block heights.
 
 The sampling algorithm works by starting at the `toHeight` block and iteratively subtracting a power of 2 from the height until the `fromHeight` block is reached. At each step, the current height is added to a mutable `ArrayBuffer` of heights. The resulting array is then converted to an `AVector` and reversed to produce the final output.
 

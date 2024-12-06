@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,25 +14,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
 import scala.util.Random
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.core.BlockFlow
-import org.alephium.io.RocksDBKeyValueStorage
-import org.alephium.io.SparseMerkleTrie.Node
-import org.alephium.protocol.Hash
-import org.alephium.protocol.model.{Address, Block, ChainIndex, ContractId}
-import org.alephium.protocol.vm.TokenIssuance
-import org.alephium.util.{AlephiumSpec, AVector}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.io.RocksDBKeyValueStorage
+import org.oxygenium.io.SparseMerkleTrie.Node
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.model.{Address, Block, ChainIndex, ContractId}
+import org.oxygenium.protocol.vm.TokenIssuance
+import org.oxygenium.util.{OxygeniumSpec, AVector}
 
-class PruneStorageServiceSpec extends AlephiumSpec {
+class PruneStorageServiceSpec extends OxygeniumSpec {
   trait Fixture extends FlowFixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.groups", 4),
-      ("alephium.broker.broker-num", 1),
-      ("alephium.broker.broker-id", 0)
+      ("oxygenium.broker.groups", 4),
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.broker.broker-id", 0)
     )
 
     lazy val chainIndex     = ChainIndex.unsafe(0, 0)

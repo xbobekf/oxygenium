@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.io.File
 
@@ -22,12 +22,12 @@ import scala.jdk.CollectionConverters._
 
 import com.typesafe.config.{ConfigException, ConfigFactory, ConfigValueFactory}
 
-import org.alephium.flow.setting.{AlephiumConfig, Configs, Platform}
-import org.alephium.protocol.model.NetworkId
-import org.alephium.util.{AlephiumSpec, AVector, Env}
+import org.oxygenium.flow.setting.{OxygeniumConfig, Configs, Platform}
+import org.oxygenium.protocol.model.NetworkId
+import org.oxygenium.util.{OxygeniumSpec, AVector, Env}
 
 // scalastyle:off null
-class ApiConfigSpec extends AlephiumSpec {
+class ApiConfigSpec extends OxygeniumSpec {
   it should "load api config" in {
     val path   = getClass.getResource(s"/system_test.conf.tmpl").getPath
     val file   = new File(path)
@@ -38,9 +38,9 @@ class ApiConfigSpec extends AlephiumSpec {
   it should "load mainnet api config" in {
     val randomPath = Platform.getRootPath(Env.Test) // generate a random folder
     val prodConfig = Configs.parseConfig(Env.Prod, randomPath, false, ConfigFactory.empty())
-    val alphConfig = AlephiumConfig.load(prodConfig)
+    val alphConfig = OxygeniumConfig.load(prodConfig)
     val apiConfig  = ApiConfig.load(prodConfig)
-    alphConfig.network.networkId is NetworkId.AlephiumMainNet
+    alphConfig.network.networkId is NetworkId.OxygeniumMainNet
     apiConfig.defaultUtxosLimit is 5000
   }
 
@@ -128,14 +128,14 @@ class ApiConfigSpec extends AlephiumSpec {
     }
 
     lazy val configValues: Map[String, Any] = Map(
-      ("alephium.api.network-interface", interface),
-      ("alephium.api.blockflow-fetch-max-age", "30 minutes"),
-      ("alephium.api.ask-timeout", "5 seconds"),
-      ("alephium.api.api-key-enabled", apiKeyEnabled),
-      ("alephium.api.api-key", apiKeyValue),
-      ("alephium.api.gas-fee-cap", "1000000000000000000"),
-      ("alephium.api.default-utxos-limit", 512),
-      ("alephium.api.max-form-buffered-bytes", 128 * 1024)
+      ("oxygenium.api.network-interface", interface),
+      ("oxygenium.api.blockflow-fetch-max-age", "30 minutes"),
+      ("oxygenium.api.ask-timeout", "5 seconds"),
+      ("oxygenium.api.api-key-enabled", apiKeyEnabled),
+      ("oxygenium.api.api-key", apiKeyValue),
+      ("oxygenium.api.gas-fee-cap", "1000000000000000000"),
+      ("oxygenium.api.default-utxos-limit", 512),
+      ("oxygenium.api.max-form-buffered-bytes", 128 * 1024)
     )
 
     lazy val config = ConfigFactory

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mining
+package org.oxygenium.flow.mining
 
 import java.math.BigInteger
 
 import akka.util.ByteString
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.protocol.config.GroupConfigFixture
-import org.alephium.protocol.model.{BlockHash, ChainIndex, Transaction}
-import org.alephium.serde.{avectorSerde, serialize, Staging}
-import org.alephium.util.{AlephiumSpec, AVector}
-import org.alephium.util.Hex.HexStringSyntax
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.protocol.config.GroupConfigFixture
+import org.oxygenium.protocol.model.{BlockHash, ChainIndex, Transaction}
+import org.oxygenium.serde.{avectorSerde, serialize, Staging}
+import org.oxygenium.util.{OxygeniumSpec, AVector}
+import org.oxygenium.util.Hex.HexStringSyntax
 
-class MessageSpec extends AlephiumSpec with GroupConfigFixture.Default {
+class MessageSpec extends OxygeniumSpec with GroupConfigFixture.Default {
   "ClientMessage" should "serde properly" in {
     val message    = ClientMessage.from(SubmitBlock(hex"bbbb"))
     val serialized = ClientMessage.serialize(message)

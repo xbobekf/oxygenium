@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/config/BrokerConfig.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/config/BrokerConfig.scala)
 
-The code defines a trait called `BrokerConfig` which extends other traits and classes from the `alephium` project. The purpose of this trait is to provide configuration information for brokers in the Alephium network. 
+The code defines a trait called `BrokerConfig` which extends other traits and classes from the `oxygenium` project. The purpose of this trait is to provide configuration information for brokers in the Oxygenium network. 
 
 The `BrokerConfig` trait defines several methods and variables that are used to calculate and store information about the broker's configuration. For example, the `brokerId` method returns the ID of the current broker, while the `groupNumPerBroker` method calculates the number of groups per broker. The `groupRange` method calculates the range of group IDs that belong to the current broker. 
 
@@ -10,7 +10,7 @@ The `chainIndexes` method calculates all possible chain indexes for the current 
 
 The `BrokerConfig` object defines a `range` method that calculates the range of group IDs for a given broker ID and number of brokers. It also defines an `empty` range that is used to represent an empty range of group IDs. 
 
-Overall, the `BrokerConfig` trait and `BrokerConfig` object provide useful configuration information for brokers in the Alephium network. This information can be used to determine which groups and chains belong to a particular broker, and to calculate intersections between brokers.
+Overall, the `BrokerConfig` trait and `BrokerConfig` object provide useful configuration information for brokers in the Oxygenium network. This information can be used to determine which groups and chains belong to a particular broker, and to calculate intersections between brokers.
 ## Questions: 
  1. What is the purpose of the `BrokerConfig` trait and what other traits does it extend?
 - The `BrokerConfig` trait defines configuration parameters for a broker and extends the `GroupConfig`, `CliqueConfig`, and `BrokerGroupInfo` traits.

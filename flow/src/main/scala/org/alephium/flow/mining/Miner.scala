@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mining
+package org.oxygenium.flow.mining
 
 import scala.annotation.tailrec
 import scala.concurrent.Future
@@ -23,15 +23,15 @@ import scala.util.{Failure, Success}
 import akka.util.ByteString
 import com.typesafe.scalalogging.LazyLogging
 
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.flow.setting.MiningSetting
-import org.alephium.flow.validation.InvalidTestnetMiner
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig}
-import org.alephium.protocol.mining.PoW
-import org.alephium.protocol.model._
-import org.alephium.serde.deserialize
-import org.alephium.util._
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.flow.setting.MiningSetting
+import org.oxygenium.flow.validation.InvalidTestnetMiner
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.mining.PoW
+import org.oxygenium.protocol.model._
+import org.oxygenium.serde.deserialize
+import org.oxygenium.util._
 
 object Miner extends LazyLogging {
   sealed trait Command
@@ -136,7 +136,7 @@ object Miner extends LazyLogging {
   @inline def validateTestnetMiners(
       miners: AVector[Address.Asset]
   )(implicit network: NetworkConfig): Either[String, Unit] = {
-    if (network.networkId == NetworkId.AlephiumTestNet) {
+    if (network.networkId == NetworkId.OxygeniumTestNet) {
       if (ALPH.isTestnetMinersWhitelisted(miners)) {
         Right(())
       } else {

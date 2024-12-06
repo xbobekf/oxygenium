@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer
 
-import org.alephium.protocol.model.{AssetOutput, HardFork, TokenId, TxOutput}
-import org.alephium.util.{AVector, OptionF, U256}
+import org.oxygenium.protocol.model.{AssetOutput, HardFork, TokenId, TxOutput}
+import org.oxygenium.util.{AVector, OptionF, U256}
 
 final case class MutBalances(all: ArrayBuffer[(LockupScript, MutBalancesPerLockup)]) {
   def getBalances(lockupScript: LockupScript): Option[MutBalancesPerLockup] = {

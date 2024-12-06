@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/project/release.sh)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/project/release.sh)
 
-This script is used to update the version number of the alephium project and create a new git tag for the release. The script takes a single argument, which is the new version number in the format of X.Y.Z(-postfix), where X, Y, and Z are integers and postfix is an optional string. 
+This script is used to update the version number of the oxygenium project and create a new git tag for the release. The script takes a single argument, which is the new version number in the format of X.Y.Z(-postfix), where X, Y, and Z are integers and postfix is an optional string. 
 
 The script first checks if the new version number is valid by matching it against a regular expression. If the version number is invalid, the script exits with an error message. 
 
@@ -12,7 +12,7 @@ After the checks, the script updates the version number in two files: "openapi.j
 
 Finally, the script adds all changes to git, creates a new git tag with the new version number, and pushes the changes to the remote repository. 
 
-This script is useful for automating the versioning process of the alephium project. By running this script, developers can easily update the version number and create a new release without having to manually update the version number in multiple files and create a git tag. 
+This script is useful for automating the versioning process of the oxygenium project. By running this script, developers can easily update the version number and create a new release without having to manually update the version number in multiple files and create a git tag. 
 
 Example usage: 
 

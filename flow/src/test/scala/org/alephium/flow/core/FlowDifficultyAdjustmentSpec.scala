@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.setting.ConsensusSetting
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.model.{ChainIndex, NetworkId, Target}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util.{AlephiumSpec, TimeStamp}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.setting.ConsensusSetting
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.model.{ChainIndex, NetworkId, Target}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util.{OxygeniumSpec, TimeStamp}
 
-class FlowDifficultyAdjustmentSpec extends AlephiumSpec {
+class FlowDifficultyAdjustmentSpec extends OxygeniumSpec {
 
   it should "calculate weighted target" in new PreLemanDifficultyFixture {
     prepareBlocks(2)
@@ -210,12 +210,12 @@ class FlowDifficultyAdjustmentSpec extends AlephiumSpec {
 
   it should "use diff penalty for leman fork" in new FlowFixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.network-id", NetworkId.AlephiumDevNet.id),
-      ("alephium.network.leman-hard-fork-timestamp ", TimeStamp.now().plusHoursUnsafe(-1).millis),
-      ("alephium.network.rhone-hard-fork-timestamp ", TimeStamp.Max.millis),
-      ("alephium.consensus.num-zeros-at-least-in-hash", 3)
+      ("oxygenium.network.network-id", NetworkId.OxygeniumDevNet.id),
+      ("oxygenium.network.leman-hard-fork-timestamp ", TimeStamp.now().plusHoursUnsafe(-1).millis),
+      ("oxygenium.network.rhone-hard-fork-timestamp ", TimeStamp.Max.millis),
+      ("oxygenium.consensus.num-zeros-at-least-in-hash", 3)
     )
-    config.network.networkId is NetworkId.AlephiumDevNet
+    config.network.networkId is NetworkId.OxygeniumDevNet
     config.network.getHardFork(TimeStamp.now()).isLemanEnabled() is true
     implicit val consensusConfig: ConsensusSetting = consensusConfigs.mainnet
     consensusConfig.numZerosAtLeastInHash is 3
@@ -242,8 +242,8 @@ class FlowDifficultyAdjustmentSpec extends AlephiumSpec {
 
   trait PreLemanDifficultyFixture extends FlowFixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.leman-hard-fork-timestamp ", TimeStamp.now().plusHoursUnsafe(1).millis),
-      ("alephium.network.rhone-hard-fork-timestamp ", TimeStamp.Max.millis)
+      ("oxygenium.network.leman-hard-fork-timestamp ", TimeStamp.now().plusHoursUnsafe(1).millis),
+      ("oxygenium.network.rhone-hard-fork-timestamp ", TimeStamp.Max.millis)
     )
     config.network.getHardFork(TimeStamp.now()).isLemanEnabled() is false
 
@@ -273,8 +273,8 @@ class FlowDifficultyAdjustmentSpec extends AlephiumSpec {
 
   trait LemanDifficultyFixture extends FlowFixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.network.rhone-hard-fork-timestamp ", TimeStamp.Max.millis)
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.network.rhone-hard-fork-timestamp ", TimeStamp.Max.millis)
     )
 
     implicit val consensusConfig: ConsensusSetting = consensusConfigs.mainnet

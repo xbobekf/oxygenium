@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
-import org.alephium.flow.core.BlockFlowState.BlockCache
-import org.alephium.flow.core.FlowUtils.{
+import org.oxygenium.flow.core.BlockFlowState.BlockCache
+import org.oxygenium.flow.core.FlowUtils.{
   AssetOutputInfo,
   MemPoolOutput,
   PersistedOutput,
   UnpersistedBlockOutput
 }
-import org.alephium.flow.mempool.MemPool
-import org.alephium.io.IOResult
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.{LockupScript, WorldState}
-import org.alephium.util.AVector
+import org.oxygenium.flow.mempool.MemPool
+import org.oxygenium.io.IOResult
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.{LockupScript, WorldState}
+import org.oxygenium.util.AVector
 
 trait BlockFlowGroupView[WS <: WorldState[_, _, _, _]] {
   def worldState: WS

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/RocksDBKeyValueCompanion.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/RocksDBKeyValueCompanion.scala)
 
 This file contains a trait called `RocksDBKeyValueCompanion` that defines several factory methods for creating instances of a `RocksDBKeyValueStorage` implementation. 
 
@@ -11,9 +11,9 @@ This trait is likely used in the larger project to provide a standardized way of
 Example usage:
 
 ```
-import org.alephium.io.RocksDBKeyValueCompanion
-import org.alephium.io.RocksDBKeyValueStorage
-import org.alephium.io.RocksDBSource
+import org.oxygenium.io.RocksDBKeyValueCompanion
+import org.oxygenium.io.RocksDBKeyValueStorage
+import org.oxygenium.io.RocksDBSource
 
 // create a RocksDBSource instance
 val source = new RocksDBSource("/path/to/rocksdb")
@@ -34,4 +34,4 @@ val storage2 = RocksDBKeyValueCompanion[RocksDBKeyValueStorage[String, String]].
 2. What is the license for this code?
    - This code is licensed under the GNU Lesser General Public License version 3 or later.
 3. What other dependencies does this code have?
-   - This code imports `org.rocksdb.{ReadOptions, WriteOptions}` and uses the `Settings` object from `org.alephium.io.RocksDBSource`.
+   - This code imports `org.rocksdb.{ReadOptions, WriteOptions}` and uses the `Settings` object from `org.oxygenium.io.RocksDBSource`.

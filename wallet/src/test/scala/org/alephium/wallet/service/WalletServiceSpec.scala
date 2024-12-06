@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.service
+package org.oxygenium.wallet.service
 
 import java.io.File
 import java.nio.file.Paths
@@ -24,18 +24,18 @@ import scala.util.Random
 
 import akka.actor.ActorSystem
 
-import org.alephium.api.model.{Amount, Destination}
-import org.alephium.crypto.wallet.Mnemonic
-import org.alephium.http.EndpointSender
-import org.alephium.protocol.{Generators, Hash, PrivateKey, PublicKey, SignatureSchema}
-import org.alephium.protocol.model.{Address, TxGenerators}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util.{AlephiumFutureSpec, AVector, Duration, Hex}
-import org.alephium.wallet.api.model.{Addresses, AddressInfo}
-import org.alephium.wallet.config.WalletConfigFixture
-import org.alephium.wallet.web.BlockFlowClient
+import org.oxygenium.api.model.{Amount, Destination}
+import org.oxygenium.crypto.wallet.Mnemonic
+import org.oxygenium.http.EndpointSender
+import org.oxygenium.protocol.{Generators, Hash, PrivateKey, PublicKey, SignatureSchema}
+import org.oxygenium.protocol.model.{Address, TxGenerators}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util.{OxygeniumFutureSpec, AVector, Duration, Hex}
+import org.oxygenium.wallet.api.model.{Addresses, AddressInfo}
+import org.oxygenium.wallet.config.WalletConfigFixture
+import org.oxygenium.wallet.web.BlockFlowClient
 
-class WalletServiceSpec extends AlephiumFutureSpec {
+class WalletServiceSpec extends OxygeniumFutureSpec {
 
   it should "handle a miner wallet" in new Fixture {
 

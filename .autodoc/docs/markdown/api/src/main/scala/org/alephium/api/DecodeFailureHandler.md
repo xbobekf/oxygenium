@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/DecodeFailureHandler.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/DecodeFailureHandler.scala)
 
-This file contains code related to handling decode failures in the Alephium API. The `DecodeFailureHandler` trait defines a custom failure handler for decoding errors that may occur when processing API requests. 
+This file contains code related to handling decode failures in the Oxygenium API. The `DecodeFailureHandler` trait defines a custom failure handler for decoding errors that may occur when processing API requests. 
 
 The `failureResponse` method takes in a `StatusCode`, a list of `Header`s, and a message string, and returns a `ValuedEndpointOutput` object. This object contains information about the response that should be sent back to the client in the event of a decoding failure. The response includes a status code, headers, and a JSON body containing an error message. 
 
@@ -8,7 +8,7 @@ The `failureMessage` method takes in a `DecodeFailureContext` object and returns
 
 Finally, the `myDecodeFailureHandler` value is defined as a copy of the default decode failure handler, with the `response`, `respond`, and `failureMessage` methods overridden to use the custom failure handling logic defined in this trait. 
 
-Overall, this code is an important part of the Alephium API, as it ensures that clients receive informative error messages when decoding failures occur during API requests. This can help developers more easily diagnose and fix issues with their API integrations. 
+Overall, this code is an important part of the Oxygenium API, as it ensures that clients receive informative error messages when decoding failures occur during API requests. This can help developers more easily diagnose and fix issues with their API integrations. 
 
 Example usage of this code might look like:
 
@@ -36,7 +36,7 @@ val myServer = myEndpoint.toRoutes(myLogic).map(_.intercept(myDecodeFailureHandl
 
 2. What external libraries or dependencies does this code rely on?
     
-    This code relies on the `sttp` and `tapir` libraries for defining and handling API endpoints, as well as the `org.alephium.api` package for defining custom error responses.
+    This code relies on the `sttp` and `tapir` libraries for defining and handling API endpoints, as well as the `org.oxygenium.api` package for defining custom error responses.
 
 3. What license is this code released under?
     

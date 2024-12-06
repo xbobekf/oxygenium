@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.io.File
 
@@ -24,14 +24,14 @@ import scala.util.{Failure, Success, Using}
 
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.flow.client.Node
-import org.alephium.flow.handler.DependencyHandler
-import org.alephium.flow.model.DataOrigin
-import org.alephium.io.{IOError, IOResult}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.Block
-import org.alephium.serde.deserialize
-import org.alephium.util._
+import org.oxygenium.flow.client.Node
+import org.oxygenium.flow.handler.DependencyHandler
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.io.{IOError, IOResult}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.Block
+import org.oxygenium.serde.deserialize
+import org.oxygenium.util._
 
 object BlocksImporter extends StrictLogging {
 

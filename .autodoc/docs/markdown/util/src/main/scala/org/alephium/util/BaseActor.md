@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/BaseActor.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/BaseActor.scala)
 
 This file defines a `BaseActor` trait that extends the Akka `Actor` trait and provides some utility methods for scheduling messages to be sent to other actors. The `BaseActor` trait also overrides the `supervisorStrategy` and `unhandled` methods of the `Actor` trait.
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.web
+package org.oxygenium.wallet.web
 
 import scala.concurrent.{ExecutionContext, Future}
 
 import sttp.model.{StatusCode, Uri}
 
-import org.alephium.api.{ApiError, Endpoints}
-import org.alephium.api.model._
-import org.alephium.http.EndpointSender
-import org.alephium.protocol.{PublicKey, Signature}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{Address, GroupIndex}
-import org.alephium.protocol.vm.{GasBox, GasPrice, LockupScript}
-import org.alephium.util.{AVector, Duration, TimeStamp}
+import org.oxygenium.api.{ApiError, Endpoints}
+import org.oxygenium.api.model._
+import org.oxygenium.http.EndpointSender
+import org.oxygenium.protocol.{PublicKey, Signature}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{Address, GroupIndex}
+import org.oxygenium.protocol.vm.{GasBox, GasPrice, LockupScript}
+import org.oxygenium.util.{AVector, Duration, TimeStamp}
 
 trait BlockFlowClient {
   def fetchBalance(

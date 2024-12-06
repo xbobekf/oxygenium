@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/RWLock.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/RWLock.scala)
 
-This code defines three traits that are used for locking in the Alephium project. The purpose of these traits is to provide a way to synchronize access to shared resources in a multi-threaded environment. 
+This code defines three traits that are used for locking in the Oxygenium project. The purpose of these traits is to provide a way to synchronize access to shared resources in a multi-threaded environment. 
 
 The first trait, `Lock`, defines two methods: `readOnly` and `writeOnly`. These methods take a function as an argument and execute it while holding a lock. The `readOnly` method acquires a read lock, which allows multiple threads to read the shared resource simultaneously, while the `writeOnly` method acquires a write lock, which only allows one thread to write to the shared resource at a time. 
 
@@ -8,7 +8,7 @@ The second trait, `RWLock`, extends the `Lock` trait and provides an implementat
 
 The third trait, `NoLock`, also extends the `Lock` trait, but provides a no-op implementation of the `readOnly` and `writeOnly` methods. This is useful when locking is not necessary, such as when the shared resource is thread-safe or when synchronization is handled by other means. 
 
-These traits can be mixed in with other classes and objects in the Alephium project to provide locking functionality. For example, a class that represents a shared resource can extend the `RWLock` trait to ensure that access to the resource is synchronized. 
+These traits can be mixed in with other classes and objects in the Oxygenium project to provide locking functionality. For example, a class that represents a shared resource can extend the `RWLock` trait to ensure that access to the resource is synchronized. 
 
 Here is an example of how the `RWLock` trait can be used:
 

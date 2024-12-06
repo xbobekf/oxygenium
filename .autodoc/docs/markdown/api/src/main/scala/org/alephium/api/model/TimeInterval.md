@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/TimeInterval.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/TimeInterval.scala)
 
 This file contains the definition of a case class called `TimeInterval` and an object with the same name. The `TimeInterval` case class represents a time interval between two timestamps, `from` and `toOpt`. The `from` timestamp is mandatory, while the `toOpt` timestamp is optional. If `toOpt` is not provided, the current timestamp is used as the `to` timestamp. 
 
@@ -9,8 +9,8 @@ The `TimeInterval` object has a `validator` method that returns a `Validator` ty
 This code can be used in the larger project to represent time intervals between two timestamps. It can be used to validate time intervals and calculate their duration. The `validator` method can be used to validate the `TimeInterval` case class before using it in other parts of the project. Here is an example of how to use the `TimeInterval` case class:
 
 ```
-import org.alephium.api.model.TimeInterval
-import org.alephium.util.TimeStamp
+import org.oxygenium.api.model.TimeInterval
+import org.oxygenium.util.TimeStamp
 
 val from = TimeStamp.now()
 val to = from.plusMinutes(30)

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/Files.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/Files.scala)
 
 The code defines a utility class called `Files` that provides methods for working with files and directories. The class contains two methods: `copyFromResource` and two getter methods `homeDir` and `tmpDir`.
 
@@ -8,7 +8,7 @@ The `homeDir` method returns the path to the user's home directory. This method 
 
 The `tmpDir` method returns the path to the system's temporary directory. This method is useful when you need to create temporary files or directories that can be deleted when they are no longer needed.
 
-Overall, the `Files` class provides a set of utility methods that can be used to work with files and directories in a cross-platform way. These methods can be used throughout the Alephium project to simplify file and directory operations.
+Overall, the `Files` class provides a set of utility methods that can be used to work with files and directories in a cross-platform way. These methods can be used throughout the Oxygenium project to simplify file and directory operations.
 ## Questions: 
  1. What is the purpose of this code?
    - This code defines a utility object called `Files` that provides methods for copying a file from a resource and getting the home and temporary directories.

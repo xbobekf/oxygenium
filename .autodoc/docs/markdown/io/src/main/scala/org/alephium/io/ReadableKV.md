@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/ReadableKV.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/ReadableKV.scala)
 
 This code defines a trait called `ReadableKV` which is used for reading key-value pairs from a data store. The trait has three methods: `get`, `getOpt`, and `exists`. 
 
@@ -13,7 +13,7 @@ This trait can be used as a building block for implementing various data stores 
 Here is an example of how this trait could be used:
 
 ```scala
-import org.alephium.io.ReadableKV
+import org.oxygenium.io.ReadableKV
 
 class MyDataStore extends ReadableKV[String, Int] {
   def get(key: String): IOResult[Int] = {
@@ -41,11 +41,11 @@ In this example, a `MyDataStore` class is defined which implements the `Readable
 
 An instance of `MyDataStore` is created and used to read the value of a key called "myKey". The result of the `get` method is pattern matched to handle the success and error cases. If the key is found in the data store, the value is printed to the console. Otherwise, an error message is printed.
 ## Questions: 
- 1. What is the purpose of the `org.alephium.io` package?
-   - The code defines a trait `ReadableKV` within the `org.alephium.io` package, but it's unclear what the package itself is responsible for.
+ 1. What is the purpose of the `org.oxygenium.io` package?
+   - The code defines a trait `ReadableKV` within the `org.oxygenium.io` package, but it's unclear what the package itself is responsible for.
 
 2. What is the `IOResult` type used in this code?
    - The `get`, `getOpt`, and `exists` methods all return a `IOResult` type, but it's not clear what this type represents or how it's used.
 
-3. How is this code related to the rest of the Alephium project?
-   - The code includes a copyright notice and license information, but it's unclear how this code fits into the larger Alephium project or what its dependencies might be.
+3. How is this code related to the rest of the Oxygenium project?
+   - The code includes a copyright notice and license information, but it's unclear how this code fits into the larger Oxygenium project or what its dependencies might be.

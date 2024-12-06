@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/io/BlockStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/io/BlockStorage.scala)
 
 This code defines a `BlockStorage` trait and a `BlockRockDBStorage` class that implements it. The purpose of this code is to provide a way to store and retrieve `Block` objects using RocksDB, a high-performance key-value store. 
 
@@ -8,7 +8,7 @@ The `BlockRockDBStorage` class extends the `RocksDBKeyValueStorage` class, which
 
 The `BlockRockDBStorage` class has a companion object that provides a factory method for creating instances of the class. This method takes a `RocksDBSource` object, a `ColumnFamily` object, and `WriteOptions` and `ReadOptions` objects, and returns a new `BlockRockDBStorage` object. 
 
-Overall, this code provides a way to store and retrieve `Block` objects using RocksDB. This is likely used in the larger Alephium project to store and retrieve blocks in the blockchain. Here is an example of how this code might be used:
+Overall, this code provides a way to store and retrieve `Block` objects using RocksDB. This is likely used in the larger Oxygenium project to store and retrieve blocks in the blockchain. Here is an example of how this code might be used:
 
 ```
 val storage = RocksDBSource.open(...)
@@ -26,7 +26,7 @@ val retrievedBlock = blockStorage.get(block.hash)
 ## Questions: 
  1. What is the purpose of this code?
    
-   This code defines a trait and a class for storing and retrieving blocks in a RocksDB key-value store, as part of the Alephium project.
+   This code defines a trait and a class for storing and retrieving blocks in a RocksDB key-value store, as part of the Oxygenium project.
 
 2. What is the license for this code?
    
@@ -34,4 +34,4 @@ val retrievedBlock = blockStorage.get(block.hash)
 
 3. What other dependencies does this code have?
    
-   This code depends on the RocksDB library, as well as other classes and traits defined in the Alephium project.
+   This code depends on the RocksDB library, as well as other classes and traits defined in the Oxygenium project.

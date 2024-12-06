@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.util
+package org.oxygenium.util
 
 import scala.{specialized => sp}
 import scala.collection.IndexedSeqView
@@ -22,7 +22,7 @@ import scala.collection.immutable.ArraySeq
 import scala.reflect.ClassTag
 import scala.util.Random
 
-import org.alephium.macros.HPC
+import org.oxygenium.macros.HPC
 
 /*
  * Immutable vector that is optimized for appending, not synchronized

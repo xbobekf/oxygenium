@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.util
+package org.oxygenium.util
 
 import scala.collection.mutable
 
-import org.alephium.util.Forest.Node
+import org.oxygenium.util.Forest.Node
 
 object Forest {
   // Note: the parent node should comes first in values; otherwise return None
@@ -26,7 +26,7 @@ object Forest {
     val rootParents = mutable.HashMap.empty[K, mutable.ArrayBuffer[Node[K, T]]]
     val nodes       = mutable.HashMap.empty[K, Node[K, T]]
 
-    import org.alephium.macros.HPC.cfor
+    import org.oxygenium.macros.HPC.cfor
     cfor(0)(_ < values.length, _ + 1) { i =>
       val value = values(i)
       val key   = toKey(value)

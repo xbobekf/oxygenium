@@ -1,16 +1,16 @@
 version: "3.3"
 
 services:
-  alephium_gpu_miner:
-    image: alephium/gpu-miner:latest
+  oxygenium_gpu_miner:
+    image: oxygenium/gpu-miner:latest
     depends_on:
-      - alephium
+      - oxygenium
     restart: unless-stopped
     runtime: nvidia
     privileged: true
     command:
       - -a
-      - alephium
+      - oxygenium
     deploy:
       resources:
         reservations:

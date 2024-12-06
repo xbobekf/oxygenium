@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/FlowTipsUtil.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/FlowTipsUtil.scala)
 
-The `FlowTipsUtil` trait in the Alephium project provides utility methods for managing the flow of tips in a blockchain. Tips are the latest blocks in a blockchain, and this trait helps in handling the dependencies between blocks, merging tips, and calculating the differences between tips.
+The `FlowTipsUtil` trait in the Oxygenium project provides utility methods for managing the flow of tips in a blockchain. Tips are the latest blocks in a blockchain, and this trait helps in handling the dependencies between blocks, merging tips, and calculating the differences between tips.
 
 The trait defines several methods for working with tips:
 
@@ -13,8 +13,8 @@ The trait defines several methods for working with tips:
 
 These utility methods are essential for managing the flow of tips in a blockchain, which is crucial for maintaining the consistency and integrity of the blockchain data.
 ## Questions: 
- 1. **Question**: What is the purpose of the `FlowTipsUtil` trait and how is it used in the Alephium project?
-   **Answer**: The `FlowTipsUtil` trait provides utility methods for handling flow tips in the Alephium project, such as merging tips, getting tips differences, and managing block dependencies. It is used to manage the flow of blocks and their relationships within the Alephium blockchain.
+ 1. **Question**: What is the purpose of the `FlowTipsUtil` trait and how is it used in the Oxygenium project?
+   **Answer**: The `FlowTipsUtil` trait provides utility methods for handling flow tips in the Oxygenium project, such as merging tips, getting tips differences, and managing block dependencies. It is used to manage the flow of blocks and their relationships within the Oxygenium blockchain.
 
 2. **Question**: What are the main data structures used in this code, such as `BlockHash`, `BlockHeader`, and `BlockDeps`?
    **Answer**: `BlockHash` represents the hash of a block, `BlockHeader` contains metadata about a block (such as its chain index, dependencies, and other information), and `BlockDeps` represents the block dependencies, which include both incoming and outgoing dependencies for a block.

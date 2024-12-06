@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/gasestimation/AssetScriptGasEstimator.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/gasestimation/AssetScriptGasEstimator.scala)
 
 This file contains code related to estimating the gas required to execute a given asset script. The `AssetScriptGasEstimator` trait defines an interface for estimating the gas required to execute a given asset script. It has two methods: `estimate` and `setInputs`. The `estimate` method takes an `UnlockScript.P2SH` object and returns an `Either` object containing a `GasBox` or an error message. The `setInputs` method sets the transaction inputs for the estimator.
 
@@ -11,7 +11,7 @@ The `NotImplemented` object is a placeholder implementation of the `AssetScriptG
 The code in this file is used to estimate the gas required to execute a given asset script. It is used in the larger project to optimize the execution of asset scripts by estimating the gas required to execute them and adjusting the gas limit accordingly.
 ## Questions: 
  1. What is the purpose of this code file?
-- This code file contains a trait and objects related to estimating gas for asset scripts in the Alephium project.
+- This code file contains a trait and objects related to estimating gas for asset scripts in the Oxygenium project.
 
 2. What is the difference between the `Default`, `Mock`, and `NotImplemented` objects?
 - `Default` is an implementation of the `AssetScriptGasEstimator` trait that estimates gas by running the asset script on a dry-run block environment. `Mock` is another implementation that simply returns a default gas value. `NotImplemented` is an object that throws a `NotImplementedError` when its `estimate` method is called.

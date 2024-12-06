@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow
+package org.oxygenium.flow
 
 import scala.annotation.tailrec
 import scala.collection.mutable
@@ -23,25 +23,25 @@ import scala.language.implicitConversions
 import akka.util.ByteString
 import org.scalatest.Assertion
 
-import org.alephium.flow.core.{BlockFlow, ExtraUtxosInfo, FlowUtils}
-import org.alephium.flow.core.FlowUtils.AssetOutputInfo
-import org.alephium.flow.io.StoragesFixture
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.flow.setting.AlephiumConfigFixture
-import org.alephium.flow.validation.{BlockValidation, HeaderValidation, TxValidation}
-import org.alephium.protocol._
-import org.alephium.protocol.mining.PoW
-import org.alephium.protocol.model._
-import org.alephium.protocol.model.UnsignedTransaction.TxOutputInfo
-import org.alephium.protocol.vm._
-import org.alephium.ralph.Compiler
-import org.alephium.serde.{avectorSerde, deserialize, serialize}
-import org.alephium.util._
+import org.oxygenium.flow.core.{BlockFlow, ExtraUtxosInfo, FlowUtils}
+import org.oxygenium.flow.core.FlowUtils.AssetOutputInfo
+import org.oxygenium.flow.io.StoragesFixture
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.flow.setting.OxygeniumConfigFixture
+import org.oxygenium.flow.validation.{BlockValidation, HeaderValidation, TxValidation}
+import org.oxygenium.protocol._
+import org.oxygenium.protocol.mining.PoW
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
+import org.oxygenium.protocol.vm._
+import org.oxygenium.ralph.Compiler
+import org.oxygenium.serde.{avectorSerde, deserialize, serialize}
+import org.oxygenium.util._
 
 // scalastyle:off number.of.methods file.size.limit
 trait FlowFixture
-    extends AlephiumSpec
-    with AlephiumConfigFixture
+    extends OxygeniumSpec
+    with OxygeniumConfigFixture
     with StoragesFixture.Default
     with NumericHelpers {
   lazy val blockFlow: BlockFlow  = genesisBlockFlow()
@@ -851,7 +851,7 @@ trait FlowFixture
     val gasUsed = initialGas.use(gasLeft).rightValue
     print(s"length: ${tx0.unsigned.inputs.length}\n")
     print(s"gasUsed $gasUsed\n")
-    import org.alephium.protocol.vm.GasSchedule._
+    import org.oxygenium.protocol.vm.GasSchedule._
     val estimate = txBaseGas addUnsafe
       txInputBaseGas.mulUnsafe(tx0.unsigned.inputs.length) addUnsafe
       txOutputBaseGas.mulUnsafe(tx0.outputsLength) addUnsafe
@@ -1020,6 +1020,6 @@ trait FlowFixture
   }
 }
 
-trait AlephiumFlowSpec extends AlephiumSpec with FlowFixture
+trait OxygeniumFlowSpec extends OxygeniumSpec with FlowFixture
 
-class AlephiumFlowActorSpec extends AlephiumActorSpec with AlephiumFlowSpec
+class OxygeniumFlowActorSpec extends OxygeniumActorSpec with OxygeniumFlowSpec

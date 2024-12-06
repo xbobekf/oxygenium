@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/ralphc/src/main/scala/org/alephium/ralphc/Config.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/ralphc/src/main/scala/org/oxygenium/ralphc/Config.scala)
 
-The code defines two case classes, `Configs` and `Config`, that are used to store and retrieve configuration options for the Alephium project's Ralph compiler. 
+The code defines two case classes, `Configs` and `Config`, that are used to store and retrieve configuration options for the Oxygenium project's Ralph compiler. 
 
 `Configs` is the main class and contains a set of default configuration options that can be overridden by the user. These options include whether to enable debugging, whether to treat warnings as errors, and whether to ignore certain types of warnings. Additionally, `Configs` contains two `ArraySeq` objects, `contracts` and `artifacts`, that specify the paths to the contracts and artifacts that the compiler should process. 
 
@@ -8,12 +8,12 @@ The code defines two case classes, `Configs` and `Config`, that are used to stor
 
 Finally, `Configs` contains a public method, `configs()`, that returns an array of `Config` objects. Each `Config` object contains a `CompilerOptions` object, a path to a contract file, and a path to an artifact file. These `Config` objects are used by the compiler to compile the specified contracts and generate the corresponding artifacts.
 
-Overall, this code provides a flexible and extensible way to configure and run the Alephium project's Ralph compiler. By allowing users to specify a set of configuration options and a list of contracts and artifacts to process, the compiler can be customized to fit a wide range of use cases. 
+Overall, this code provides a flexible and extensible way to configure and run the Oxygenium project's Ralph compiler. By allowing users to specify a set of configuration options and a list of contracts and artifacts to process, the compiler can be customized to fit a wide range of use cases. 
 
 Example usage:
 
 ```scala
-import org.alephium.ralphc._
+import org.oxygenium.ralphc._
 
 // create a new Configs object with custom options and paths
 val configs = Configs(

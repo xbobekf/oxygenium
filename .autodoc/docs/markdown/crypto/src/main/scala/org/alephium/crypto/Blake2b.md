@@ -1,19 +1,19 @@
-[View code on GitHub](https://github.com/alephium/alephium/crypto/src/main/scala/org/alephium/crypto/Blake2b.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/crypto/src/main/scala/org/oxygenium/crypto/Blake2b.scala)
 
 The code defines a class and an object related to the Blake2b cryptographic hash function. The purpose of this code is to provide a way to generate a Blake2b hash from a given input. 
 
 The `Blake2b` class takes a `ByteString` as input and extends the `RandomBytes` trait. It has a method `toByte32` which returns a `Byte32` object that represents the hash of the input. 
 
-The `Blake2b` object provides a factory method `provider()` that returns a new instance of the `Blake2bDigest` class from the Bouncy Castle library. This method is used internally by the `BCHashSchema` trait to generate a hash function that conforms to the Alephium hash schema. 
+The `Blake2b` object provides a factory method `provider()` that returns a new instance of the `Blake2bDigest` class from the Bouncy Castle library. This method is used internally by the `BCHashSchema` trait to generate a hash function that conforms to the Oxygenium hash schema. 
 
-The `Blake2b` object also extends the `BCHashSchema` trait, which defines a generic interface for hash functions used in the Alephium project. The `Blake2b` object provides an implementation of this interface for the Blake2b hash function. 
+The `Blake2b` object also extends the `BCHashSchema` trait, which defines a generic interface for hash functions used in the Oxygenium project. The `Blake2b` object provides an implementation of this interface for the Blake2b hash function. 
 
-Overall, this code provides a way to generate Blake2b hashes in a standardized way that conforms to the Alephium hash schema. This can be used in various parts of the project, such as verifying transactions or blocks. 
+Overall, this code provides a way to generate Blake2b hashes in a standardized way that conforms to the Oxygenium hash schema. This can be used in various parts of the project, such as verifying transactions or blocks. 
 
 Example usage:
 
 ```
-import org.alephium.crypto.Blake2b
+import org.oxygenium.crypto.Blake2b
 import akka.util.ByteString
 
 val input = ByteString("hello world")

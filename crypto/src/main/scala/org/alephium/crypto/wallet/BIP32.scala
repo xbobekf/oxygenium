@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.crypto.wallet
+package org.oxygenium.crypto.wallet
 
 import java.math.BigInteger
 import java.nio.charset.StandardCharsets
@@ -26,8 +26,8 @@ import org.bouncycastle.crypto.digests.SHA512Digest
 import org.bouncycastle.crypto.macs.HMac
 import org.bouncycastle.crypto.params.KeyParameter
 
-import org.alephium.crypto.{SecP256K1, SecP256K1PrivateKey, SecP256K1PublicKey}
-import org.alephium.util.{AVector, Bytes}
+import org.oxygenium.crypto.{SecP256K1, SecP256K1PrivateKey, SecP256K1PublicKey}
+import org.oxygenium.util.{AVector, Bytes}
 
 //scalastyle:off magic.number
 object BIP32 {
@@ -39,7 +39,7 @@ object BIP32 {
 
   def btcMasterKey(seed: ByteString): ExtendedPrivateKey = masterKey("Bitcoin seed", seed)
 
-  def alphMasterKey(seed: ByteString): ExtendedPrivateKey = masterKey("Alephium seed", seed)
+  def alphMasterKey(seed: ByteString): ExtendedPrivateKey = masterKey("Oxygenium seed", seed)
 
   def isHardened(index: Int): Boolean = index < 0
 

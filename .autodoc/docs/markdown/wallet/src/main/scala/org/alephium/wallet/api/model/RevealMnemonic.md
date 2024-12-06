@@ -1,10 +1,10 @@
-[View code on GitHub](https://github.com/alephium/alephium/wallet/src/main/scala/org/alephium/wallet/api/model/RevealMnemonic.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/wallet/src/main/scala/org/oxygenium/wallet/api/model/RevealMnemonic.scala)
 
-This file contains two case classes, `RevealMnemonic` and `RevealMnemonicResult`, which are used in the `org.alephium.wallet.api` package of the Alephium project. 
+This file contains two case classes, `RevealMnemonic` and `RevealMnemonicResult`, which are used in the `org.oxygenium.wallet.api` package of the Oxygenium project. 
 
 `RevealMnemonic` takes a single parameter, `password`, which is a string. This case class is used to reveal the mnemonic associated with a wallet. A mnemonic is a sequence of words that can be used to recover a wallet's private key. The `password` parameter is used to decrypt the mnemonic, which is stored in an encrypted format. 
 
-`RevealMnemonicResult` takes a single parameter, `mnemonic`, which is an instance of the `Mnemonic` class from the `org.alephium.crypto.wallet` package. This case class is used to return the decrypted mnemonic to the caller. 
+`RevealMnemonicResult` takes a single parameter, `mnemonic`, which is an instance of the `Mnemonic` class from the `org.oxygenium.crypto.wallet` package. This case class is used to return the decrypted mnemonic to the caller. 
 
 These case classes are likely used in the context of a REST API endpoint that allows a user to reveal their mnemonic. The endpoint would receive a request containing the user's password, and would use the `RevealMnemonic` case class to decrypt the mnemonic. The decrypted mnemonic would then be returned to the user in a response containing an instance of the `RevealMnemonicResult` case class. 
 
@@ -24,4 +24,4 @@ val revealMnemonicResult = RevealMnemonicResult(mnemonic)
    - This code is licensed under the GNU Lesser General Public License, version 3 or later.
 
 3. What is the `Mnemonic` class imported from?
-   - The `Mnemonic` class is imported from the `org.alephium.crypto.wallet` package, which suggests it is related to cryptocurrency wallet functionality.
+   - The `Mnemonic` class is imported from the `org.oxygenium.crypto.wallet` package, which suggests it is related to cryptocurrency wallet functionality.

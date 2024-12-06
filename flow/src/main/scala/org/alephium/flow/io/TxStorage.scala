@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
 import org.rocksdb.{ReadOptions, WriteOptions}
 
-import org.alephium.flow.core.BlockChain
-import org.alephium.flow.core.BlockChain.{TxIndex, TxIndexes}
-import org.alephium.io._
-import org.alephium.io.RocksDBSource.ColumnFamily
-import org.alephium.protocol.model.TransactionId
-import org.alephium.util.AVector
+import org.oxygenium.flow.core.BlockChain
+import org.oxygenium.flow.core.BlockChain.{TxIndex, TxIndexes}
+import org.oxygenium.io._
+import org.oxygenium.io.RocksDBSource.ColumnFamily
+import org.oxygenium.protocol.model.TransactionId
+import org.oxygenium.util.AVector
 
 trait TxStorage extends KeyValueStorage[TransactionId, TxIndexes] {
   def add(txId: TransactionId, txIndex: TxIndex): IOResult[Unit] = {

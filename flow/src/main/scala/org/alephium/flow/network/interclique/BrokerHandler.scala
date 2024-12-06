@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.interclique
+package org.oxygenium.flow.network.interclique
 
-import org.alephium.flow.Utils
-import org.alephium.flow.handler.{AllHandlers, DependencyHandler, FlowHandler, TxHandler}
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.network.{CliqueManager, InterCliqueManager}
-import org.alephium.flow.network.broker.{BrokerHandler => BaseBrokerHandler, MisbehaviorManager}
-import org.alephium.flow.network.sync.BlockFlowSynchronizer
-import org.alephium.protocol.message._
-import org.alephium.protocol.mining.PoW
-import org.alephium.protocol.model.{
+import org.oxygenium.flow.Utils
+import org.oxygenium.flow.handler.{AllHandlers, DependencyHandler, FlowHandler, TxHandler}
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.network.{CliqueManager, InterCliqueManager}
+import org.oxygenium.flow.network.broker.{BrokerHandler => BaseBrokerHandler, MisbehaviorManager}
+import org.oxygenium.flow.network.sync.BlockFlowSynchronizer
+import org.oxygenium.protocol.message._
+import org.oxygenium.protocol.mining.PoW
+import org.oxygenium.protocol.model.{
   Block,
   BlockHash,
   BrokerInfo,
@@ -32,7 +32,7 @@ import org.alephium.protocol.model.{
   TransactionId,
   TransactionTemplate
 }
-import org.alephium.util.{ActorRefT, AVector, Cache, Duration, TimeStamp}
+import org.oxygenium.util.{ActorRefT, AVector, Cache, Duration, TimeStamp}
 
 trait BrokerHandler extends BaseBrokerHandler {
   val maxBlockCapacity: Int              = brokerConfig.groupNumPerBroker * brokerConfig.groups * 10

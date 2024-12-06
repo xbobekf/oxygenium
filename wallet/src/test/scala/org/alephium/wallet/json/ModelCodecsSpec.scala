@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.json
+package org.oxygenium.wallet.json
 
 import org.scalatest.Assertion
 
-import org.alephium.api.model.{Amount, Destination}
-import org.alephium.crypto.wallet.Mnemonic
-import org.alephium.json.Json._
-import org.alephium.protocol.{ALPH, Hash, PublicKey}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model._
-import org.alephium.util._
-import org.alephium.wallet.api.model._
+import org.oxygenium.api.model.{Amount, Destination}
+import org.oxygenium.crypto.wallet.Mnemonic
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{ALPH, Hash, PublicKey}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model._
+import org.oxygenium.util._
+import org.oxygenium.wallet.api.model._
 
-class ModelCodecsSpec extends AlephiumSpec with ModelCodecs {
+class ModelCodecsSpec extends OxygeniumSpec with ModelCodecs {
 
   implicit val groupConfig: GroupConfig =
     new GroupConfig {

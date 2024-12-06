@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import scala.collection.immutable.ListMap
 
 import akka.util.ByteString
 
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig}
-import org.alephium.protocol.vm._
-import org.alephium.serde._
-import org.alephium.util.{AVector, EitherF, Math, TimeStamp, U256}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.vm._
+import org.oxygenium.serde._
+import org.oxygenium.util.{AVector, EitherF, Math, TimeStamp, U256}
 
 // scalastyle:off number.of.methods
 /** Up to one new token might be issued in each transaction exception for the coinbase transaction

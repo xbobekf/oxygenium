@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api
+package org.oxygenium.api
 
 import java.net.InetSocketAddress
 
@@ -23,15 +23,15 @@ import scala.util.{Failure, Success, Try}
 import akka.util.ByteString
 import upickle.core.Abort
 
-import org.alephium.api.UtilJson._
-import org.alephium.api.model._
-import org.alephium.crypto.wallet.Mnemonic
-import org.alephium.json.Json._
-import org.alephium.json.Json.{ReadWriter => RW}
-import org.alephium.protocol.{Hash, PublicKey, Signature}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model
-import org.alephium.protocol.model.{
+import org.oxygenium.api.UtilJson._
+import org.oxygenium.api.model._
+import org.oxygenium.crypto.wallet.Mnemonic
+import org.oxygenium.json.Json._
+import org.oxygenium.json.Json.{ReadWriter => RW}
+import org.oxygenium.protocol.{Hash, PublicKey, Signature}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model
+import org.oxygenium.protocol.model.{
   Address,
   BlockHash,
   CliqueId,
@@ -42,9 +42,9 @@ import org.alephium.protocol.model.{
   TokenId,
   TransactionId
 }
-import org.alephium.protocol.vm.{GasBox, GasPrice, StatefulContract}
-import org.alephium.serde.{deserialize, serialize, RandomBytes}
-import org.alephium.util._
+import org.oxygenium.protocol.vm.{GasBox, GasPrice, StatefulContract}
+import org.oxygenium.serde.{deserialize, serialize, RandomBytes}
+import org.oxygenium.util._
 
 // scalastyle:off number.of.methods
 // scalastyle:off number.of.types

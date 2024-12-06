@@ -1,10 +1,10 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/BlockHeaderChain.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/BlockHeaderChain.scala)
 
-This code defines a trait called `BlockHeaderChain` that provides functionality for managing a chain of block headers. It extends two other traits, `BlockHeaderPool` and `BlockHashChain`, and uses several other classes and traits from the `alephium` project.
+This code defines a trait called `BlockHeaderChain` that provides functionality for managing a chain of block headers. It extends two other traits, `BlockHeaderPool` and `BlockHashChain`, and uses several other classes and traits from the `oxygenium` project.
 
 The `BlockHeaderChain` trait defines methods for retrieving and caching block headers, adding new headers to the chain, checking the completeness and canonicality of the chain, and getting data for synchronizing with other nodes. It also includes methods for checking the indexing of block hashes and for cleaning up invalid tips.
 
-The `BlockHeaderChain` trait is used in the `alephium` project to manage the chain of block headers for the Alephium blockchain. It is likely used in conjunction with other components of the project to manage the state of the blockchain and validate new blocks.
+The `BlockHeaderChain` trait is used in the `oxygenium` project to manage the chain of block headers for the Oxygenium blockchain. It is likely used in conjunction with other components of the project to manage the state of the blockchain and validate new blocks.
 
 Here is an example of how the `getBlockHeader` method might be used:
 
@@ -25,4 +25,4 @@ result match {
 - The code is licensed under the GNU Lesser General Public License version 3 or later.
 
 3. What other packages and libraries are imported in this code?
-- The code imports several packages and libraries including `scala.annotation.tailrec`, `com.typesafe.scalalogging`, `org.alephium.flow`, `org.alephium.io`, `org.alephium.protocol`, `org.alephium.util`, and others.
+- The code imports several packages and libraries including `scala.annotation.tailrec`, `com.typesafe.scalalogging`, `org.oxygenium.flow`, `org.oxygenium.io`, `org.oxygenium.protocol`, `org.oxygenium.util`, and others.

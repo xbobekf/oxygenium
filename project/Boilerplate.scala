@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -80,7 +80,7 @@ object Boilerplate {
   val templatesTest: Seq[Template] = Seq(GenProductSerdeTest)
 
   object GenProductSerde extends Template {
-    override def filename(root: File): File = root / "org" / "alephium" / "ProductSerde.scala"
+    override def filename(root: File): File = root / "org" / "oxygenium" / "ProductSerde.scala"
 
     // scalastyle:off method.length
     override def content(tv: TemplateVals): String = {
@@ -101,7 +101,7 @@ object Boilerplate {
       val deVals = arities.map(n => s"pair$n.value").mkString(", ")
 
       block"""
-        |package org.alephium.serde
+        |package org.oxygenium.serde
         |
         |import akka.util.ByteString
         |
@@ -141,7 +141,7 @@ object Boilerplate {
   }
 
   object GenProductSerializer extends Template {
-    override def filename(root: File): File = root / "org" / "alephium" / "ProductSerializer.scala"
+    override def filename(root: File): File = root / "org" / "oxygenium" / "ProductSerializer.scala"
 
     // scalastyle:off method.length
     override def content(tv: TemplateVals): String = {
@@ -163,7 +163,7 @@ object Boilerplate {
       val deVals = arities.map(n => s"pair$n.value").mkString(", ")
 
       block"""
-        |package org.alephium.serde
+        |package org.oxygenium.serde
         |
         |import akka.util.ByteString
         |
@@ -191,7 +191,7 @@ object Boilerplate {
   }
 
   object GenProductSerdeTest extends TemplateTest {
-    override def filename(root: File): File = root / "org" / "alephium" / "ProductSerdeSpec.scala"
+    override def filename(root: File): File = root / "org" / "oxygenium" / "ProductSerdeSpec.scala"
 
     override def content(tv: TemplateVals): String = {
       import tv._
@@ -201,11 +201,11 @@ object Boilerplate {
       val accesses = synVals.map(v => s"t.$v").mkString(", ")
 
       block"""
-        |package org.alephium.serde
+        |package org.oxygenium.serde
         |
-        |import org.alephium.util.AlephiumSpec
+        |import org.oxygenium.util.OxygeniumSpec
         |
-        |class ProductSerdeSpec extends AlephiumSpec {
+        |class ProductSerdeSpec extends OxygeniumSpec {
         |
         |  behavior of "Serde for case class"
         +

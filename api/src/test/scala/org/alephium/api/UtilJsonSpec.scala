@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api
+package org.oxygenium.api
 
 import java.math.BigInteger
 import java.net.InetSocketAddress
@@ -23,8 +23,8 @@ import akka.util.ByteString
 import org.scalacheck.Gen
 import org.scalatest.Assertion
 
-import org.alephium.json.Json._
-import org.alephium.util.{AlephiumSpec, AVector, TimeStamp}
+import org.oxygenium.json.Json._
+import org.oxygenium.util.{OxygeniumSpec, AVector, TimeStamp}
 
 case class Foo(bar: ByteString)
 object Foo {
@@ -32,7 +32,7 @@ object Foo {
   implicit val rw: ReadWriter[Foo] = macroRW
 }
 
-class UtilJsonSpec extends AlephiumSpec {
+class UtilJsonSpec extends OxygeniumSpec {
   import UtilJson._
 
   def check[T: Reader: Writer](input: T, rawJson: String): Assertion = {

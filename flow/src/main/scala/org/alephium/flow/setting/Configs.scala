@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.setting
+package org.oxygenium.flow.setting
 
 import java.io.File
 import java.nio.file.{Files => JFiles, Path}
@@ -24,11 +24,11 @@ import scala.util.control.Exception.allCatch
 import com.typesafe.config.{Config, ConfigException, ConfigFactory}
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.protocol.config.{ConsensusConfigs, GroupConfig, NetworkConfig}
-import org.alephium.protocol.model.{Block, ChainIndex, NetworkId, Transaction}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.serde.deserialize
-import org.alephium.util._
+import org.oxygenium.protocol.config.{ConsensusConfigs, GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.model.{Block, ChainIndex, NetworkId, Transaction}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.serde.deserialize
+import org.oxygenium.util._
 
 @SuppressWarnings(Array("org.wartremover.warts.OptionPartial"))
 object Configs extends StrictLogging {
@@ -99,9 +99,9 @@ object Configs extends StrictLogging {
     }
 
   def parseNetworkId(config: Config): Either[String, NetworkId] = {
-    val keyPath = "alephium.network.network-id"
+    val keyPath = "oxygenium.network.network-id"
     if (!config.hasPath(keyPath)) {
-      Right(NetworkId.AlephiumMainNet)
+      Right(NetworkId.OxygeniumMainNet)
     } else {
       val id = config.getInt(keyPath)
       NetworkId.from(id).toRight(s"Invalid chain id: $id")
@@ -110,7 +110,7 @@ object Configs extends StrictLogging {
 
   @SuppressWarnings(Array("org.wartremover.warts.ToString"))
   def checkRootPath(rootPath: Path, networkId: NetworkId): Either[String, Unit] = {
-    if (rootPath.toString.contains("mainnet") && networkId != NetworkId.AlephiumMainNet) {
+    if (rootPath.toString.contains("mainnet") && networkId != NetworkId.OxygeniumMainNet) {
       Left("The network is not mainnet, but the path contains mainnet")
     } else {
       Right(())
@@ -126,7 +126,7 @@ object Configs extends StrictLogging {
   }
 
   def updateGenesis(networkId: NetworkId, networkConfig: Config): Config = {
-    if (networkId == NetworkId.AlephiumMainNet) {
+    if (networkId == NetworkId.OxygeniumMainNet) {
       val genesisResource = this.getClass.getResource("/mainnet_genesis.conf")
       val genesis         = ConfigFactory.parseURL(genesisResource)
       networkConfig.withFallback(genesis)
@@ -156,13 +156,13 @@ object Configs extends StrictLogging {
 
   def parseConfigAndValidate(env: Env, rootPath: Path, overwrite: Boolean): Config = {
     val config = parseConfig(env, rootPath, overwrite, ConfigFactory.empty())
-    if (!config.hasPath("alephium.discovery.bootstrap")) {
+    if (!config.hasPath("oxygenium.discovery.bootstrap")) {
       logger.error(s"""|The bootstrap nodes are not defined!
                        |
                        |Please set the bootstrap nodes in $rootPath/user.conf and try again.
                        |
                        |Example:
-                       |alephium.discovery.bootstrap = ["1.2.3.4:1234"] (or [] for test purpose)
+                       |oxygenium.discovery.bootstrap = ["1.2.3.4:1234"] (or [] for test purpose)
                   """.stripMargin)
       sys.exit(1)
     } else {

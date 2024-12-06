@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.util
+package org.oxygenium.util
 
 import java.math.BigInteger
 
-class NumberSpec extends AlephiumSpec {
+class NumberSpec extends OxygeniumSpec {
   it should "check positivity of big integer" in {
     Number.isPositive(BigInteger.ONE) is true
     Number.nonPositive(BigInteger.ONE) is false

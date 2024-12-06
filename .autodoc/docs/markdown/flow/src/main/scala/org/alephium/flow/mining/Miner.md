@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/mining/Miner.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/mining/Miner.scala)
 
 This file contains the implementation of the Miner class and its associated Command object. The Miner class is an Akka actor that handles mining tasks and maintains the state of the mining process. The Command object defines the messages that can be sent to the Miner actor.
 
@@ -8,7 +8,7 @@ The Miner class also provides methods for validating addresses and handling mini
 
 The Command object defines several case classes that represent messages that can be sent to the Miner actor. The `IsMining` case object is used to query the Miner actor to determine if mining is currently in progress. The `Start` and `Stop` case objects are used to start and stop mining, respectively. The `Mine` case class is used to initiate a new mining task. The `NewBlockSolution` case class is used to notify the Miner actor that a new block has been mined. The `MiningNoBlock` case class is used to notify the Miner actor that a mining task has completed without finding a block.
 
-Overall, this file provides the core functionality for mining blocks in the Alephium project. The Miner actor handles mining tasks and maintains the state of the mining process, while the Command object defines the messages that can be sent to the Miner actor. The `mine` method provides the actual implementation of the mining algorithm.
+Overall, this file provides the core functionality for mining blocks in the Oxygenium project. The Miner actor handles mining tasks and maintains the state of the mining process, while the Command object defines the messages that can be sent to the Miner actor. The `mine` method provides the actual implementation of the mining algorithm.
 ## Questions: 
  1. What is the purpose of the `Miner` object?
 - The `Miner` object contains several functions and a sealed trait that define commands for mining, validating addresses, and handling mining tasks. It also defines a `mine` function that takes a `ChainIndex` and a `MiningBlob` and returns an optional tuple of a `Block` and a `U256` representing the mining count.

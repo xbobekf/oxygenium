@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/ErrorExamples.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/ErrorExamples.scala)
 
-This file defines a trait called `ErrorExamples` that provides examples of different types of errors that can be returned by the Alephium API. The trait extends another trait called `Examples`, which is not defined in this file. 
+This file defines a trait called `ErrorExamples` that provides examples of different types of errors that can be returned by the Oxygenium API. The trait extends another trait called `Examples`, which is not defined in this file. 
 
 The `ErrorExamples` trait defines implicit values for different types of errors, each of which is a list of `Example` objects. These `Example` objects provide sample data for each type of error, which can be used for testing and documentation purposes. 
 
@@ -8,10 +8,10 @@ For example, the `badRequestExamples` value provides a list of `Example` objects
 
 Other error types that are defined in this file include `InternalServerError`, `Unauthorized`, and `ServiceUnavailable`. Each of these error types has its own list of `Example` objects that provide sample data for that error type. 
 
-Overall, this file is a small part of the Alephium project's API implementation, providing sample data for different types of errors that can be returned by the API. These examples can be used for testing and documentation purposes to ensure that the API behaves as expected and that clients can handle different types of errors appropriately.
+Overall, this file is a small part of the Oxygenium project's API implementation, providing sample data for different types of errors that can be returned by the API. These examples can be used for testing and documentation purposes to ensure that the API behaves as expected and that clients can handle different types of errors appropriately.
 ## Questions: 
  1. What is the purpose of the `ErrorExamples` trait?
-- The `ErrorExamples` trait provides examples of different types of API errors that can occur in the `alephium` project.
+- The `ErrorExamples` trait provides examples of different types of API errors that can occur in the `oxygenium` project.
 
 2. What is the `simpleExample` method used for?
 - The `simpleExample` method is used to create a list of examples for a given API error type.

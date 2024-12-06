@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,30 +14,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import scala.collection.mutable
 import scala.reflect.ClassTag
 
 import akka.actor.Props
 
-import org.alephium.flow.Utils
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.handler.AllHandlers.BlockNotify
-import org.alephium.flow.io.PendingTxStorage
-import org.alephium.flow.mempool.MemPool
-import org.alephium.flow.mining.Miner
-import org.alephium.flow.model.{DataOrigin, PersistedTxId}
-import org.alephium.flow.network.{InterCliqueManager, IntraCliqueManager}
-import org.alephium.flow.network.broker.BrokerHandler
-import org.alephium.flow.network.sync.FetchState
-import org.alephium.flow.setting.{MemPoolSetting, NetworkSetting}
-import org.alephium.flow.validation._
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig}
-import org.alephium.protocol.message.{Message, NewBlock}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.{LockupScript, LogConfig}
-import org.alephium.util._
+import org.oxygenium.flow.Utils
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.handler.AllHandlers.BlockNotify
+import org.oxygenium.flow.io.PendingTxStorage
+import org.oxygenium.flow.mempool.MemPool
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.flow.model.{DataOrigin, PersistedTxId}
+import org.oxygenium.flow.network.{InterCliqueManager, IntraCliqueManager}
+import org.oxygenium.flow.network.broker.BrokerHandler
+import org.oxygenium.flow.network.sync.FetchState
+import org.oxygenium.flow.setting.{MemPoolSetting, NetworkSetting}
+import org.oxygenium.flow.validation._
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig}
+import org.oxygenium.protocol.message.{Message, NewBlock}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.{LockupScript, LogConfig}
+import org.oxygenium.util._
 
 object TxHandler {
   def props(
@@ -137,7 +137,7 @@ object TxHandler {
       mineTxForDev(blockFlow, chainIndex, publishBlock)
     } else {
       Left(
-        "CPU mining for dev is not enabled, please turn it on in config:\n alephium.mempool.auto-mine-for-dev = true"
+        "CPU mining for dev is not enabled, please turn it on in config:\n oxygenium.mempool.auto-mine-for-dev = true"
       )
     }
   }

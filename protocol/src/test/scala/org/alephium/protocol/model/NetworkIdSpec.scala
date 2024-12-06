@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
-import org.alephium.util.AlephiumSpec
+import org.oxygenium.util.OxygeniumSpec
 
-class NetworkIdSpec extends AlephiumSpec {
+class NetworkIdSpec extends OxygeniumSpec {
   it should "return the right node folder" in {
-    NetworkId.AlephiumMainNet.nodeFolder is "mainnet"
-    NetworkId.AlephiumTestNet.nodeFolder is "testnet"
-    NetworkId.AlephiumDevNet.nodeFolder is "network-2"
+    NetworkId.OxygeniumMainNet.nodeFolder is "mainnet"
+    NetworkId.OxygeniumTestNet.nodeFolder is "testnet"
+    NetworkId.OxygeniumDevNet.nodeFolder is "network-2"
   }
 }

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.tools
+package org.oxygenium.tools
 
 import java.nio.file.{Files, StandardCopyOption}
 
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.flow.client.Node
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.setting.Platform
-import org.alephium.flow.validation.{BlockValidation, BlockValidationResult}
-import org.alephium.io.{IOResult, IOUtils}
-import org.alephium.util.{Files => AFiles, TimeStamp}
+import org.oxygenium.flow.client.Node
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.setting.Platform
+import org.oxygenium.flow.validation.{BlockValidation, BlockValidationResult}
+import org.oxygenium.io.{IOResult, IOUtils}
+import org.oxygenium.util.{Files => AFiles, TimeStamp}
 
 class ReplayBlockFlow(
     val sourceBlockFlow: BlockFlow,
@@ -76,7 +76,7 @@ class ReplayBlockFlow(
 object ReplayBlockFlow extends App with StrictLogging {
   private val sourcePath = Platform.getRootPath()
   private val targetPath = {
-    val path = AFiles.homeDir.resolve(".alephium-replay")
+    val path = AFiles.homeDir.resolve(".oxygenium-replay")
     path.toFile.mkdir()
     Files.copy(
       sourcePath.resolve("user.conf"),

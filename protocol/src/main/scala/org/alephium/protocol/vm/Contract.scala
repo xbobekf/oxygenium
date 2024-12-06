@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import java.math.BigInteger
 
@@ -23,13 +23,13 @@ import scala.collection.mutable
 
 import akka.util.ByteString
 
-import org.alephium.io.IOError
-import org.alephium.macros.HashSerde
-import org.alephium.protocol.Hash
-import org.alephium.protocol.model.{ContractId, HardFork}
-import org.alephium.serde
-import org.alephium.serde._
-import org.alephium.util.{AVector, Bytes, EitherF, Hex}
+import org.oxygenium.io.IOError
+import org.oxygenium.macros.HashSerde
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.model.{ContractId, HardFork}
+import org.oxygenium.serde
+import org.oxygenium.serde._
+import org.oxygenium.util.{AVector, Bytes, EitherF, Hex}
 
 final case class Method[Ctx <: StatelessContext](
     isPublic: Boolean,

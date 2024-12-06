@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api.model
+package org.oxygenium.api.model
 
 import scala.jdk.CollectionConverters.IteratorHasAsScala
 
-import org.alephium.protocol.Hash
-import org.alephium.protocol.model.ReleaseVersion
-import org.alephium.protocol.vm
-import org.alephium.protocol.vm.StatefulContext
-import org.alephium.ralph.{Ast, CompiledContract, CompiledScript, Warning => CompilerWarning}
-import org.alephium.serde.serialize
-import org.alephium.util.{AVector, DiffMatchPatch, Hex}
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.model.ReleaseVersion
+import org.oxygenium.protocol.vm
+import org.oxygenium.protocol.vm.StatefulContext
+import org.oxygenium.ralph.{Ast, CompiledContract, CompiledScript, Warning => CompilerWarning}
+import org.oxygenium.serde.serialize
+import org.oxygenium.util.{AVector, DiffMatchPatch, Hex}
 
 final case class CompileScriptResult(
     version: String,

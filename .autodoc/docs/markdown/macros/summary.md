@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/macros)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/macros)
 
-The `.autodoc/docs/json/macros` folder contains Scala macros and annotations that help generate boilerplate code and improve code efficiency in the Alephium project. These macros and annotations are used to automatically generate code for serialization, hashing, enumeration of sealed traits, and C-style for loops.
+The `.autodoc/docs/json/macros` folder contains Scala macros and annotations that help generate boilerplate code and improve code efficiency in the Oxygenium project. These macros and annotations are used to automatically generate code for serialization, hashing, enumeration of sealed traits, and C-style for loops.
 
 1. **ByteCode.scala**: This file defines a `ByteCode` macro annotation that adds a `code` method to case classes, returning a `Byte` value from the companion object. This can be useful when you need to associate a unique byte code with each case class instance.
 
@@ -24,7 +24,7 @@ The `.autodoc/docs/json/macros` folder contains Scala macros and annotations tha
    val fruits = EnumerationMacros.sealedInstancesOf[Fruit]
    ```
 
-3. **Gas.scala**: This file defines a `Gas` macro annotation that adds a `gas()` method to a trait and its companion object, returning a `GasBox` object. This can be useful when you need to associate a gas cost with certain operations in the Alephium project.
+3. **Gas.scala**: This file defines a `Gas` macro annotation that adds a `gas()` method to a trait and its companion object, returning a `GasBox` object. This can be useful when you need to associate a gas cost with certain operations in the Oxygenium project.
 
    Example usage:
    ```scala
@@ -39,7 +39,7 @@ The `.autodoc/docs/json/macros` folder contains Scala macros and annotations tha
 
    Example usage:
    ```scala
-   import org.alephium.macros.HPC._
+   import org.oxygenium.macros.HPC._
 
    cfor(0)(_ < 10, _ + 1) { i =>
      println(i)
@@ -50,7 +50,7 @@ The `.autodoc/docs/json/macros` folder contains Scala macros and annotations tha
 
    Example usage:
    ```scala
-   import org.alephium.macros.HashSerde
+   import org.oxygenium.macros.HashSerde
 
    @HashSerde
    case class Person(name: String, age: Int)
@@ -61,4 +61,4 @@ The `.autodoc/docs/json/macros` folder contains Scala macros and annotations tha
    val shortHex = person.shortHex
    ```
 
-These macros and annotations help reduce boilerplate code, improve code efficiency, and simplify the development process in the Alephium project. They can be used in various parts of the project where serialization, hashing, enumeration, and efficient looping are required.
+These macros and annotations help reduce boilerplate code, improve code efficiency, and simplify the development process in the Oxygenium project. They can be used in various parts of the project where serialization, hashing, enumeration, and efficient looping are required.

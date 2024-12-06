@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/benchmark/src/main/scala/org/alephium/benchmark/CryptoBench.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/benchmark/src/main/scala/org/oxygenium/benchmark/CryptoBench.scala)
 
-The `CryptoBench` class is a benchmarking tool for cryptographic hash functions and digital signature algorithms. It imports several cryptographic hash functions and digital signature algorithms from the `org.alephium.crypto` package. The class is annotated with `@BenchmarkMode`, `@OutputTimeUnit`, and `@State` annotations. 
+The `CryptoBench` class is a benchmarking tool for cryptographic hash functions and digital signature algorithms. It imports several cryptographic hash functions and digital signature algorithms from the `org.oxygenium.crypto` package. The class is annotated with `@BenchmarkMode`, `@OutputTimeUnit`, and `@State` annotations. 
 
 The `@BenchmarkMode` annotation specifies the benchmark mode to be used. In this case, the mode is set to `Mode.Throughput`, which measures the number of operations per unit of time. The `@OutputTimeUnit` annotation specifies the time unit to be used for the benchmark results. In this case, the time unit is set to `TimeUnit.MILLISECONDS`. The `@State` annotation specifies the scope of the benchmark state. In this case, the scope is set to `Scope.Thread`, which means that each thread executing the benchmark will have its own instance of the `CryptoBench` class.
 
@@ -16,7 +16,7 @@ This benchmarking tool can be used to compare the performance of different crypt
    - This code is a benchmark for cryptographic hash functions and signature verification using the SecP256K1 algorithm.
 
 2. What libraries and dependencies are being used in this code?
-   - This code imports libraries such as `java.util.concurrent.TimeUnit`, `akka.util.ByteString`, `org.openjdk.jmh.annotations`, and `org.openjdk.jmh.infra.Blackhole`. It also uses cryptographic functions from `org.alephium.crypto` such as `Blake2b`, `Blake3`, `Keccak256`, `SecP256K1`, and `Sha256`.
+   - This code imports libraries such as `java.util.concurrent.TimeUnit`, `akka.util.ByteString`, `org.openjdk.jmh.annotations`, and `org.openjdk.jmh.infra.Blackhole`. It also uses cryptographic functions from `org.oxygenium.crypto` such as `Blake2b`, `Blake3`, `Keccak256`, `SecP256K1`, and `Sha256`.
 
 3. What license is this code released under?
    - This code is released under the GNU Lesser General Public License, version 3 or later.

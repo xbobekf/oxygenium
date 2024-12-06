@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import java.math.BigInteger
 
-import org.alephium.flow.Utils
-import org.alephium.flow.setting.{ConsensusSetting, ConsensusSettings}
-import org.alephium.io.{IOResult, IOUtils}
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.{BrokerConfig, NetworkConfig}
-import org.alephium.protocol.model._
-import org.alephium.util.{AVector, Cache, Duration, Math, TimeStamp}
+import org.oxygenium.flow.Utils
+import org.oxygenium.flow.setting.{ConsensusSetting, ConsensusSettings}
+import org.oxygenium.io.{IOResult, IOUtils}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.{BrokerConfig, NetworkConfig}
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{AVector, Cache, Duration, Math, TimeStamp}
 
 trait FlowDifficultyAdjustment {
   implicit def brokerConfig: BrokerConfig

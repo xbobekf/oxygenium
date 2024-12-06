@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/TestContract.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/TestContract.scala)
 
-This file contains the implementation of a `TestContract` class and a `Complete` case class. The purpose of this code is to provide a way to test smart contracts in the Alephium project. 
+This file contains the implementation of a `TestContract` class and a `Complete` case class. The purpose of this code is to provide a way to test smart contracts in the Oxygenium project. 
 
 The `TestContract` class takes in various parameters such as `group`, `blockHash`, `blockTimeStamp`, `txId`, `address`, `bytecode`, `initialImmFields`, `initialMutFields`, `initialAsset`, `methodIndex`, `args`, `existingContracts`, and `inputAssets`. These parameters are used to create a new instance of the `TestContract` class. The `toComplete()` method is then called on this instance to convert it to a `Complete` instance. 
 
@@ -8,7 +8,7 @@ The `Complete` case class contains various parameters such as `group`, `blockHas
 
 The `toComplete()` method checks if the `methodIndex` is valid and then creates a new instance of the `Complete` case class using the parameters of the `TestContract` instance. 
 
-This code can be used to test smart contracts in the Alephium project. Developers can create a new instance of the `TestContract` class with the required parameters and then call the `toComplete()` method to get a complete instance of the `TestContract` class. This complete instance can then be used to test the smart contract. 
+This code can be used to test smart contracts in the Oxygenium project. Developers can create a new instance of the `TestContract` class with the required parameters and then call the `toComplete()` method to get a complete instance of the `TestContract` class. This complete instance can then be used to test the smart contract. 
 
 For example, a developer can create a new instance of the `TestContract` class as follows:
 

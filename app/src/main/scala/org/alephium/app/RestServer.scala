@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import scala.collection.immutable.ArraySeq
 import scala.concurrent._
@@ -27,14 +27,14 @@ import io.vertx.ext.web.handler.CorsHandler
 import sttp.tapir.server.vertx.VertxFutureServerInterpreter
 import sttp.tapir.server.vertx.VertxFutureServerInterpreter._
 
-import org.alephium.api.OpenAPIWriters.openApiJson
-import org.alephium.flow.client.Node
-import org.alephium.flow.mining.Miner
-import org.alephium.http.{EndpointSender, ServerOptions, SwaggerUI}
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.NetworkId
-import org.alephium.util._
-import org.alephium.wallet.web.WalletServer
+import org.oxygenium.api.OpenAPIWriters.openApiJson
+import org.oxygenium.flow.client.Node
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.http.{EndpointSender, ServerOptions, SwaggerUI}
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.NetworkId
+import org.oxygenium.util._
+import org.oxygenium.wallet.web.WalletServer
 
 // scalastyle:off method.length
 class RestServer(
@@ -61,7 +61,7 @@ class RestServer(
 
   val endpointSender: EndpointSender = new EndpointSender(apiKeys.headOption)
 
-  private val truncateAddresses = node.config.network.networkId == NetworkId.AlephiumMainNet
+  private val truncateAddresses = node.config.network.networkId == NetworkId.OxygeniumMainNet
   private val swaggerUiRoute = SwaggerUI(
     openApiJson(openAPI, apiKeys.isEmpty, truncateAddresses)
   ).map(route(_))

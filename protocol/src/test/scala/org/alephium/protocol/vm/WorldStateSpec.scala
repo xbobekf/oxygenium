@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import akka.util.ByteString
 import org.scalacheck.Gen
 
-import org.alephium.io.{IOResult, RocksDBSource, StorageFixture}
-import org.alephium.protocol.Hash
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.event.LogStorage
-import org.alephium.protocol.vm.nodeindexes.NodeIndexesStorage
-import org.alephium.protocol.vm.subcontractindex.SubContractIndexStorage
-import org.alephium.serde.{avectorSerde, eitherSerde, intSerde}
-import org.alephium.util.{AlephiumSpec, AVector}
+import org.oxygenium.io.{IOResult, RocksDBSource, StorageFixture}
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.event.LogStorage
+import org.oxygenium.protocol.vm.nodeindexes.NodeIndexesStorage
+import org.oxygenium.protocol.vm.subcontractindex.SubContractIndexStorage
+import org.oxygenium.serde.{avectorSerde, eitherSerde, intSerde}
+import org.oxygenium.util.{OxygeniumSpec, AVector}
 
-class WorldStateSpec extends AlephiumSpec with NoIndexModelGenerators with StorageFixture {
+class WorldStateSpec extends OxygeniumSpec with NoIndexModelGenerators with StorageFixture {
   def generateAsset: Gen[(TxOutputRef, TxOutput)] = {
     for {
       groupIndex     <- groupIndexGen

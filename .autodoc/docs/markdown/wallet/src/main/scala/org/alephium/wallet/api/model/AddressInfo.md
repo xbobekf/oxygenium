@@ -1,14 +1,14 @@
-[View code on GitHub](https://github.com/alephium/alephium/wallet/src/main/scala/org/alephium/wallet/api/model/AddressInfo.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/wallet/src/main/scala/org/oxygenium/wallet/api/model/AddressInfo.scala)
 
-This code defines a case class called `AddressInfo` and an object with the same name. The `AddressInfo` case class has four fields: `address`, `publicKey`, `group`, and `path`. The `address` field is of type `Address.Asset`, which is a type alias for `Address`. The `publicKey` field is of type `PublicKey`, which is defined in the `org.alephium.protocol` package. The `group` field is of type `GroupIndex`, which is also defined in the `org.alephium.protocol` package. The `path` field is of type `String`.
+This code defines a case class called `AddressInfo` and an object with the same name. The `AddressInfo` case class has four fields: `address`, `publicKey`, `group`, and `path`. The `address` field is of type `Address.Asset`, which is a type alias for `Address`. The `publicKey` field is of type `PublicKey`, which is defined in the `org.oxygenium.protocol` package. The `group` field is of type `GroupIndex`, which is also defined in the `org.oxygenium.protocol` package. The `path` field is of type `String`.
 
 The `AddressInfo` object has a single method called `from` that takes an `ExtendedPrivateKey` and an implicit `GroupConfig` as arguments and returns an `AddressInfo`. The `from` method first extracts the public key from the given private key using the `extendedPublicKey` method of `ExtendedPrivateKey`. It then generates an address from the public key using the `p2pkh` method of `Address`. The `group` field of the resulting `AddressInfo` is set to the group index of the generated address, and the `path` field is set to the derivation path of the given private key.
 
 This code is likely used in the larger project to generate `AddressInfo` objects from private keys. These objects can then be used to represent information about addresses, such as their public keys, group indices, and derivation paths. For example, the `AddressInfo` objects could be used to display information about addresses in a user interface or to construct transactions that spend from those addresses. Here is an example of how the `from` method could be used:
 
 ```
-import org.alephium.crypto.wallet.BIP32.ExtendedPrivateKey
-import org.alephium.protocol.config.GroupConfig
+import org.oxygenium.crypto.wallet.BIP32.ExtendedPrivateKey
+import org.oxygenium.protocol.config.GroupConfig
 
 val privateKey = ExtendedPrivateKey.fromString("xprv...")
 implicit val config: GroupConfig = GroupConfig.testnet

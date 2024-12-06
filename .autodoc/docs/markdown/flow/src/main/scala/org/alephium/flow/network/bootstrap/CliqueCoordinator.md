@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/bootstrap/CliqueCoordinator.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/bootstrap/CliqueCoordinator.scala)
 
-The code defines the `CliqueCoordinator` class, which is responsible for coordinating the connection of brokers in the Alephium network. The class receives information about the brokers and waits for all of them to be connected before broadcasting the clique information to all the brokers. Once all the brokers are ready, the class broadcasts a `Ready` message to all the brokers and waits for them to acknowledge receipt of the message. Once all the brokers have acknowledged receipt of the message, the class broadcasts the clique information to all the brokers and waits for them to terminate the connection. Once all the brokers have terminated the connection, the class sends the clique information to the bootstrapper and stops itself.
+The code defines the `CliqueCoordinator` class, which is responsible for coordinating the connection of brokers in the Oxygenium network. The class receives information about the brokers and waits for all of them to be connected before broadcasting the clique information to all the brokers. Once all the brokers are ready, the class broadcasts a `Ready` message to all the brokers and waits for them to acknowledge receipt of the message. Once all the brokers have acknowledged receipt of the message, the class broadcasts the clique information to all the brokers and waits for them to terminate the connection. Once all the brokers have terminated the connection, the class sends the clique information to the bootstrapper and stops itself.
 
 The `CliqueCoordinator` class has three states: `awaitBrokers`, `awaitAck`, and `awaitTerminated`. In the `awaitBrokers` state, the class waits for the brokers to connect and sends the broker information to the `BrokerConnector` actor. In the `awaitAck` state, the class waits for the brokers to acknowledge receipt of the `Ready` message. In the `awaitTerminated` state, the class waits for the brokers to terminate the connection.
 
@@ -19,7 +19,7 @@ val cliqueCoordinator = system.actorOf(CliqueCoordinator.props(bootstrapper, pri
 ```
 ## Questions: 
  1. What is the purpose of the `CliqueCoordinator` class?
-- The `CliqueCoordinator` class is responsible for coordinating the connection and communication between brokers in the Alephium network.
+- The `CliqueCoordinator` class is responsible for coordinating the connection and communication between brokers in the Oxygenium network.
 
 2. What is the `Ready` event used for?
 - The `Ready` event is used to indicate that all brokers in the network have successfully connected and are ready to communicate with each other.

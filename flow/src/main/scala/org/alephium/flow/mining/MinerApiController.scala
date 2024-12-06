@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mining
+package org.oxygenium.flow.mining
 
 import java.net.InetSocketAddress
 
@@ -25,15 +25,15 @@ import akka.actor.{ActorRef, Props, Terminated}
 import akka.io.{IO, Tcp}
 import akka.util.ByteString
 
-import org.alephium.flow.handler.{AllHandlers, BlockChainHandler, ViewHandler}
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.flow.network.broker.ConnectionHandler
-import org.alephium.flow.setting.{MiningSetting, NetworkSetting}
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig}
-import org.alephium.protocol.mining.PoW
-import org.alephium.protocol.model.{BlockHash, ChainIndex, Nonce}
-import org.alephium.serde.{avectorSerde, serialize, SerdeResult, Staging}
-import org.alephium.util.{ActorRefT, AVector, BaseActor, Cache, Hex}
+import org.oxygenium.flow.handler.{AllHandlers, BlockChainHandler, ViewHandler}
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.flow.network.broker.ConnectionHandler
+import org.oxygenium.flow.setting.{MiningSetting, NetworkSetting}
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig}
+import org.oxygenium.protocol.mining.PoW
+import org.oxygenium.protocol.model.{BlockHash, ChainIndex, Nonce}
+import org.oxygenium.serde.{avectorSerde, serialize, SerdeResult, Staging}
+import org.oxygenium.util.{ActorRefT, AVector, BaseActor, Cache, Hex}
 
 object MinerApiController {
   def props(allHandlers: AllHandlers)(implicit

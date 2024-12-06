@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,24 +14,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.tools
+package org.oxygenium.tools
 
 import java.nio.file.Path
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.io.Storages
-import org.alephium.flow.setting.{AlephiumConfig, Configs, Platform}
-import org.alephium.io.RocksDBSource.ProdSettings
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.mining.HashRate
-import org.alephium.protocol.model.{BlockDeps, Target}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util.{Env, Math}
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.io.Storages
+import org.oxygenium.flow.setting.{OxygeniumConfig, Configs, Platform}
+import org.oxygenium.io.RocksDBSource.ProdSettings
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.mining.HashRate
+import org.oxygenium.protocol.model.{BlockDeps, Target}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util.{Env, Math}
 
 object ValidateDifficultyBombPatch extends App {
   private val rootPath: Path = Platform.getRootPath()
   private val typesafeConfig = Configs.parseConfigAndValidate(Env.Prod, rootPath, overwrite = true)
-  implicit private val config: AlephiumConfig = AlephiumConfig.load(typesafeConfig, "alephium")
+  implicit private val config: OxygeniumConfig = OxygeniumConfig.load(typesafeConfig, "oxygenium")
   private val dbPath                          = rootPath.resolve("mainnet")
   private val storages =
     Storages.createUnsafe(dbPath, "db", ProdSettings.writeOptions)(config.broker, config.node)

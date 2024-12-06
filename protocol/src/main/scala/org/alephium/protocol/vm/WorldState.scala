@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import akka.util.ByteString
 
-import org.alephium.io._
-import org.alephium.protocol.Hash
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.event.MutableLog
-import org.alephium.protocol.vm.nodeindexes.{
+import org.oxygenium.io._
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.event.MutableLog
+import org.oxygenium.protocol.vm.nodeindexes.{
   CachedNodeIndexes,
   NodeIndexesStorage,
   StagingNodeIndexes
 }
-import org.alephium.serde.{intSerde, Serde, SerdeError}
-import org.alephium.util.{AVector, SizedLruCache}
+import org.oxygenium.serde.{intSerde, Serde, SerdeError}
+import org.oxygenium.util.{AVector, SizedLruCache}
 
 // scalastyle:off number.of.methods file.size.limit
 trait WorldState[T, R1, R2, R3] {

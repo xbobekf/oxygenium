@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.math.BigInteger
 
@@ -23,27 +23,27 @@ import scala.concurrent._
 import akka.util.Timeout
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.api._
-import org.alephium.api.ApiError
-import org.alephium.api.model
-import org.alephium.api.model.{AssetOutput => _, Transaction => _, TransactionTemplate => _, _}
-import org.alephium.crypto.Byte32
-import org.alephium.flow.core.{BlockFlow, BlockFlowState, ExtraUtxosInfo, UtxoSelectionAlgo}
-import org.alephium.flow.core.FlowUtils.{AssetOutputInfo, MemPoolOutput}
-import org.alephium.flow.core.TxUtils
-import org.alephium.flow.core.TxUtils.InputData
-import org.alephium.flow.core.UtxoSelectionAlgo._
-import org.alephium.flow.gasestimation._
-import org.alephium.flow.handler.TxHandler
-import org.alephium.io.IOError
-import org.alephium.protocol.{vm, ALPH, Hash, PublicKey, Signature, SignatureSchema}
-import org.alephium.protocol.config._
-import org.alephium.protocol.model.{ContractOutput => ProtocolContractOutput, _}
-import org.alephium.protocol.model.UnsignedTransaction.TxOutputInfo
-import org.alephium.protocol.vm.{failed => _, ContractState => _, Val => _, _}
-import org.alephium.ralph.Compiler
-import org.alephium.serde.{avectorSerde, deserialize, serialize}
-import org.alephium.util._
+import org.oxygenium.api._
+import org.oxygenium.api.ApiError
+import org.oxygenium.api.model
+import org.oxygenium.api.model.{AssetOutput => _, Transaction => _, TransactionTemplate => _, _}
+import org.oxygenium.crypto.Byte32
+import org.oxygenium.flow.core.{BlockFlow, BlockFlowState, ExtraUtxosInfo, UtxoSelectionAlgo}
+import org.oxygenium.flow.core.FlowUtils.{AssetOutputInfo, MemPoolOutput}
+import org.oxygenium.flow.core.TxUtils
+import org.oxygenium.flow.core.TxUtils.InputData
+import org.oxygenium.flow.core.UtxoSelectionAlgo._
+import org.oxygenium.flow.gasestimation._
+import org.oxygenium.flow.handler.TxHandler
+import org.oxygenium.io.IOError
+import org.oxygenium.protocol.{vm, ALPH, Hash, PublicKey, Signature, SignatureSchema}
+import org.oxygenium.protocol.config._
+import org.oxygenium.protocol.model.{ContractOutput => ProtocolContractOutput, _}
+import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
+import org.oxygenium.protocol.vm.{failed => _, ContractState => _, Val => _, _}
+import org.oxygenium.ralph.Compiler
+import org.oxygenium.serde.{avectorSerde, deserialize, serialize}
+import org.oxygenium.util._
 
 // scalastyle:off number.of.methods
 // scalastyle:off file.size.limit number.of.types
@@ -2245,7 +2245,7 @@ object ServerUtils {
       Left(
         ApiError.BadRequest(
           s"Gas fee exceeds the limit: maximum allowed is $capAmount, but got $gasFeeAmount. " +
-            s"Please lower the gas price or adjust the alephium.api.gas-fee-cap in your user.conf file."
+            s"Please lower the gas price or adjust the oxygenium.api.gas-fee-cap in your user.conf file."
         )
       )
     }

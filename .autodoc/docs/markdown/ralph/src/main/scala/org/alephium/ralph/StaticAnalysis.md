@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/ralph/src/main/scala/org/alephium/ralph/StaticAnalysis.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/ralph/src/main/scala/org/oxygenium/ralph/StaticAnalysis.scala)
 
-The `StaticAnalysis` object provides a set of functions that perform static analysis on Alephium smart contracts. These functions are used to check the correctness of the contracts before they are deployed on the blockchain. 
+The `StaticAnalysis` object provides a set of functions that perform static analysis on Oxygenium smart contracts. These functions are used to check the correctness of the contracts before they are deployed on the blockchain. 
 
 The `checkMethodsStateless` function takes an AST (Abstract Syntax Tree) of a contract, a vector of methods, and a state object as input. It checks if private methods are used and if fields are updated correctly. The `checkMethodsStateful` function extends the `checkMethodsStateless` function by checking if the code uses contract assets. The `checkMethods` function extends the `checkMethodsStateful` function by checking if external calls are permitted. 
 
@@ -18,7 +18,7 @@ The `updateNonSimpleViewFuncSet` function updates the set of non-simple view fun
 
 The `checkExternalCalls` function checks if external calls are permitted. It builds a table of functions that can be called externally and checks if non-simple view functions are called externally. 
 
-Overall, the `StaticAnalysis` object provides a set of functions that perform static analysis on Alephium smart contracts. These functions are used to check the correctness of the contracts before they are deployed on the blockchain.
+Overall, the `StaticAnalysis` object provides a set of functions that perform static analysis on Oxygenium smart contracts. These functions are used to check the correctness of the contracts before they are deployed on the blockchain.
 ## Questions: 
  1. What is the purpose of the `StaticAnalysis` object?
 - The `StaticAnalysis` object contains methods for checking the statelessness/statefulness of methods in a contract, whether private methods are used, whether contract assets are used in a function, and whether external calls are properly authorized.

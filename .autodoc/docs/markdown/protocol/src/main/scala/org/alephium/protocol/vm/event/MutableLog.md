@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/vm/event/MutableLog.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/vm/event/MutableLog.scala)
 
-This code defines a trait called `MutableLog` that provides functionality for logging events in the Alephium project. The trait defines several methods for adding logs to the event log, as well as methods for indexing the logs by transaction ID, block hash, and byte32. 
+This code defines a trait called `MutableLog` that provides functionality for logging events in the Oxygenium project. The trait defines several methods for adding logs to the event log, as well as methods for indexing the logs by transaction ID, block hash, and byte32. 
 
 The `MutableLog` trait is used to define a mutable key-value store for storing log events. The `eventLog` method returns a `MutableKV` object that can be used to store log events by their ID. The `eventLogByHash` method returns a `MutableKV` object that can be used to store log events by their hash value. The `eventLogPageCounter` method returns a `LogPageCounter` object that can be used to keep track of the number of log events stored for each contract ID.
 
@@ -10,13 +10,13 @@ The `putLogByContractId` method is used to add a log event to the event log by c
 
 The `putLogIndexByTxId`, `putLogIndexByBlockHash`, and `putLogIndexByByte32` methods are used to index log events by transaction ID, block hash, and byte32, respectively. These methods take a log reference object and add it to the corresponding index using the `put` method of the `eventLogByHash` object.
 
-Overall, this code provides a flexible and extensible framework for logging events in the Alephium project. It allows log events to be stored and indexed in a variety of ways, making it easy to retrieve and analyze log data.
+Overall, this code provides a flexible and extensible framework for logging events in the Oxygenium project. It allows log events to be stored and indexed in a variety of ways, making it easy to retrieve and analyze log data.
 ## Questions: 
  1. What is the purpose of this code?
-- This code defines a trait `MutableLog` that provides methods for managing event logs in the Alephium project, including putting logs, indexing logs by transaction ID or block hash, and getting log offsets.
+- This code defines a trait `MutableLog` that provides methods for managing event logs in the Oxygenium project, including putting logs, indexing logs by transaction ID or block hash, and getting log offsets.
 
 2. What other files or packages does this code depend on?
-- This code depends on several other packages in the Alephium project, including `org.alephium.crypto`, `org.alephium.io`, `org.alephium.protocol.model`, and `org.alephium.protocol.vm`.
+- This code depends on several other packages in the Oxygenium project, including `org.oxygenium.crypto`, `org.oxygenium.io`, `org.oxygenium.protocol.model`, and `org.oxygenium.protocol.vm`.
 
 3. What license is this code released under?
 - This code is released under the GNU Lesser General Public License, version 3 or later.

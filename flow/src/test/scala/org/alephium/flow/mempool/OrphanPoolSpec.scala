@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mempool
+package org.oxygenium.flow.mempool
 
-import org.alephium.flow.AlephiumFlowSpec
-import org.alephium.protocol.model.NoIndexModelGeneratorsLike
-import org.alephium.util.TimeStamp
+import org.oxygenium.flow.OxygeniumFlowSpec
+import org.oxygenium.protocol.model.NoIndexModelGeneratorsLike
+import org.oxygenium.util.TimeStamp
 
 class OrphanPoolSpec
-    extends AlephiumFlowSpec
+    extends OxygeniumFlowSpec
     with TxIndexesSpec.Fixture
     with NoIndexModelGeneratorsLike {
-  override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+  override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
   it should "work for parallel transactions" in {
     val block = blockGen.sample.get

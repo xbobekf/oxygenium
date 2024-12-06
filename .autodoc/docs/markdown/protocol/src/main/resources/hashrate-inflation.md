@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/resources/hashrate-inflation.csv)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/resources/hashrate-inflation.csv)
 
 The code provided is a list of tuples containing three values: an integer, a float, and a large integer. The purpose of this code is not immediately clear without additional context. However, based on the values provided, it appears to be a table of some sort, possibly related to a cryptocurrency or financial system.
 

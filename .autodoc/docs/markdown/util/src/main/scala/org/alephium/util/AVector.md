@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/AVector.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/AVector.scala)
 
-The `AVector` class in this code is an immutable vector optimized for appending elements. It is not synchronized and is designed to be used in the Alephium project. The class provides various methods for manipulating and querying the vector, such as adding elements, slicing, filtering, mapping, folding, and more.
+The `AVector` class in this code is an immutable vector optimized for appending elements. It is not synchronized and is designed to be used in the Oxygenium project. The class provides various methods for manipulating and querying the vector, such as adding elements, slicing, filtering, mapping, folding, and more.
 
 For example, the `:+` method appends an element to the vector, while the `++` method concatenates two vectors. The `slice` method returns a new vector containing a range of elements from the original vector, and the `filter` method returns a new vector containing only the elements that satisfy a given predicate function.
 
@@ -8,7 +8,7 @@ The class also provides methods for aggregating and transforming the vector, suc
 
 Additionally, the `AVector` class provides methods for querying the vector, such as `contains`, `exists`, `forall`, and `find`. These methods allow users to check if the vector contains specific elements or if certain conditions are met by the vector's elements.
 
-In summary, the `AVector` class is a versatile and efficient data structure for working with immutable vectors in the Alephium project. It provides a wide range of methods for manipulating, querying, and transforming vectors, making it a valuable tool for developers working with the Alephium project.
+In summary, the `AVector` class is a versatile and efficient data structure for working with immutable vectors in the Oxygenium project. It provides a wide range of methods for manipulating, querying, and transforming vectors, making it a valuable tool for developers working with the Oxygenium project.
 ## Questions: 
  1. **Question**: What is the purpose of the `AVector` class in this code?
    **Answer**: The `AVector` class is an immutable vector implementation that is optimized for appending operations. It provides various utility methods for working with vectors, such as mapping, filtering, folding, and more.

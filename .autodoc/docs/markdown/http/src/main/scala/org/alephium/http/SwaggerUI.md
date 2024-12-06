@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/http/src/main/scala/org/alephium/http/SwaggerUI.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/http/src/main/scala/org/oxygenium/http/SwaggerUI.scala)
 
 The `SwaggerUI` object is a Scala class that provides a set of server endpoints for serving a Swagger UI. Swagger UI is a tool that allows users to interact with a RESTful API by providing a web-based interface for exploring the API's endpoints and parameters. 
 
@@ -14,13 +14,13 @@ The `SwaggerUI` object provides four endpoints:
 
 4. `resourcesEndpoint`: This endpoint serves the static resources required by the Swagger UI, such as CSS files and images.
 
-The `SwaggerUI` object uses the `sttp.tapir` library to define the server endpoints. The `sttp.tapir` library provides a type-safe way to define HTTP endpoints in Scala. The `SwaggerUI` object also uses the `org.alephium.util.AVector` class to store the endpoints. The `AVector` class is a custom implementation of a vector that is optimized for small vectors.
+The `SwaggerUI` object uses the `sttp.tapir` library to define the server endpoints. The `sttp.tapir` library provides a type-safe way to define HTTP endpoints in Scala. The `SwaggerUI` object also uses the `org.oxygenium.util.AVector` class to store the endpoints. The `AVector` class is a custom implementation of a vector that is optimized for small vectors.
 
 Here is an example of how the `SwaggerUI` object can be used to serve a Swagger UI:
 
 ```scala
-import org.alephium.http.SwaggerUI
-import org.alephium.util.AVector
+import org.oxygenium.http.SwaggerUI
+import org.oxygenium.util.AVector
 
 val openapiContent: String = ???
 val contextPath: String = "docs"

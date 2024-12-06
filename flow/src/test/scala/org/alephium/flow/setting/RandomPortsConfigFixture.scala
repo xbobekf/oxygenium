@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.setting
+package org.oxygenium.flow.setting
 
-import org.alephium.protocol.model.NetworkId
-import org.alephium.util.{Env, SocketUtil}
+import org.oxygenium.protocol.model.NetworkId
+import org.oxygenium.util.{Env, SocketUtil}
 
 trait RandomPortsConfigFixture extends SocketUtil {
   private val publicPort   = generatePort()
@@ -28,19 +28,19 @@ trait RandomPortsConfigFixture extends SocketUtil {
 
   lazy val configPortsValues: Map[String, Any] = {
     val networkId = Env.currentEnv match {
-      case Env.Test        => NetworkId.AlephiumDevNet.id
+      case Env.Test        => NetworkId.OxygeniumDevNet.id
       case Env.Integration => 4 // A testnet that is different from public testnet (id = 1)
       case _               => throw new RuntimeException("Invalid test env")
     }
     Map(
-      ("alephium.network.network-id", networkId),
-      ("alephium.network.bind-address", s"127.0.0.1:$publicPort"),
-      ("alephium.network.external-address", s"127.0.0.1:$publicPort"),
-      ("alephium.network.internal-address", s"127.0.0.1:$publicPort"),
-      ("alephium.network.coordinator-address", s"127.0.0.1:$masterPort"),
-      ("alephium.network.rest-port", restPort),
-      ("alephium.network.ws-port", wsPort),
-      ("alephium.network.miner-api-port", minerApiPort)
+      ("oxygenium.network.network-id", networkId),
+      ("oxygenium.network.bind-address", s"127.0.0.1:$publicPort"),
+      ("oxygenium.network.external-address", s"127.0.0.1:$publicPort"),
+      ("oxygenium.network.internal-address", s"127.0.0.1:$publicPort"),
+      ("oxygenium.network.coordinator-address", s"127.0.0.1:$masterPort"),
+      ("oxygenium.network.rest-port", restPort),
+      ("oxygenium.network.ws-port", wsPort),
+      ("oxygenium.network.miner-api-port", minerApiPort)
     )
   }
 }

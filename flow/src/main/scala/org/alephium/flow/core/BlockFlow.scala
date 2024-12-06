@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,23 +14,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import scala.annotation.tailrec
 
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.crypto.Blake3
-import org.alephium.flow.Utils
-import org.alephium.flow.io.Storages
-import org.alephium.flow.setting.{AlephiumConfig, ConsensusSettings, MemPoolSetting}
-import org.alephium.io.{IOResult, IOUtils}
-import org.alephium.io.RocksDBSource.ProdSettings
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig, NetworkConfig}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.{LogConfig, WorldState}
-import org.alephium.util.{AVector, Env, Files, TimeStamp}
+import org.oxygenium.crypto.Blake3
+import org.oxygenium.flow.Utils
+import org.oxygenium.flow.io.Storages
+import org.oxygenium.flow.setting.{OxygeniumConfig, ConsensusSettings, MemPoolSetting}
+import org.oxygenium.io.{IOResult, IOUtils}
+import org.oxygenium.io.RocksDBSource.ProdSettings
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.{LogConfig, WorldState}
+import org.oxygenium.util.{AVector, Env, Files, TimeStamp}
 
 trait BlockFlow
     extends MultiChain
@@ -121,11 +121,11 @@ trait BlockFlow
 object BlockFlow extends StrictLogging {
   type WorldStateUpdater = (WorldState.Cached, Block) => IOResult[Unit]
 
-  def emptyUnsafe(config: AlephiumConfig): BlockFlow = {
+  def emptyUnsafe(config: OxygeniumConfig): BlockFlow = {
     emptyAndStoragesUnsafe(config)._1
   }
 
-  def emptyAndStoragesUnsafe(config: AlephiumConfig): (BlockFlow, Storages) = {
+  def emptyAndStoragesUnsafe(config: OxygeniumConfig): (BlockFlow, Storages) = {
     val storages =
       Storages.createUnsafe(Files.tmpDir, BlockHash.random.toHexString, ProdSettings.writeOptions)(
         config.broker,
@@ -141,7 +141,7 @@ object BlockFlow extends StrictLogging {
     (blockFlow, storages)
   }
 
-  def fromGenesisUnsafe(config: AlephiumConfig, storages: Storages): BlockFlow = {
+  def fromGenesisUnsafe(config: OxygeniumConfig, storages: Storages): BlockFlow = {
     fromGenesisUnsafe(storages, config.genesisBlocks)(
       config.broker,
       config.network,
@@ -168,7 +168,7 @@ object BlockFlow extends StrictLogging {
     blockFlow
   }
 
-  def fromStorageUnsafe(config: AlephiumConfig, storages: Storages): BlockFlow = {
+  def fromStorageUnsafe(config: OxygeniumConfig, storages: Storages): BlockFlow = {
     fromStorageUnsafe(storages, config.genesisBlocks)(
       config.broker,
       config.network,

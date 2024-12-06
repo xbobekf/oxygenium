@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/udp/SelectionHandler.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/udp/SelectionHandler.scala)
 
-The `SelectionHandler` object and class are part of the `alephium` project. The purpose of this code is to handle the selection of UDP packets from a selector. The `SelectionHandler` object is an extension of the Akka actor system, which is used to manage actors in the system. The `SelectionHandler` class is used to handle the selection of UDP packets from a selector.
+The `SelectionHandler` object and class are part of the `oxygenium` project. The purpose of this code is to handle the selection of UDP packets from a selector. The `SelectionHandler` object is an extension of the Akka actor system, which is used to manage actors in the system. The `SelectionHandler` class is used to handle the selection of UDP packets from a selector.
 
 The `SelectionHandler` object is created by extending the `ExtensionId` and `ExtensionIdProvider` traits. The `createExtension` method creates a new instance of the `SelectionHandler` class. The `selector` is created using the `Selector.open()` method. The `dispatcher` is created using the `system.dispatchers.lookup` method, which looks up the dispatcher with the name "akka.io.pinned-dispatcher". The `executionContext` is created using the `SerializedExecutionContext` class, which is a wrapper around the `ExecutionContext` that serializes the execution of tasks.
 
@@ -19,7 +19,7 @@ Overall, the `SelectionHandler` object and class are used to handle the selectio
    This code uses the following external libraries or dependencies: 
    - akka.actor
    - com.typesafe.scalalogging
-   - org.alephium.util.Duration
+   - org.oxygenium.util.Duration
    - java.nio.channels
    
 3. What is the license for this code?

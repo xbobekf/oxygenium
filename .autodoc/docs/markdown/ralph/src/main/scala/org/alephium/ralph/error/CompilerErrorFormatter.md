@@ -1,10 +1,10 @@
-[View code on GitHub](https://github.com/alephium/alephium/ralph/src/main/scala/org/alephium/ralph/error/CompilerErrorFormatter.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/ralph/src/main/scala/org/oxygenium/ralph/error/CompilerErrorFormatter.scala)
 
 The code defines a `CompilerErrorFormatter` class that builds a formatted error message. The class takes in several parameters such as `errorTitle`, `errorLine`, `foundLength`, `errorMessage`, `errorFooter`, and `sourcePosition`. These parameters are used to format the error message. 
 
 The `format` method formats the error message by adding color to the error message and building the error body and footer. The `getErroredLine` method fetches the line where the error occurred. The `highlight` method wraps the input string to be colored. 
 
-This code is part of the Alephium project and is used to format error messages in the compiler. It is used to provide a clear and concise error message to the user when there is an error in the code. The formatted error message can be used to debug the code and fix the error. 
+This code is part of the Oxygenium project and is used to format error messages in the compiler. It is used to provide a clear and concise error message to the user when there is an error in the code. The formatted error message can be used to debug the code and fix the error. 
 
 Here is an example of how to use the `CompilerErrorFormatter` class:
 
@@ -25,7 +25,7 @@ This will output a formatted error message with the error title, error line, err
 ## Questions: 
  1. What is the purpose of this code file?
     
-    This code file is responsible for building a formatted error message for the Alephium project's compiler.
+    This code file is responsible for building a formatted error message for the Oxygenium project's compiler.
 
 2. What is the input to the `format` method and what does it return?
     

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet
+package org.oxygenium.wallet
 
 import sttp.apispec.openapi.OpenAPI
 import sttp.tapir.Endpoint
 import sttp.tapir.docs.openapi.OpenAPIDocsInterpreter
 
-import org.alephium.wallet.api.WalletEndpoints
+import org.oxygenium.wallet.api.WalletEndpoints
 
 trait WalletDocumentation extends WalletEndpoints with OpenAPIDocsInterpreter {
 
@@ -47,5 +47,5 @@ trait WalletDocumentation extends WalletEndpoints with OpenAPIDocsInterpreter {
   ).map(_.endpoint)
 
   lazy val walletOpenAPI: OpenAPI =
-    toOpenAPI(walletEndpoints, "Alephium Wallet", "1.0")
+    toOpenAPI(walletEndpoints, "Oxygenium Wallet", "1.0")
 }

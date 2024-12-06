@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.config
+package org.oxygenium.protocol.config
 
 import scala.collection.immutable.ArraySeq
 import scala.util.Random
 
 import akka.util.ByteString
 
-import org.alephium.protocol.model.NetworkId
-import org.alephium.util.TimeStamp
+import org.oxygenium.protocol.model.NetworkId
+import org.oxygenium.util.TimeStamp
 
 trait NetworkConfigFixture { self =>
   def networkId: NetworkId
@@ -42,27 +42,27 @@ object NetworkConfigFixture {
   lazy val All = ArraySeq(Genesis, Leman, Rhone)
 
   trait Default extends NetworkConfigFixture {
-    def networkId: NetworkId              = NetworkId.AlephiumDevNet
+    def networkId: NetworkId              = NetworkId.OxygeniumDevNet
     def lemanHardForkTimestamp: TimeStamp = TimeStamp.zero
     def rhoneHardForkTimestamp: TimeStamp = TimeStamp.zero
   }
 
   trait GenesisT extends NetworkConfigFixture {
-    override def networkId: NetworkId              = NetworkId.AlephiumMainNet
+    override def networkId: NetworkId              = NetworkId.OxygeniumMainNet
     override def lemanHardForkTimestamp: TimeStamp = TimeStamp.unsafe(Long.MaxValue)
     override def rhoneHardForkTimestamp: TimeStamp = TimeStamp.unsafe(Long.MaxValue)
   }
   val Genesis = new GenesisT {}.networkConfig
 
   trait LemanT extends NetworkConfigFixture {
-    override def networkId: NetworkId              = NetworkId.AlephiumMainNet
+    override def networkId: NetworkId              = NetworkId.OxygeniumMainNet
     override def lemanHardForkTimestamp: TimeStamp = TimeStamp.unsafe(0)
     override def rhoneHardForkTimestamp: TimeStamp = TimeStamp.unsafe(Long.MaxValue)
   }
   val Leman = new LemanT {}.networkConfig
 
   trait RhoneT extends NetworkConfigFixture {
-    override def networkId: NetworkId              = NetworkId.AlephiumMainNet
+    override def networkId: NetworkId              = NetworkId.OxygeniumMainNet
     override def lemanHardForkTimestamp: TimeStamp = TimeStamp.unsafe(0)
     override def rhoneHardForkTimestamp: TimeStamp = TimeStamp.unsafe(0)
   }
@@ -70,7 +70,7 @@ object NetworkConfigFixture {
 
   lazy val sinceLemanForks = All.drop(1)
   trait SinceLemanT extends NetworkConfigFixture {
-    override def networkId: NetworkId = NetworkId.AlephiumMainNet
+    override def networkId: NetworkId = NetworkId.OxygeniumMainNet
     private lazy val fork             = sinceLemanForks(Random.nextInt(sinceLemanForks.length))
     override def lemanHardForkTimestamp: TimeStamp = fork.lemanHardForkTimestamp
     override def rhoneHardForkTimestamp: TimeStamp = fork.rhoneHardForkTimestamp
@@ -79,7 +79,7 @@ object NetworkConfigFixture {
 
   lazy val sinceRhoneForks = All.takeRight(1)
   trait SinceRhoneT extends NetworkConfigFixture {
-    override def networkId: NetworkId = NetworkId.AlephiumMainNet
+    override def networkId: NetworkId = NetworkId.OxygeniumMainNet
     private lazy val fork             = sinceRhoneForks(Random.nextInt(sinceRhoneForks.length))
     override def lemanHardForkTimestamp: TimeStamp = fork.lemanHardForkTimestamp
     override def rhoneHardForkTimestamp: TimeStamp = fork.rhoneHardForkTimestamp
@@ -88,7 +88,7 @@ object NetworkConfigFixture {
 
   lazy val preRhoneForks = All.dropRight(1)
   trait PreRhoneT extends NetworkConfigFixture {
-    override def networkId: NetworkId = NetworkId.AlephiumMainNet
+    override def networkId: NetworkId = NetworkId.OxygeniumMainNet
     private lazy val fork             = preRhoneForks(Random.nextInt(preRhoneForks.length))
     override def lemanHardForkTimestamp: TimeStamp = fork.lemanHardForkTimestamp
     override def rhoneHardForkTimestamp: TimeStamp = fork.rhoneHardForkTimestamp

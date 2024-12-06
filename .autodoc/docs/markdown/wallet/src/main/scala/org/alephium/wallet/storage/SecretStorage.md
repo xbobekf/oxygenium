@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/wallet/src/main/scala/org/alephium/wallet/storage/SecretStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/wallet/src/main/scala/org/oxygenium/wallet/storage/SecretStorage.scala)
 
 This file contains the implementation of a trait called `SecretStorage` and an object called `SecretStorage` that provides methods to load, create, and manipulate secret storage files. The `SecretStorage` trait defines an interface for a secret storage that can store and retrieve private keys and other sensitive information. The `SecretStorage` object provides methods to create, load, and manipulate secret storage files.
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
-import org.alephium.io.{IOError, IOResult}
-import org.alephium.util.BaseActor
+import org.oxygenium.io.{IOError, IOResult}
+import org.oxygenium.util.BaseActor
 
 trait IOBaseActor extends BaseActor {
   // TODO: improve error handling

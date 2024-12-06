@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/Weight.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/Weight.scala)
 
 The code defines a class called `Weight` and an object with the same name. The `Weight` class is a wrapper around a `BigInteger` value and extends `AnyVal` and `Ordered[Weight]`. The `AnyVal` trait is used to define value classes that are optimized by the Scala compiler to avoid allocating memory. The `Ordered` trait is used to define a total ordering for instances of the `Weight` class.
 
@@ -8,16 +8,16 @@ The `Weight` object has two methods defined on it. The first method is `from`, w
 
 The `Weight` class also has an implicit `serde` value defined on it, which is an instance of the `Serde` type class. The `Serde` type class is used to serialize and deserialize instances of a type. The `serde` instance is defined using the `forProduct1` method of the `Serde` companion object, which takes two functions as arguments. The first function is used to construct a new `Weight` instance from a single argument of type `BigInteger`. The second function is used to extract the `BigInteger` value from a `Weight` instance.
 
-Overall, the `Weight` class and object are used to represent and manipulate weights in the Alephium protocol. The `Weight` class is defined as a value class to optimize memory usage, and it has methods for addition and multiplication. The `Weight` object has methods for creating `Weight` instances from `Target` instances and for creating a zero `Weight` instance. The `serde` instance is used to serialize and deserialize `Weight` instances.
+Overall, the `Weight` class and object are used to represent and manipulate weights in the Oxygenium protocol. The `Weight` class is defined as a value class to optimize memory usage, and it has methods for addition and multiplication. The `Weight` object has methods for creating `Weight` instances from `Target` instances and for creating a zero `Weight` instance. The `serde` instance is used to serialize and deserialize `Weight` instances.
 ## Questions: 
- 1. What is the purpose of the `Weight` class and how is it used in the `alephium` project?
+ 1. What is the purpose of the `Weight` class and how is it used in the `oxygenium` project?
    
-   The `Weight` class is used to represent a weight value in the `alephium` project and is defined as a final case class with a `BigInteger` value. It provides methods for addition, multiplication, and comparison of weight values.
+   The `Weight` class is used to represent a weight value in the `oxygenium` project and is defined as a final case class with a `BigInteger` value. It provides methods for addition, multiplication, and comparison of weight values.
 
 2. What is the `Serde` trait and how is it used in the `Weight` object?
    
-   The `Serde` trait is a serialization/deserialization interface used in the `alephium` project to convert objects to and from byte arrays. The `Weight` object defines an implicit `Serde` instance for the `Weight` class using the `forProduct1` method of the `Serde` companion object.
+   The `Serde` trait is a serialization/deserialization interface used in the `oxygenium` project to convert objects to and from byte arrays. The `Weight` object defines an implicit `Serde` instance for the `Weight` class using the `forProduct1` method of the `Serde` companion object.
 
 3. What is the `from` method in the `Weight` object and how does it relate to the `Target` class?
    
-   The `from` method in the `Weight` object is used to create a `Weight` instance from a `Target` instance. It does this by dividing the maximum `BigInteger` value by the `value` of the `Target` instance. This method is used to calculate the weight of a block in the `alephium` blockchain based on its target value.
+   The `from` method in the `Weight` object is used to create a `Weight` instance from a `Target` instance. It does this by dividing the maximum `BigInteger` value by the `value` of the `Target` instance. This method is used to calculate the weight of a block in the `oxygenium` blockchain based on its target value.

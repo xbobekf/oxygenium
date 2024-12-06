@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/broker/MisbehaviorStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/broker/MisbehaviorStorage.scala)
 
-This code defines a trait called `MisbehaviorStorage` that is used to manage misbehavior of peers in the Alephium network. The trait contains several methods that allow for the storage and retrieval of information related to misbehavior, such as penalties and bans.
+This code defines a trait called `MisbehaviorStorage` that is used to manage misbehavior of peers in the Oxygenium network. The trait contains several methods that allow for the storage and retrieval of information related to misbehavior, such as penalties and bans.
 
 The `penaltyForgiveness` method returns a `Duration` object that represents the amount of time that must pass before a penalty is forgiven. This is used to determine when a peer's penalty should be removed.
 
@@ -16,7 +16,7 @@ The `remove` method takes an `InetAddress` object and removes the peer from the 
 
 The `list` method returns a vector of `Peer` objects representing all the peers currently stored in the storage.
 
-This trait is used in the larger Alephium project to manage misbehavior of peers in the network. It allows for the storage and retrieval of information related to penalties and bans, which can be used to prevent malicious behavior and maintain the integrity of the network. For example, if a peer is found to be misbehaving, it can be given a penalty that will prevent it from participating in the network for a certain amount of time. If the peer continues to misbehave, it can be banned from the network altogether. The `MisbehaviorStorage` trait provides a way to manage these penalties and bans in a centralized and consistent manner.
+This trait is used in the larger Oxygenium project to manage misbehavior of peers in the network. It allows for the storage and retrieval of information related to penalties and bans, which can be used to prevent malicious behavior and maintain the integrity of the network. For example, if a peer is found to be misbehaving, it can be given a penalty that will prevent it from participating in the network for a certain amount of time. If the peer continues to misbehave, it can be banned from the network altogether. The `MisbehaviorStorage` trait provides a way to manage these penalties and bans in a centralized and consistent manner.
 ## Questions: 
  1. What is the purpose of the `MisbehaviorStorage` trait?
 - The `MisbehaviorStorage` trait defines a set of methods for storing and managing misbehavior status of network peers.

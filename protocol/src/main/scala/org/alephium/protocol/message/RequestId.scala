@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.message
+package org.oxygenium.protocol.message
 
-import org.alephium.serde.{u32Serde, Serde}
-import org.alephium.util.SecureAndSlowRandom
-import org.alephium.util.U32
+import org.oxygenium.serde.{u32Serde, Serde}
+import org.oxygenium.util.SecureAndSlowRandom
+import org.oxygenium.util.U32
 
 final case class RequestId(value: U32) {
   override def toString(): String = {

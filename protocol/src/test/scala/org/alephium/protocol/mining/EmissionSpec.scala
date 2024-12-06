@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.mining
+package org.oxygenium.protocol.mining
 
 import java.math.BigInteger
 
@@ -23,12 +23,12 @@ import scala.util.Using
 
 import org.scalatest.Assertion
 
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.Target
-import org.alephium.util.{AlephiumSpec, Duration, NumericHelpers, TimeStamp, U256}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.Target
+import org.oxygenium.util.{OxygeniumSpec, Duration, NumericHelpers, TimeStamp, U256}
 
-class EmissionSpec extends AlephiumSpec with NumericHelpers {
+class EmissionSpec extends OxygeniumSpec with NumericHelpers {
   def equalLong(x: Long, y: Long, errorOrder: Long = 8): Assertion = {
     val errorBase = math.pow(10.0, errorOrder.toDouble).toLong
     (x >= y * (errorBase - 1) / errorBase && x <= y * (errorBase + 1) / errorBase) is true

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/EventStream.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/EventStream.scala)
 
 This code defines a trait called `EventStream` which provides functionality for publishing and subscribing to events in an Akka actor system. The `EventStream` trait extends two other traits: `Publisher` and `Subscriber`. 
 
@@ -14,7 +14,7 @@ Here is an example of how this code might be used:
 
 ```scala
 import akka.actor._
-import org.alephium.util.EventStream
+import org.oxygenium.util.EventStream
 
 case class MyEvent(data: String) extends EventStream.Event
 

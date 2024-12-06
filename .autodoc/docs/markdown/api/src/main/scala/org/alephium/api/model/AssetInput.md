@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/AssetInput.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/AssetInput.scala)
 
 This code defines a Scala class called `AssetInput` and an object with the same name. The `AssetInput` class has two fields: `outputRef` and `unlockScript`. The `outputRef` field is of type `OutputRef`, which is defined in another file in the same package. The `unlockScript` field is of type `ByteString`, which is a data structure that represents a sequence of bytes.
 
@@ -13,6 +13,6 @@ Overall, this code provides a way to convert between instances of `AssetInput` a
  1. What is the purpose of the `AssetInput` class?
    - The `AssetInput` class represents an input to a transaction that spends an asset output, and provides methods to convert to and from the protocol-level `TxInput` class.
 2. What other classes or libraries does this code depend on?
-   - This code depends on several other classes and libraries, including `ByteString` from Akka, and various classes from the `org.alephium.protocol` and `org.alephium.serde` packages.
+   - This code depends on several other classes and libraries, including `ByteString` from Akka, and various classes from the `org.oxygenium.protocol` and `org.oxygenium.serde` packages.
 3. What license is this code released under?
    - This code is released under the GNU Lesser General Public License, version 3 or later.

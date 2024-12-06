@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.udp
+package org.oxygenium.flow.network.udp
 
 import java.nio.channels.{CancelledKeyException, SelectionKey, Selector}
 
@@ -25,7 +25,7 @@ import scala.util.control.NonFatal
 import akka.actor.{ActorRef, ExtendedActorSystem, Extension, ExtensionId, ExtensionIdProvider}
 import com.typesafe.scalalogging.LazyLogging
 
-import org.alephium.util.Duration
+import org.oxygenium.util.Duration
 
 // This is modified from akka.io.SelectionHandler
 object SelectionHandler extends ExtensionId[SelectionHandler] with ExtensionIdProvider {

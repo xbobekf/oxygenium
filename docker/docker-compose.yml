@@ -3,12 +3,12 @@ version: "3.3"
 volumes:
   prometheus_data: {}
   grafana_data: {}
-  alephium-data: {}
-  alephium-wallets: {}
+  oxygenium-data: {}
+  oxygenium-wallets: {}
 
 services:
-  alephium:
-    image: alephium/alephium:latest
+  oxygenium:
+    image: oxygenium/oxygenium:latest
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -28,12 +28,12 @@ services:
       - no-new-privileges:true
     # Set volumes or mounts to avoid loosing data/wallets.
     # Hint: mounts must be chown'ed to nobody:
-    # mkdir ./alephium-data ./alephium-wallets && chown nobody ./alephium-data ./alephium-wallets
+    # mkdir ./oxygenium-data ./oxygenium-wallets && chown nobody ./oxygenium-data ./oxygenium-wallets
     volumes:
       # The provided file user.conf is a minimal default config to connect your container to the mainnet.
-      - alephium-data:/alephium-home/.alephium
-      - alephium-wallets:/alephium-home/.alephium-wallets
-      - ./user.conf:/alephium-home/.alephium/user.conf
+      - oxygenium-data:/oxygenium-home/.oxygenium
+      - oxygenium-wallets:/oxygenium-home/.oxygenium-wallets
+      - ./user.conf:/oxygenium-home/.oxygenium/user.conf
 
   grafana:
     image: grafana/grafana:7.2.1

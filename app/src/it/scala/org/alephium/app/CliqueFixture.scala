@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.net.{InetAddress, InetSocketAddress}
 
@@ -35,32 +35,32 @@ import org.scalatest.time.{Seconds, Span}
 import sttp.model.StatusCode
 import sttp.tapir.server.vertx.VertxFutureServerInterpreter._
 
-import org.alephium.api.ApiModelCodec
-import org.alephium.api.UtilJson.avectorWriter
-import org.alephium.api.model._
-import org.alephium.flow.io.{Storages, StoragesFixture}
-import org.alephium.flow.mining.{Job, Miner}
-import org.alephium.flow.network.DiscoveryServer
-import org.alephium.flow.network.broker.MisbehaviorManager
-import org.alephium.flow.setting.AlephiumConfig
-import org.alephium.flow.validation.BlockValidation
-import org.alephium.http.HttpFixture
-import org.alephium.json.Json._
-import org.alephium.protocol.{ALPH, PrivateKey, Signature, SignatureSchema}
-import org.alephium.protocol.model.{Address, Block, ChainIndex, GroupIndex, TokenId, TransactionId}
-import org.alephium.protocol.vm
-import org.alephium.protocol.vm.{GasPrice, LockupScript}
-import org.alephium.rpc.model.JsonRPC.NotificationUnsafe
-import org.alephium.serde._
-import org.alephium.util._
-import org.alephium.wallet
-import org.alephium.wallet.api.model._
+import org.oxygenium.api.ApiModelCodec
+import org.oxygenium.api.UtilJson.avectorWriter
+import org.oxygenium.api.model._
+import org.oxygenium.flow.io.{Storages, StoragesFixture}
+import org.oxygenium.flow.mining.{Job, Miner}
+import org.oxygenium.flow.network.DiscoveryServer
+import org.oxygenium.flow.network.broker.MisbehaviorManager
+import org.oxygenium.flow.setting.OxygeniumConfig
+import org.oxygenium.flow.validation.BlockValidation
+import org.oxygenium.http.HttpFixture
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{ALPH, PrivateKey, Signature, SignatureSchema}
+import org.oxygenium.protocol.model.{Address, Block, ChainIndex, GroupIndex, TokenId, TransactionId}
+import org.oxygenium.protocol.vm
+import org.oxygenium.protocol.vm.{GasPrice, LockupScript}
+import org.oxygenium.rpc.model.JsonRPC.NotificationUnsafe
+import org.oxygenium.serde._
+import org.oxygenium.util._
+import org.oxygenium.wallet
+import org.oxygenium.wallet.api.model._
 
 // scalastyle:off method.length
 // scalastyle:off number.of.methods
 // scalastyle:off file.size.limit
-class CliqueFixture(implicit spec: AlephiumActorSpec)
-    extends AlephiumFutureSpec
+class CliqueFixture(implicit spec: OxygeniumActorSpec)
+    extends OxygeniumFutureSpec
     with ItConfigFixture
     with NumericHelpers
     with ApiModelCodec
@@ -272,29 +272,29 @@ class CliqueFixture(implicit spec: AlephiumActorSpec)
   ) = {
     new ItConfigFixture with StoragesFixture {
       override val configValues = Map[String, Any](
-        ("alephium.network.leman-hard-fork-timestamp", "1643500800000"),
-        ("alephium.network.bind-address", s"127.0.0.1:$publicPort"),
-        ("alephium.network.internal-address", s"127.0.0.1:$publicPort"),
-        ("alephium.network.coordinator-address", s"127.0.0.1:$masterPort"),
-        ("alephium.network.external-address", s"127.0.0.1:$publicPort"),
-        ("alephium.network.ws-port", wsPort(publicPort)),
-        ("alephium.network.rest-port", restPort(publicPort)),
-        ("alephium.network.miner-api-port", minerPort(publicPort)),
-        ("alephium.broker.broker-num", brokerNum),
-        ("alephium.broker.broker-id", brokerId),
-        ("alephium.consensus.mainnet.block-target-time", "2 seconds"),
-        ("alephium.consensus.rhone.block-target-time", "1 seconds"),
-        ("alephium.consensus.rhone.uncle-dependency-gap-time", "1 seconds"),
-        ("alephium.consensus.num-zeros-at-least-in-hash", "8"),
-        ("alephium.mining.batch-delay", "200 milli"),
-        ("alephium.wallet.port", walletPort),
-        ("alephium.wallet.secret-dir", s"${java.nio.file.Files.createTempDirectory("it-test")}")
+        ("oxygenium.network.leman-hard-fork-timestamp", "1643500800000"),
+        ("oxygenium.network.bind-address", s"127.0.0.1:$publicPort"),
+        ("oxygenium.network.internal-address", s"127.0.0.1:$publicPort"),
+        ("oxygenium.network.coordinator-address", s"127.0.0.1:$masterPort"),
+        ("oxygenium.network.external-address", s"127.0.0.1:$publicPort"),
+        ("oxygenium.network.ws-port", wsPort(publicPort)),
+        ("oxygenium.network.rest-port", restPort(publicPort)),
+        ("oxygenium.network.miner-api-port", minerPort(publicPort)),
+        ("oxygenium.broker.broker-num", brokerNum),
+        ("oxygenium.broker.broker-id", brokerId),
+        ("oxygenium.consensus.mainnet.block-target-time", "2 seconds"),
+        ("oxygenium.consensus.rhone.block-target-time", "1 seconds"),
+        ("oxygenium.consensus.rhone.uncle-dependency-gap-time", "1 seconds"),
+        ("oxygenium.consensus.num-zeros-at-least-in-hash", "8"),
+        ("oxygenium.mining.batch-delay", "200 milli"),
+        ("oxygenium.wallet.port", walletPort),
+        ("oxygenium.wallet.secret-dir", s"${java.nio.file.Files.createTempDirectory("it-test")}")
       ) ++ configOverrides
-      implicit override lazy val config: AlephiumConfig = {
+      implicit override lazy val config: OxygeniumConfig = {
         val minerAddresses =
           genesisKeys.map(p => Address.Asset(LockupScript.p2pkh(p._2)))
 
-        val tmp0 = AlephiumConfig.load(newConfig)
+        val tmp0 = OxygeniumConfig.load(newConfig)
         val tmp1 = tmp0.copy(mining = tmp0.mining.copy(minerAddresses = Some(minerAddresses)))
         bootstrap match {
           case Some(address) =>
@@ -343,7 +343,7 @@ class CliqueFixture(implicit spec: AlephiumActorSpec)
       nbOfNodes,
       bootstrap,
       connectionBuild,
-      configOverrides + ("alephium.mempool.auto-mine-for-dev" -> true)
+      configOverrides + ("oxygenium.mempool.auto-mine-for-dev" -> true)
     )
   }
 
@@ -368,7 +368,7 @@ class CliqueFixture(implicit spec: AlephiumActorSpec)
       val defaultNetwork = platformEnv.config.network
       val network        = defaultNetwork.copy(connectionBuild = connectionBuild)
 
-      implicit val config: AlephiumConfig = platformEnv.config.copy(network = network)
+      implicit val config: OxygeniumConfig = platformEnv.config.copy(network = network)
       implicit val apiConfig: ApiConfig   = ApiConfig.load(platformEnv.newConfig)
       val storages                        = platformEnv.storages
 
@@ -929,7 +929,7 @@ class CliqueFixture(implicit spec: AlephiumActorSpec)
   }
 
   def existBannedPeers(server: Server): Boolean = {
-    import org.alephium.api.UtilJson._
+    import org.oxygenium.api.UtilJson._
     val misbehaviors =
       request[AVector[PeerMisbehavior]](
         getMisbehaviors,

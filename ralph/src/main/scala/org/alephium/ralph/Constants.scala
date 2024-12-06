@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.ralph
+package org.oxygenium.ralph
 
-import org.alephium.protocol.vm.{StatelessContext, Val}
-import org.alephium.ralph.Compiler.{Error, VarInfo}
+import org.oxygenium.protocol.vm.{StatelessContext, Val}
+import org.oxygenium.ralph.Compiler.{Error, VarInfo}
 
 trait Constants[Ctx <: StatelessContext] {
   def getConstant(ident: Ast.Ident): VarInfo.Constant[Ctx]

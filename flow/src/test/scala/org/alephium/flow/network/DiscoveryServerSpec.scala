@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network
+package org.oxygenium.flow.network
 
 import java.net.InetSocketAddress
 
@@ -24,17 +24,17 @@ import akka.actor.ActorSystem
 import akka.testkit.{TestActorRef, TestProbe}
 import org.scalacheck.Gen
 
-import org.alephium.flow.io.StoragesFixture
-import org.alephium.flow.network.DiscoveryServer.NeighborPeers
-import org.alephium.flow.network.broker.MisbehaviorManager
-import org.alephium.flow.setting.{NodeSetting, Platform}
-import org.alephium.protocol._
-import org.alephium.protocol.config._
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.NodeIndexesConfig
-import org.alephium.util._
+import org.oxygenium.flow.io.StoragesFixture
+import org.oxygenium.flow.network.DiscoveryServer.NeighborPeers
+import org.oxygenium.flow.network.broker.MisbehaviorManager
+import org.oxygenium.flow.setting.{NodeSetting, Platform}
+import org.oxygenium.protocol._
+import org.oxygenium.protocol.config._
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.NodeIndexesConfig
+import org.oxygenium.util._
 
-class DiscoveryServerSpec extends AlephiumActorSpec with SocketUtil {
+class DiscoveryServerSpec extends OxygeniumActorSpec with SocketUtil {
   import DiscoveryServerSpec._
 
   implicit val nodeSetting: NodeSetting =

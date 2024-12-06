@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/FutureCollection.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/FutureCollection.scala)
 
 The code defines a Scala object called `FutureCollection` that provides a method called `foldSequentialE`. This method takes a collection of elements of type `I` and applies an asynchronous function `f` to each element in sequence. The function `f` takes two arguments: an accumulator of type `R` and an element of type `I`, and returns a `Future` that resolves to either an error of type `L` or a new accumulator of type `R`. The method `foldSequentialE` returns a `Future` that resolves to either an error of type `L` or the final accumulator of type `R`.
 
@@ -7,7 +7,7 @@ The purpose of this code is to provide a utility for processing a collection of 
 Here is an example of how this method might be used:
 
 ```scala
-import org.alephium.util.FutureCollection
+import org.oxygenium.util.FutureCollection
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

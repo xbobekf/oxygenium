@@ -10,16 +10,16 @@ resolvers += "Sonatype Releases" at "https://oss.sonatype.org/content/repositori
 def baseProject(id: String): Project = {
   Project(id, file(id))
     .settings(commonSettings: _*)
-    .settings(name := s"alephium-$id")
+    .settings(name := s"oxygenium-$id")
 }
 
 val scalastyleCfgFile     = "project/scalastyle-config.xml"
 val scalastyleTestCfgFile = "project/scalastyle-test-config.xml"
 
-lazy val root: Project = Project("alephium-scala-blockflow", file("."))
+lazy val root: Project = Project("oxygenium-scala-blockflow", file("."))
   .settings(commonSettings: _*)
   .settings(
-    name              := "alephium",
+    name              := "oxygenium",
     scalastyle        := {},
     Test / scalastyle := {},
     publish / skip    := true
@@ -144,8 +144,8 @@ lazy val app = mainProject("app")
   )
   .enablePlugins(sbtdocker.DockerPlugin, BuildInfoPlugin)
   .settings(
-    assembly / mainClass       := Some("org.alephium.app.Boot"),
-    assembly / assemblyJarName := s"alephium-${version.value}.jar",
+    assembly / mainClass       := Some("org.oxygenium.app.Boot"),
+    assembly / assemblyJarName := s"oxygenium-${version.value}.jar",
     assembly / test            := {},
     assemblyMergeStrategy := {
       case "logback.xml" => MergeStrategy.first
@@ -170,11 +170,11 @@ lazy val app = mainProject("app")
     publish / skip := true,
     docker / dockerfile := {
       val artifact: File     = assembly.value
-      val artifactTargetPath = "/alephium.jar"
+      val artifactTargetPath = "/oxygenium.jar"
 
       val userConf: File = file("docker/user.conf")
 
-      val alephiumHome = "/alephium-home"
+      val oxygeniumHome = "/oxygenium-home"
 
       new Dockerfile {
         from("eclipse-temurin:17-jre")
@@ -184,15 +184,15 @@ lazy val app = mainProject("app")
 
         runRaw(
           Seq(
-            s"mkdir -p $alephiumHome && usermod -d $alephiumHome nobody && chown nobody $alephiumHome",
-            s"mkdir -p $alephiumHome/.alephium && chown nobody $alephiumHome/.alephium",
-            s"mkdir -p $alephiumHome/.alephium/mainnet && chown nobody $alephiumHome/.alephium/mainnet",
-            s"mkdir -p $alephiumHome/.alephium-wallets && chown nobody $alephiumHome/.alephium-wallets"
+            s"mkdir -p $oxygeniumHome && usermod -d $oxygeniumHome nobody && chown nobody $oxygeniumHome",
+            s"mkdir -p $oxygeniumHome/.oxygenium && chown nobody $oxygeniumHome/.oxygenium",
+            s"mkdir -p $oxygeniumHome/.oxygenium/mainnet && chown nobody $oxygeniumHome/.oxygenium/mainnet",
+            s"mkdir -p $oxygeniumHome/.oxygenium-wallets && chown nobody $oxygeniumHome/.oxygenium-wallets"
           ).mkString(" && ")
         )
-        workDir(alephiumHome)
+        workDir(oxygeniumHome)
 
-        copy(userConf, file(s"$alephiumHome/.alephium/user.conf"))
+        copy(userConf, file(s"$oxygeniumHome/.oxygenium/user.conf"))
 
         copy(artifact, artifactTargetPath)
 
@@ -203,8 +203,8 @@ lazy val app = mainProject("app")
         expose(10973) // miner
         expose(9973)  // p2p
 
-        volume(s"$alephiumHome/.alephium")
-        volume(s"$alephiumHome/.alephium-wallets")
+        volume(s"$oxygeniumHome/.oxygenium")
+        volume(s"$oxygeniumHome/.oxygenium-wallets")
 
         user("nobody")
 
@@ -225,7 +225,7 @@ lazy val app = mainProject("app")
     },
     docker / imageNames := {
       dockerImageNames(
-        baseImageName = "alephium/dev-alephium",
+        baseImageName = "oxygenium/dev-oxygenium",
         versionTag = version.value.replace('+', '_')
       )
     },
@@ -237,7 +237,7 @@ lazy val app = mainProject("app")
       BuildInfoKey("branch"         -> git.gitCurrentBranch.value),
       BuildInfoKey("releaseVersion" -> version.value)
     ),
-    buildInfoPackage          := "org.alephium.app",
+    buildInfoPackage          := "org.oxygenium.app",
     buildInfoUsePackageAsPath := true
   )
 
@@ -271,7 +271,7 @@ lazy val http = project("http")
 lazy val tools = mainProject("tools")
   .enablePlugins(sbtdocker.DockerPlugin)
   .settings(
-    assembly / assemblyJarName := s"alephium-tools-${version.value}.jar",
+    assembly / assemblyJarName := s"oxygenium-tools-${version.value}.jar",
     assembly / test            := {},
     assemblyMergeStrategy := {
       case "logback.xml" => MergeStrategy.first
@@ -286,26 +286,26 @@ lazy val tools = mainProject("tools")
     },
     docker / dockerfile := {
       val artifact: File     = assembly.value
-      val artifactTargetPath = "/alephium-tools.jar"
+      val artifactTargetPath = "/oxygenium-tools.jar"
 
-      val alephiumHome = "/alephium-home"
+      val oxygeniumHome = "/oxygenium-home"
 
       new Dockerfile {
         from("openjdk:17-jdk")
 
         runRaw(
           Seq(
-            s"mkdir -p $alephiumHome && usermod -d $alephiumHome nobody && chown nobody $alephiumHome",
-            s"mkdir -p $alephiumHome/.alephium && chown nobody $alephiumHome/.alephium",
-            s"mkdir -p $alephiumHome/.alephium/mainnet && chown nobody $alephiumHome/.alephium/mainnet"
+            s"mkdir -p $oxygeniumHome && usermod -d $oxygeniumHome nobody && chown nobody $oxygeniumHome",
+            s"mkdir -p $oxygeniumHome/.oxygenium && chown nobody $oxygeniumHome/.oxygenium",
+            s"mkdir -p $oxygeniumHome/.oxygenium/mainnet && chown nobody $oxygeniumHome/.oxygenium/mainnet"
           ).mkString(" && ")
         )
 
-        workDir(alephiumHome)
+        workDir(oxygeniumHome)
 
         copy(artifact, artifactTargetPath)
 
-        volume(s"$alephiumHome/.alephium")
+        volume(s"$oxygeniumHome/.oxygenium")
 
         user("nobody")
 
@@ -314,7 +314,7 @@ lazy val tools = mainProject("tools")
     },
     docker / imageNames := {
       dockerImageNames(
-        baseImageName = "alephium/dev-alephium-tools",
+        baseImageName = "oxygenium/dev-oxygenium-tools",
         versionTag = version.value.replace('+', '_')
       )
     }
@@ -351,7 +351,7 @@ lazy val protocol = project("protocol")
   .enablePlugins(BuildInfoPlugin)
   .settings(
     buildInfoKeys             := Seq[BuildInfoKey](version),
-    buildInfoPackage          := "org.alephium.protocol",
+    buildInfoPackage          := "org.oxygenium.protocol",
     buildInfoUsePackageAsPath := true
   )
   .dependsOn(
@@ -398,8 +398,8 @@ lazy val wallet = project("wallet")
       logback
     ),
     publish / skip             := true,
-    assembly / mainClass       := Some("org.alephium.wallet.Main"),
-    assembly / assemblyJarName := s"alephium-wallet-${version.value}.jar",
+    assembly / mainClass       := Some("org.oxygenium.wallet.Main"),
+    assembly / assemblyJarName := s"oxygenium-wallet-${version.value}.jar",
     assembly / test            := {},
     assemblyMergeStrategy := {
       case PathList("META-INF", "maven", "org.webjars", "swagger-ui", xs @ _*) =>
@@ -430,8 +430,8 @@ lazy val ralphc = project("ralphc")
       scopt
     ),
     publish / skip             := false,
-    assembly / mainClass       := Some("org.alephium.ralphc.Main"),
-    assembly / assemblyJarName := s"alephium-ralphc-${version.value}.jar",
+    assembly / mainClass       := Some("org.oxygenium.ralphc.Main"),
+    assembly / assemblyJarName := s"oxygenium-ralphc-${version.value}.jar",
     assembly / test            := {},
     assemblyMergeStrategy := {
       case PathList("module-info.class") =>
@@ -444,15 +444,15 @@ lazy val ralphc = project("ralphc")
   )
 
 val publishSettings = Seq(
-  organization := "org.alephium",
-  homepage     := Some(url("https://github.com/alephium/alephium")),
+  organization := "org.oxygenium",
+  homepage     := Some(url("https://github.com/oxygenium/oxygenium")),
   licenses     := Seq("LGPL 3.0" -> new URL("https://www.gnu.org/licenses/lgpl-3.0.en.html")),
   developers := List(
     Developer(
-      id = "alephium core dev",
-      name = "alephium core dev",
-      email = "dev@alephium.org",
-      url = url("https://alephium.org/")
+      id = "oxygenium core dev",
+      name = "oxygenium core dev",
+      email = "dev@oxygenium.org",
+      url = url("https://oxygenium.org/")
     )
   )
 )

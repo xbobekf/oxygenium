@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.config
+package org.oxygenium.wallet.config
 
 import java.nio.file.Path
 
@@ -26,9 +26,9 @@ import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import net.ceedubs.ficus.readers.ValueReader
 import sttp.model.Uri
 
-import org.alephium.api.model.ApiKey
-import org.alephium.conf._
-import org.alephium.util.{AVector, Duration}
+import org.oxygenium.api.model.ApiKey
+import org.oxygenium.conf._
+import org.oxygenium.util.{AVector, Duration}
 
 final case class WalletConfig(
     port: Option[Int],

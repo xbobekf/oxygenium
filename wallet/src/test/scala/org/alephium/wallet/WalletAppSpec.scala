@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet
+package org.oxygenium.wallet
 
 import java.net.InetAddress
 
@@ -24,16 +24,16 @@ import io.vertx.ext.web.handler.BodyHandler
 import org.scalatest.concurrent.{IntegrationPatience, ScalaFutures}
 import sttp.model.StatusCode
 
-import org.alephium.api.{ApiError, ApiModelCodec}
-import org.alephium.api.UtilJson.avectorReadWriter
-import org.alephium.api.model._
-import org.alephium.crypto.wallet.Mnemonic
-import org.alephium.http.HttpFixture._
-import org.alephium.http.HttpRouteFixture
-import org.alephium.json.Json._
-import org.alephium.protocol.{ALPH, Hash, PrivateKey, PublicKey, SignatureSchema}
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig}
-import org.alephium.protocol.model.{
+import org.oxygenium.api.{ApiError, ApiModelCodec}
+import org.oxygenium.api.UtilJson.avectorReadWriter
+import org.oxygenium.api.model._
+import org.oxygenium.crypto.wallet.Mnemonic
+import org.oxygenium.http.HttpFixture._
+import org.oxygenium.http.HttpRouteFixture
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{ALPH, Hash, PrivateKey, PublicKey, SignatureSchema}
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.model.{
   Address,
   CliqueId,
   NetworkId,
@@ -41,14 +41,14 @@ import org.alephium.protocol.model.{
   TransactionId,
   TxGenerators
 }
-import org.alephium.serde.serialize
-import org.alephium.util.{discard, AlephiumFutureSpec, AVector, Duration, Hex, U256}
-import org.alephium.wallet.api.model._
-import org.alephium.wallet.config.WalletConfigFixture
-import org.alephium.wallet.json.ModelCodecs
+import org.oxygenium.serde.serialize
+import org.oxygenium.util.{discard, OxygeniumFutureSpec, AVector, Duration, Hex, U256}
+import org.oxygenium.wallet.api.model._
+import org.oxygenium.wallet.config.WalletConfigFixture
+import org.oxygenium.wallet.json.ModelCodecs
 
 class WalletAppSpec
-    extends AlephiumFutureSpec
+    extends OxygeniumFutureSpec
     with ModelCodecs
     with WalletConfigFixture
     with TxGenerators
@@ -503,7 +503,7 @@ object WalletAppSpec extends {
     router.route().path("/infos/chain-params").handler { ctx =>
       complete(
         ctx,
-        ChainParams(NetworkId.AlephiumMainNet, 18, 1, 2)
+        ChainParams(NetworkId.OxygeniumMainNet, 18, 1, 2)
       )
     }
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import java.math.BigInteger
 import java.nio.charset.StandardCharsets
@@ -26,20 +26,20 @@ import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen
 import org.scalatest.Assertion
 
-import org.alephium.crypto._
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.mempool.MemPool.AddedToMemPool
-import org.alephium.flow.validation.{TxScriptExeFailed, TxValidation}
-import org.alephium.io.IOResult
-import org.alephium.protocol.{vm, ALPH, Generators, Hash, PublicKey}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm._
-import org.alephium.ralph.Compiler
-import org.alephium.serde._
-import org.alephium.util._
+import org.oxygenium.crypto._
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.mempool.MemPool.AddedToMemPool
+import org.oxygenium.flow.validation.{TxScriptExeFailed, TxValidation}
+import org.oxygenium.io.IOResult
+import org.oxygenium.protocol.{vm, ALPH, Generators, Hash, PublicKey}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm._
+import org.oxygenium.ralph.Compiler
+import org.oxygenium.serde._
+import org.oxygenium.util._
 
 // scalastyle:off file.size.limit method.length number.of.methods
-class VMSpec extends AlephiumSpec with Generators {
+class VMSpec extends OxygeniumSpec with Generators {
 
   it should "not start with private function" in new ContractFixture {
     val input =
@@ -724,7 +724,7 @@ class VMSpec extends AlephiumSpec with Generators {
          |}
          |""".stripMargin
 
-    import org.alephium.protocol.model.TokenId.tokenIdOrder
+    import org.oxygenium.protocol.model.TokenId.tokenIdOrder
     val _tokenId0 =
       TokenId.from(
         createContract(
@@ -1324,7 +1324,7 @@ class VMSpec extends AlephiumSpec with Generators {
 
   it should "test groupOfAddress builtin" in new ContractFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.broker.groups", 4), ("alephium.broker.broker-num", 1))
+      Map(("oxygenium.broker.groups", 4), ("oxygenium.broker.broker-num", 1))
 
     val script =
       s"""
@@ -2303,8 +2303,8 @@ class VMSpec extends AlephiumSpec with Generators {
 
   it should "execute tx in random order" in new TxExecutionOrderFixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.leman-hard-fork-timestamp", TimeStamp.now().plusHoursUnsafe(1).millis),
-      ("alephium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis)
+      ("oxygenium.network.leman-hard-fork-timestamp", TimeStamp.now().plusHoursUnsafe(1).millis),
+      ("oxygenium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis)
     )
     networkConfig.getHardFork(TimeStamp.now()) is HardFork.Mainnet
 
@@ -2385,7 +2385,7 @@ class VMSpec extends AlephiumSpec with Generators {
 
   it should "execute tx in sequential order" in new TxExecutionOrderFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
+      Map(("oxygenium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
     val contractId = createContractAndCheckState(testContract, 2, 2)._1
     val block      = callScript(contractId, identity)
     networkConfig.getHardFork(block.timestamp) is HardFork.Leman
@@ -3636,7 +3636,7 @@ class VMSpec extends AlephiumSpec with Generators {
   }
 
   it should "check subContractIdInParentGroup" in new SubContractFixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val subContractPath = "00"
     val parentContract =
@@ -3808,7 +3808,7 @@ class VMSpec extends AlephiumSpec with Generators {
   it should "not load contract just after creation before Rhone upgrade" in new CreateContractFixture {
     override def useMethodSelector: Boolean = false
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.rhone-hard-fork-timestamp", TimeStamp.now().plusHoursUnsafe(1).millis)
+      ("oxygenium.network.rhone-hard-fork-timestamp", TimeStamp.now().plusHoursUnsafe(1).millis)
     )
     config.network.getHardFork(TimeStamp.now()) is HardFork.Leman
 
@@ -3947,7 +3947,7 @@ class VMSpec extends AlephiumSpec with Generators {
     }
 
     intercept[Throwable](test("", "1, #11, 2i", "", "")).getMessage is
-      "org.alephium.ralph.error.CompilerError$Default: Invalid args type \"List(U256, ByteVec, I256)\" for builtin func encodeFields"
+      "org.oxygenium.ralph.error.CompilerError$Default: Invalid args type \"List(U256, ByteVec, I256)\" for builtin func encodeFields"
     test("", "1, 2i, #11", "020201030111", "010102")
     test("@std(id = #0001)", "1, 2i, #11", "0302010301110306414c50480001", "010102")
   }
@@ -4042,7 +4042,7 @@ class VMSpec extends AlephiumSpec with Generators {
          |""".stripMargin
     }
     intercept[Throwable](test("AbstractFoo(selfContractId!())")).getMessage is
-      "org.alephium.ralph.error.CompilerError$Default: AbstractFoo is not instantiable"
+      "org.oxygenium.ralph.error.CompilerError$Default: AbstractFoo is not instantiable"
     test("Foo(selfContractId!())")
     test("selfContract!()")
   }
@@ -4095,7 +4095,7 @@ class VMSpec extends AlephiumSpec with Generators {
          |""".stripMargin
     }
     intercept[Throwable](test("AbstractFooGrandParent(selfContractId!())")).getMessage is
-      "org.alephium.ralph.error.CompilerError$Default: AbstractFooGrandParent is not instantiable"
+      "org.oxygenium.ralph.error.CompilerError$Default: AbstractFooGrandParent is not instantiable"
     test("Foo(selfContractId!())")
     test("selfContract!()")
   }
@@ -4128,7 +4128,7 @@ class VMSpec extends AlephiumSpec with Generators {
          |""".stripMargin
     }
     intercept[Throwable](test("FooParent2(selfContractId!())")).getMessage is
-      "org.alephium.ralph.error.CompilerError$Default: FooParent2 is not instantiable"
+      "org.oxygenium.ralph.error.CompilerError$Default: FooParent2 is not instantiable"
     test("Foo(selfContractId!())")
     test("selfContract!()")
   }
@@ -4609,7 +4609,7 @@ class VMSpec extends AlephiumSpec with Generators {
 
   it should "test debug function" in new EventFixture {
     override lazy val initialImmState: AVector[Val] = AVector.empty
-    override lazy val initialMutState: AVector[Val] = AVector(Val.ByteVec.fromString("Alephium"))
+    override lazy val initialMutState: AVector[Val] = AVector(Val.ByteVec.fromString("Oxygenium"))
     override def contractRaw: String =
       s"""
          |Contract Foo(mut name: ByteVec) {
@@ -4669,13 +4669,13 @@ class VMSpec extends AlephiumSpec with Generators {
     def verifyInvalidArgumentType(func: String, assertValue: String) = {
       val code = barCode(s"$func!(caller) == $assertValue")
       intercept[Throwable](createContract(code)).getMessage is
-        s"org.alephium.ralph.error.CompilerError$$Default: Invalid args type \"List(Address)\" for builtin func $func, expected \"List(Contract)\""
+        s"org.oxygenium.ralph.error.CompilerError$$Default: Invalid args type \"List(Address)\" for builtin func $func, expected \"List(Contract)\""
     }
 
     def verifyInvalidNumberOfArguments(func: String, assertValue: String) = {
       val code = barCode(s"$func!(1, caller) == $assertValue")
       intercept[Throwable](createContract(code)).getMessage is
-        s"org.alephium.ralph.error.CompilerError$$Default: Invalid args type \"List(U256, Address)\" for builtin func $func, expected \"List(Contract)\""
+        s"org.oxygenium.ralph.error.CompilerError$$Default: Invalid args type \"List(U256, Address)\" for builtin func $func, expected \"List(Contract)\""
     }
 
     def verifyTransferToken(func: String, assertValue: String) = {
@@ -6118,7 +6118,7 @@ class VMSpec extends AlephiumSpec with Generators {
   it should "not call multiple asset functions in the same contract: Leman" in new ReentrancyFixture {
     override def useMethodSelector: Boolean = false
     override val configValues: Map[String, Any] =
-      Map(("alephium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
+      Map(("oxygenium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
     networkConfig.getHardFork(TimeStamp.now()) is HardFork.Leman
     failCallTxScript(
       script(s"""
@@ -6195,7 +6195,7 @@ class VMSpec extends AlephiumSpec with Generators {
 
   it should "not call the same deposit function multiple times in the same contract: Leman" in new PayToContractOnlyFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
+      Map(("oxygenium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
     networkConfig.getHardFork(TimeStamp.now()) is HardFork.Leman
 
     intercept[AssertionError](callTxScript(script)).getMessage is
@@ -6519,8 +6519,8 @@ class VMSpec extends AlephiumSpec with Generators {
   trait SubContractIndexesFixture extends ContractFixture {
     def subcontractIndexEnabled: Boolean
     override val configValues: Map[String, Any] = Map(
-      "alephium.node.indexes.subcontract-index"   -> s"$subcontractIndexEnabled",
-      "alephium.node.indexes.tx-output-ref-index" -> "false"
+      "oxygenium.node.indexes.subcontract-index"   -> s"$subcontractIndexEnabled",
+      "oxygenium.node.indexes.tx-output-ref-index" -> "false"
     )
 
     val subContractRaw: String =
@@ -6591,7 +6591,7 @@ class VMSpec extends AlephiumSpec with Generators {
     val subContractId = createSingleSubContract(1)
 
     def verifyError[T](result: IOResult[T]) = {
-      result.leftValue.reason.getMessage is "Please set `alephium.node.indexes.subcontract-index = true` to query parent contract or subcontracts"
+      result.leftValue.reason.getMessage is "Please set `oxygenium.node.indexes.subcontract-index = true` to query parent contract or subcontracts"
     }
 
     verifyError(blockFlow.getParentContractId(subContractId))
@@ -6638,7 +6638,7 @@ class VMSpec extends AlephiumSpec with Generators {
   // Inactive instrs check will be enabled in future upgrades
   ignore should "check inactive instrs when creating contract" in new ContractFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
+      Map(("oxygenium.network.rhone-hard-fork-timestamp", TimeStamp.Max.millis))
     networkConfig.getHardFork(TimeStamp.now()) is HardFork.Leman
 
     val code =

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.interclique
+package org.oxygenium.flow.network.interclique
 
 import akka.io.Tcp
 import akka.testkit.{TestActorRef, TestProbe}
 
-import org.alephium.flow.{AlephiumFlowActorSpec, FlowFixture}
-import org.alephium.flow.handler.TestUtils
-import org.alephium.flow.network.broker.BrokerHandler
-import org.alephium.protocol.{Generators, SignatureSchema}
-import org.alephium.protocol.message.Hello
-import org.alephium.protocol.model.InterBrokerInfo
-import org.alephium.util.ActorRefT
+import org.oxygenium.flow.{OxygeniumFlowActorSpec, FlowFixture}
+import org.oxygenium.flow.handler.TestUtils
+import org.oxygenium.flow.network.broker.BrokerHandler
+import org.oxygenium.protocol.{Generators, SignatureSchema}
+import org.oxygenium.protocol.message.Hello
+import org.oxygenium.protocol.model.InterBrokerInfo
+import org.oxygenium.util.ActorRefT
 
-class OutboundBrokerHandlerSpec extends AlephiumFlowActorSpec {
+class OutboundBrokerHandlerSpec extends OxygeniumFlowActorSpec {
   it should "connect to remote broker with valid broker info" in new Fixture {
     brokerHandler ! Tcp.Connected(
       expectedRemoteBroker.address,

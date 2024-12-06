@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/wallet/src/main/scala/org/alephium/wallet/config)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/wallet/src/main/scala/org/oxygenium/wallet/config)
 
-The `WalletConfig.scala` file in the `org.alephium.wallet.config` package defines the configuration settings for the Alephium wallet. It allows developers to customize the wallet's behavior, connect it to the blockflow service, and authenticate API requests.
+The `WalletConfig.scala` file in the `org.oxygenium.wallet.config` package defines the configuration settings for the Oxygenium wallet. It allows developers to customize the wallet's behavior, connect it to the blockflow service, and authenticate API requests.
 
 The `WalletConfig` case class contains various configurable parameters, such as:
 
@@ -23,7 +23,7 @@ The `WalletConfig` object also provides implicit `ValueReader` instances for rea
 Here's an example of creating a `WalletConfig` object with custom parameters:
 
 ```scala
-import org.alephium.wallet.config.WalletConfig
+import org.oxygenium.wallet.config.WalletConfig
 
 val config = WalletConfig(
   port = Some(8080),
@@ -42,4 +42,4 @@ val config = WalletConfig(
 
 In this example, a `WalletConfig` object is created with a specified port, secret directory, locking timeout, and API key. The `BlockFlow` object contains information about the blockflow service, including its host, port, number of groups, and maximum age of cached blocks. The `uri` field is automatically constructed from the `host` and `port` fields.
 
-This configuration can be used to customize the Alephium wallet's behavior, connect it to the blockflow service, and authenticate requests to both the wallet API and blockflow service.
+This configuration can be used to customize the Oxygenium wallet's behavior, connect it to the blockflow service, and authenticate requests to both the wallet API and blockflow service.

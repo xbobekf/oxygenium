@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/macros/src/main/scala/org/alephium/macros/EnumerationMacros.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/macros/src/main/scala/org/oxygenium/macros/EnumerationMacros.scala)
 
 The code defines a Scala object called `EnumerationMacros` that contains a single method called `sealedInstancesOf`. This method takes a type parameter `A` and returns a `TreeSet` of instances of the sealed trait or class `A`. The method uses Scala macros to generate the set of instances at compile time.
 

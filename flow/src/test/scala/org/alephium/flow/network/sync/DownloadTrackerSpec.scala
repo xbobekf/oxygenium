@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.sync
+package org.oxygenium.flow.network.sync
 
 import akka.actor.Props
 import akka.testkit.TestActorRef
 
-import org.alephium.flow.AlephiumFlowActorSpec
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.network.broker.BrokerHandler
-import org.alephium.protocol.model.{BlockHash, ChainIndex}
-import org.alephium.util.{AVector, Duration, TimeStamp}
+import org.oxygenium.flow.OxygeniumFlowActorSpec
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.network.broker.BrokerHandler
+import org.oxygenium.protocol.model.{BlockHash, ChainIndex}
+import org.oxygenium.util.{AVector, Duration, TimeStamp}
 
-class DownloadTrackerSpec extends AlephiumFlowActorSpec {
+class DownloadTrackerSpec extends OxygeniumFlowActorSpec {
   trait Fixture { F =>
     val blockflow = genesisBlockFlow()
     val hashes = AVector.from((1 to 5).map { k =>

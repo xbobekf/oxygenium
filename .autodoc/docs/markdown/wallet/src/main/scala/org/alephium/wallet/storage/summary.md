@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/wallet/src/main/scala/org/alephium/wallet/storage)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/wallet/src/main/scala/org/oxygenium/wallet/storage)
 
-The `SecretStorage.scala` file in the `org.alephium.wallet.storage` package provides a secure way to store and retrieve private keys and other sensitive information, which is essential for a cryptocurrency wallet application like Alephium. The file contains a trait called `SecretStorage` and an object called `SecretStorage`, which define methods for creating, loading, and manipulating secret storage files.
+The `SecretStorage.scala` file in the `org.oxygenium.wallet.storage` package provides a secure way to store and retrieve private keys and other sensitive information, which is essential for a cryptocurrency wallet application like Oxygenium. The file contains a trait called `SecretStorage` and an object called `SecretStorage`, which define methods for creating, loading, and manipulating secret storage files.
 
 The `SecretStorage` trait acts as an interface for secret storage implementations, providing methods to lock, unlock, delete, and query the storage. It also allows for the retrieval of private keys, derivation of new keys, and changing the active private key. For example, to unlock a secret storage, you would call the `unlock` method with the appropriate password and optional mnemonic passphrase:
 
@@ -26,4 +26,4 @@ Additionally, the `SecretStorage` object provides methods for revealing the mnem
 val result: Either[Error, Mnemonic] = SecretStorage.revealMnemonicFromFile(file, password)
 ```
 
-In the context of the Alephium project, the `SecretStorage` implementation is crucial for securely managing private keys and other sensitive data. It can be used in conjunction with other components, such as transaction signing and address generation, to build a fully functional cryptocurrency wallet. The provided methods ensure that sensitive data is securely encrypted and only accessible when the correct password and optional mnemonic passphrase are provided, making it a valuable addition to the project.
+In the context of the Oxygenium project, the `SecretStorage` implementation is crucial for securely managing private keys and other sensitive data. It can be used in conjunction with other components, such as transaction signing and address generation, to build a fully functional cryptocurrency wallet. The provided methods ensure that sensitive data is securely encrypted and only accessible when the correct password and optional mnemonic passphrase are provided, making it a valuable addition to the project.

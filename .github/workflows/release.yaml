@@ -29,13 +29,13 @@ jobs:
       - name: Generate checksums (Release prep)
         run: |
              cd app/target/scala-2.13/
-             sha256sum "alephium-${{ steps.get_version.outputs.VERSION }}.jar" > "alephium-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
+             sha256sum "oxygenium-${{ steps.get_version.outputs.VERSION }}.jar" > "oxygenium-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
              cd ../../../wallet/target/scala-2.13/
-             sha256sum "alephium-wallet-${{ steps.get_version.outputs.VERSION }}.jar" > "alephium-wallet-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
+             sha256sum "oxygenium-wallet-${{ steps.get_version.outputs.VERSION }}.jar" > "oxygenium-wallet-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
              cd ../../../ralphc/target/scala-2.13/
-             sha256sum "alephium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar" > "alephium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
+             sha256sum "oxygenium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar" > "oxygenium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
              cd ../../../tools/target/scala-2.13/
-             sha256sum "alephium-tools-${{ steps.get_version.outputs.VERSION }}.jar" > "alephium-tools-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
+             sha256sum "oxygenium-tools-${{ steps.get_version.outputs.VERSION }}.jar" > "oxygenium-tools-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum"
              cd ../../../
       
       - name: Release
@@ -43,11 +43,11 @@ jobs:
         with:
           prerelease: ${{ contains(steps.get_version.outputs.VERSION, '-') }}
           files: |
-            app/target/scala-2.13/alephium-${{ steps.get_version.outputs.VERSION }}.jar
-            app/target/scala-2.13/alephium-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
-            wallet/target/scala-2.13/alephium-wallet-${{ steps.get_version.outputs.VERSION }}.jar
-            wallet/target/scala-2.13/alephium-wallet-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
-            ralphc/target/scala-2.13/alephium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar
-            ralphc/target/scala-2.13/alephium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
-            tools/target/scala-2.13/alephium-tools-${{ steps.get_version.outputs.VERSION }}.jar
-            tools/target/scala-2.13/alephium-tools-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
+            app/target/scala-2.13/oxygenium-${{ steps.get_version.outputs.VERSION }}.jar
+            app/target/scala-2.13/oxygenium-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
+            wallet/target/scala-2.13/oxygenium-wallet-${{ steps.get_version.outputs.VERSION }}.jar
+            wallet/target/scala-2.13/oxygenium-wallet-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
+            ralphc/target/scala-2.13/oxygenium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar
+            ralphc/target/scala-2.13/oxygenium-ralphc-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum
+            tools/target/scala-2.13/oxygenium-tools-${{ steps.get_version.outputs.VERSION }}.jar
+            tools/target/scala-2.13/oxygenium-tools-${{ steps.get_version.outputs.VERSION }}.jar.sha256.checksum

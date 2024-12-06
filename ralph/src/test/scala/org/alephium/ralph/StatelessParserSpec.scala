@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -13,16 +13,16 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
-package org.alephium.ralph
+package org.oxygenium.ralph
 
 import fastparse.{EagerOps, Parsed}
 
-import org.alephium.ralph.error.{CompilerError, CompilerErrorFormatter, FastParseErrorUtil}
-import org.alephium.ralph.util.OperatingSystem
-import org.alephium.util._
+import org.oxygenium.ralph.error.{CompilerError, CompilerErrorFormatter, FastParseErrorUtil}
+import org.oxygenium.ralph.util.OperatingSystem
+import org.oxygenium.util._
 
 // scalastyle:off no.equal file.size.limit
-class StatelessParserSpec extends AlephiumSpec {
+class StatelessParserSpec extends OxygeniumSpec {
   val StatelessParser = new StatelessParser(None)
 
   it should "disallow mutable template params" in {

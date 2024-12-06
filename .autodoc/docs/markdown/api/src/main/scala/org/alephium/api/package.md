@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/package.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/package.scala)
 
-This file defines a number of utility functions and types that are used throughout the Alephium project's API. 
+This file defines a number of utility functions and types that are used throughout the Oxygenium project's API. 
 
 The file begins with a header that specifies the licensing terms for the code. Following this, the file defines a number of imports that are used throughout the rest of the file. 
 
@@ -18,13 +18,13 @@ The `readWriterCodec` function is used to define a codec for a given type. This 
 
 The `alphPlainTextBody` function is used to define an endpoint input/output that accepts/returns plain text data. This function uses the `Codec.string` codec to define the input/output format. 
 
-Overall, this file defines a number of utility functions and types that are used throughout the Alephium project's API. These functions are used to handle errors, wrap results, and define input/output formats for endpoints.
+Overall, this file defines a number of utility functions and types that are used throughout the Oxygenium project's API. These functions are used to handle errors, wrap results, and define input/output formats for endpoints.
 ## Questions: 
  1. What is the purpose of this code file?
-- This code file defines a package object for the `org.alephium.api` package, which contains utility functions and type aliases for working with API errors and response bodies.
+- This code file defines a package object for the `org.oxygenium.api` package, which contains utility functions and type aliases for working with API errors and response bodies.
 
 2. What external libraries or dependencies does this code file use?
-- This code file imports several libraries, including `sttp`, `org.alephium.io`, and `org.alephium.json`. It also defines a custom codec using `upickle`.
+- This code file imports several libraries, including `sttp`, `org.oxygenium.io`, and `org.oxygenium.json`. It also defines a custom codec using `upickle`.
 
 3. What is the purpose of the `wrapResult` and `wrapExeResult` functions?
 - The `wrapResult` function takes an `IOResult` and returns a `Try` that either contains the result value or an `ApiError` if the result was an `IOError`. The `wrapExeResult` function takes an `ExeResult` and returns a `Try` that either contains the result value or an `ApiError` if the result was an `IOError` or a `VM` execution error.

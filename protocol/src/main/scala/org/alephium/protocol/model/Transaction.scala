@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import akka.util.ByteString
 
-import org.alephium.crypto.MerkleHashable
-import org.alephium.protocol._
-import org.alephium.protocol.config.{ConsensusConfigs, GroupConfig, NetworkConfig}
-import org.alephium.protocol.mining.Emission
-import org.alephium.protocol.model.Transaction.MerkelTx
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.serde._
-import org.alephium.util.{AVector, Duration, Hex, Math, TimeStamp, U256}
+import org.oxygenium.crypto.MerkleHashable
+import org.oxygenium.protocol._
+import org.oxygenium.protocol.config.{ConsensusConfigs, GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.mining.Emission
+import org.oxygenium.protocol.model.Transaction.MerkelTx
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.serde._
+import org.oxygenium.util.{AVector, Duration, Hex, Math, TimeStamp, U256}
 
 sealed trait TransactionAbstract {
   def unsigned: UnsignedTransaction

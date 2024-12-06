@@ -1,18 +1,18 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/model/PersistedTxId.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/model/PersistedTxId.scala)
 
 This file contains the definition of a case class called `PersistedTxId` and an object with the same name. The `PersistedTxId` case class has two fields: `timestamp` of type `TimeStamp` and `txId` of type `TransactionId`. The purpose of this case class is to represent a transaction ID that has been persisted to storage along with its timestamp. 
 
-The `PersistedTxId` object contains an implicit `Serde` instance for the `PersistedTxId` case class. `Serde` is a serialization/deserialization library used in the Alephium project. This `Serde` instance allows instances of `PersistedTxId` to be serialized and deserialized to/from bytes. The `forProduct2` method of the `Serde` object is used to create the `Serde` instance. This method takes two functions as arguments: a function to create an instance of `PersistedTxId` from a `TimeStamp` and a `TransactionId`, and a function to extract the `TimeStamp` and `TransactionId` from an instance of `PersistedTxId`. 
+The `PersistedTxId` object contains an implicit `Serde` instance for the `PersistedTxId` case class. `Serde` is a serialization/deserialization library used in the Oxygenium project. This `Serde` instance allows instances of `PersistedTxId` to be serialized and deserialized to/from bytes. The `forProduct2` method of the `Serde` object is used to create the `Serde` instance. This method takes two functions as arguments: a function to create an instance of `PersistedTxId` from a `TimeStamp` and a `TransactionId`, and a function to extract the `TimeStamp` and `TransactionId` from an instance of `PersistedTxId`. 
 
-This code is likely used in the larger Alephium project to persist transaction IDs to storage along with their timestamps. The `PersistedTxId` case class provides a convenient way to represent this data, and the `Serde` instance allows it to be serialized and deserialized as needed. Other parts of the Alephium project that need to persist transaction IDs could use this case class and `Serde` instance to do so. 
+This code is likely used in the larger Oxygenium project to persist transaction IDs to storage along with their timestamps. The `PersistedTxId` case class provides a convenient way to represent this data, and the `Serde` instance allows it to be serialized and deserialized as needed. Other parts of the Oxygenium project that need to persist transaction IDs could use this case class and `Serde` instance to do so. 
 
 Example usage:
 
 ```scala
-import org.alephium.flow.model.PersistedTxId
-import org.alephium.protocol.model.TransactionId
-import org.alephium.serde.Serde
-import org.alephium.util.TimeStamp
+import org.oxygenium.flow.model.PersistedTxId
+import org.oxygenium.protocol.model.TransactionId
+import org.oxygenium.serde.Serde
+import org.oxygenium.util.TimeStamp
 
 // create a PersistedTxId instance
 val txId = TransactionId("abc123")

@@ -1,12 +1,12 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/api/src/main/scala/org/alephium/api)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/api/src/main/scala/org/oxygenium/api)
 
-The `.autodoc/docs/json/api/src/main/scala/org/alephium/api` folder contains code related to the Alephium project's API, which allows developers to interact with the Alephium blockchain. The code in this folder defines various data models, codecs, utility functions, and API endpoints for the Alephium blockchain.
+The `.autodoc/docs/json/api/src/main/scala/org/oxygenium/api` folder contains code related to the Oxygenium project's API, which allows developers to interact with the Oxygenium blockchain. The code in this folder defines various data models, codecs, utility functions, and API endpoints for the Oxygenium blockchain.
 
-For example, the `ApiModel.scala` file defines the API model and its serialization/deserialization logic, allowing developers to build applications on top of the Alephium blockchain. The `BaseEndpoint.scala` file provides a set of common functionality for building HTTP endpoints in the Alephium project, ensuring consistency across the project.
+For example, the `ApiModel.scala` file defines the API model and its serialization/deserialization logic, allowing developers to build applications on top of the Oxygenium blockchain. The `BaseEndpoint.scala` file provides a set of common functionality for building HTTP endpoints in the Oxygenium project, ensuring consistency across the project.
 
 The `ApiError.scala` file handles API errors, providing a common interface for all errors and specific implementations for different types of errors. This ensures that errors are handled consistently and effectively throughout the API.
 
-The `Endpoints.scala` file provides a comprehensive set of API endpoints for interacting with the Alephium blockchain, enabling developers to build applications and services on top of the platform. For example, the `getBalance` endpoint fetches the balance of an address:
+The `Endpoints.scala` file provides a comprehensive set of API endpoints for interacting with the Oxygenium blockchain, enabling developers to build applications and services on top of the platform. For example, the `getBalance` endpoint fetches the balance of an address:
 
 ```scala
 val getBalance: BaseEndpoint[Address, Balance] =
@@ -21,8 +21,8 @@ The `DecodeFailureHandler.scala` file ensures that clients receive informative e
 
 The `Examples.scala` and `ErrorExamples.scala` files provide examples of input and output data for endpoints and errors, respectively. These examples can be used for testing and documentation purposes.
 
-The `OpenApiWriters.scala` file generates OpenAPI documentation from the Alephium API, allowing developers to understand and interact with the API more easily. The `TapirCodecs.scala` and `TapirSchemas.scala` files define Tapir codecs and schemas for various data types used in the Alephium project's API, ensuring that data is properly formatted when passed between different components.
+The `OpenApiWriters.scala` file generates OpenAPI documentation from the Oxygenium API, allowing developers to understand and interact with the API more easily. The `TapirCodecs.scala` and `TapirSchemas.scala` files define Tapir codecs and schemas for various data types used in the Oxygenium project's API, ensuring that data is properly formatted when passed between different components.
 
-Finally, the `UtilJson.scala` file provides various implicit conversions and definitions for JSON serialization and deserialization of certain types used in the Alephium project.
+Finally, the `UtilJson.scala` file provides various implicit conversions and definitions for JSON serialization and deserialization of certain types used in the Oxygenium project.
 
-Overall, the code in this folder plays a crucial role in defining the Alephium project's API, providing a well-defined interface for developers to interact with the Alephium blockchain and build applications on top of it.
+Overall, the code in this folder plays a crucial role in defining the Oxygenium project's API, providing a well-defined interface for developers to interact with the Oxygenium blockchain and build applications on top of it.

@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/HardFork.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/HardFork.scala)
 
-This code defines a class and an object related to hard forks in the Alephium blockchain protocol. A hard fork is a change to the protocol that is not backwards-compatible, meaning that nodes running the old version of the protocol will not be able to validate blocks created by nodes running the new version. 
+This code defines a class and an object related to hard forks in the Oxygenium blockchain protocol. A hard fork is a change to the protocol that is not backwards-compatible, meaning that nodes running the old version of the protocol will not be able to validate blocks created by nodes running the new version. 
 
 The `HardFork` class is defined as a sealed class, meaning that all of its subclasses must be defined in the same file. It takes a single argument, `version`, which is an integer representing the version number of the hard fork. The class also extends the `Ordered` trait, which allows instances of `HardFork` to be compared to each other using the `compare` method. 
 
@@ -8,7 +8,7 @@ The `HardFork` object defines two subclasses of `HardFork`: `Mainnet` and `Leman
 
 The `isLemanEnabled` method is defined on instances of `HardFork` and returns a boolean indicating whether the instance is greater than or equal to the `Leman` hard fork. This method can be used to determine whether a particular feature or behavior is enabled in the current version of the protocol. 
 
-Overall, this code provides a way to define and compare different hard forks in the Alephium protocol. It can be used in other parts of the project to enable or disable certain features based on the current hard fork version. For example, a block validation function might check whether a particular feature is enabled based on the current hard fork version before validating a block. 
+Overall, this code provides a way to define and compare different hard forks in the Oxygenium protocol. It can be used in other parts of the project to enable or disable certain features based on the current hard fork version. For example, a block validation function might check whether a particular feature is enabled based on the current hard fork version before validating a block. 
 
 Example usage:
 ```

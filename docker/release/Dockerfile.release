@@ -2,12 +2,12 @@ FROM eclipse-temurin:17-jre
 
 ARG RELEASE=0.0.0
 
-RUN curl -L --proto "=https" https://github.com/alephium/alephium/releases/download/v${RELEASE}/alephium-${RELEASE}.jar -o /alephium.jar && \
-  mkdir -p /alephium-home && usermod -d /alephium-home nobody && chown nobody /alephium-home && \
-  mkdir -p ~nobody/.alephium && chown nobody ~nobody/.alephium && \
-  mkdir -p ~nobody/.alephium-wallets && chown nobody ~nobody/.alephium-wallets
+RUN curl -L --proto "=https" https://github.com/oxygenium/oxygenium/releases/download/v${RELEASE}/oxygenium-${RELEASE}.jar -o /oxygenium.jar && \
+  mkdir -p /oxygenium-home && usermod -d /oxygenium-home nobody && chown nobody /oxygenium-home && \
+  mkdir -p ~nobody/.oxygenium && chown nobody ~nobody/.oxygenium && \
+  mkdir -p ~nobody/.oxygenium-wallets && chown nobody ~nobody/.oxygenium-wallets
 
-COPY user-mainnet-release.conf /alephium-home/.alephium/user.conf
+COPY user-mainnet-release.conf /oxygenium-home/.oxygenium/user.conf
 COPY entrypoint.sh /entrypoint.sh
 
 # http
@@ -19,9 +19,9 @@ EXPOSE 10973
 # p2p
 EXPOSE 9973
 
-VOLUME /alephium-home/.alephium
+VOLUME /oxygenium-home/.oxygenium
 
-VOLUME /alephium-home/.alephium-wallets
+VOLUME /oxygenium-home/.oxygenium-wallets
 
 USER nobody
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.ralph
+package org.oxygenium.ralph
 
 import scala.collection.mutable.ArrayBuffer
 
 import akka.util.ByteString
 import fastparse._
 
-import org.alephium.protocol.vm.{Instr, StatefulContext, StatelessContext, Val}
-import org.alephium.ralph.Ast.{Annotation, Argument, FuncId, Statement}
-import org.alephium.ralph.error.CompilerError
-import org.alephium.ralph.error.FastParseExtension._
-import org.alephium.util.AVector
+import org.oxygenium.protocol.vm.{Instr, StatefulContext, StatelessContext, Val}
+import org.oxygenium.ralph.Ast.{Annotation, Argument, FuncId, Statement}
+import org.oxygenium.ralph.error.CompilerError
+import org.oxygenium.ralph.error.FastParseExtension._
+import org.oxygenium.util.AVector
 
 // scalastyle:off number.of.methods file.size.limit
 @SuppressWarnings(

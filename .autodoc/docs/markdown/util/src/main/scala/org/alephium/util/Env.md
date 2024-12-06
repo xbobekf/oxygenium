@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/Env.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/Env.scala)
 
 This code defines an enumeration called `Env` and an object called `Env` that contains methods for resolving the current environment and executing code only in the production environment. 
 
@@ -31,4 +31,4 @@ val envName = Env.currentEnv.name
 - This code is released under the GNU Lesser General Public License, version 3 or later.
 
 3. How can a developer use this code in their project?
-- A developer can import the `org.alephium.util.Env` object and use the `currentEnv` or `resolve` methods to determine the current environment or resolve a specific environment, respectively. They can also use the `forProd` method to execute a block of code only if the current environment is production.
+- A developer can import the `org.oxygenium.util.Env` object and use the `currentEnv` or `resolve` methods to determine the current environment or resolve a specific environment, respectively. They can also use the `forProd` method to execute a block of code only if the current environment is production.

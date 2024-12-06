@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.benchmark
+package org.oxygenium.benchmark
 
 import java.util.concurrent.TimeUnit
 
@@ -23,10 +23,10 @@ import scala.util.Random
 import akka.util.ByteString
 import org.openjdk.jmh.annotations._
 
-import org.alephium.io.{KeyValueStorage, RocksDBKeyValueStorage, RocksDBSource, SparseMerkleTrie}
-import org.alephium.io.SparseMerkleTrie.Node
-import org.alephium.protocol.Hash
-import org.alephium.util.Files
+import org.oxygenium.io.{KeyValueStorage, RocksDBKeyValueStorage, RocksDBSource, SparseMerkleTrie}
+import org.oxygenium.io.SparseMerkleTrie.Node
+import org.oxygenium.protocol.Hash
+import org.oxygenium.util.Files
 
 @BenchmarkMode(Array(Mode.AverageTime))
 @OutputTimeUnit(TimeUnit.MILLISECONDS)

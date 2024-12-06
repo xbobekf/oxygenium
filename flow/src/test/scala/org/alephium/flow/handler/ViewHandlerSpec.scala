@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import akka.testkit.{EventFilter, TestActorRef, TestProbe}
 import akka.util.Timeout
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.mempool.MemPool
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.network.InterCliqueManager
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.{Address, ChainIndex, GroupIndex, LockupScriptGenerators}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util.*
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.mempool.MemPool
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.network.InterCliqueManager
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.{Address, ChainIndex, GroupIndex, LockupScriptGenerators}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util.*
 
-class ViewHandlerSpec extends AlephiumActorSpec {
+class ViewHandlerSpec extends OxygeniumActorSpec {
   it should "update when necessary" in {
     implicit val brokerConfig = new BrokerConfig {
       override def brokerId: Int  = 1
@@ -132,7 +132,7 @@ class ViewHandlerSpec extends AlephiumActorSpec {
 
   it should "subscribe and unsubscribe actors" in new Fixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mining.polling-interval", "100 seconds"))
+      Map(("oxygenium.mining.polling-interval", "100 seconds"))
     viewHandler ! InterCliqueManager.SyncedResult(true)
 
     val probe0 = TestProbe()

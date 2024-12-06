@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/mining/Message.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/mining/Message.scala)
 
-This code defines a set of messages and their serialization and deserialization methods for the Alephium mining flow. The messages are used to communicate between the mining client and the mining server. 
+This code defines a set of messages and their serialization and deserialization methods for the Oxygenium mining flow. The messages are used to communicate between the mining client and the mining server. 
 
 The `Message` trait defines the serialization and deserialization methods for the messages. It includes implicit serializers for `Int`, `ByteString`, and `AVector[T]`. The `ClientMessage` and `ServerMessage` traits define the messages that can be sent by the client and server, respectively. 
 
@@ -11,7 +11,7 @@ The `SimpleSerde` trait defines the serialization and deserialization methods fo
 Overall, this code provides a way for the mining client and server to communicate with each other using a set of predefined messages. The messages are serialized and deserialized using the methods defined in the `Message` trait and the `SimpleSerde` trait. The `ClientMessage` and `ServerMessage` objects define the messages that can be sent by the client and server, respectively.
 ## Questions: 
  1. What is the purpose of this code?
-   - This code defines message types and their serialization and deserialization methods for communication between clients and servers in the Alephium project's mining module.
+   - This code defines message types and their serialization and deserialization methods for communication between clients and servers in the Oxygenium project's mining module.
 
 2. What is the role of the `Message` trait and its companion object?
    - The `Message` trait and its companion object define serialization and deserialization methods for common data types used in the messages, such as `Int`, `ByteString`, and `AVector[T]`.

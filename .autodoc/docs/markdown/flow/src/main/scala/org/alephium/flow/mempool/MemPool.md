@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/mempool/MemPool.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/mempool/MemPool.scala)
 
-The code in this file is responsible for managing the memory pool (MemPool) of the Alephium project. The memory pool is a critical component in blockchain systems, as it stores unconfirmed transactions before they are included in a block. The MemPool class in this code is designed to store and manage these unconfirmed transactions efficiently.
+The code in this file is responsible for managing the memory pool (MemPool) of the Oxygenium project. The memory pool is a critical component in blockchain systems, as it stores unconfirmed transactions before they are included in a block. The MemPool class in this code is designed to store and manage these unconfirmed transactions efficiently.
 
 Transactions in the memory pool are ordered based on their weights, which are calculated from their fees. This allows the system to prioritize transactions with higher fees when selecting them for inclusion in a block. The MemPool class provides various methods for adding, removing, and querying transactions in the memory pool.
 
@@ -12,10 +12,10 @@ The `reorg` method is used to handle chain reorganizations, which can occur when
 
 The `getRelevantUtxos` method is used to retrieve unspent transaction outputs (UTXOs) relevant to a specific lockup script. This is useful for constructing new transactions that spend these UTXOs.
 
-Overall, the MemPool class plays a crucial role in managing unconfirmed transactions in the Alephium project, ensuring that the system can efficiently prioritize and process transactions based on their fees and other factors.
+Overall, the MemPool class plays a crucial role in managing unconfirmed transactions in the Oxygenium project, ensuring that the system can efficiently prioritize and process transactions based on their fees and other factors.
 ## Questions: 
  1. **Question**: What is the purpose of the `MemPool` class in this code?
-   **Answer**: The `MemPool` class is used to store all the unconfirmed transactions in the Alephium project. It provides methods for adding, removing, and querying transactions, as well as handling reorganizations and cleaning up old transactions.
+   **Answer**: The `MemPool` class is used to store all the unconfirmed transactions in the Oxygenium project. It provides methods for adding, removing, and querying transactions, as well as handling reorganizations and cleaning up old transactions.
 
 2. **Question**: How does the code handle adding a new transaction to the `MemPool` when it is full?
    **Answer**: When the `MemPool` is full, it checks if the new transaction has a higher weight (based on fees) than the lowest weight transaction in the pool. If so, it removes the lowest weight transaction and adds the new transaction. Otherwise, it returns a `MemPoolIsFull` status.

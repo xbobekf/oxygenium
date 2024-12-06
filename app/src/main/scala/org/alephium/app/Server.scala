@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.nio.file.Path
 
@@ -23,21 +23,21 @@ import scala.concurrent.{ExecutionContext, Future}
 
 import akka.actor.ActorSystem
 
-import org.alephium.flow.client.Node
-import org.alephium.flow.io.Storages
-import org.alephium.flow.mining.{CpuMiner, Miner, MinerApiController}
-import org.alephium.flow.setting.AlephiumConfig
-import org.alephium.io.RocksDBSource.ProdSettings
-import org.alephium.util.{ActorRefT, Service}
-import org.alephium.wallet.WalletApp
-import org.alephium.wallet.config.WalletConfig
-import org.alephium.wallet.service.WalletService
+import org.oxygenium.flow.client.Node
+import org.oxygenium.flow.io.Storages
+import org.oxygenium.flow.mining.{CpuMiner, Miner, MinerApiController}
+import org.oxygenium.flow.setting.OxygeniumConfig
+import org.oxygenium.io.RocksDBSource.ProdSettings
+import org.oxygenium.util.{ActorRefT, Service}
+import org.oxygenium.wallet.WalletApp
+import org.oxygenium.wallet.config.WalletConfig
+import org.oxygenium.wallet.service.WalletService
 
 trait Server extends Service {
   def flowSystem: ActorSystem
   implicit def executionContext: ExecutionContext
 
-  implicit def config: AlephiumConfig
+  implicit def config: OxygeniumConfig
   implicit def apiConfig: ApiConfig
   def storages: Storages
 
@@ -98,7 +98,7 @@ trait Server extends Service {
 
 object Server {
   def apply(rootPath: Path, flowSystem: ActorSystem)(implicit
-      config: AlephiumConfig,
+      config: OxygeniumConfig,
       apiConfig: ApiConfig,
       executionContext: ExecutionContext
   ): Server = {
@@ -109,7 +109,7 @@ object Server {
       rootPath: Path,
       val flowSystem: ActorSystem
   )(implicit
-      val config: AlephiumConfig,
+      val config: OxygeniumConfig,
       val apiConfig: ApiConfig,
       val executionContext: ExecutionContext
   ) extends Server {

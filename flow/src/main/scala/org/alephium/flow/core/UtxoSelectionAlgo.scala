@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import scala.annotation.tailrec
 
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.flow.gasestimation._
-import org.alephium.protocol.config.NetworkConfig
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.{GasBox, GasPrice, StatefulScript, UnlockScript}
-import org.alephium.util._
+import org.oxygenium.flow.gasestimation._
+import org.oxygenium.protocol.config.NetworkConfig
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.{GasBox, GasPrice, StatefulScript, UnlockScript}
+import org.oxygenium.util._
 
 /*
  * We sort the Utxos based on the amount and type

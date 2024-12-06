@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network
+package org.oxygenium.flow.network
 
 import akka.actor.{ActorRef, Props, Stash}
 import akka.io.Tcp
 
-import org.alephium.crypto.{SecP256K1PrivateKey, SecP256K1PublicKey}
-import org.alephium.flow.handler.IOBaseActor
-import org.alephium.flow.io.NodeStateStorage
-import org.alephium.flow.model.BootstrapInfo
-import org.alephium.flow.network.bootstrap.{Broker, CliqueCoordinator, IntraCliqueInfo, PeerInfo}
-import org.alephium.flow.setting.NetworkSetting
-import org.alephium.protocol.SignatureSchema
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.CliqueId
-import org.alephium.util.{ActorRefT, AVector, TimeStamp}
+import org.oxygenium.crypto.{SecP256K1PrivateKey, SecP256K1PublicKey}
+import org.oxygenium.flow.handler.IOBaseActor
+import org.oxygenium.flow.io.NodeStateStorage
+import org.oxygenium.flow.model.BootstrapInfo
+import org.oxygenium.flow.network.bootstrap.{Broker, CliqueCoordinator, IntraCliqueInfo, PeerInfo}
+import org.oxygenium.flow.setting.NetworkSetting
+import org.oxygenium.protocol.SignatureSchema
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.CliqueId
+import org.oxygenium.util.{ActorRefT, AVector, TimeStamp}
 
 object Bootstrapper {
   def props(

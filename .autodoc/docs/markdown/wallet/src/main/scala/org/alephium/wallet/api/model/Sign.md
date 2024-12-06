@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/wallet/src/main/scala/org/alephium/wallet/api/model/Sign.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/wallet/src/main/scala/org/oxygenium/wallet/api/model/Sign.scala)
 
-This file contains two case classes, `Sign` and `SignResult`, which are used in the `org.alephium.wallet.api` package of the Alephium project. 
+This file contains two case classes, `Sign` and `SignResult`, which are used in the `org.oxygenium.wallet.api` package of the Oxygenium project. 
 
 The `Sign` case class takes a string `data` as input and is used to represent data that needs to be signed. The `SignResult` case class takes a `Signature` object as input and is used to represent the result of signing the data.
 
@@ -9,8 +9,8 @@ These case classes are likely used in the wallet API to allow users to sign tran
 Here is an example of how these case classes may be used in the larger project:
 
 ```scala
-import org.alephium.wallet.api.model.{Sign, SignResult}
-import org.alephium.protocol.Signature
+import org.oxygenium.wallet.api.model.{Sign, SignResult}
+import org.oxygenium.protocol.Signature
 
 val dataToSign = "Hello, world!"
 val sign = Sign(dataToSign)
@@ -24,7 +24,7 @@ Overall, this file provides a simple way to represent data that needs to be sign
 ## Questions: 
  1. What is the purpose of the `Sign` and `SignResult` case classes?
    - The `Sign` case class represents data to be signed, while the `SignResult` case class represents the resulting signature.
-2. What is the `Signature` class imported from `org.alephium.protocol`?
-   - The `Signature` class is likely a class from the `org.alephium.protocol` package that is used to represent cryptographic signatures.
-3. What is the overall purpose of the `org.alephium.wallet.api.model` package?
-   - It is unclear from this code alone what the overall purpose of the `org.alephium.wallet.api.model` package is, but it likely contains models or data structures used by the Alephium wallet API.
+2. What is the `Signature` class imported from `org.oxygenium.protocol`?
+   - The `Signature` class is likely a class from the `org.oxygenium.protocol` package that is used to represent cryptographic signatures.
+3. What is the overall purpose of the `org.oxygenium.wallet.api.model` package?
+   - It is unclear from this code alone what the overall purpose of the `org.oxygenium.wallet.api.model` package is, but it likely contains models or data structures used by the Oxygenium wallet API.

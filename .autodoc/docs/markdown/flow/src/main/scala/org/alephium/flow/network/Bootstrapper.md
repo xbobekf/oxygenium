@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/Bootstrapper.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/Bootstrapper.scala)
 
-This code defines the `Bootstrapper` class and its related classes and methods. The `Bootstrapper` class is responsible for bootstrapping the network by connecting nodes and creating cliques. The code is part of the Alephium project, which is a decentralized blockchain platform.
+This code defines the `Bootstrapper` class and its related classes and methods. The `Bootstrapper` class is responsible for bootstrapping the network by connecting nodes and creating cliques. The code is part of the Oxygenium project, which is a decentralized blockchain platform.
 
 The `Bootstrapper` class has three subclasses: `SingleNodeCliqueBootstrapper`, `CliqueCoordinatorBootstrapper`, and `BrokerBootstrapper`. The `props` method is used to create a new instance of the `Bootstrapper` class. The `props` method takes three arguments: `tcpController`, `cliqueManager`, and `nodeStateStorage`. The `tcpController` and `cliqueManager` arguments are `ActorRefT` objects, which are used to send messages to other actors. The `nodeStateStorage` argument is used to store and retrieve data from the node's local storage.
 
@@ -17,7 +17,7 @@ The `BootstrapperHandler` trait is used to define common methods and variables f
 Overall, this code is responsible for bootstrapping the network by connecting nodes and creating cliques. The `Bootstrapper` class has three subclasses that are used depending on the node's role. The `BootstrapperHandler` trait defines common methods and variables for the `Bootstrapper` subclasses.
 ## Questions: 
  1. What is the purpose of the `Bootstrapper` class and its related classes?
-- The `Bootstrapper` class and its related classes are responsible for bootstrapping the network and coordinating the connection between nodes in the Alephium network.
+- The `Bootstrapper` class and its related classes are responsible for bootstrapping the network and coordinating the connection between nodes in the Oxygenium network.
 
 2. What is the role of the `CliqueCoordinatorBootstrapper` class?
 - The `CliqueCoordinatorBootstrapper` class is responsible for starting the `CliqueCoordinator` actor and forwarding incoming connections to it. It is used when the node is configured as a coordinator.

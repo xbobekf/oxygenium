@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.setting
+package org.oxygenium.flow.setting
 
 import java.math.BigInteger
 import java.net.{InetAddress, InetSocketAddress}
@@ -30,15 +30,15 @@ import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import net.ceedubs.ficus.readers.ValueReader
 
-import org.alephium.conf._
-import org.alephium.flow.core.maxForkDepth
-import org.alephium.flow.network.nat.Upnp
-import org.alephium.protocol.{ALPH, Hash}
-import org.alephium.protocol.config._
-import org.alephium.protocol.mining.Emission
-import org.alephium.protocol.model.{Address, Block, Difficulty, HardFork, NetworkId, Target, Weight}
-import org.alephium.protocol.vm.{LogConfig, NodeIndexesConfig}
-import org.alephium.util._
+import org.oxygenium.conf._
+import org.oxygenium.flow.core.maxForkDepth
+import org.oxygenium.flow.network.nat.Upnp
+import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.config._
+import org.oxygenium.protocol.mining.Emission
+import org.oxygenium.protocol.model.{Address, Block, Difficulty, HardFork, NetworkId, Target, Weight}
+import org.oxygenium.protocol.vm.{LogConfig, NodeIndexesConfig}
+import org.oxygenium.util._
 
 final case class BrokerSetting(groups: Int, brokerNum: Int, brokerId: Int) extends BrokerConfig {
   override lazy val groupNumPerBroker: Int = groups / brokerNum
@@ -232,7 +232,7 @@ object Allocation {
 
 final case class GenesisSetting(allocations: AVector[Allocation])
 
-final case class AlephiumConfig(
+final case class OxygeniumConfig(
     broker: BrokerSetting,
     consensus: ConsensusSettings,
     mining: MiningSetting,
@@ -251,7 +251,7 @@ final case class AlephiumConfig(
     )
 }
 
-object AlephiumConfig {
+object OxygeniumConfig {
   import ConfigUtils._
 
   final private case class TempConsensusSettings(
@@ -379,7 +379,7 @@ object AlephiumConfig {
     }
   }
 
-  final private case class TempAlephiumConfig(
+  final private case class TempOxygeniumConfig(
       broker: BrokerSetting,
       consensus: TempConsensusSettings,
       mining: TempMiningSetting,
@@ -390,16 +390,16 @@ object AlephiumConfig {
       node: NodeSetting,
       genesis: GenesisSetting
   ) {
-    lazy val toAlephiumConfig: AlephiumConfig = {
+    lazy val toOxygeniumConfig: OxygeniumConfig = {
       parseMiners(mining.minerAddresses)(broker).map { minerAddresses =>
         val consensusExtracted = consensus.toConsensusSettings(broker)
         val networkExtracted   = network.toNetworkSetting(ActorRefT.apply)
-        val discoveryRefined = if (network.networkId == NetworkId.AlephiumTestNet) {
+        val discoveryRefined = if (network.networkId == NetworkId.OxygeniumTestNet) {
           if (discovery.bootstrap.isEmpty) {
             discovery.copy(bootstrap =
               ArraySeq(
-                new InetSocketAddress("bootstrap0.testnet.alephium.org", 9973),
-                new InetSocketAddress("bootstrap1.testnet.alephium.org", 9973)
+                new InetSocketAddress("bootstrap0.testnet.oxygenium.org", 9973),
+                new InetSocketAddress("bootstrap1.testnet.oxygenium.org", 9973)
               )
             )
           } else {
@@ -408,7 +408,7 @@ object AlephiumConfig {
         } else {
           discovery
         }
-        AlephiumConfig(
+        OxygeniumConfig(
           broker,
           consensusExtracted,
           mining.toMiningSetting(minerAddresses),
@@ -426,9 +426,9 @@ object AlephiumConfig {
     }
   }
 
-  implicit val alephiumValueReader: ValueReader[AlephiumConfig] =
+  implicit val oxygeniumValueReader: ValueReader[OxygeniumConfig] =
     valueReader { implicit cfg =>
-      TempAlephiumConfig(
+      TempOxygeniumConfig(
         as[BrokerSetting]("broker"),
         as[TempConsensusSettings]("consensus"),
         as[TempMiningSetting]("mining"),
@@ -438,30 +438,30 @@ object AlephiumConfig {
         as[WalletSetting]("wallet"),
         as[NodeSetting]("node"),
         as[GenesisSetting]("genesis")
-      ).toAlephiumConfig
+      ).toOxygeniumConfig
     }
 
-  def load(env: Env, rootPath: Path, configPath: String): AlephiumConfig =
+  def load(env: Env, rootPath: Path, configPath: String): OxygeniumConfig =
     load(
       Configs.parseConfig(env, rootPath, overwrite = true, predefined = ConfigFactory.empty()),
       configPath
     )
-  def load(rootPath: Path, configPath: String): AlephiumConfig =
+  def load(rootPath: Path, configPath: String): OxygeniumConfig =
     load(Env.currentEnv, rootPath, configPath)
-  def load(config: Config, configPath: String): AlephiumConfig =
-    sanityCheck(config.as[AlephiumConfig](configPath))
-  def load(config: Config): AlephiumConfig = load(config, "alephium")
+  def load(config: Config, configPath: String): OxygeniumConfig =
+    sanityCheck(config.as[OxygeniumConfig](configPath))
+  def load(config: Config): OxygeniumConfig = load(config, "oxygenium")
 
-  def sanityCheck(config: AlephiumConfig): AlephiumConfig = {
+  def sanityCheck(config: OxygeniumConfig): OxygeniumConfig = {
     if (
-      config.network.networkId == NetworkId.AlephiumMainNet &&
+      config.network.networkId == NetworkId.OxygeniumMainNet &&
       config.network.lemanHardForkTimestamp != TimeStamp.unsafe(1680170400000L)
     ) {
       throw new IllegalArgumentException("Invalid timestamp for leman hard fork")
     }
 
     if (
-      config.network.networkId == NetworkId.AlephiumMainNet &&
+      config.network.networkId == NetworkId.OxygeniumMainNet &&
       config.network.rhoneHardForkTimestamp != TimeStamp.unsafe(1718186400000L)
     ) {
       throw new IllegalArgumentException("Invalid timestamp for rhone hard fork")

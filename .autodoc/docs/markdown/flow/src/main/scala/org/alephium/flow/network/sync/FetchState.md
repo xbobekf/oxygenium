@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/sync/FetchState.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/sync/FetchState.scala)
 
 The code defines a class called `FetchState` and a companion object with a factory method to create instances of the class. The purpose of this class is to keep track of the state of items that need to be fetched from a network. The class uses a cache to store the state of each item, which includes a timestamp and the number of times the item has been downloaded. The cache has a maximum capacity, a timeout duration, and a maximum number of download times.
 
@@ -16,7 +16,7 @@ if (fetchState.needToFetch(item, timestamp)) {
 ```
 ## Questions: 
  1. What is the purpose of this code?
-   - This code is a part of the alephium project and defines a class `FetchState` that manages the state of fetched data.
+   - This code is a part of the oxygenium project and defines a class `FetchState` that manages the state of fetched data.
 2. What is the `Cache` class used for in this code?
    - The `Cache` class is used to store the state of fetched data in memory with a limited capacity and a timeout.
 3. What is the significance of the `maxDownloadTimes` parameter in the `FetchState` class?

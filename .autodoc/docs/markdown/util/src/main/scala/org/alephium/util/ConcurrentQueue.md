@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/ConcurrentQueue.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/ConcurrentQueue.scala)
 
 The code defines a ConcurrentQueue class and an object called ConcurrentQueue. The ConcurrentQueue class is a thread-safe implementation of a queue data structure that can be used in a concurrent environment. The ConcurrentQueue object provides a factory method to create an empty instance of the ConcurrentQueue class.
 

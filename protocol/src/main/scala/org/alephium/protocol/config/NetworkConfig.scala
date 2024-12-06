@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,25 +14,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.config
+package org.oxygenium.protocol.config
 
 import akka.util.ByteString
 
-import org.alephium.protocol.Hash
-import org.alephium.protocol.model.{HardFork, NetworkId}
-import org.alephium.util.{Bytes, Duration, TimeStamp}
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.model.{HardFork, NetworkId}
+import org.oxygenium.util.{Bytes, Duration, TimeStamp}
 
 trait NetworkConfig {
   def networkId: NetworkId
 
   lazy val magicBytes: ByteString =
-    Bytes.from(Hash.hash(s"alephium-${networkId.id}").toRandomIntUnsafe)
+    Bytes.from(Hash.hash(s"oxygenium-${networkId.id}").toRandomIntUnsafe)
 
   def noPreMineProof: ByteString
 
   // scalastyle:off magic.number
   lazy val coinbaseLockupPeriod: Duration = networkId match {
-    case NetworkId.AlephiumMainNet => Duration.ofMinutesUnsafe(500)
+    case NetworkId.OxygeniumMainNet => Duration.ofMinutesUnsafe(500)
     case _                         => Duration.ofMinutesUnsafe(10)
   }
   // scalastyle:on magic.number

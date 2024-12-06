@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/crypto/src/main/scala/org/alephium/crypto/MerkleHashable.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/crypto/src/main/scala/org/oxygenium/crypto/MerkleHashable.scala)
 
 The code defines a trait and an object for generating Merkle tree hashes. A Merkle tree is a binary tree where each leaf node represents a data block and each non-leaf node represents a hash of its child nodes. The root node of the tree represents the final hash of all the data blocks. Merkle trees are commonly used in distributed systems to verify the integrity of data blocks.
 

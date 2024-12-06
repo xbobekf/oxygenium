@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mining
+package org.oxygenium.flow.mining
 
 import java.math.BigInteger
 
@@ -22,12 +22,12 @@ import scala.reflect.ClassTag
 
 import akka.util.ByteString
 
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.flow.network.bootstrap.SimpleSerde
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{BlockHash, Nonce}
-import org.alephium.serde.{intSerde => _, _}
-import org.alephium.util.{AVector, Bytes}
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.flow.network.bootstrap.SimpleSerde
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{BlockHash, Nonce}
+import org.oxygenium.serde.{intSerde => _, _}
+import org.oxygenium.util.{AVector, Bytes}
 
 sealed trait Message
 object Message {

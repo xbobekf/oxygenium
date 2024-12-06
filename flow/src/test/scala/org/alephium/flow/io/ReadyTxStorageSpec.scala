@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
-import org.alephium.flow.model.ReadyTxInfo
-import org.alephium.flow.setting.AlephiumConfigFixture
-import org.alephium.io.RocksDBSource
-import org.alephium.io.RocksDBSource.ColumnFamily
-import org.alephium.protocol.Generators
-import org.alephium.protocol.model.{ChainIndex, TransactionId}
-import org.alephium.util.{AlephiumSpec, AVector, TimeStamp}
+import org.oxygenium.flow.model.ReadyTxInfo
+import org.oxygenium.flow.setting.OxygeniumConfigFixture
+import org.oxygenium.io.RocksDBSource
+import org.oxygenium.io.RocksDBSource.ColumnFamily
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.model.{ChainIndex, TransactionId}
+import org.oxygenium.util.{OxygeniumSpec, AVector, TimeStamp}
 
 class ReadyTxStorageSpec
-    extends AlephiumSpec
+    extends OxygeniumSpec
     with StorageSpec[ReadyTxRocksDBStorage]
-    with AlephiumConfigFixture {
+    with OxygeniumConfigFixture {
 
   override val dbname: String = "ready-tx-storage-spec"
   override val builder: RocksDBSource => ReadyTxRocksDBStorage =

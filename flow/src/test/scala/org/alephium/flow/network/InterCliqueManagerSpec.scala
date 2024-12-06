@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network
+package org.oxygenium.flow.network
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Random
@@ -25,18 +25,18 @@ import akka.testkit.{EventFilter, TestActorRef, TestProbe}
 import akka.util.Timeout
 import org.scalatest.concurrent.ScalaFutures
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.handler.TestUtils
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.network.InterCliqueManager.{BrokerState, SyncedResult}
-import org.alephium.flow.network.broker._
-import org.alephium.protocol.Generators
-import org.alephium.protocol.message.{Message, NewBlock}
-import org.alephium.protocol.model.{BrokerInfo, ChainIndex, TransactionId}
-import org.alephium.util._
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.handler.TestUtils
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.network.InterCliqueManager.{BrokerState, SyncedResult}
+import org.oxygenium.flow.network.broker._
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.message.{Message, NewBlock}
+import org.oxygenium.protocol.model.{BrokerInfo, ChainIndex, TransactionId}
+import org.oxygenium.util._
 
-class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with ScalaFutures {
-  override def actorSystemConfig = AlephiumActorSpec.debugConfig
+class InterCliqueManagerSpec extends OxygeniumActorSpec with Generators with ScalaFutures {
+  override def actorSystemConfig = OxygeniumActorSpec.debugConfig
   implicit val timeout: Timeout  = Timeout(Duration.ofSecondsUnsafe(2).asScala)
   val clientInfo: String         = "v0.0.0"
 
@@ -159,7 +159,7 @@ class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with Scal
 
   it should "not accept incoming connection when the number of inbound connections is large" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.max-inbound-connections-per-group", 1)
+      ("oxygenium.network.max-inbound-connections-per-group", 1)
     )
 
     val broker = relevantBrokerInfo()
@@ -180,7 +180,7 @@ class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with Scal
 
   it should "not accept outbound connection when the number of outbound connections is large" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.max-outbound-connections-per-group", 1)
+      ("oxygenium.network.max-outbound-connections-per-group", 1)
     )
 
     val broker = relevantBrokerInfo(OutboundConnection)
@@ -199,7 +199,7 @@ class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with Scal
 
   it should "not accept outbound connection when the number of pending outbound connections is large" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.max-outbound-connections-per-group", 1)
+      ("oxygenium.network.max-outbound-connections-per-group", 1)
     )
 
     val broker = relevantBrokerInfo()
@@ -216,7 +216,7 @@ class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with Scal
 
   it should "not start outbound connection when the number of pending outbound connections is large" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.network.max-outbound-connections-per-group", 1)
+      ("oxygenium.network.max-outbound-connections-per-group", 1)
     )
 
     val broker = relevantBrokerInfo().info
@@ -413,7 +413,7 @@ class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with Scal
 
   it should "publish node synced status" in new SyncFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.network.update-synced-frequency", "1 minute"))
+      Map(("oxygenium.network.update-synced-frequency", "1 minute"))
     interCliqueManagerActor.lastNodeSyncedStatus is Some(false)
 
     def checkPublish(synced: Boolean) = {
@@ -559,9 +559,9 @@ class InterCliqueManagerSpec extends AlephiumActorSpec with Generators with Scal
 
   trait BroadCastFixture extends Fixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.broker.groups"     -> 4,
-      "alephium.broker.broker-num" -> 2,
-      "alephium.broker.broker-id"  -> 0
+      "oxygenium.broker.groups"     -> 4,
+      "oxygenium.broker.broker-num" -> 2,
+      "oxygenium.broker.broker-id"  -> 0
     )
 
     def genBrokerInfo(brokerId: Int): BrokerInfo = {

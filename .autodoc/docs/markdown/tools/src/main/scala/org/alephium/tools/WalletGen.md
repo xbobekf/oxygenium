@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/tools/src/main/scala/org/alephium/tools/WalletGen.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/tools/src/main/scala/org/oxygenium/tools/WalletGen.scala)
 
-The `WalletGen` object is a tool for generating wallets for the Alephium cryptocurrency. It is used to generate a set of public and private keys, along with their corresponding addresses and mnemonics. 
+The `WalletGen` object is a tool for generating wallets for the Oxygenium cryptocurrency. It is used to generate a set of public and private keys, along with their corresponding addresses and mnemonics. 
 
 The `gen` method is the core of the tool. It takes a `GroupIndex` as input and returns a tuple containing an `Address`, a `SecP256K1PublicKey`, a `SecP256K1PrivateKey`, and a `Mnemonic`. The `GroupIndex` is used to ensure that the generated address belongs to the specified group. The method generates a random 24-word mnemonic, which is used to derive a BIP32 master key. From this master key, a private key, public key, and address are derived. If the generated address does not belong to the specified group, the method is called recursively until a valid address is generated.
 
@@ -9,10 +9,10 @@ The `WalletGen` object also contains a `main` method that generates wallets for 
 Here is an example of how to use the `WalletGen` tool:
 
 ```scala
-import org.alephium.tools.WalletGen
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.GroupIndex
-import org.alephium.protocol.model.NetworkId
+import org.oxygenium.tools.WalletGen
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.GroupIndex
+import org.oxygenium.protocol.model.NetworkId
 
 implicit val config: GroupConfig = new GroupConfig {
   override def groups: Int = 4
@@ -30,11 +30,11 @@ This code generates a wallet for the first group of the default network ID (1). 
 ## Questions: 
  1. What is the purpose of this code?
    
-   This code generates wallet addresses, public and private keys, and mnemonics for the Alephium cryptocurrency project.
+   This code generates wallet addresses, public and private keys, and mnemonics for the Oxygenium cryptocurrency project.
 
 2. What external libraries or dependencies does this code use?
    
-   This code imports several libraries from the Alephium project, including `org.alephium.crypto`, `org.alephium.crypto.wallet`, `org.alephium.protocol`, and `org.alephium.wallet.Constants`.
+   This code imports several libraries from the Oxygenium project, including `org.oxygenium.crypto`, `org.oxygenium.crypto.wallet`, `org.oxygenium.protocol`, and `org.oxygenium.wallet.Constants`.
 
 3. What is the output of this code?
    

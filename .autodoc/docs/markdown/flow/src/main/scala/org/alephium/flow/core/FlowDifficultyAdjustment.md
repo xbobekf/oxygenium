@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/FlowDifficultyAdjustment.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/FlowDifficultyAdjustment.scala)
 
-This file contains the `FlowDifficultyAdjustment` trait, which provides methods for adjusting the difficulty of mining new blocks in the Alephium blockchain. The trait defines several abstract methods that must be implemented by any concrete class that extends it. These methods include `getBlockHeaderUnsafe`, `getHeightUnsafe`, `getHeaderChain`, `getHashChain`, and `getOutTips`, which are used to retrieve information about blocks and their relationships to one another.
+This file contains the `FlowDifficultyAdjustment` trait, which provides methods for adjusting the difficulty of mining new blocks in the Oxygenium blockchain. The trait defines several abstract methods that must be implemented by any concrete class that extends it. These methods include `getBlockHeaderUnsafe`, `getHeightUnsafe`, `getHeaderChain`, `getHashChain`, and `getOutTips`, which are used to retrieve information about blocks and their relationships to one another.
 
 The `FlowDifficultyAdjustment` trait also defines several concrete methods for adjusting the mining difficulty of new blocks. These methods include `getNextHashTarget`, `getNextHashTargetGenesis`, and `getNextHashTargetLeman`. The `getNextHashTarget` method takes a `ChainIndex`, `BlockDeps`, and `nextTimeStamp` as input parameters and returns an `IOResult[Target]`. This method first checks whether the Leman algorithm is enabled for the given timestamp. If it is, the `getNextHashTargetLeman` method is called to calculate the next hash target. Otherwise, the `getNextHashTargetGenesis` method is called.
 
@@ -10,13 +10,13 @@ The `getNextHashTargetLeman` method calculates the next hash target for a new bl
 
 The `FlowDifficultyAdjustment` trait also defines several other helper methods for calculating the difficulty and time span of blocks and their dependencies. These methods include `calHeightDiffUnsafe`, `calCommonIntraGroupDepsUnsafe`, `getDiffAndTimeSpanUnsafe`, `getDiffAndTimeSpanForIntraDepUnsafe`, and `getDiffAndTimeSpanUnsafe`. These methods are used by the `getNextHashTargetGenesis` and `getNextHashTargetLeman` methods to calculate the difficulty and time span of blocks and their dependencies.
 
-Overall, the `FlowDifficultyAdjustment` trait provides a set of methods for adjusting the difficulty of mining new blocks in the Alephium blockchain. These methods take into account the difficulty and time span of previous blocks in the blockchain, as well as the height difference between blocks and their dependencies. The trait is designed to be extended by concrete classes that implement the abstract methods defined by the trait.
+Overall, the `FlowDifficultyAdjustment` trait provides a set of methods for adjusting the difficulty of mining new blocks in the Oxygenium blockchain. These methods take into account the difficulty and time span of previous blocks in the blockchain, as well as the height difference between blocks and their dependencies. The trait is designed to be extended by concrete classes that implement the abstract methods defined by the trait.
 ## Questions: 
  1. What is the purpose of this code file?
-- This code file contains a trait called `FlowDifficultyAdjustment` which defines methods for calculating the next hash target and difficulty adjustment for the Alephium blockchain.
+- This code file contains a trait called `FlowDifficultyAdjustment` which defines methods for calculating the next hash target and difficulty adjustment for the Oxygenium blockchain.
 
 2. What external dependencies does this code have?
-- This code imports several classes and traits from other packages within the Alephium project, including `ConsensusSetting`, `BrokerConfig`, `NetworkConfig`, and various protocol models and utilities.
+- This code imports several classes and traits from other packages within the Oxygenium project, including `ConsensusSetting`, `BrokerConfig`, `NetworkConfig`, and various protocol models and utilities.
 
 3. What caching mechanisms are used in this code?
 - This code uses two cache objects, `diffAndTimeSpanCache` and `diffAndTimeSpanForIntraDepCache`, to store previously calculated difficulty and time span values for block headers and intra-group dependencies. These caches use a FIFO eviction policy and have a capacity based on the number of chains and blocks in the blockchain.

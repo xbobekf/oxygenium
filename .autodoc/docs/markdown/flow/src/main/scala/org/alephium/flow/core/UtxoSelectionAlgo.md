@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/UtxoSelectionAlgo.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/UtxoSelectionAlgo.scala)
 
 The `UtxoSelectionAlgo` object in this code is responsible for selecting unspent transaction outputs (UTXOs) to be used as inputs for a new transaction. The selection process aims to satisfy the required amounts of ALPH (the native token) and other tokens while considering the gas fees for the transaction. The algorithm supports two selection orders: ascending and descending, based on the amount and type of UTXOs.
 

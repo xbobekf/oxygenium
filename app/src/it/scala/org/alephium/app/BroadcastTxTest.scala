@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.net.InetSocketAddress
 
-import org.alephium.api.model._
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.model.{Address, BrokerInfo, GroupIndex}
-import org.alephium.util._
+import org.oxygenium.api.model._
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.model.{Address, BrokerInfo, GroupIndex}
+import org.oxygenium.util._
 
-class BroadcastTxTest extends AlephiumActorSpec {
+class BroadcastTxTest extends OxygeniumActorSpec {
   it should "broadcast cross-group txs inside a clique" in new CliqueFixture {
     val clique = bootClique(nbOfNodes = 2)
     clique.start()
@@ -87,7 +87,7 @@ class BroadcastTxTest extends AlephiumActorSpec {
     val numCliques = 4
     val numTxs     = 32
 
-    val configOverrides   = Map(("alephium.network.stable-sync-frequency", "2 seconds"))
+    val configOverrides   = Map(("oxygenium.network.stable-sync-frequency", "2 seconds"))
     val clique1           = bootClique(nbOfNodes = 1, configOverrides = configOverrides)
     val masterPortClique1 = clique1.masterTcpPort
 

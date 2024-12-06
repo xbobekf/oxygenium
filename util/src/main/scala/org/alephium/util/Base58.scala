@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.util
+package org.oxygenium.util
 
 import scala.annotation.tailrec
 
@@ -73,7 +73,7 @@ object Base58 {
     val zeros      = ByteString.fromArrayUnsafe(Array.fill(zeroLength)(0))
     val trim       = input.drop(zeroLength)
 
-    import org.alephium.macros.HPC.cfor
+    import org.oxygenium.macros.HPC.cfor
     var decodedBi = zero
     cfor(0)(_ < trim.length, _ + 1) { i =>
       val c = trim.charAt(i)

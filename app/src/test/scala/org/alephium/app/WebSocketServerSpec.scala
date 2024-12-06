@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import scala.concurrent.ExecutionContext
 
@@ -27,19 +27,19 @@ import io.vertx.core.http.WebSocketClientOptions
 import org.scalatest.{Assertion, EitherValues}
 import sttp.tapir.server.vertx.VertxFutureServerInterpreter._
 
-import org.alephium.api.model.{BlockEntry, GhostUncleBlockEntry}
-import org.alephium.crypto.Blake3
-import org.alephium.flow.handler.AllHandlers.BlockNotify
-import org.alephium.flow.handler.TestUtils
-import org.alephium.json.Json._
-import org.alephium.protocol.{Hash, PublicKey}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.rpc.model.JsonRPC._
-import org.alephium.util._
+import org.oxygenium.api.model.{BlockEntry, GhostUncleBlockEntry}
+import org.oxygenium.crypto.Blake3
+import org.oxygenium.flow.handler.AllHandlers.BlockNotify
+import org.oxygenium.flow.handler.TestUtils
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{Hash, PublicKey}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.rpc.model.JsonRPC._
+import org.oxygenium.util._
 
 class WebSocketServerSpec
-    extends AlephiumFutureSpec
+    extends OxygeniumFutureSpec
     with NoIndexModelGenerators
     with EitherValues
     with NumericHelpers {

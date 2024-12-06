@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,23 +14,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import scala.annotation.tailrec
 
 import akka.util.ByteString
 
-import org.alephium.flow.Utils
-import org.alephium.flow.core.BlockChain.{ChainDiff, TxIndex, TxStatus}
-import org.alephium.flow.io._
-import org.alephium.flow.setting.ConsensusSettings
-import org.alephium.io.{IOResult, IOUtils}
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.{BrokerConfig, NetworkConfig}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.WorldState
-import org.alephium.serde.{avectorSerde, intSerde, serialize, Serde}
-import org.alephium.util.{AVector, TimeStamp}
+import org.oxygenium.flow.Utils
+import org.oxygenium.flow.core.BlockChain.{ChainDiff, TxIndex, TxStatus}
+import org.oxygenium.flow.io._
+import org.oxygenium.flow.setting.ConsensusSettings
+import org.oxygenium.io.{IOResult, IOUtils}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.{BrokerConfig, NetworkConfig}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.WorldState
+import org.oxygenium.serde.{avectorSerde, intSerde, serialize, Serde}
+import org.oxygenium.util.{AVector, TimeStamp}
 
 // scalastyle:off number.of.methods
 

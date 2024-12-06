@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.validation
+package org.oxygenium.flow.validation
 
 import scala.util.Random
 
@@ -23,21 +23,21 @@ import org.scalacheck.Gen
 import org.scalatest.Assertion
 import org.scalatest.EitherValues._
 
-import org.alephium.flow.{AlephiumFlowSpec, FlowFixture}
-import org.alephium.flow.core.ExtraUtxosInfo
-import org.alephium.flow.validation.ValidationStatus.{invalidTx, validTx}
-import org.alephium.io.IOError
-import org.alephium.protocol.{ALPH, Hash, PrivateKey, PublicKey, Signature, SignatureSchema}
-import org.alephium.protocol.model._
-import org.alephium.protocol.model.ModelGenerators.AssetInputInfo
-import org.alephium.protocol.model.UnsignedTransaction.TxOutputInfo
-import org.alephium.protocol.vm.{InvalidSignature => _, NetworkId => _, _}
-import org.alephium.ralph.Compiler
-import org.alephium.util.{AVector, Duration, TimeStamp, U256}
+import org.oxygenium.flow.{OxygeniumFlowSpec, FlowFixture}
+import org.oxygenium.flow.core.ExtraUtxosInfo
+import org.oxygenium.flow.validation.ValidationStatus.{invalidTx, validTx}
+import org.oxygenium.io.IOError
+import org.oxygenium.protocol.{ALPH, Hash, PrivateKey, PublicKey, Signature, SignatureSchema}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.model.ModelGenerators.AssetInputInfo
+import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
+import org.oxygenium.protocol.vm.{InvalidSignature => _, NetworkId => _, _}
+import org.oxygenium.ralph.Compiler
+import org.oxygenium.util.{AVector, Duration, TimeStamp, U256}
 
 // scalastyle:off number.of.methods file.size.limit
-class TxValidationSpec extends AlephiumFlowSpec with NoIndexModelGeneratorsLike {
-  override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+class TxValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike {
+  override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
   type TxValidator[T] = Transaction => TxValidationResult[T]
 
@@ -333,8 +333,8 @@ class TxValidationSpec extends AlephiumFlowSpec with NoIndexModelGeneratorsLike 
     val tx         = block.nonCoinbase.head
     tx.pass()
 
-    tx.unsigned.networkId isnot NetworkId.AlephiumMainNet
-    val invalidTx = tx.updateUnsigned(_.copy(networkId = NetworkId.AlephiumMainNet))
+    tx.unsigned.networkId isnot NetworkId.OxygeniumMainNet
+    val invalidTx = tx.updateUnsigned(_.copy(networkId = NetworkId.OxygeniumMainNet))
     invalidTx.fail(InvalidNetworkId)
   }
 
@@ -1239,7 +1239,7 @@ class TxValidationSpec extends AlephiumFlowSpec with NoIndexModelGeneratorsLike 
       val now = TimeStamp.now()
       BlockEnv(
         tx.chainIndex,
-        NetworkId.AlephiumMainNet,
+        NetworkId.OxygeniumMainNet,
         now,
         consensusConfigs.getConsensusConfig(now).maxMiningTarget,
         None

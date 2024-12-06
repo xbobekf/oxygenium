@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/ralph/src/main/scala/org/alephium/ralph/error/FastParseExtension.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/ralph/src/main/scala/org/oxygenium/ralph/error/FastParseExtension.scala)
 
 The code provided is a Scala file that contains an object called `FastParseExtension`. This object provides a method called `LastIndex` that takes a `parser` and a `ctx` as input parameters and returns the tail/last index after the parser run. 
 
@@ -12,7 +12,7 @@ Here is an example of how the `LastIndex` method can be used:
 
 ```
 import fastparse._
-import org.alephium.ralph.error.FastParseExtension._
+import org.oxygenium.ralph.error.FastParseExtension._
 
 val parser = P("hello" ~ "world").rep(1)
 val input = "hello world hello world"
@@ -29,5 +29,5 @@ In this example, the `parser` is defined to parse the input string for the seque
    - The `FastParseExtension` object provides a method called `LastIndex` that returns the last index after running a given parser without ignoring whitespaces.
 2. What is the license under which this code is distributed?
    - This code is distributed under the GNU Lesser General Public License, either version 3 of the License, or any later version.
-3. What is the `org.alephium.ralph.error` package used for?
-   - It is unclear from this code snippet what the `org.alephium.ralph.error` package is used for. It is possible that this code is just a small part of a larger project and the package is used elsewhere.
+3. What is the `org.oxygenium.ralph.error` package used for?
+   - It is unclear from this code snippet what the `org.oxygenium.ralph.error` package is used for. It is possible that this code is just a small part of a larger project and the package is used elsewhere.

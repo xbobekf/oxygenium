@@ -1,16 +1,16 @@
-Alephium
+Oxygenium
 =========
 [![codecov][codecov-badge]][codecov-link]
 [![Discord][discord-badge]][discord-link]
 
-This repository contains the reference implementation of Alephium, a sharded
-blockchain that makes programmable money scalable and secure. For more information, please visit the [wiki](https://wiki.alephium.org/).
+This repository contains the reference implementation of Oxygenium, a sharded
+blockchain that makes programmable money scalable and secure. For more information, please visit the [wiki](https://wiki.oxygenium.org/).
 
 ## Overview
 
 The protocol's innovations extend battle-tested ideas from [Bitcoin](https://bitcoin.org/bitcoin.pdf) and [Ethereum](https://ethereum.org/en/whitepaper/):
 
-* BlockFlow algorithm based on UTXO model enables sharding and scalability for today (code + [algorithm paper](https://github.com/alephium/research/blob/master/alephium.pdf))
+* BlockFlow algorithm based on UTXO model enables sharding and scalability for today (code + [algorithm paper](https://github.com/oxygenium/research/blob/master/oxygenium.pdf))
   * The first sharding algorithm that supports `single-step cross-shard transactions`, offering the same user experience as single chain
   * Simple and elegant `PoW based sharding`, does not rely on beacon chain
 * `Stateful UTXO model` combines the advantages of both eUTXO model and account model (see code, wiki to come)
@@ -22,7 +22,7 @@ The protocol's innovations extend battle-tested ideas from [Bitcoin](https://bit
   * Flash loan is not available by design
   * Eliminate many attack vectors of EVM, including unlimited authorization, double dip issue, reentrancy attack, etc
   * UTXO style `fine-grained execution model` reduces risk-free arbitrage
-* PoLW algorithm reduces the energy consumption of PoW in the long term ([research paper](https://github.com/alephium/research/blob/master/polw.pdf))
+* PoLW algorithm reduces the energy consumption of PoW in the long term ([research paper](https://github.com/oxygenium/research/blob/master/polw.pdf))
   * Adaptive rewards based on hashrate and timestamp are designed and implemented
   * Internal mining cost through burning will be activated when hashrate and energy consumption is significantly high
 
@@ -38,7 +38,7 @@ The following dependencies must be installed in order to run the JAR deliverable
 
 You can obtain our latest single JAR distribution from the GitHub releases and start the application using the following command:
 
-    java -jar alephium-<VERSION>.jar
+    java -jar oxygenium-<VERSION>.jar
 
 ## Build From Source
 
@@ -72,7 +72,7 @@ Use the following command to build a docker image:
 
 ## Configuration
 
-You can define user specific settings in the file `$ALEPHIUM_HOME/user.conf`, where by default `$ALEPHIUM_HOME` points to `~/.alephium`.
+You can define user specific settings in the file `$ALEPHIUM_HOME/user.conf`, where by default `$ALEPHIUM_HOME` points to `~/.oxygenium`.
 
 ## Testing
 
@@ -85,8 +85,8 @@ There are two kinds of tests:
 
 Have a look at our contribution guide described in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-[codecov-badge]: https://codecov.io/gh/alephium/alephium/branch/master/graph/badge.svg?token=0CK4HQ910R
-[codecov-link]: https://codecov.io/gh/alephium/alephium
+[codecov-badge]: https://codecov.io/gh/oxygenium/oxygenium/branch/master/graph/badge.svg?token=0CK4HQ910R
+[codecov-link]: https://codecov.io/gh/oxygenium/oxygenium
 [discord-badge]: https://img.shields.io/discord/747741246667227157?logo=discord
 [discord-link]: https://discord.gg/JErgRBfRSB
 

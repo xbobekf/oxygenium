@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mining
+package org.oxygenium.flow.mining
 
 import java.net.InetSocketAddress
 
 import akka.actor.ActorRef
 import akka.testkit.{TestActor, TestProbe}
 
-import org.alephium.flow.handler.{TestUtils, ViewHandler}
-import org.alephium.flow.mining.{ExternalMinerMock, Miner, MinerApiController}
-import org.alephium.flow.setting.AlephiumConfigFixture
-import org.alephium.util.{AlephiumActorSpec, AVector, Duration, SocketUtil}
+import org.oxygenium.flow.handler.{TestUtils, ViewHandler}
+import org.oxygenium.flow.mining.{ExternalMinerMock, Miner, MinerApiController}
+import org.oxygenium.flow.setting.OxygeniumConfigFixture
+import org.oxygenium.util.{OxygeniumActorSpec, AVector, Duration, SocketUtil}
 
-class ExternalMinerMockSpec extends AlephiumActorSpec {
-  override def actorSystemConfig = AlephiumActorSpec.infoConfig
+class ExternalMinerMockSpec extends OxygeniumActorSpec {
+  override def actorSystemConfig = OxygeniumActorSpec.infoConfig
 
   it should "initialize connections as None" in new ExternalMinerMockFixture {
     miner.underlyingActor.apiConnections.foreach(_ is None)
@@ -35,7 +35,7 @@ class ExternalMinerMockSpec extends AlephiumActorSpec {
 
   it should "fail to reconnect to multiple nodes immediately" in new ExternalMinerMockFixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.network.backoff-base-delay" -> "10 s"
+      "oxygenium.network.backoff-base-delay" -> "10 s"
     )
 
     minerApiControllers.foreach(_.underlyingActor.connections.size is 0)
@@ -47,7 +47,7 @@ class ExternalMinerMockSpec extends AlephiumActorSpec {
 
   it should "reconnect to multiple nodes" in new ExternalMinerMockFixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.network.backoff-base-delay" -> "10 milli"
+      "oxygenium.network.backoff-base-delay" -> "10 milli"
     )
 
     minerApiControllers.foreach(_.underlyingActor.connections.size is 0)
@@ -59,7 +59,7 @@ class ExternalMinerMockSpec extends AlephiumActorSpec {
 
   it should "shutdown if a minerApiController is stopped" in new ExternalMinerMockFixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.network.backoff-base-delay" -> "10 milli"
+      "oxygenium.network.backoff-base-delay" -> "10 milli"
     )
 
     minerProbe watch miner
@@ -74,7 +74,7 @@ class ExternalMinerMockSpec extends AlephiumActorSpec {
 
   it should "shutdown if a minerApiController connection is stopped" in new ExternalMinerMockFixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.network.backoff-base-delay" -> "10 milli"
+      "oxygenium.network.backoff-base-delay" -> "10 milli"
     )
 
     minerProbe watch miner
@@ -92,7 +92,7 @@ class ExternalMinerMockSpec extends AlephiumActorSpec {
     minerApiControllers.tail.foreach(system.stop)
   }
 
-  trait ExternalMinerMockFixture extends SocketUtil with AlephiumConfigFixture {
+  trait ExternalMinerMockFixture extends SocketUtil with OxygeniumConfigFixture {
     lazy val controllersAddresses =
       (1 to groups0).map(_ => new InetSocketAddress(config.mining.apiInterface, generatePort()))
 

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/StagingKV.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/StagingKV.scala)
 
 The code defines a trait called `StagingKV` which extends another trait called `CachedKV`. The purpose of this trait is to provide a way to stage changes to a key-value store and commit or rollback those changes as needed. 
 
@@ -41,8 +41,8 @@ store.remove("baz")
 store.commit()
 ```
 ## Questions: 
- 1. What is the purpose of this code and how does it fit into the overall alephium project?
-   - This code defines a trait called `StagingKV` which extends another trait called `CachedKV`. It is not clear from this code alone what the purpose of these traits is or how they fit into the overall alephium project.
+ 1. What is the purpose of this code and how does it fit into the overall oxygenium project?
+   - This code defines a trait called `StagingKV` which extends another trait called `CachedKV`. It is not clear from this code alone what the purpose of these traits is or how they fit into the overall oxygenium project.
    
 2. What is the `underlying` value and how is it used in this code?
    - The `underlying` value is a `CachedKV` instance that is used to retrieve values for a given key. It is used in the `getOptFromUnderlying` method to retrieve an optional value for a given key.

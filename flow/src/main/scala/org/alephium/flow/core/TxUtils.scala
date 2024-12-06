@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import scala.annotation.tailrec
 import scala.collection.mutable
@@ -23,18 +23,18 @@ import scala.reflect.ClassTag
 import TxUtils._
 import akka.util.ByteString
 
-import org.alephium.flow.core.BlockFlowState.{BlockCache, Confirmed, MemPooled, TxStatus}
-import org.alephium.flow.core.FlowUtils._
-import org.alephium.flow.core.UtxoSelectionAlgo.{AssetAmounts, ProvidedGas}
-import org.alephium.flow.gasestimation._
-import org.alephium.io.{IOResult, IOUtils}
-import org.alephium.protocol.{ALPH, PublicKey}
-import org.alephium.protocol.config.NetworkConfig
-import org.alephium.protocol.mining.Emission
-import org.alephium.protocol.model._
-import org.alephium.protocol.model.UnsignedTransaction.{TxOutputInfo, UnlockScriptWithAssets}
-import org.alephium.protocol.vm.{GasBox, GasPrice, GasSchedule, LockupScript, UnlockScript}
-import org.alephium.util.{AVector, EitherF, TimeStamp, U256}
+import org.oxygenium.flow.core.BlockFlowState.{BlockCache, Confirmed, MemPooled, TxStatus}
+import org.oxygenium.flow.core.FlowUtils._
+import org.oxygenium.flow.core.UtxoSelectionAlgo.{AssetAmounts, ProvidedGas}
+import org.oxygenium.flow.gasestimation._
+import org.oxygenium.io.{IOResult, IOUtils}
+import org.oxygenium.protocol.{ALPH, PublicKey}
+import org.oxygenium.protocol.config.NetworkConfig
+import org.oxygenium.protocol.mining.Emission
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.model.UnsignedTransaction.{TxOutputInfo, UnlockScriptWithAssets}
+import org.oxygenium.protocol.vm.{GasBox, GasPrice, GasSchedule, LockupScript, UnlockScript}
+import org.oxygenium.util.{AVector, EitherF, TimeStamp, U256}
 
 // scalastyle:off number.of.methods
 // scalastyle:off file.size.limit number.of.types

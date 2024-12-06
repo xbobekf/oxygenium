@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/udp/SerializedExecutionContext.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/udp/SerializedExecutionContext.scala)
 
 The code defines a SerializedExecutionContext class that extends the AbstractNodeQueue and implements the ExecutionContext trait. The purpose of this class is to provide a serialized execution context for tasks that need to be executed in a specific order. 
 
@@ -15,7 +15,7 @@ Overall, the SerializedExecutionContext provides a way to execute tasks in a ser
 Example usage:
 
 ```scala
-import org.alephium.flow.network.udp.SerializedExecutionContext
+import org.oxygenium.flow.network.udp.SerializedExecutionContext
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -40,7 +40,7 @@ In this example, two tasks are created using the Future construct. The tasks are
 - The `SerializedExecutionContext` class is a modified version of `akk.io.SerializedSuspendableExecutionContext` that provides a serialized execution context for running tasks in a single thread.
 
 2. What is the significance of the `GNU Lesser General Public License` mentioned in the code?
-- The `GNU Lesser General Public License` is the license under which the `alephium` project is distributed, and it allows for the free distribution and modification of the library.
+- The `GNU Lesser General Public License` is the license under which the `oxygenium` project is distributed, and it allows for the free distribution and modification of the library.
 
 3. What is the relationship between the `SerializedExecutionContext` class and the `AbstractNodeQueue` trait?
 - The `SerializedExecutionContext` class extends the `AbstractNodeQueue` trait, which provides a thread-safe implementation of a linked list that can be used to store and execute tasks in a serialized manner.

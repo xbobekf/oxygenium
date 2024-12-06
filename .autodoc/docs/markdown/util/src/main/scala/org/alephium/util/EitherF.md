@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/EitherF.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/EitherF.scala)
 
 The code defines a Scala object called `EitherF` that provides three functions for working with `Either` objects. `Either` is a type that represents a value that can be one of two types, typically used to represent success or failure in a computation. 
 
@@ -8,7 +8,7 @@ The second function, `foldTry`, is similar to `foreachTry` but takes an addition
 
 The third function, `forallTry`, takes an iterable collection of elements of type `E` and a function `predicate` that takes an element of type `E` and returns an `Either[L, Boolean]`. The function applies `predicate` to each element in the collection, stopping if `predicate` returns a `Left[L]` value. If all calls to `predicate` return `Right[true]`, then `forallTry` returns `Right[true]`. Otherwise, `forallTry` returns the first `Left[L]` value encountered. This function can be used to check if a predicate is true for all elements in a collection and stop if any element fails the predicate.
 
-Overall, the `EitherF` object provides useful functions for working with `Either` objects in Scala, which can be used in various parts of the larger `alephium` project.
+Overall, the `EitherF` object provides useful functions for working with `Either` objects in Scala, which can be used in various parts of the larger `oxygenium` project.
 ## Questions: 
  1. What is the purpose of the `EitherF` object?
 - The `EitherF` object provides utility functions for working with `Either` types.

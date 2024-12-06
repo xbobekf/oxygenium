@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import scala.annotation.tailrec
 import scala.collection.IndexedSeqView
 import scala.collection.immutable.ArraySeq
 import scala.collection.mutable.ArrayBuffer
 
-import org.alephium.crypto.MerkleHashable
-import org.alephium.protocol.Hash
-import org.alephium.protocol.config.{ConsensusConfig, GroupConfig, NetworkConfig}
-import org.alephium.protocol.model.BlockHash
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.serde.{avectorSerde, deserialize, Serde, SerdeResult}
-import org.alephium.util.{AVector, TimeStamp, U256}
+import org.oxygenium.crypto.MerkleHashable
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.config.{ConsensusConfig, GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.model.BlockHash
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.serde.{avectorSerde, deserialize, Serde, SerdeResult}
+import org.oxygenium.util.{AVector, TimeStamp, U256}
 
 final case class Block(header: BlockHeader, transactions: AVector[Transaction])
     extends FlowData

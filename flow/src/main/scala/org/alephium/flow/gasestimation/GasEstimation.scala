@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.gasestimation
+package org.oxygenium.flow.gasestimation
 
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.flow.core.UtxoSelectionAlgo.TxInputWithAsset
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm._
-import org.alephium.util._
+import org.oxygenium.flow.core.UtxoSelectionAlgo.TxInputWithAsset
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm._
+import org.oxygenium.util._
 
 // Estimate gas based on execution
 //   - UnlockScript, including P2PKH, P2MPKH and P2SH

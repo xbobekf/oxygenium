@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import akka.util.ByteString
 
-import org.alephium.crypto.{Blake3, HashUtils}
-import org.alephium.serde.{RandomBytes, Serde}
+import org.oxygenium.crypto.{Blake3, HashUtils}
+import org.oxygenium.serde.{RandomBytes, Serde}
 
 final case class BlockHash private (value: Blake3) extends AnyVal with RandomBytes {
   def length: Int = BlockHash.length

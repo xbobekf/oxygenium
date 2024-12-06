@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/GetHashesAtHeight.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/GetHashesAtHeight.scala)
 
-This code defines a case class called `GetHashesAtHeight` that is used in the Alephium project's API model. The purpose of this case class is to represent a request to retrieve the block hashes at a specific height range for a particular chain. 
+This code defines a case class called `GetHashesAtHeight` that is used in the Oxygenium project's API model. The purpose of this case class is to represent a request to retrieve the block hashes at a specific height range for a particular chain. 
 
 The case class takes three parameters: `fromGroup`, `toGroup`, and `height`. `fromGroup` and `toGroup` represent the range of block groups to search for the requested height, while `height` represents the specific height to retrieve the block hashes for. 
 
@@ -21,7 +21,7 @@ In this example, a `GetHashesAtHeight` object is created with a `fromGroup` valu
    - The `GetHashesAtHeight` case class is used to represent a request to retrieve block hashes within a certain height range for a specific chain.
 
 2. What is the significance of the `PerChain` trait that `GetHashesAtHeight` extends?
-   - The `PerChain` trait is likely a marker trait that indicates that the `GetHashesAtHeight` request is specific to a particular chain within the Alephium project.
+   - The `PerChain` trait is likely a marker trait that indicates that the `GetHashesAtHeight` request is specific to a particular chain within the Oxygenium project.
 
 3. Are there any other files or dependencies required to use this code?
    - It is unclear from this code snippet whether there are any other files or dependencies required to use this code. Additional context or documentation may be necessary to determine this.

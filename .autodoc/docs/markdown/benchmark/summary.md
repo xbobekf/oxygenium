@@ -1,8 +1,8 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/benchmark)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/benchmark)
 
-The `.autodoc/docs/json/benchmark` folder contains benchmarking tools for the Alephium project, which help developers measure the performance of different components and algorithms, identify bottlenecks, and optimize the codebase. The folder has a subfolder named `src` that contains various Scala files for benchmarking purposes.
+The `.autodoc/docs/json/benchmark` folder contains benchmarking tools for the Oxygenium project, which help developers measure the performance of different components and algorithms, identify bottlenecks, and optimize the codebase. The folder has a subfolder named `src` that contains various Scala files for benchmarking purposes.
 
-For example, `BlockFlowBench.scala` measures the average time it takes to execute the `findBestDeps()` method, which calculates the best dependencies for a given group index in the blockchain. This benchmark helps evaluate the performance of the `BlockFlow` class, which manages the blockchain data in Alephium.
+For example, `BlockFlowBench.scala` measures the average time it takes to execute the `findBestDeps()` method, which calculates the best dependencies for a given group index in the blockchain. This benchmark helps evaluate the performance of the `BlockFlow` class, which manages the blockchain data in Oxygenium.
 
 ```scala
 val blockFlowBench = new BlockFlowBench()
@@ -26,7 +26,7 @@ val blake2bTime = cryptoBench.blake2b()
 println(s"Blake2b hashing took: $blake2bTime ms")
 ```
 
-`MiningBench.scala` measures the throughput of mining a genesis block in the Alephium blockchain, testing the performance of the Proof of Work (PoW) algorithm. This benchmark helps developers determine the optimal hardware requirements for mining Alephium blocks and compare the PoW algorithm's performance to other blockchain platforms.
+`MiningBench.scala` measures the throughput of mining a genesis block in the Oxygenium blockchain, testing the performance of the Proof of Work (PoW) algorithm. This benchmark helps developers determine the optimal hardware requirements for mining Oxygenium blocks and compare the PoW algorithm's performance to other blockchain platforms.
 
 ```scala
 val miningBench = new MiningBench()

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.tools
+package org.oxygenium.tools
 
 import scala.io.Source
 import scala.util.Using
@@ -34,7 +34,7 @@ class BuiltInFunctionsSpec extends AnyFlatSpecLike with Matchers {
 
     assert(
       expectedBuiltinFunctionsDoc == builtinFunctionsDoc,
-      "The built-in functions documentation is not up to date. Please run `sbt tools/runMain org.alephium.tools.BuiltInFunctions` to update it."
+      "The built-in functions documentation is not up to date. Please run `sbt tools/runMain org.oxygenium.tools.BuiltInFunctions` to update it."
     )
   }
 }

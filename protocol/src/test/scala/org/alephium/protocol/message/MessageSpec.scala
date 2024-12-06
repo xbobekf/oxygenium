@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.message
+package org.oxygenium.protocol.message
 
 import akka.util.ByteString
 
-import org.alephium.protocol.Hash
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig, NetworkConfigFixture}
-import org.alephium.protocol.model.NetworkId
-import org.alephium.serde._
-import org.alephium.util.{AlephiumSpec, Bytes, DjbHash, Hex, TimeStamp}
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig, NetworkConfigFixture}
+import org.oxygenium.protocol.model.NetworkId
+import org.oxygenium.serde._
+import org.oxygenium.util.{OxygeniumSpec, Bytes, DjbHash, Hex, TimeStamp}
 
-class MessageSpec extends AlephiumSpec with NetworkConfigFixture.Default {
+class MessageSpec extends OxygeniumSpec with NetworkConfigFixture.Default {
 
   implicit val groupConfig: GroupConfig = new GroupConfig {
     override def groups: Int = 4
@@ -93,7 +93,7 @@ class MessageSpec extends AlephiumSpec with NetworkConfigFixture.Default {
   it should "fail to deserialize if magic number doesn't match" in {
     Message
       .deserialize(Message.serialize(message)(new NetworkConfig {
-        val networkId: NetworkId              = NetworkId.AlephiumMainNet
+        val networkId: NetworkId              = NetworkId.OxygeniumMainNet
         val noPreMineProof: ByteString        = ByteString.empty
         val lemanHardForkTimestamp: TimeStamp = TimeStamp.now()
         val rhoneHardForkTimestamp: TimeStamp = TimeStamp.now()

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/CoinbaseFixedData.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/CoinbaseFixedData.scala)
 
 The code defines a case class called `CoinbaseFixedData` which represents the fixed data that is included in a coinbase transaction. A coinbase transaction is a special type of transaction that is the first transaction in a block and is used to reward miners for their work in creating the block. The fixed data in this case includes the `fromGroup` and `toGroup` which represent the indices of the source and destination chains respectively, and the `blockTs` which is the timestamp of the block.
 

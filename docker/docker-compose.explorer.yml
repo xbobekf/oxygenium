@@ -15,20 +15,20 @@ services:
     restart: unless-stopped
 
   explorer-backend:
-    image: alephium/explorer-backend:1.2.0
+    image: oxygenium/explorer-backend:1.2.0
     ports:
       - 9090:9090
     environment:
       - DB_HOST=postgres
-      - BLOCKFLOW_HOST=alephium
+      - BLOCKFLOW_HOST=oxygenium
       - EXPLORER_HOST=0.0.0.0
     depends_on:
       - postgres
-      - alephium
+      - oxygenium
     restart: unless-stopped
 
   explorer:
-    image: alephium/explorer:latest
+    image: oxygenium/explorer:latest
     ports:
       - 3001:3000
     depends_on:

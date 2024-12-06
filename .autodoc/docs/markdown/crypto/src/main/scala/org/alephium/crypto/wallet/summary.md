@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/crypto/src/main/scala/org/alephium/crypto/wallet)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/crypto/src/main/scala/org/oxygenium/crypto/wallet)
 
-The `org.alephium.crypto.wallet` package provides functionality for generating and manipulating hierarchical deterministic (HD) wallets using the BIP32 standard and mnemonic phrases. HD wallets allow for the generation of a large number of public/private key pairs from a single seed, which can be used to derive child keys in a deterministic manner. This is useful for applications such as cryptocurrency wallets, where a user may want to generate a new address for each transaction.
+The `org.oxygenium.crypto.wallet` package provides functionality for generating and manipulating hierarchical deterministic (HD) wallets using the BIP32 standard and mnemonic phrases. HD wallets allow for the generation of a large number of public/private key pairs from a single seed, which can be used to derive child keys in a deterministic manner. This is useful for applications such as cryptocurrency wallets, where a user may want to generate a new address for each transaction.
 
 The `BIP32` object provides several methods for generating master keys from a seed, such as `masterKey`, `btcMasterKey`, and `alphMasterKey`. These methods take a `ByteString` seed as input and return an `ExtendedPrivateKey` object, which represents the root of the HD wallet. The `masterKey` method takes an additional `prefix` argument, which is used to generate a unique master key for different applications.
 
@@ -25,4 +25,4 @@ mnemonicOpt.foreach { mnemonic =>
 }
 ```
 
-Overall, the `org.alephium.crypto.wallet` package provides a convenient and secure way to generate and manipulate HD wallets using the BIP32 standard and mnemonic phrases. It can be used in conjunction with other cryptocurrency libraries to implement wallet functionality in a larger project. For example, it could be used to generate a new address for each transaction in a cryptocurrency wallet application.
+Overall, the `org.oxygenium.crypto.wallet` package provides a convenient and secure way to generate and manipulate HD wallets using the BIP32 standard and mnemonic phrases. It can be used in conjunction with other cryptocurrency libraries to implement wallet functionality in a larger project. For example, it could be used to generate a new address for each transaction in a cryptocurrency wallet application.

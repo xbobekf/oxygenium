@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/CachedSMT.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/CachedSMT.scala)
 
 The code defines a class called `CachedSMT` that extends `CachedKV`. The purpose of this class is to provide a caching mechanism for a `SparseMerkleTrie` data structure. The `SparseMerkleTrie` is a tree-like data structure that is used to store key-value pairs in a way that allows for efficient retrieval and modification of the data. The `CachedSMT` class adds a layer of caching on top of the `SparseMerkleTrie` to improve performance.
 
@@ -10,7 +10,7 @@ The `CachedSMT` class also provides a `persist` method, which is used to persist
 
 Finally, the `CachedSMT` class provides a `staging` method, which returns a new instance of `StagingSMT`. The `StagingSMT` class is used to stage changes to the cached data before they are persisted back to the underlying `SparseMerkleTrie`.
 
-The `CachedSMT` class is a key component of the `alephium` project, as it provides a caching mechanism that can be used to improve the performance of the `SparseMerkleTrie` data structure. The `SparseMerkleTrie` is used extensively throughout the project to store and retrieve key-value pairs, so the caching mechanism provided by the `CachedSMT` class is essential for ensuring that the project runs efficiently. 
+The `CachedSMT` class is a key component of the `oxygenium` project, as it provides a caching mechanism that can be used to improve the performance of the `SparseMerkleTrie` data structure. The `SparseMerkleTrie` is used extensively throughout the project to store and retrieve key-value pairs, so the caching mechanism provided by the `CachedSMT` class is essential for ensuring that the project runs efficiently. 
 
 Example usage:
 

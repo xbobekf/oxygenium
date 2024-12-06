@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/SimpleMap.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/SimpleMap.scala)
 
 The code defines a trait called SimpleMap, which provides a simple interface for interacting with a Map data structure. The trait is generic, meaning it can be used with any key and value types. 
 
@@ -11,7 +11,7 @@ The SimpleMap trait is intended to be used as a building block for other classes
 Here is an example of how the SimpleMap trait could be used:
 
 ```scala
-import org.alephium.util.SimpleMap
+import org.oxygenium.util.SimpleMap
 
 class MyCache[K, V] {
   private val map: SimpleMap[K, V] = new SimpleMapImpl[K, V]

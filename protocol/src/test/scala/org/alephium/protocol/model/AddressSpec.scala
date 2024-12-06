@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import akka.util.ByteString
 import org.scalatest.Assertion
 
-import org.alephium.crypto.BIP340SchnorrPublicKey
-import org.alephium.protocol.{Hash, PublicKey}
-import org.alephium.protocol.config.GroupConfigFixture
-import org.alephium.protocol.model.ContractId
-import org.alephium.protocol.vm._
-import org.alephium.serde._
-import org.alephium.util.{AlephiumSpec, AVector, Hex}
+import org.oxygenium.crypto.BIP340SchnorrPublicKey
+import org.oxygenium.protocol.{Hash, PublicKey}
+import org.oxygenium.protocol.config.GroupConfigFixture
+import org.oxygenium.protocol.model.ContractId
+import org.oxygenium.protocol.vm._
+import org.oxygenium.serde._
+import org.oxygenium.util.{OxygeniumSpec, AVector, Hex}
 
-class AddressSpec extends AlephiumSpec {
+class AddressSpec extends OxygeniumSpec {
 
   it should "calculate group index" in new GroupConfigFixture.Default {
     def testP2pkh(pubKey: String, expectedGroup: Int) = {

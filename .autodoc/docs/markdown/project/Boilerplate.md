@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/project/Boilerplate.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/project/Boilerplate.scala)
 
-This file contains the `Boilerplate` object which provides functionality for generating boilerplate code for the Alephium project. The code is licensed under the GNU Lesser General Public License. 
+This file contains the `Boilerplate` object which provides functionality for generating boilerplate code for the Oxygenium project. The code is licensed under the GNU Lesser General Public License. 
 
 The `Boilerplate` object imports the `sbt` library and defines a `BlockHelper` class that extends the `StringContext` class. The `BlockHelper` class provides a `block` method that takes a string context and returns a string. The `block` method is used to format code blocks in the generated code. 
 
@@ -10,13 +10,13 @@ The `Boilerplate` object defines three templates: `GenProductSerde`, `GenProduct
 
 The `Boilerplate` object provides two methods for generating code: `genSrc` and `genTest`. The `genSrc` method generates source code using the `GenProductSerde` and `GenProductSerializer` templates. The `genTest` method generates test code using the `GenProductSerdeTest` template. 
 
-The `Boilerplate` object is used to generate boilerplate code for the Alephium project. The generated code provides functionality for serializing and deserializing case classes. The generated code is used throughout the project to serialize and deserialize data. 
+The `Boilerplate` object is used to generate boilerplate code for the Oxygenium project. The generated code provides functionality for serializing and deserializing case classes. The generated code is used throughout the project to serialize and deserialize data. 
 
 Example usage of the `Boilerplate` object:
 
 ```scala
 import java.io.File
-import org.alephium.serde.Boilerplate
+import org.oxygenium.serde.Boilerplate
 
 val srcDir: File = ???
 val testDir: File = ???

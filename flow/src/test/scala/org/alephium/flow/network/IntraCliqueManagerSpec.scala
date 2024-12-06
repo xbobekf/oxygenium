@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,24 +14,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network
+package org.oxygenium.flow.network
 
 import akka.io.Tcp
 import akka.testkit.TestProbe
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.handler.TestUtils
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.network.bootstrap.InfoFixture
-import org.alephium.flow.network.broker.{BrokerHandler, InboundConnection, OutboundConnection}
-import org.alephium.protocol.message.{Message, NewBlock, NewHeader, RequestId, TxsResponse}
-import org.alephium.protocol.model.{BrokerInfo, ChainIndex}
-import org.alephium.util.{ActorRefT, AlephiumActorSpec, AVector}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.handler.TestUtils
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.network.bootstrap.InfoFixture
+import org.oxygenium.flow.network.broker.{BrokerHandler, InboundConnection, OutboundConnection}
+import org.oxygenium.protocol.message.{Message, NewBlock, NewHeader, RequestId, TxsResponse}
+import org.oxygenium.protocol.model.{BrokerInfo, ChainIndex}
+import org.oxygenium.util.{ActorRefT, OxygeniumActorSpec, AVector}
 
-class IntraCliqueManagerSpec extends AlephiumActorSpec {
+class IntraCliqueManagerSpec extends OxygeniumActorSpec {
   it should "sync with other brokers" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.broker.broker-id" -> 1
+      "oxygenium.broker.broker-id" -> 1
     )
 
     brokerConfig.brokerNum is 3
@@ -107,7 +107,7 @@ class IntraCliqueManagerSpec extends AlephiumActorSpec {
 
   it should "become ready immediately in single broker clique" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.broker.broker-num" -> 1
+      "oxygenium.broker.broker-num" -> 1
     )
 
     // create the lazy value

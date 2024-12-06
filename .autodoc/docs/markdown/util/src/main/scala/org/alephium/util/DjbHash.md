@@ -1,15 +1,15 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/DjbHash.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/DjbHash.scala)
 
 The code provided is a Scala implementation of the DJB hash function. The DJB hash function is a non-cryptographic hash function that is designed to be fast and produce a good distribution of hash values. The hash function takes an input of bytes and returns an integer hash value.
 
 The code defines an object called DjbHash that contains a single method called intHash. The intHash method takes a parameter of type ByteString, which is a data structure that represents a sequence of bytes. The method then iterates over each byte in the ByteString and performs a series of bitwise operations to generate a hash value. The hash value is initialized to 5381 and then for each byte in the input, the hash value is left-shifted by 5 bits, added to the original hash value, and then the byte is bitwise ANDed with 0xff before being added to the hash value. This process is repeated for each byte in the input, resulting in a final hash value.
 
-The purpose of this code is to provide a fast and efficient implementation of the DJB hash function that can be used in other parts of the Alephium project. The hash function can be used to generate hash values for data structures such as blocks, transactions, and addresses. These hash values can then be used for various purposes such as verifying the integrity of data, indexing data structures, and identifying unique objects.
+The purpose of this code is to provide a fast and efficient implementation of the DJB hash function that can be used in other parts of the Oxygenium project. The hash function can be used to generate hash values for data structures such as blocks, transactions, and addresses. These hash values can then be used for various purposes such as verifying the integrity of data, indexing data structures, and identifying unique objects.
 
 Here is an example of how the DjbHash object can be used to generate a hash value for a ByteString:
 
 ```
-import org.alephium.util.DjbHash
+import org.oxygenium.util.DjbHash
 import akka.util.ByteString
 
 val data = ByteString("Hello, world!")

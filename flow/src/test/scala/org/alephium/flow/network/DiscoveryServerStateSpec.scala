@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network
+package org.oxygenium.flow.network
 
 import java.net.InetSocketAddress
 
@@ -28,14 +28,14 @@ import org.scalatest.Assertion
 import org.scalatest.concurrent.Eventually
 import org.scalatest.time.{Seconds, Span}
 
-import org.alephium.flow.network.udp.UdpServer
-import org.alephium.protocol.Generators
-import org.alephium.protocol.config._
-import org.alephium.protocol.message.DiscoveryMessage
-import org.alephium.protocol.model._
-import org.alephium.util.{ActorRefT, AlephiumActorSpec, Duration, TimeStamp}
+import org.oxygenium.flow.network.udp.UdpServer
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.config._
+import org.oxygenium.protocol.message.DiscoveryMessage
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{ActorRefT, OxygeniumActorSpec, Duration, TimeStamp}
 
-class DiscoveryServerStateSpec extends AlephiumActorSpec {
+class DiscoveryServerStateSpec extends OxygeniumActorSpec {
   import DiscoveryMessage._
   import DiscoveryServerSpec._
 

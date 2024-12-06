@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.gasestimation
+package org.oxygenium.flow.gasestimation
 
 import org.scalacheck.Gen
 
-import org.alephium.flow.AlephiumFlowSpec
-import org.alephium.flow.core.ExtraUtxosInfo
-import org.alephium.flow.core.UtxoSelectionAlgo.TxInputWithAsset
-import org.alephium.protocol.{ALPH, PublicKey}
-import org.alephium.protocol.model._
-import org.alephium.protocol.model.UnsignedTransaction.TxOutputInfo
-import org.alephium.protocol.vm.{GasBox, LockupScript, UnlockScript, Val}
-import org.alephium.ralph.Compiler
-import org.alephium.util._
+import org.oxygenium.flow.OxygeniumFlowSpec
+import org.oxygenium.flow.core.ExtraUtxosInfo
+import org.oxygenium.flow.core.UtxoSelectionAlgo.TxInputWithAsset
+import org.oxygenium.protocol.{ALPH, PublicKey}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
+import org.oxygenium.protocol.vm.{GasBox, LockupScript, UnlockScript, Val}
+import org.oxygenium.ralph.Compiler
+import org.oxygenium.util._
 
-class GasEstimationSpec extends AlephiumFlowSpec with TxInputGenerators {
+class GasEstimationSpec extends OxygeniumFlowSpec with TxInputGenerators {
 
   "GasEstimation.estimateWithP2PKHInputs" should "estimate the gas for P2PKH inputs" in {
     GasEstimation.estimateWithSameP2PKHInputs(1, 0) is minimalGas

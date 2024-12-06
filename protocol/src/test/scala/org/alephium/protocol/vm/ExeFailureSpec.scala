@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.model.{dustUtxoAmount, Address, TokenId}
-import org.alephium.protocol.vm.NotEnoughApprovedBalance
-import org.alephium.util.{AlephiumSpec, Hex, U256}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.model.{dustUtxoAmount, Address, TokenId}
+import org.oxygenium.protocol.vm.NotEnoughApprovedBalance
+import org.oxygenium.util.{OxygeniumSpec, Hex, U256}
 
-class ExeFailureSpec extends AlephiumSpec {
+class ExeFailureSpec extends OxygeniumSpec {
   it should "test NotEnoughApprovedBalance" in {
     val lockupScript =
       Address.fromBase58("1G5fKUFGRFEHXcTeCfgKQNppbumd8E9G8vA6p2wf4n2L6").get.lockupScript

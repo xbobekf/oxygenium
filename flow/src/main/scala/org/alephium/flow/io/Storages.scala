@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,30 +14,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
 import java.nio.file.Path
 
 import org.rocksdb.WriteOptions
 
-import org.alephium.crypto.Byte32
-import org.alephium.flow.setting.NodeSetting
-import org.alephium.io._
-import org.alephium.io.RocksDBSource.ColumnFamily._
-import org.alephium.io.SparseMerkleTrie.Node
-import org.alephium.protocol.Hash
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{ContractId, TransactionId, TxOutputRef}
-import org.alephium.protocol.vm._
-import org.alephium.protocol.vm.event.LogStorage
-import org.alephium.protocol.vm.nodeindexes.NodeIndexesStorage
-import org.alephium.protocol.vm.subcontractindex.{
+import org.oxygenium.crypto.Byte32
+import org.oxygenium.flow.setting.NodeSetting
+import org.oxygenium.io._
+import org.oxygenium.io.RocksDBSource.ColumnFamily._
+import org.oxygenium.io.SparseMerkleTrie.Node
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{ContractId, TransactionId, TxOutputRef}
+import org.oxygenium.protocol.vm._
+import org.oxygenium.protocol.vm.event.LogStorage
+import org.oxygenium.protocol.vm.nodeindexes.NodeIndexesStorage
+import org.oxygenium.protocol.vm.subcontractindex.{
   SubContractIndexState,
   SubContractIndexStateId,
   SubContractIndexStorage
 }
-import org.alephium.serde.{avectorSerde, eitherSerde, intSerde}
-import org.alephium.util.AVector
+import org.oxygenium.serde.{avectorSerde, eitherSerde, intSerde}
+import org.oxygenium.util.AVector
 
 object Storages {
   val isInitializedPostfix: Byte = 0

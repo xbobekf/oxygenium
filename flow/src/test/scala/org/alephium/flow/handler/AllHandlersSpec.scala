@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import akka.testkit.TestProbe
 
-import org.alephium.flow.AlephiumFlowActorSpec
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.validation.InvalidWorkAmount
-import org.alephium.protocol.Generators
-import org.alephium.protocol.model.{BlockHash, ChainIndex}
-import org.alephium.util.AVector
+import org.oxygenium.flow.OxygeniumFlowActorSpec
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.validation.InvalidWorkAmount
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.model.{BlockHash, ChainIndex}
+import org.oxygenium.util.AVector
 
-class AllHandlersSpec extends AlephiumFlowActorSpec {
+class AllHandlersSpec extends OxygeniumFlowActorSpec {
   override val configValues: Map[String, Any] = Map(
-    ("alephium.consensus.num-zeros-at-least-in-hash", 1)
+    ("oxygenium.consensus.num-zeros-at-least-in-hash", 1)
   )
 
   it should "work for valid block" in {

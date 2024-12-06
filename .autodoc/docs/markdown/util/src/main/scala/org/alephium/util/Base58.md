@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/Base58.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/Base58.scala)
 
 The `Base58` object provides functionality for encoding and decoding data using the Base58 encoding scheme. This encoding scheme is commonly used in Bitcoin and other cryptocurrencies to represent data in a compact and human-readable format.
 
@@ -13,7 +13,7 @@ The `decode` method first calculates the number of leading ones in the input str
 Overall, the `Base58` object provides a simple and efficient implementation of the Base58 encoding scheme that can be used in a variety of contexts, such as encoding and decoding cryptocurrency addresses and transaction data. Here is an example usage of the `Base58` object:
 
 ```scala
-import org.alephium.util.Base58
+import org.oxygenium.util.Base58
 import akka.util.ByteString
 
 val data = ByteString("Hello, world!")

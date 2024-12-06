@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
 import scala.annotation.tailrec
 import scala.collection.mutable.{ArrayBuffer, Queue}
@@ -22,17 +22,17 @@ import scala.collection.mutable.{ArrayBuffer, Queue}
 import akka.util.ByteString
 import com.typesafe.scalalogging.StrictLogging
 
-import org.alephium.crypto.{Blake2b => Hash}
-import org.alephium.flow.core.{BlockFlow, BlockHeaderChain}
-import org.alephium.flow.validation.BlockValidation
-import org.alephium.io.{IOResult, RocksDBKeyValueStorage, SparseMerkleTrie}
-import org.alephium.io.SparseMerkleTrie.Node
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{BlockHash, ChainIndex}
-import org.alephium.protocol.vm.ContractStorageImmutableState
-import org.alephium.serde.{deserialize, eitherSerde}
-import org.alephium.util.AVector
-import org.alephium.util.BloomFilter
+import org.oxygenium.crypto.{Blake2b => Hash}
+import org.oxygenium.flow.core.{BlockFlow, BlockHeaderChain}
+import org.oxygenium.flow.validation.BlockValidation
+import org.oxygenium.io.{IOResult, RocksDBKeyValueStorage, SparseMerkleTrie}
+import org.oxygenium.io.SparseMerkleTrie.Node
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{BlockHash, ChainIndex}
+import org.oxygenium.protocol.vm.ContractStorageImmutableState
+import org.oxygenium.serde.{deserialize, eitherSerde}
+import org.oxygenium.util.AVector
+import org.oxygenium.util.BloomFilter
 
 class PruneStorageService(
     storages: Storages

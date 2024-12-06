@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import java.math.BigInteger
 import java.nio.charset.StandardCharsets
@@ -23,20 +23,20 @@ import scala.annotation.switch
 
 import akka.util.ByteString
 
-import org.alephium.crypto
-import org.alephium.crypto.SecP256K1
-import org.alephium.macros.ByteCode
-import org.alephium.protocol.{PublicKey, SignatureSchema}
-import org.alephium.protocol.model
-import org.alephium.protocol.model.{Address, AssetOutput, ContractId, GroupIndex, HardFork, TokenId}
-import org.alephium.protocol.vm.TokenIssuance.{
+import org.oxygenium.crypto
+import org.oxygenium.crypto.SecP256K1
+import org.oxygenium.macros.ByteCode
+import org.oxygenium.protocol.{PublicKey, SignatureSchema}
+import org.oxygenium.protocol.model
+import org.oxygenium.protocol.model.{Address, AssetOutput, ContractId, GroupIndex, HardFork, TokenId}
+import org.oxygenium.protocol.vm.TokenIssuance.{
   IssueTokenAndTransfer,
   IssueTokenWithoutTransfer,
   NoIssuance
 }
-import org.alephium.serde.{deserialize => decode, serialize => encode, _}
-import org.alephium.util.{AVector, Bytes, Duration, EitherF, TimeStamp, U256}
-import org.alephium.util
+import org.oxygenium.serde.{deserialize => decode, serialize => encode, _}
+import org.oxygenium.util.{AVector, Bytes, Duration, EitherF, TimeStamp, U256}
+import org.oxygenium.util
 
 // scalastyle:off file.size.limit number.of.types
 
@@ -2868,7 +2868,7 @@ final case class DEBUG(stringParts: AVector[Val.ByteVec])
   }
 
   def runWithLeman[C <: StatelessContext](frame: Frame[C]): ExeResult[Unit] = {
-    if (frame.ctx.networkConfig.networkId == model.NetworkId.AlephiumMainNet) {
+    if (frame.ctx.networkConfig.networkId == model.NetworkId.OxygeniumMainNet) {
       failed(DebugIsNotSupportedForMainnet)
     } else if (stringParts.isEmpty) {
       failed(DebugMessageIsEmpty)

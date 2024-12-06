@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,26 +14,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import akka.actor.Props
 import akka.util.ByteString
 import io.prometheus.client.{Counter, Gauge, Histogram}
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.handler.AllHandlers.BlockNotify
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.network.{InterCliqueManager, IntraCliqueManager}
-import org.alephium.flow.network.broker.MisbehaviorManager
-import org.alephium.flow.setting.NetworkSetting
-import org.alephium.flow.validation._
-import org.alephium.io.IOResult
-import org.alephium.protocol.config.{BrokerConfig, ConsensusConfigs}
-import org.alephium.protocol.message.{Message, NewBlock, NewHeader}
-import org.alephium.protocol.model.{Block, BlockHash, ChainIndex, NetworkId}
-import org.alephium.protocol.vm.{LogConfig, WorldState}
-import org.alephium.serde.{deserialize, serialize}
-import org.alephium.util.{ActorRefT, EventBus, EventStream, Hex}
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.handler.AllHandlers.BlockNotify
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.network.{InterCliqueManager, IntraCliqueManager}
+import org.oxygenium.flow.network.broker.MisbehaviorManager
+import org.oxygenium.flow.setting.NetworkSetting
+import org.oxygenium.flow.validation._
+import org.oxygenium.io.IOResult
+import org.oxygenium.protocol.config.{BrokerConfig, ConsensusConfigs}
+import org.oxygenium.protocol.message.{Message, NewBlock, NewHeader}
+import org.oxygenium.protocol.model.{Block, BlockHash, ChainIndex, NetworkId}
+import org.oxygenium.protocol.vm.{LogConfig, WorldState}
+import org.oxygenium.serde.{deserialize, serialize}
+import org.oxygenium.util.{ActorRefT, EventBus, EventStream, Hex}
 
 object BlockChainHandler {
   // scalastyle:off parameter.number
@@ -70,7 +70,7 @@ object BlockChainHandler {
 
   val blocksTotal: Gauge = Gauge
     .build(
-      "alephium_blocks_total",
+      "oxygenium_blocks_total",
       "Total number of blocks"
     )
     .labelNames("chain_from", "chain_to")
@@ -78,7 +78,7 @@ object BlockChainHandler {
 
   val blocksReceivedTotal: Counter = Counter
     .build(
-      "alephium_blocks_received_total",
+      "oxygenium_blocks_received_total",
       "Total number of blocks received"
     )
     .labelNames("chain_from", "chain_to")
@@ -86,7 +86,7 @@ object BlockChainHandler {
 
   val transactionsReceivedTotal: Counter = Counter
     .build(
-      "alephium_transactions_received_total",
+      "oxygenium_transactions_received_total",
       "Total number of transactions received"
     )
     .labelNames("chain_from", "chain_to")
@@ -165,7 +165,7 @@ class BlockChainHandler(
         blockFlow.cacheHeaderVerifiedBlock(block)
         if (origin != DataOrigin.Local) {
           if (
-            networkConfig.networkId == NetworkId.AlephiumTestNet &&
+            networkConfig.networkId == NetworkId.OxygeniumTestNet &&
             !validator.validateTestnetMiner(block)
           ) {
             handleInvalidData(block, broker, origin, InvalidTestnetMiner)

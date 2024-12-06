@@ -1,14 +1,14 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/vm/VarVector.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/vm/VarVector.scala)
 
-This file contains the implementation of a VarVector class that is used in the Alephium project. The VarVector is a wrapper around a mutable ArraySeq that provides a way to access and modify a subset of the underlying array. 
+This file contains the implementation of a VarVector class that is used in the Oxygenium project. The VarVector is a wrapper around a mutable ArraySeq that provides a way to access and modify a subset of the underlying array. 
 
 The VarVector class is parameterized by a type T, which represents the type of the elements stored in the underlying array. The class has three fields: the underlying array, a start index, and a length. The start index and length define the subset of the underlying array that the VarVector represents. 
 
 The VarVector class provides several methods for accessing and modifying the elements of the underlying array. The get method returns the element at a given index, wrapped in an ExeResult. The set method sets the element at a given index to a new value, also wrapped in an ExeResult. The setIf method sets the element at a given index to a new value if a given predicate holds for the old value. The sameElements method checks if the VarVector has the same elements as a given AVector. 
 
-The VarVector class is used in the Alephium project to represent a vector of variables in the virtual machine. The virtual machine uses the VarVector to store the values of variables in a contract execution environment. The VarVector provides a way to access and modify the values of variables in a contract, while ensuring that the values are stored in a contiguous block of memory. 
+The VarVector class is used in the Oxygenium project to represent a vector of variables in the virtual machine. The virtual machine uses the VarVector to store the values of variables in a contract execution environment. The VarVector provides a way to access and modify the values of variables in a contract, while ensuring that the values are stored in a contiguous block of memory. 
 
-Here is an example of how the VarVector class might be used in the Alephium project:
+Here is an example of how the VarVector class might be used in the Oxygenium project:
 
 ```
 val vars: VarVector[Val] = VarVector.unsafe(mutable.ArraySeq.fill(10)(Val.Zero), 0, 10)

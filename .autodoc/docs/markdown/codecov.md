@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/codecov.yml)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/codecov.yml)
 
-The code above is a configuration file for code coverage in the alephium project. Code coverage is a measure of how much of the code is being tested by automated tests. This configuration file sets the range for the coverage percentage to be between 70% and 90%. If the coverage falls below 70%, it means that there are parts of the code that are not being tested and may contain bugs. If the coverage goes above 90%, it means that the tests may not be comprehensive enough and may be missing some edge cases.
+The code above is a configuration file for code coverage in the oxygenium project. Code coverage is a measure of how much of the code is being tested by automated tests. This configuration file sets the range for the coverage percentage to be between 70% and 90%. If the coverage falls below 70%, it means that there are parts of the code that are not being tested and may contain bugs. If the coverage goes above 90%, it means that the tests may not be comprehensive enough and may be missing some edge cases.
 
 The configuration file also sets the threshold for coverage status. The default threshold for the project is set to 0.1%, which means that if the coverage falls below this threshold, the build will fail. The patch threshold is also set to 0.1%, which means that if a patch is submitted with coverage below this threshold, it will not be merged into the codebase.
 
@@ -11,14 +11,14 @@ This configuration file is important for ensuring that the codebase is well-test
 Example usage:
 ```
 # Check code coverage
-pytest --cov=alephium
+pytest --cov=oxygenium
 
 # Generate coverage report
-pytest --cov=alephium --cov-report=html
+pytest --cov=oxygenium --cov-report=html
 ```
 ## Questions: 
  1. What is the purpose of this code? 
-- This code appears to be a configuration file for code coverage thresholds and ignored directories for a project called alephium.
+- This code appears to be a configuration file for code coverage thresholds and ignored directories for a project called oxygenium.
 
 2. What is the significance of the "range" field under "coverage"? 
 - The "range" field specifies the minimum and maximum coverage percentages that are considered acceptable for the project.

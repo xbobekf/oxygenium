@@ -1,14 +1,14 @@
-[View code on GitHub](https://github.com/alephium/alephium/ralph/src/main/scala/org/alephium/ralph/Keyword.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/ralph/src/main/scala/org/oxygenium/ralph/Keyword.scala)
 
-This code defines a sealed trait hierarchy for keywords used in the Alephium programming language. The `Keyword` trait is sealed, meaning that all implementations of the trait must be defined in this file. The `Keyword` trait extends the `Product` trait, which allows for the `name` method to be defined on all implementations of `Keyword`. 
+This code defines a sealed trait hierarchy for keywords used in the Oxygenium programming language. The `Keyword` trait is sealed, meaning that all implementations of the trait must be defined in this file. The `Keyword` trait extends the `Product` trait, which allows for the `name` method to be defined on all implementations of `Keyword`. 
 
-The `Keyword` trait has two sub-traits: `Used` and `Unused`. `Used` is further extended by all the keywords that are used in the Alephium programming language, while `Unused` is extended by a single keyword, `@unused`. 
+The `Keyword` trait has two sub-traits: `Used` and `Unused`. `Used` is further extended by all the keywords that are used in the Oxygenium programming language, while `Unused` is extended by a single keyword, `@unused`. 
 
 Each keyword is defined as an object that extends either `Used` or `Unused`. The `name` method is overridden for the `ALPH_CAPS` object to return "ALPH" instead of "ALPH_CAPS". 
 
 The `Keyword` object contains an implicit `Ordering` for `Used` keywords, which orders them by their `name`. It also contains a `TreeSet` of all `Used` keywords, which is generated using the `EnumerationMacros` object. The `Used` object also contains a method to check if a given string is a valid `Used` keyword and a method to return the `Used` keyword object for a given string. 
 
-This code is used to define the set of valid keywords in the Alephium programming language. It can be used by the Alephium compiler to check that the keywords used in a program are valid. For example, the `exists` method in the `Used` object can be used to check if a given string is a valid keyword before using it in a program. 
+This code is used to define the set of valid keywords in the Oxygenium programming language. It can be used by the Oxygenium compiler to check that the keywords used in a program are valid. For example, the `exists` method in the `Used` object can be used to check if a given string is a valid keyword before using it in a program. 
 
 Example usage:
 ```

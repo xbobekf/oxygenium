@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
 import akka.util.ByteString
 import org.rocksdb.{ColumnFamilyHandle, ReadOptions, RocksDB, WriteOptions}
 
-import org.alephium.flow.core.BlockHashChain
-import org.alephium.flow.model.BootstrapInfo
-import org.alephium.io._
-import org.alephium.io.RocksDBSource.{ColumnFamily, ProdSettings}
-import org.alephium.protocol.Hash
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.ChainIndex
-import org.alephium.serde._
-import org.alephium.util.AVector
+import org.oxygenium.flow.core.BlockHashChain
+import org.oxygenium.flow.model.BootstrapInfo
+import org.oxygenium.io._
+import org.oxygenium.io.RocksDBSource.{ColumnFamily, ProdSettings}
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.ChainIndex
+import org.oxygenium.serde._
+import org.oxygenium.util.AVector
 
 trait NodeStateStorage extends RawKeyValueStorage {
 

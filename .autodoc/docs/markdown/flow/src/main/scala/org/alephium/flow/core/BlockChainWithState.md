@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/BlockChainWithState.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/BlockChainWithState.scala)
 
 This file contains the implementation of the `BlockChainWithState` trait and its companion object. The `BlockChainWithState` trait extends the `BlockChain` trait and adds functionality related to the world state of the blockchain. The world state is the state of all accounts in the blockchain at a particular block height. 
 
@@ -17,4 +17,4 @@ Overall, this file provides the implementation of the `BlockChainWithState` trai
 - This code is licensed under the GNU Lesser General Public License version 3 or later.
 
 3. What dependencies does this code have?
-- This code imports several packages and objects from the `org.alephium` namespace, including `Utils`, `WorldStateStorage`, `Block`, `Weight`, `BrokerConfig`, `NetworkConfig`, and `ConsensusSetting`. It also imports `IOResult` and `Hash` from other namespaces.
+- This code imports several packages and objects from the `org.oxygenium` namespace, including `Utils`, `WorldStateStorage`, `Block`, `Weight`, `BrokerConfig`, `NetworkConfig`, and `ConsensusSetting`. It also imports `IOResult` and `Hash` from other namespaces.

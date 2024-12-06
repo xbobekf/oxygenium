@@ -6,18 +6,18 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitoring: 'alephium'
+      monitoring: 'oxygenium'
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
 
-  - job_name: 'alephium'
+  - job_name: 'oxygenium'
 
     scrape_interval: 15s
 
     static_configs:
-         - targets: ['alephium:12973']
+         - targets: ['oxygenium:12973']
            labels:
-             app: 'alephium'
+             app: 'oxygenium'

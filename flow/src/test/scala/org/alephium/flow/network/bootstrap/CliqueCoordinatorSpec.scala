@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.bootstrap
+package org.oxygenium.flow.network.bootstrap
 
 import akka.testkit.{SocketUtil, TestProbe}
 
-import org.alephium.flow.AlephiumFlowActorSpec
-import org.alephium.flow.network.Bootstrapper
-import org.alephium.protocol.SignatureSchema
-import org.alephium.util.ActorRefT
+import org.oxygenium.flow.OxygeniumFlowActorSpec
+import org.oxygenium.flow.network.Bootstrapper
+import org.oxygenium.protocol.SignatureSchema
+import org.oxygenium.util.ActorRefT
 
-class CliqueCoordinatorSpec extends AlephiumFlowActorSpec {
+class CliqueCoordinatorSpec extends OxygeniumFlowActorSpec {
   it should "await all the brokers" in {
     val bootstrapper                              = TestProbe()
     val (discoveryPrivateKey, discoveryPublicKey) = SignatureSchema.secureGeneratePriPub()

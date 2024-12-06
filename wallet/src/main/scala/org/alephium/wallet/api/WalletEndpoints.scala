@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.api
+package org.oxygenium.wallet.api
 
 import sttp.tapir._
 import sttp.tapir.generic.auto._
 
-import org.alephium.api.{BaseEndpoint, TapirCodecs, TapirSchemasLike}
-import org.alephium.api.Endpoints.{jsonBody, jsonBodyWithAlph}
-import org.alephium.api.UtilJson._
-import org.alephium.protocol.model.{Address, GroupIndex}
-import org.alephium.util.AVector
-import org.alephium.wallet.api.model._
-import org.alephium.wallet.json
+import org.oxygenium.api.{BaseEndpoint, TapirCodecs, TapirSchemasLike}
+import org.oxygenium.api.Endpoints.{jsonBody, jsonBodyWithAlph}
+import org.oxygenium.api.UtilJson._
+import org.oxygenium.protocol.model.{Address, GroupIndex}
+import org.oxygenium.util.AVector
+import org.oxygenium.wallet.api.model._
+import org.oxygenium.wallet.json
 
 trait WalletEndpoints
     extends json.ModelCodecs

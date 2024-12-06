@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.message
+package org.oxygenium.protocol.message
 
 import java.net.InetSocketAddress
 
@@ -22,15 +22,15 @@ import akka.util.ByteString
 import org.scalacheck.Gen
 import org.scalatest.compatible.Assertion
 
-import org.alephium.crypto.SecP256K1Signature
-import org.alephium.macros.EnumerationMacros
-import org.alephium.protocol.{PublicKey, SignatureSchema}
-import org.alephium.protocol.message.Payload.Code
-import org.alephium.protocol.model._
-import org.alephium.serde.{serialize, Serde, SerdeError}
-import org.alephium.util.{AlephiumSpec, AVector, Hex, TimeStamp, U256}
+import org.oxygenium.crypto.SecP256K1Signature
+import org.oxygenium.macros.EnumerationMacros
+import org.oxygenium.protocol.{PublicKey, SignatureSchema}
+import org.oxygenium.protocol.message.Payload.Code
+import org.oxygenium.protocol.model._
+import org.oxygenium.serde.{serialize, Serde, SerdeError}
+import org.oxygenium.util.{OxygeniumSpec, AVector, Hex, TimeStamp, U256}
 
-class PayloadSpec extends AlephiumSpec with NoIndexModelGenerators {
+class PayloadSpec extends OxygeniumSpec with NoIndexModelGenerators {
   implicit val ordering: Ordering[Code] = Ordering.by(Code.toInt(_))
 
   it should "index all payload types" in {
@@ -74,7 +74,7 @@ class PayloadSpec extends AlephiumSpec with NoIndexModelGenerators {
       hex"c2a56d568c070ed39aaac48891df094b9aaff196c2c48e57b20253a78c3c89083177fa42021855badcde3242085da559f74c7d81f250872af17eac7366374526"
     val cliqueId   = CliqueId(new PublicKey(publicKeyHex))
     val brokerInfo = BrokerInfo.unsafe(cliqueId, 0, 1, new InetSocketAddress("127.0.0.1", 0))
-    val clientId   = "scala-alephium/v1.0.0/Linux"
+    val clientId   = "scala-oxygenium/v1.0.0/Linux"
     val signature  = new SecP256K1Signature(signatureHex)
     val hello =
       Hello.unsafe(
@@ -380,7 +380,7 @@ class PayloadSpec extends AlephiumSpec with NoIndexModelGenerators {
       .unsafe(CliqueId(pubKey1), 0, 1, new InetSocketAddress("127.0.0.1", 0))
       .interBrokerInfo
 
-    val clientId  = "scala-alephium/v9.0.0/Linux"
+    val clientId  = "scala-oxygenium/v9.0.0/Linux"
     val timestamp = TimeStamp.unsafe(1627484789657L)
     val signature = SignatureSchema.sign(interBrokerInfo.hash.bytes, privKey1)
     val hello     = Hello.unsafe(clientId, timestamp, interBrokerInfo, signature)

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.net.{DatagramSocket, InetSocketAddress, ServerSocket}
 import java.nio.channels.{DatagramChannel, ServerSocketChannel}
@@ -22,9 +22,9 @@ import java.nio.channels.{DatagramChannel, ServerSocketChannel}
 import scala.util.Random
 import scala.util.control.NonFatal
 
-import org.alephium.flow.setting.AlephiumConfigFixture
+import org.oxygenium.flow.setting.OxygeniumConfigFixture
 
-trait ItConfigFixture extends AlephiumConfigFixture {
+trait ItConfigFixture extends OxygeniumConfigFixture {
 
   def wsPort(port: Int)    = port - 1
   def restPort(port: Int)  = port - 2

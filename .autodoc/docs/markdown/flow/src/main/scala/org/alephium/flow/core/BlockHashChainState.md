@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/BlockHashChainState.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/BlockHashChainState.scala)
 
-This code defines a trait called `BlockHashChainState` that provides functionality for managing a chain of block hashes. It is part of the Alephium project, which is a free software project distributed under the GNU Lesser General Public License.
+This code defines a trait called `BlockHashChainState` that provides functionality for managing a chain of block hashes. It is part of the Oxygenium project, which is a free software project distributed under the GNU Lesser General Public License.
 
 The `BlockHashChainState` trait defines several methods for managing a chain of block hashes, including adding and removing tips, getting timestamps for tips, and loading and updating the state of the chain from storage. The trait also defines a `tips` map that stores the block hashes and their associated timestamps.
 
@@ -16,7 +16,7 @@ Overall, the `BlockHashChainState` trait provides a flexible and efficient way t
 
 2. What other files or packages does this code depend on?
     
-    This code depends on several other packages including `org.alephium.flow.io`, `org.alephium.flow.setting`, `org.alephium.io`, and `org.alephium.protocol.model`. It also uses a `ConcurrentHashMap` and a `TimeStamp` from `org.alephium.util`.
+    This code depends on several other packages including `org.oxygenium.flow.io`, `org.oxygenium.flow.setting`, `org.oxygenium.io`, and `org.oxygenium.protocol.model`. It also uses a `ConcurrentHashMap` and a `TimeStamp` from `org.oxygenium.util`.
 
 3. What is the license for this code?
     

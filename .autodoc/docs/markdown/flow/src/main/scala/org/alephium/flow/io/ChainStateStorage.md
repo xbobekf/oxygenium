@@ -1,21 +1,21 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/io/ChainStateStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/io/ChainStateStorage.scala)
 
 This file contains a trait called `ChainStateStorage` which defines three methods for updating, loading, and clearing the state of a `BlockHashChain`. 
 
-The `BlockHashChain` is a core component of the Alephium project, which represents the blockchain data structure. It is responsible for storing and managing the blocks of the blockchain, as well as validating transactions and maintaining consensus among network nodes.
+The `BlockHashChain` is a core component of the Oxygenium project, which represents the blockchain data structure. It is responsible for storing and managing the blocks of the blockchain, as well as validating transactions and maintaining consensus among network nodes.
 
 The `ChainStateStorage` trait provides an abstraction layer for storing and retrieving the state of the `BlockHashChain`. The state of the blockchain includes information such as the current block height, the state of the UTXO set, and other metadata related to the blockchain.
 
 The `updateState` method takes a `BlockHashChain.State` object as input and updates the stored state accordingly. The `loadState` method retrieves the current state of the blockchain from storage. The `clearState` method removes all stored state data.
 
-By defining this trait, the Alephium project can support different storage mechanisms for the blockchain state. For example, one implementation of `ChainStateStorage` could store the state in a local database, while another implementation could store the state on a remote server.
+By defining this trait, the Oxygenium project can support different storage mechanisms for the blockchain state. For example, one implementation of `ChainStateStorage` could store the state in a local database, while another implementation could store the state on a remote server.
 
-Here is an example of how this trait could be used in the larger Alephium project:
+Here is an example of how this trait could be used in the larger Oxygenium project:
 
 ```scala
-import org.alephium.flow.core.BlockHashChain
-import org.alephium.flow.io.ChainStateStorage
-import org.alephium.io.IOResult
+import org.oxygenium.flow.core.BlockHashChain
+import org.oxygenium.flow.io.ChainStateStorage
+import org.oxygenium.io.IOResult
 
 class DatabaseChainStateStorage extends ChainStateStorage {
   override def updateState(state: BlockHashChain.State): IOResult[Unit] = {

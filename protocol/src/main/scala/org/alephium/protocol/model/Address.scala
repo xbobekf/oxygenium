@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
-import org.alephium.crypto.BIP340SchnorrPublicKey
-import org.alephium.protocol.{Hash, PublicKey}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.vm.{LockupScript, StatelessScript, UnlockScript}
-import org.alephium.serde.{deserialize, serialize}
-import org.alephium.util.{AVector, Base58}
-import org.alephium.util.Hex.HexStringSyntax
+import org.oxygenium.crypto.BIP340SchnorrPublicKey
+import org.oxygenium.protocol.{Hash, PublicKey}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.vm.{LockupScript, StatelessScript, UnlockScript}
+import org.oxygenium.serde.{deserialize, serialize}
+import org.oxygenium.util.{AVector, Base58}
+import org.oxygenium.util.Hex.HexStringSyntax
 
 sealed trait Address {
   def lockupScript: LockupScript

@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/validation/BlockValidation.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/validation/BlockValidation.scala)
 
-The code in this file is part of the Alephium project and is responsible for validating blocks in the blockchain. It defines a trait `BlockValidation` which extends the `Validation` trait, providing methods to validate blocks and their transactions. The primary purpose of this code is to ensure that blocks and their transactions adhere to the consensus rules and maintain the integrity of the blockchain.
+The code in this file is part of the Oxygenium project and is responsible for validating blocks in the blockchain. It defines a trait `BlockValidation` which extends the `Validation` trait, providing methods to validate blocks and their transactions. The primary purpose of this code is to ensure that blocks and their transactions adhere to the consensus rules and maintain the integrity of the blockchain.
 
 The `BlockValidation` trait provides several methods for validating blocks, such as `validate`, `validateTemplate`, `validateUntilDependencies`, and `validateAfterDependencies`. These methods are used to perform various validation checks on blocks, such as checking the block header, transaction list, gas price, gas usage, and Merkle root. Additionally, it checks for double-spending transactions and ensures that coinbase transactions are formatted correctly.
 
@@ -15,10 +15,10 @@ val validationResult: BlockValidationResult[Option[WorldState.Cached]] = blockVa
 
 In this example, a `BlockValidation` instance is created using the `build` method, and then the `validate` method is called to perform the validation checks on the given block. The result of the validation is returned as a `BlockValidationResult` which can be used to determine if the block is valid or not.
 
-Overall, the code in this file plays a crucial role in maintaining the integrity and security of the Alephium blockchain by ensuring that blocks and their transactions adhere to the consensus rules.
+Overall, the code in this file plays a crucial role in maintaining the integrity and security of the Oxygenium blockchain by ensuring that blocks and their transactions adhere to the consensus rules.
 ## Questions: 
- 1. **Question**: What is the purpose of the `BlockValidation` trait and how does it relate to the Alephium project?
-   **Answer**: The `BlockValidation` trait is responsible for validating various aspects of a block in the Alephium project, such as checking the block header, validating transactions, and ensuring the block follows the consensus rules.
+ 1. **Question**: What is the purpose of the `BlockValidation` trait and how does it relate to the Oxygenium project?
+   **Answer**: The `BlockValidation` trait is responsible for validating various aspects of a block in the Oxygenium project, such as checking the block header, validating transactions, and ensuring the block follows the consensus rules.
 
 2. **Question**: How does the `checkTxs` function work and what is its role in the block validation process?
    **Answer**: The `checkTxs` function is responsible for checking the validity of transactions within a block. It performs various checks such as validating non-coinbase transactions, checking coinbase transactions, and ensuring the world state is updated correctly.

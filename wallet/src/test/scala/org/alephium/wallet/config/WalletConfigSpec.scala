@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.config
+package org.oxygenium.wallet.config
 
 import scala.jdk.CollectionConverters._
 import scala.util.Try
@@ -22,11 +22,11 @@ import scala.util.Try
 import com.typesafe.config.{Config, ConfigFactory, ConfigValueFactory}
 import net.ceedubs.ficus.Ficus._
 
-import org.alephium.api.model.ApiKey
-import org.alephium.protocol.Hash
-import org.alephium.util.{AlephiumSpec, AVector}
+import org.oxygenium.api.model.ApiKey
+import org.oxygenium.protocol.Hash
+import org.oxygenium.util.{OxygeniumSpec, AVector}
 
-class WalletConfigSpec() extends AlephiumSpec {
+class WalletConfigSpec() extends OxygeniumSpec {
   it should "load wallet config" in {
 
     val typesafeConfig: Config = ConfigFactory.load()

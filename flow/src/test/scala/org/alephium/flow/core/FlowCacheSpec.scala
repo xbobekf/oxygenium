@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
-import org.alephium.flow.FlowFixture
-import org.alephium.protocol.model.{ChainIndex, GroupIndex}
-import org.alephium.util.{AlephiumSpec, LockFixture, TimeStamp}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.protocol.model.{ChainIndex, GroupIndex}
+import org.oxygenium.util.{OxygeniumSpec, LockFixture, TimeStamp}
 
-class FlowCacheSpec extends AlephiumSpec with LockFixture {
+class FlowCacheSpec extends OxygeniumSpec with LockFixture {
   it should "remove blocks when the cache is full" in new FlowFixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.consensus.block-cache-capacity-per-chain", 1)
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.consensus.block-cache-capacity-per-chain", 1)
     )
     consensusConfigs.blockCacheCapacityPerChain is 1
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,19 +14,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.ralph
+package org.oxygenium.ralph
 
 import fastparse.{EagerOps, Parsed}
 
-import org.alephium.crypto.Byte32
-import org.alephium.protocol.{ALPH, Hash, PublicKey}
-import org.alephium.protocol.model.{Address, ContractId}
-import org.alephium.protocol.vm.Val
-import org.alephium.ralph.ArithOperator._
-import org.alephium.ralph.error.CompilerError
-import org.alephium.util.{AlephiumSpec, Hex, I256, U256}
+import org.oxygenium.crypto.Byte32
+import org.oxygenium.protocol.{ALPH, Hash, PublicKey}
+import org.oxygenium.protocol.model.{Address, ContractId}
+import org.oxygenium.protocol.vm.Val
+import org.oxygenium.ralph.ArithOperator._
+import org.oxygenium.ralph.error.CompilerError
+import org.oxygenium.util.{OxygeniumSpec, Hex, I256, U256}
 
-abstract class LexerSpec(fileURI: Option[java.net.URI]) extends AlephiumSpec {
+abstract class LexerSpec(fileURI: Option[java.net.URI]) extends OxygeniumSpec {
   val Lexer           = new Lexer(fileURI)
   val StatelessParser = new StatelessParser(fileURI)
 

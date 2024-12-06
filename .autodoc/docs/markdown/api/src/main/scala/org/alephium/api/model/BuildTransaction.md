@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/BuildTransaction.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/BuildTransaction.scala)
 
-The `BuildTransaction` class is a model used in the Alephium project to represent a transaction that can be built and sent to the network. It contains various fields that are used to specify the details of the transaction, such as the sender's public key, the list of destinations and their amounts, the list of unspent transaction outputs (UTXOs) to use as inputs, the gas amount and price, and the target block hash.
+The `BuildTransaction` class is a model used in the Oxygenium project to represent a transaction that can be built and sent to the network. It contains various fields that are used to specify the details of the transaction, such as the sender's public key, the list of destinations and their amounts, the list of unspent transaction outputs (UTXOs) to use as inputs, the gas amount and price, and the target block hash.
 
 The `BuildTransaction` class is a case class, which means that it is immutable and can be easily copied and modified. This is useful when building transactions incrementally, as each modification can be done by creating a new instance of the class with the updated fields.
 
@@ -14,7 +14,7 @@ The `gasAmount` and `gasPrice` fields are used to specify the amount of gas to u
 
 The `targetBlockHash` field is used to specify the hash of the block that the transaction should be included in. This is useful when building transactions that are time-sensitive or need to be included in a specific block for some other reason.
 
-Overall, the `BuildTransaction` class provides a flexible and extensible way to build transactions in the Alephium project. By specifying the various fields of the class, developers can create transactions that meet their specific needs and requirements.
+Overall, the `BuildTransaction` class provides a flexible and extensible way to build transactions in the Oxygenium project. By specifying the various fields of the class, developers can create transactions that meet their specific needs and requirements.
 ## Questions: 
  1. What is the purpose of the `BuildTransaction` class?
    - The `BuildTransaction` class is used to represent a transaction to be built, including information such as the sender's public key, the transaction's destinations, and optional gas and block hash information.

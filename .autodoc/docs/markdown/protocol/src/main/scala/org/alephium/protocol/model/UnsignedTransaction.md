@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/UnsignedTransaction.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/UnsignedTransaction.scala)
 
-The `UnsignedTransaction` code is part of the Alephium project and represents an unsigned transaction in the blockchain. It is used to create, validate, and manipulate transactions before they are signed and added to the blockchain.
+The `UnsignedTransaction` code is part of the Oxygenium project and represents an unsigned transaction in the blockchain. It is used to create, validate, and manipulate transactions before they are signed and added to the blockchain.
 
 The `UnsignedTransaction` case class contains the following fields:
 
@@ -33,10 +33,10 @@ val unsignedTx = UnsignedTransaction(
 )
 ```
 
-Overall, the `UnsignedTransaction` code plays a crucial role in the Alephium project by providing the necessary functionality for creating and validating transactions before they are added to the blockchain.
+Overall, the `UnsignedTransaction` code plays a crucial role in the Oxygenium project by providing the necessary functionality for creating and validating transactions before they are added to the blockchain.
 ## Questions: 
  1. **Question**: What is the purpose of the `UnsignedTransaction` case class and its associated methods?
-   **Answer**: The `UnsignedTransaction` case class represents an unsigned transaction in the Alephium project. It contains information such as the transaction version, network ID, optional script for invoking stateful contracts, gas amount and price, inputs, and fixed outputs. The associated methods provide functionality for creating, validating, and manipulating unsigned transactions.
+   **Answer**: The `UnsignedTransaction` case class represents an unsigned transaction in the Oxygenium project. It contains information such as the transaction version, network ID, optional script for invoking stateful contracts, gas amount and price, inputs, and fixed outputs. The associated methods provide functionality for creating, validating, and manipulating unsigned transactions.
 
 2. **Question**: How does the `build` method work and what are its inputs and outputs?
    **Answer**: The `build` method is used to create an `UnsignedTransaction` from the provided inputs, such as the lockup and unlock scripts, input UTXOs, output information, gas amount, and gas price. It performs various checks and calculations to ensure the transaction is valid and returns an `Either[String, UnsignedTransaction]`, which is a success case containing the created `UnsignedTransaction` or a failure case with an error message.

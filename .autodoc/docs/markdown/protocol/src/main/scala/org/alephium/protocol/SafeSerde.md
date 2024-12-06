@@ -1,14 +1,14 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/SafeSerde.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/SafeSerde.scala)
 
-This code defines two traits, `SafeSerde` and `SafeSerdeImpl`, which are used for serialization and deserialization of data in the Alephium project. Serialization is the process of converting an object into a format that can be stored or transmitted, while deserialization is the reverse process of converting the serialized data back into an object.
+This code defines two traits, `SafeSerde` and `SafeSerdeImpl`, which are used for serialization and deserialization of data in the Oxygenium project. Serialization is the process of converting an object into a format that can be stored or transmitted, while deserialization is the reverse process of converting the serialized data back into an object.
 
 The `SafeSerde` trait defines three methods: `serialize`, `_deserialize`, and `deserialize`. The `serialize` method takes an object of type `T` and returns a `ByteString` representation of the object. The `_deserialize` method takes a `ByteString` input and returns a `SerdeResult` containing a `Staging` object of type `T` and any remaining bytes in the input. The `deserialize` method is a convenience method that calls `_deserialize` and checks that there are no remaining bytes in the input.
 
 The `SafeSerdeImpl` trait extends `SafeSerde` and adds two more methods: `unsafeSerde` and `validate`. The `unsafeSerde` method returns a `Serde` object that is used for serialization and deserialization of objects of type `T`. The `validate` method takes an object of type `T` and returns either a `Right` containing `Unit` if the object is valid, or a `Left` containing an error message if the object is invalid.
 
-The purpose of these traits is to provide a safe and flexible way to serialize and deserialize data in the Alephium project. By separating the serialization and deserialization logic from the validation logic, it is possible to reuse the same serialization and deserialization code for different types of objects, while still ensuring that the objects are valid. For example, if there are multiple types of transactions in the Alephium project, each with its own validation rules, it would be possible to define a separate `SafeSerdeImpl` for each type of transaction, while still using the same serialization and deserialization code. 
+The purpose of these traits is to provide a safe and flexible way to serialize and deserialize data in the Oxygenium project. By separating the serialization and deserialization logic from the validation logic, it is possible to reuse the same serialization and deserialization code for different types of objects, while still ensuring that the objects are valid. For example, if there are multiple types of transactions in the Oxygenium project, each with its own validation rules, it would be possible to define a separate `SafeSerdeImpl` for each type of transaction, while still using the same serialization and deserialization code. 
 
-Here is an example of how these traits might be used in the Alephium project:
+Here is an example of how these traits might be used in the Oxygenium project:
 
 ```scala
 case class MyObject(field1: Int, field2: String)

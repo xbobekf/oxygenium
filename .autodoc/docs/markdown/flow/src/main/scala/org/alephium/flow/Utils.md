@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/Utils.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/Utils.scala)
 
-The code defines a set of utility functions that can be used across the Alephium project. These functions are designed to help with displaying various types of data in a human-readable format. 
+The code defines a set of utility functions that can be used across the Oxygenium project. These functions are designed to help with displaying various types of data in a human-readable format. 
 
 The `showDigest` function takes a vector of `RandomBytes` objects and returns a string representation of the vector. If the vector is empty, it returns `"[]"`. Otherwise, it returns a string containing the short hexadecimal representation of the first and last elements of the vector, separated by `".."` and enclosed in square brackets. For example, `showDigest(AVector(RandomBytes(1), RandomBytes(2), RandomBytes(3)))` would return `"[ 01..03 ]"`.
 
@@ -18,7 +18,7 @@ The `unsafe` function takes an `IOResult` object and returns the value contained
 - This code file contains utility functions for displaying various types of data in a specific format.
 
 2. What external libraries or dependencies does this code use?
-- This code imports several classes from other packages within the alephium project, as well as the `RandomBytes` class from the `org.alephium.serde` package.
+- This code imports several classes from other packages within the oxygenium project, as well as the `RandomBytes` class from the `org.oxygenium.serde` package.
 
 3. What is the license for this code?
 - This code is released under the GNU Lesser General Public License, version 3 or later.

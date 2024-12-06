@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol
+package org.oxygenium.protocol
 
 import akka.util.ByteString
 
-import org.alephium.protocol.model.ContractId
-import org.alephium.util.Hex.HexStringSyntax
-import org.alephium.util.I256
+import org.oxygenium.protocol.model.ContractId
+import org.oxygenium.util.Hex.HexStringSyntax
+import org.oxygenium.util.I256
 
 package object vm {
   type ExeResult[T] = Either[Either[IOFailure, ExeFailure], T]

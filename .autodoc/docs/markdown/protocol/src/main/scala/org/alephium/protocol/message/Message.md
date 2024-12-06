@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/message/Message.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/message/Message.scala)
 
-This file contains the implementation of the `Message` class and related methods. The `Message` class represents a message that can be sent over the network in the Alephium project. The message consists of a header, payload, and checksum. The header contains the current wire version, which is used to ensure compatibility between different versions of the software. The payload contains the actual data being sent. The checksum is used to ensure the integrity of the message during transmission.
+This file contains the implementation of the `Message` class and related methods. The `Message` class represents a message that can be sent over the network in the Oxygenium project. The message consists of a header, payload, and checksum. The header contains the current wire version, which is used to ensure compatibility between different versions of the software. The payload contains the actual data being sent. The checksum is used to ensure the integrity of the message during transmission.
 
 The `Message` class has a constructor that takes a `Header` and a `Payload` object. It also has a factory method that takes a `Payload` object and creates a new `Message` object with a header containing the current wire version. This is a convenience method that simplifies the creation of new messages.
 
@@ -8,10 +8,10 @@ The `Message` class also has two methods for serializing messages. The `serializ
 
 The `Message` class also has a `deserialize` method that takes a `ByteString` and returns a `Message` object. This method uses the `MessageSerde` object to extract the checksum, length, header, and payload from the input `ByteString`. It then checks the checksum to ensure the integrity of the message and deserializes the header and payload. If the deserialization is successful, it returns a `Message` object. Otherwise, it returns a `SerdeError`.
 
-Overall, this file provides the functionality to create, serialize, and deserialize messages that can be sent over the network in the Alephium project. It is an important part of the networking layer of the project and is used extensively throughout the codebase. Below is an example of how to use the `Message` class to create and serialize a new message:
+Overall, this file provides the functionality to create, serialize, and deserialize messages that can be sent over the network in the Oxygenium project. It is an important part of the networking layer of the project and is used extensively throughout the codebase. Below is an example of how to use the `Message` class to create and serialize a new message:
 
 ```scala
-import org.alephium.protocol.message.{Message, Payload}
+import org.oxygenium.protocol.message.{Message, Payload}
 
 case class MyPayload(data: String) extends Payload
 

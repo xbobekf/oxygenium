@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/project/Dependencies.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/project/Dependencies.scala)
 
-This file contains two Scala objects: `Version` and `Dependencies`. These objects define the versions of various libraries and dependencies used in the Alephium project. 
+This file contains two Scala objects: `Version` and `Dependencies`. These objects define the versions of various libraries and dependencies used in the Oxygenium project. 
 
 The `Version` object defines the versions of the following libraries: 
 - Akka
@@ -28,9 +28,9 @@ The `Dependencies` object defines the dependencies used in the project. These in
 - Prometheus: `simpleclient`, `simpleclient_common`, and `simpleclient_hotspot`
 - Scopt: `scopt`
 
-These dependencies are used throughout the Alephium project to provide various functionality, such as networking, logging, testing, and more. For example, the `akka-actor` library is used to implement the actor model in the project, while `tapir` is used to define and document the API endpoints. 
+These dependencies are used throughout the Oxygenium project to provide various functionality, such as networking, logging, testing, and more. For example, the `akka-actor` library is used to implement the actor model in the project, while `tapir` is used to define and document the API endpoints. 
 
-Overall, this file serves as a central location for defining the versions and dependencies used in the Alephium project, making it easier to manage and update them as needed.
+Overall, this file serves as a central location for defining the versions and dependencies used in the Oxygenium project, making it easier to manage and update them as needed.
 ## Questions: 
  1. What licensing terms apply to this code?
 - The code is licensed under the GNU Lesser General Public License, version 3 or later.

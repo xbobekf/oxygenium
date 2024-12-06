@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
-import org.alephium.protocol.model._
-import org.alephium.util.AlephiumSpec
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.OxygeniumSpec
 
-class GasBoxSpec extends AlephiumSpec {
+class GasBoxSpec extends OxygeniumSpec {
   it should "validate gas bound" in {
     GasBox.validate(minimalGas, HardFork.Leman) is true
     GasBox.validate(GasBox.unsafe(minimalGas.value - 1), HardFork.Leman) is false

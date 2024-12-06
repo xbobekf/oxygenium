@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/wallet/src/main/scala/org/alephium/wallet/api/model/Addresses.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/wallet/src/main/scala/org/oxygenium/wallet/api/model/Addresses.scala)
 
 This file contains code for the `Addresses` class and a companion object. The `Addresses` class is a case class that contains an active address and a vector of `AddressInfo` objects. The `AddressInfo` class is not defined in this file, but it is likely defined elsewhere in the project. The companion object contains a single method, `from`, which is used to create an instance of the `Addresses` class.
 

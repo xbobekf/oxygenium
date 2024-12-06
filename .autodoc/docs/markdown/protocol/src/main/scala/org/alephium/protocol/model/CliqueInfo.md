@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/CliqueInfo.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/CliqueInfo.scala)
 
-This file contains the implementation of the `CliqueInfo` class, which represents information about a clique in the Alephium protocol. A clique is a group of brokers that work together to validate transactions and maintain the blockchain. 
+This file contains the implementation of the `CliqueInfo` class, which represents information about a clique in the Oxygenium protocol. A clique is a group of brokers that work together to validate transactions and maintain the blockchain. 
 
 The `CliqueInfo` class contains the following fields:
 - `id`: a unique identifier for the clique
@@ -27,10 +27,10 @@ The `interBrokers` method returns an optional vector of `BrokerInfo` objects tha
 
 The `CliqueInfo` class also provides a `validate` method that checks whether the clique information is valid according to the given `GroupConfig` object. 
 
-The `CliqueInfo` class is used in the Alephium protocol to manage the configuration and communication of cliques. It provides a convenient way to access and manipulate information about the brokers in a clique, and to validate that the clique information is consistent with the overall group configuration.
+The `CliqueInfo` class is used in the Oxygenium protocol to manage the configuration and communication of cliques. It provides a convenient way to access and manipulate information about the brokers in a clique, and to validate that the clique information is consistent with the overall group configuration.
 ## Questions: 
  1. What is the purpose of the `CliqueInfo` class?
-- The `CliqueInfo` class represents information about a clique, which is a group of brokers in the Alephium protocol.
+- The `CliqueInfo` class represents information about a clique, which is a group of brokers in the Oxygenium protocol.
 2. What is the significance of the `groupNumPerBroker` parameter?
 - The `groupNumPerBroker` parameter determines the number of groups assigned to each broker in the clique.
 3. What is the purpose of the `validate` method in the `CliqueInfo` companion object?

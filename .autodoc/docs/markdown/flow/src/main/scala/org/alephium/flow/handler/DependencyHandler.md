@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/handler/DependencyHandler.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/handler/DependencyHandler.scala)
 
-The `DependencyHandler` class is part of the Alephium project and is responsible for handling dependencies between blocks and headers. It receives `AddFlowData` commands that contain a vector of `FlowData` objects and a `DataOrigin` value. The `FlowData` objects represent blocks or headers that need to be validated, and the `DataOrigin` value indicates whether the data is coming from the network or from the local node.
+The `DependencyHandler` class is part of the Oxygenium project and is responsible for handling dependencies between blocks and headers. It receives `AddFlowData` commands that contain a vector of `FlowData` objects and a `DataOrigin` value. The `FlowData` objects represent blocks or headers that need to be validated, and the `DataOrigin` value indicates whether the data is coming from the network or from the local node.
 
 When the `DependencyHandler` receives an `AddFlowData` command, it adds the `FlowData` objects to its `pending` cache. If a `FlowData` object is not already in the cache, the handler checks if the block or header dependencies are already in the `blockFlow` cache. If any dependencies are missing, the handler adds them to its `missing` cache and updates its `missingIndex` cache to keep track of which blocks or headers are missing a given dependency. If all dependencies are present, the `FlowData` object is added to the `readies` set.
 
@@ -12,10 +12,10 @@ The `DependencyHandler` periodically sends `Validate` commands to the appropriat
 
 The `DependencyHandler` also responds to `GetPendings` commands by sending a `Pendings` event to the sender with a vector of block and header hashes that are still pending validation.
 
-Overall, the `DependencyHandler` is an important component of the Alephium project that helps ensure that blocks and headers are validated in the correct order and that all dependencies are satisfied before validation begins.
+Overall, the `DependencyHandler` is an important component of the Oxygenium project that helps ensure that blocks and headers are validated in the correct order and that all dependencies are satisfied before validation begins.
 ## Questions: 
  1. What is the purpose of this code?
-- This code defines the `DependencyHandler` class and its associated objects, which are used to manage dependencies between blocks and headers in the Alephium project.
+- This code defines the `DependencyHandler` class and its associated objects, which are used to manage dependencies between blocks and headers in the Oxygenium project.
 
 2. What are the main data structures used in this code?
 - The code uses several mutable data structures, including `LinkedHashMap`, `ArrayBuffer`, and `HashSet`, to keep track of pending, missing, and ready blocks and headers.

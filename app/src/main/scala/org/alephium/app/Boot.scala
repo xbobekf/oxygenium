@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.nio.file.Path
 
@@ -28,10 +28,10 @@ import com.typesafe.scalalogging.StrictLogging
 import io.prometheus.client.Gauge
 import io.prometheus.client.hotspot.DefaultExports
 
-import org.alephium.flow.mining.Miner
-import org.alephium.flow.setting.{AlephiumConfig, Configs, Platform}
-import org.alephium.protocol.model.Block
-import org.alephium.util.{AVector, Duration, Env}
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.flow.setting.{OxygeniumConfig, Configs, Platform}
+import org.oxygenium.protocol.model.Block
+import org.oxygenium.util.{AVector, Duration, Env}
 
 object Boot extends App with StrictLogging {
   try {
@@ -48,8 +48,8 @@ class BootUp extends StrictLogging {
   val rootPath: Path = Platform.getRootPath()
   val typesafeConfig: Config =
     Configs.parseConfigAndValidate(Env.currentEnv, rootPath, overwrite = true)
-  implicit val config: AlephiumConfig = AlephiumConfig.load(typesafeConfig, "alephium")
-  implicit val apiConfig: ApiConfig   = ApiConfig.load(typesafeConfig, "alephium.api")
+  implicit val config: OxygeniumConfig = OxygeniumConfig.load(typesafeConfig, "oxygenium")
+  implicit val apiConfig: ApiConfig   = ApiConfig.load(typesafeConfig, "oxygenium.api")
   val flowSystem: ActorSystem         = ActorSystem("flow", typesafeConfig)
 
   @SuppressWarnings(Array("org.wartremover.warts.GlobalExecutionContext"))
@@ -113,10 +113,10 @@ class BootUp extends StrictLogging {
   def logConfig(): Unit = {
     val renderOptions =
       ConfigRenderOptions.defaults().setOriginComments(false).setComments(true).setJson(false)
-    val alephiumConf = typesafeConfig.withOnlyPath("alephium").withoutPath("alephium.genesis")
+    val oxygeniumConf = typesafeConfig.withOnlyPath("oxygenium").withoutPath("oxygenium.genesis")
     val akkaConf     = typesafeConfig.withOnlyPath("akka")
     logger.debug(
-      alephiumConf.withFallback(akkaConf).root().render(renderOptions)
+      oxygeniumConf.withFallback(akkaConf).root().render(renderOptions)
     )
 
     val digests = config.genesisBlocks.map(showBlocks).mkString("-")
@@ -125,7 +125,7 @@ class BootUp extends StrictLogging {
 
   def collectBuildInfo(): Unit = {
     Gauge
-      .build("alephium_build_info", "Alephium full node build info")
+      .build("oxygenium_build_info", "Oxygenium full node build info")
       .labelNames("release_version", "commit_id")
       .register()
       .labels(BuildInfo.releaseVersion, BuildInfo.commitId)

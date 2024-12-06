@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.bootstrap
+package org.oxygenium.flow.network.bootstrap
 
 import java.net.InetSocketAddress
 
@@ -22,12 +22,12 @@ import akka.actor.{Props, Terminated}
 import akka.io.{IO, Tcp}
 import akka.util.ByteString
 
-import org.alephium.flow.network.Bootstrapper
-import org.alephium.flow.network.broker.{ConnectionHandler, MisbehaviorManager}
-import org.alephium.flow.setting.NetworkSetting
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig}
-import org.alephium.serde.{SerdeResult, Staging}
-import org.alephium.util.{ActorRefT, BaseActor, Duration, EventStream, TimeStamp}
+import org.oxygenium.flow.network.Bootstrapper
+import org.oxygenium.flow.network.broker.{ConnectionHandler, MisbehaviorManager}
+import org.oxygenium.flow.setting.NetworkSetting
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig}
+import org.oxygenium.serde.{SerdeResult, Staging}
+import org.oxygenium.util.{ActorRefT, BaseActor, Duration, EventStream, TimeStamp}
 
 object Broker {
   def props(bootstrapper: ActorRefT[Bootstrapper.Command])(implicit

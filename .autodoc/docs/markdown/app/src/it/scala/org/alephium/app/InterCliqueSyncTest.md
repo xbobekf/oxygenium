@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/app/src/it/scala/org/alephium/app/InterCliqueSyncTest.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/app/src/it/scala/org/oxygenium/app/InterCliqueSyncTest.scala)
 
-The code provided is a part of the Alephium project and contains several classes and methods. The main purpose of this code is to provide a network layer for the Alephium blockchain. The network layer is responsible for handling communication between nodes in the network. 
+The code provided is a part of the Oxygenium project and contains several classes and methods. The main purpose of this code is to provide a network layer for the Oxygenium blockchain. The network layer is responsible for handling communication between nodes in the network. 
 
 The `Injected` class is an implementation of the `ActorRef` class that allows for message injection. It takes a `ByteString` and returns a modified `ByteString`. The `Injected` class is used to modify messages before they are sent to the network. The `Injected` class has several methods that allow for different types of message injection. The `noModification` method returns an instance of the `Injected` class that does not modify messages. The `message` method takes a `PartialFunction` that modifies messages of type `Message`. The `payload` method takes a `PartialFunction` that modifies messages of type `Payload`. 
 
@@ -8,11 +8,11 @@ The `InterCliqueSyncTest` class is a test suite for the network layer. It tests 
 
 The `InterCliqueSyncTest` class also contains several test cases that test different aspects of the network layer. The `punish peer if not same chain id` test case tests the functionality of the `MisbehaviorManager` class. It tests if a peer is punished if it sends a message with a different chain ID. The `ban node if send invalid pong` test case tests if a node is banned if it sends an invalid `Pong` message. The `punish peer if spamming` test case tests if a peer is punished if it sends spam messages. The `punish peer if version is not compatible` test case tests if a peer is punished if it sends a message with an incompatible version. 
 
-In summary, the code provided is a part of the Alephium project and provides a network layer for the Alephium blockchain. The `Injected` class is used to modify messages before they are sent to the network. The `InterCliqueSyncTest` class is a test suite for the network layer and tests the functionality of the network layer in different scenarios. The test cases in the `InterCliqueSyncTest` class test different aspects of the network layer, such as message injection, punishment of misbehaving peers, and compatibility with different versions.
+In summary, the code provided is a part of the Oxygenium project and provides a network layer for the Oxygenium blockchain. The `Injected` class is used to modify messages before they are sent to the network. The `InterCliqueSyncTest` class is a test suite for the network layer and tests the functionality of the network layer in different scenarios. The test cases in the `InterCliqueSyncTest` class test different aspects of the network layer, such as message injection, punishment of misbehaving peers, and compatibility with different versions.
 ## Questions: 
  1. What is the purpose of the `Injected` class and its companion object?
 - The `Injected` class is a wrapper around an `ActorRef` that allows for modification of messages before they are sent. The companion object provides factory methods for creating instances of `Injected` with different types of message modification.
 2. What is the `InterCliqueSyncTest` class testing?
-- The `InterCliqueSyncTest` class is testing the synchronization of two separate "cliques" of nodes in the Alephium network, as well as various scenarios for punishing misbehaving nodes.
+- The `InterCliqueSyncTest` class is testing the synchronization of two separate "cliques" of nodes in the Oxygenium network, as well as various scenarios for punishing misbehaving nodes.
 3. What license is this code released under?
 - This code is released under the GNU Lesser General Public License, version 3 or later.

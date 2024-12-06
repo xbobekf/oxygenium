@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/Collection.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/Collection.scala)
 
 The code provided is a Scala file that contains a utility object called `Collection`. This object provides two methods that allow for safe access to elements within arrays. The `get` method takes an array and an index as input parameters and returns an `Option[T]` object. If the index is within the bounds of the array, the method returns a `Some[T]` object containing the element at the specified index. If the index is out of bounds, the method returns `None`. 
 

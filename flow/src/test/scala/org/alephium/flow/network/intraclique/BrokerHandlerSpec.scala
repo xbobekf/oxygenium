@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.intraclique
+package org.oxygenium.flow.network.intraclique
 
 import java.net.InetSocketAddress
 
@@ -23,22 +23,22 @@ import akka.io.Tcp
 import akka.testkit.{TestActorRef, TestProbe}
 import org.scalacheck.Gen
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.handler.{AllHandlers, FlowHandler, TestUtils, TxHandler}
-import org.alephium.flow.network.CliqueManager
-import org.alephium.flow.network.broker.{InboundBrokerHandler => BaseInboundBrokerHandler}
-import org.alephium.flow.network.broker.{BrokerHandler => BaseBrokerHandler}
-import org.alephium.flow.network.broker.ConnectionHandler
-import org.alephium.flow.network.sync.BlockFlowSynchronizer
-import org.alephium.flow.setting.NetworkSetting
-import org.alephium.protocol.Generators
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.message._
-import org.alephium.protocol.model._
-import org.alephium.util.{ActorRefT, AlephiumActorSpec, AVector}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.handler.{AllHandlers, FlowHandler, TestUtils, TxHandler}
+import org.oxygenium.flow.network.CliqueManager
+import org.oxygenium.flow.network.broker.{InboundBrokerHandler => BaseInboundBrokerHandler}
+import org.oxygenium.flow.network.broker.{BrokerHandler => BaseBrokerHandler}
+import org.oxygenium.flow.network.broker.ConnectionHandler
+import org.oxygenium.flow.network.sync.BlockFlowSynchronizer
+import org.oxygenium.flow.setting.NetworkSetting
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.message._
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{ActorRefT, OxygeniumActorSpec, AVector}
 
-class BrokerHandlerSpec extends AlephiumActorSpec {
+class BrokerHandlerSpec extends OxygeniumActorSpec {
   val clientInfo: String = "v0.0.0"
 
   it should "terminated when received invalid broker info" in new Fixture {
@@ -58,7 +58,7 @@ class BrokerHandlerSpec extends AlephiumActorSpec {
   }
 
   it should "compute the headers and blocks for sync" in new Fixture with ModelGenerators {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-id", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-id", 1))
 
     config.broker.brokerNum is 3
     config.broker.groupNumPerBroker is 1

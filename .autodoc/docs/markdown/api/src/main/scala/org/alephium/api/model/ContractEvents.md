@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/ContractEvents.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/ContractEvents.scala)
 
-This file contains code for defining and manipulating various data structures related to contract events in the Alephium project. 
+This file contains code for defining and manipulating various data structures related to contract events in the Oxygenium project. 
 
 The `ContractEvent` class represents an event that occurred during the execution of a smart contract. It contains information such as the block hash, transaction ID, event index, and a vector of values representing the event's fields. 
 
@@ -10,12 +10,12 @@ The `ContractEventByTxId` and `ContractEventByBlockHash` classes are used to rep
 
 The `from` methods in the `ContractEventByTxId` and `ContractEventByBlockHash` companion objects are used to create instances of these classes from `LogState` and `LogStateRef` instances. The `from` methods in the `ContractEvents` companion object are used to create instances of `ContractEvent` and `ContractEvents` from `LogStates` instances. 
 
-Overall, this code provides a way to represent and manipulate contract events in the Alephium project. It can be used to retrieve and analyze information about smart contract executions, which is useful for debugging and monitoring purposes. 
+Overall, this code provides a way to represent and manipulate contract events in the Oxygenium project. It can be used to retrieve and analyze information about smart contract executions, which is useful for debugging and monitoring purposes. 
 
 Example usage:
 
 ```scala
-import org.alephium.api.model._
+import org.oxygenium.api.model._
 
 // create a ContractEvent instance
 val event = ContractEvent(
@@ -49,7 +49,7 @@ val eventByBlockHash = ContractEventByBlockHash(
 ```
 ## Questions: 
  1. What is the purpose of the `ContractEvents` class and its related classes?
-- The `ContractEvents` class and its related classes (`ContractEventsByTxId`, `ContractEventsByBlockHash`, `ContractEvent`, `ContractEventByTxId`, and `ContractEventByBlockHash`) are used to represent events emitted by smart contracts in the Alephium blockchain.
+- The `ContractEvents` class and its related classes (`ContractEventsByTxId`, `ContractEventsByBlockHash`, `ContractEvent`, `ContractEventByTxId`, and `ContractEventByBlockHash`) are used to represent events emitted by smart contracts in the Oxygenium blockchain.
 
 2. What is the `Val` class and how is it used in this code?
 - The `Val` class is used to represent the value of a field in a smart contract event. It is used in the `ContractEvent`, `ContractEventByTxId`, and `ContractEventByBlockHash` classes to store the values of the fields emitted by a smart contract.

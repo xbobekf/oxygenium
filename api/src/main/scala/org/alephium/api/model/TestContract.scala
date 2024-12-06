@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api.model
+package org.oxygenium.api.model
 
-import org.alephium.api.{badRequest, Try}
-import org.alephium.api.model.TestContract._
-import org.alephium.protocol.{ALPH, Hash}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{Address, BlockHash, ContractId, GroupIndex, TransactionId}
-import org.alephium.protocol.vm.{ContractState => _, Val => _, _}
-import org.alephium.util.{AVector, TimeStamp}
+import org.oxygenium.api.{badRequest, Try}
+import org.oxygenium.api.model.TestContract._
+import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{Address, BlockHash, ContractId, GroupIndex, TransactionId}
+import org.oxygenium.protocol.vm.{ContractState => _, Val => _, _}
+import org.oxygenium.util.{AVector, TimeStamp}
 
 @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments"))
 final case class TestContract(

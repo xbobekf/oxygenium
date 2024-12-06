@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.broker
+package org.oxygenium.flow.network.broker
 
 import java.net.InetSocketAddress
 
@@ -22,18 +22,18 @@ import akka.actor.Props
 import akka.io.Tcp
 import akka.testkit.{TestActorRef, TestProbe}
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.handler.AllHandlers
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.network.{CliqueManager, TcpController}
-import org.alephium.flow.network.sync.BlockFlowSynchronizer
-import org.alephium.flow.setting.{AlephiumConfigFixture, NetworkSetting}
-import org.alephium.protocol.Generators
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.{BrokerInfo, CliqueInfo}
-import org.alephium.util.{ActorRefT, AlephiumActorSpec}
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.handler.AllHandlers
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.network.{CliqueManager, TcpController}
+import org.oxygenium.flow.network.sync.BlockFlowSynchronizer
+import org.oxygenium.flow.setting.{OxygeniumConfigFixture, NetworkSetting}
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.{BrokerInfo, CliqueInfo}
+import org.oxygenium.util.{ActorRefT, OxygeniumActorSpec}
 
-class OutboundBrokerHandlerSpec extends AlephiumActorSpec {
+class OutboundBrokerHandlerSpec extends OxygeniumActorSpec {
   it should "retry to connect if the connection failed" in new Fixture {
     listener.expectMsg(TcpController.ConnectTo(remoteAddress, ActorRefT(brokerHandler)))
     brokerHandler ! Tcp.CommandFailed(Tcp.Connect(remoteAddress))
@@ -46,8 +46,8 @@ class OutboundBrokerHandlerSpec extends AlephiumActorSpec {
 
   it should "stop when connection retry failed" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      "alephium.network.backoff-base-delay" -> "10 milli",
-      "alephium.network.backoff-max-delay"  -> "100 milli"
+      "oxygenium.network.backoff-base-delay" -> "10 milli",
+      "oxygenium.network.backoff-max-delay"  -> "100 milli"
     )
 
     watch(brokerHandler)
@@ -58,7 +58,7 @@ class OutboundBrokerHandlerSpec extends AlephiumActorSpec {
     expectTerminated(brokerHandler)
   }
 
-  trait Fixture extends AlephiumConfigFixture {
+  trait Fixture extends OxygeniumConfigFixture {
     val listener = TestProbe()
     system.eventStream.subscribe(listener.ref, classOf[TcpController.ConnectTo])
 

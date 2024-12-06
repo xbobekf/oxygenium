@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import io.prometheus.client.{Counter, Gauge, Histogram}
 
-import org.alephium.flow.core.{BlockFlow, BlockHeaderChain}
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.validation._
-import org.alephium.io.{IOError, IOResult}
-import org.alephium.protocol.config.{BrokerConfig, ConsensusConfigs, NetworkConfig}
-import org.alephium.protocol.mining.HashRate
-import org.alephium.protocol.model.{BlockHeader, ChainIndex, FlowData}
-import org.alephium.serde.{serialize, Serde}
-import org.alephium.util._
-import org.alephium.util.EventStream.Publisher
+import org.oxygenium.flow.core.{BlockFlow, BlockHeaderChain}
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.validation._
+import org.oxygenium.io.{IOError, IOResult}
+import org.oxygenium.protocol.config.{BrokerConfig, ConsensusConfigs, NetworkConfig}
+import org.oxygenium.protocol.mining.HashRate
+import org.oxygenium.protocol.model.{BlockHeader, ChainIndex, FlowData}
+import org.oxygenium.serde.{serialize, Serde}
+import org.oxygenium.util._
+import org.oxygenium.util.EventStream.Publisher
 
 //scalastyle:off magic.number
 object ChainHandler {
@@ -39,7 +39,7 @@ object ChainHandler {
 
   val chainValidationFailed: Counter = Counter
     .build(
-      "alephium_chain_validation_failed",
+      "oxygenium_chain_validation_failed",
       "Error count of chain validation errors"
     )
     .labelNames("validation_type", "invalid_status")
@@ -47,7 +47,7 @@ object ChainHandler {
 
   val chainValidationTotal: Counter = Counter
     .build(
-      "alephium_chain_validation_total",
+      "oxygenium_chain_validation_total",
       "Total number of chain validations"
     )
     .labelNames("validation_type")
@@ -55,7 +55,7 @@ object ChainHandler {
 
   val chainValidationDurationMilliSeconds: Histogram = Histogram
     .build(
-      "alephium_chain_validation_duration_milliseconds",
+      "oxygenium_chain_validation_duration_milliseconds",
       "Duration of the validation"
     )
     .labelNames("validation_type")
@@ -64,7 +64,7 @@ object ChainHandler {
 
   val blockDurationMilliSeconds: Histogram = Histogram
     .build(
-      "alephium_block_duration_milliseconds",
+      "oxygenium_block_duration_milliseconds",
       "Block duration"
     )
     .labelNames("chain_from", "chain_to")
@@ -75,7 +75,7 @@ object ChainHandler {
 
   val blockCurrentHeight: Gauge = Gauge
     .build(
-      "alephium_block_current_height",
+      "oxygenium_block_current_height",
       "Current height of the block"
     )
     .labelNames("chain_from", "chain_to")
@@ -83,7 +83,7 @@ object ChainHandler {
 
   val targetHashRateHertz: Gauge = Gauge
     .build(
-      "alephium_target_hash_rate_hertz",
+      "oxygenium_target_hash_rate_hertz",
       "Target hash rate"
     )
     .labelNames("chain_from", "chain_to")

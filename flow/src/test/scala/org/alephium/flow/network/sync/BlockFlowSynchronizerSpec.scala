@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,19 +14,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.sync
+package org.oxygenium.flow.network.sync
 
 import akka.testkit.{TestActorRef, TestProbe}
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.handler.TestUtils
-import org.alephium.flow.network.InterCliqueManager
-import org.alephium.flow.network.broker.{BrokerHandler, InboundConnection}
-import org.alephium.protocol.Generators
-import org.alephium.protocol.model.BlockHash
-import org.alephium.util.{AlephiumActorSpec, AVector}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.handler.TestUtils
+import org.oxygenium.flow.network.InterCliqueManager
+import org.oxygenium.flow.network.broker.{BrokerHandler, InboundConnection}
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.model.BlockHash
+import org.oxygenium.util.{OxygeniumActorSpec, AVector}
 
-class BlockFlowSynchronizerSpec extends AlephiumActorSpec {
+class BlockFlowSynchronizerSpec extends OxygeniumActorSpec {
   trait Fixture extends FlowFixture with Generators {
     val (allHandlers, _) = TestUtils.createAllHandlersProbe
     val blockFlowSynchronizer = TestActorRef[BlockFlowSynchronizer](

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import scala.collection.immutable.ArraySeq
 import scala.collection.mutable
@@ -28,14 +28,14 @@ import io.vertx.core.eventbus.{EventBus => VertxEventBus}
 import io.vertx.core.http.{HttpServer, HttpServerOptions}
 import sttp.tapir.server.vertx.VertxFutureServerInterpreter._
 
-import org.alephium.api.ApiModelCodec
-import org.alephium.api.model._
-import org.alephium.flow.client.Node
-import org.alephium.flow.handler.AllHandlers.BlockNotify
-import org.alephium.json.Json._
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig}
-import org.alephium.rpc.model.JsonRPC._
-import org.alephium.util.{AVector, BaseActor, EventBus, Service}
+import org.oxygenium.api.ApiModelCodec
+import org.oxygenium.api.model._
+import org.oxygenium.flow.client.Node
+import org.oxygenium.flow.handler.AllHandlers.BlockNotify
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
+import org.oxygenium.rpc.model.JsonRPC._
+import org.oxygenium.util.{AVector, BaseActor, EventBus, Service}
 
 class WebSocketServer(node: Node, wsPort: Int)(implicit
     val system: ActorSystem,

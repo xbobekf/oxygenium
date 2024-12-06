@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/UTXO.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/UTXO.scala)
 
 This file contains the definition of a UTXO (Unspent Transaction Output) class and its companion object. UTXOs are outputs of previous transactions that have not been spent yet and can be used as inputs for new transactions. 
 
@@ -13,7 +13,7 @@ The companion object provides two factory methods to create UTXOs:
 - `from(ref: TxOutputRef, output: TxOutput)`: creates a UTXO from a `TxOutputRef` object and a `TxOutput` object. This method extracts the relevant information from the `TxOutput` object and creates a new UTXO object.
 - `from(ref: OutputRef, amount: Amount, tokens: AVector[Token], lockTime: TimeStamp, additionalData: ByteString)`: creates a UTXO from its individual fields.
 
-This UTXO class is likely used in the larger Alephium project to represent unspent transaction outputs in the blockchain. It provides a convenient way to store and manipulate UTXOs in the system. For example, it can be used to track the available funds of a user's wallet or to validate transactions by checking if the inputs are valid UTXOs. 
+This UTXO class is likely used in the larger Oxygenium project to represent unspent transaction outputs in the blockchain. It provides a convenient way to store and manipulate UTXOs in the system. For example, it can be used to track the available funds of a user's wallet or to validate transactions by checking if the inputs are valid UTXOs. 
 
 Here is an example of how to create a UTXO object using the companion object's factory method:
 ```

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/ConcurrentHashSet.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/ConcurrentHashSet.scala)
 
 The code defines a ConcurrentHashSet class that is used to store a set of elements in a thread-safe manner. The class is implemented using a ConcurrentHashMap from the Java standard library. The class provides methods to add, remove, and check if an element is present in the set. Additionally, it provides an iterable method that returns an iterable of the elements in the set.
 
@@ -8,7 +8,7 @@ The class provides a number of methods to manipulate the set. The add method add
 
 The iterable method returns an iterable of the elements in the set. This method is implemented using the keySet method of the ConcurrentHashMap, which returns a set of the keys in the map. The set is then converted to an iterable using the asScala method from the Scala standard library.
 
-Overall, the ConcurrentHashSet class provides a thread-safe way to store a set of elements in a multi-threaded environment. It is intended to be used as a building block for other concurrent data structures in the Alephium project. An example usage of the class is shown below:
+Overall, the ConcurrentHashSet class provides a thread-safe way to store a set of elements in a multi-threaded environment. It is intended to be used as a building block for other concurrent data structures in the Oxygenium project. An example usage of the class is shown below:
 
 ```
 val set = ConcurrentHashSet.empty[Int]

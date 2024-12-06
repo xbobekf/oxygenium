@@ -1,17 +1,17 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/BuildTransactionResult.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/BuildTransactionResult.scala)
 
 The code defines a case class called `BuildTransactionResult` which represents the result of building a transaction. It contains several fields including the unsigned transaction, gas amount, gas price, transaction ID, and the source and destination groups. The case class extends two traits, `GasInfo` and `ChainIndexInfo`.
 
-The `from` method in the `BuildTransactionResult` object takes an `UnsignedTransaction` as input and returns a `BuildTransactionResult`. The `UnsignedTransaction` is a model class that represents a transaction that has not been signed yet. The `from` method uses the `serialize` method from the `org.alephium.serde` package to convert the `UnsignedTransaction` to a hex string and assigns it to the `unsignedTx` field. It also assigns the `gasAmount`, `gasPrice`, `id`, `fromGroup`, and `toGroup` fields of the `UnsignedTransaction` to the corresponding fields in the `BuildTransactionResult` object.
+The `from` method in the `BuildTransactionResult` object takes an `UnsignedTransaction` as input and returns a `BuildTransactionResult`. The `UnsignedTransaction` is a model class that represents a transaction that has not been signed yet. The `from` method uses the `serialize` method from the `org.oxygenium.serde` package to convert the `UnsignedTransaction` to a hex string and assigns it to the `unsignedTx` field. It also assigns the `gasAmount`, `gasPrice`, `id`, `fromGroup`, and `toGroup` fields of the `UnsignedTransaction` to the corresponding fields in the `BuildTransactionResult` object.
 
-This code is likely used in the larger Alephium project to build and serialize transactions before they are signed and broadcasted to the network. The `BuildTransactionResult` object provides a convenient way to package the results of building a transaction and pass them around the codebase. The `from` method is likely used in conjunction with other methods to build and sign transactions. 
+This code is likely used in the larger Oxygenium project to build and serialize transactions before they are signed and broadcasted to the network. The `BuildTransactionResult` object provides a convenient way to package the results of building a transaction and pass them around the codebase. The `from` method is likely used in conjunction with other methods to build and sign transactions. 
 
 Example usage:
 
 ```scala
-import org.alephium.api.model.BuildTransactionResult
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.UnsignedTransaction
+import org.oxygenium.api.model.BuildTransactionResult
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.UnsignedTransaction
 
 implicit val groupConfig: GroupConfig = ???
 

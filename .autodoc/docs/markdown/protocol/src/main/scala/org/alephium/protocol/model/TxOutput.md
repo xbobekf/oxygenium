@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/TxOutput.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/TxOutput.scala)
 
-This file contains code related to transaction outputs in the Alephium project. A transaction output is an amount of ALPH (the native token of the Alephium blockchain) or other tokens that are locked up and can be spent only by the owner of the corresponding private key. 
+This file contains code related to transaction outputs in the Oxygenium project. A transaction output is an amount of ALPH (the native token of the Oxygenium blockchain) or other tokens that are locked up and can be spent only by the owner of the corresponding private key. 
 
 The `TxOutput` trait is defined, which is implemented by two case classes: `AssetOutput` and `ContractOutput`. `AssetOutput` represents an output that contains ALPH and/or other tokens, while `ContractOutput` represents an output that contains a smart contract. Both classes contain the amount of tokens, a lockup script that defines the conditions under which the tokens can be spent, and a list of secondary tokens (in the case of `AssetOutput`). 
 
@@ -10,7 +10,7 @@ The `TxOutput` object contains several factory methods for creating `TxOutput` i
 
 The `AssetOutput` object contains a `genesis` method, which creates an output that represents the initial distribution of tokens for a new asset. This method takes the amount of tokens, a lockup script, a lockup duration, and additional data as parameters. 
 
-Overall, this code provides a way to create and manipulate transaction outputs in the Alephium blockchain. It is an important part of the transaction validation process and enables the transfer of ALPH and other tokens between users.
+Overall, this code provides a way to create and manipulate transaction outputs in the Oxygenium blockchain. It is an important part of the transaction validation process and enables the transfer of ALPH and other tokens between users.
 ## Questions: 
  1. What is the purpose of the `TxOutput` trait and its implementations?
 - The `TxOutput` trait represents the output of a transaction and has two implementations: `AssetOutput` and `ContractOutput`. `AssetOutput` represents an output that contains ALPH and/or secondary tokens, while `ContractOutput` represents an output that contains only ALPH and is used for paying gas fees.

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/RocksDBKeyValueStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/RocksDBKeyValueStorage.scala)
 
 This code defines a key-value storage implementation using RocksDB, a high-performance embedded database. The `RocksDBKeyValueStorage` class provides a way to store and retrieve key-value pairs using RocksDB. It implements the `KeyValueStorage` trait, which defines the basic operations of a key-value store, such as `get`, `put`, and `delete`.
 
@@ -11,7 +11,7 @@ The `RocksDBKeyValueStorage` object provides three factory methods for creating 
 Overall, this code provides a simple and efficient way to store and retrieve key-value pairs using RocksDB. It can be used as a building block for more complex data structures and algorithms that require persistent storage. For example, it could be used to implement a blockchain or a distributed ledger. Here is an example of how to use this code to store and retrieve key-value pairs:
 
 ```scala
-import org.alephium.io._
+import org.oxygenium.io._
 
 // Create a RocksDBSource object
 val source = RocksDBSource("/path/to/database")
@@ -34,11 +34,11 @@ storage.iterate((k, v) => println(s"$k -> $v"))
 ## Questions: 
  1. What is the purpose of this code?
    
-   This code defines a key-value storage implementation using RocksDB for the Alephium project.
+   This code defines a key-value storage implementation using RocksDB for the Oxygenium project.
 
 2. What dependencies does this code have?
    
-   This code depends on the `akka.util.ByteString`, `org.rocksdb`, and `org.alephium.serde` libraries.
+   This code depends on the `akka.util.ByteString`, `org.rocksdb`, and `org.oxygenium.serde` libraries.
 
 3. What is the license for this code?
    

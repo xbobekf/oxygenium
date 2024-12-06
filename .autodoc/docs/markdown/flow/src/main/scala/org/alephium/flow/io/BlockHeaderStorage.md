@@ -1,12 +1,12 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/io/BlockHeaderStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/io/BlockHeaderStorage.scala)
 
-This code defines a trait and a class that implement a key-value storage for block headers in the Alephium project. The trait, called `BlockHeaderStorage`, extends the `KeyValueStorage` trait and defines methods to put, get, check existence, and delete block headers. The `BlockHeaderRockDBStorage` class extends the `RocksDBKeyValueStorage` class and implements the `BlockHeaderStorage` trait. It takes a `RocksDBSource` object, a column family, and read and write options as parameters. 
+This code defines a trait and a class that implement a key-value storage for block headers in the Oxygenium project. The trait, called `BlockHeaderStorage`, extends the `KeyValueStorage` trait and defines methods to put, get, check existence, and delete block headers. The `BlockHeaderRockDBStorage` class extends the `RocksDBKeyValueStorage` class and implements the `BlockHeaderStorage` trait. It takes a `RocksDBSource` object, a column family, and read and write options as parameters. 
 
 The `BlockHeaderStorage` trait provides a convenient interface to store and retrieve block headers by their hash. The `put` method stores a block header in the storage, using its hash as the key. The `putUnsafe` method does the same, but it doesn't return an `IOResult` object, which means that it doesn't report any errors. The `exists` method checks if a block header exists in the storage, and the `existsUnsafe` method does the same, but it doesn't return an `IOResult` object. The `delete` method removes a block header from the storage, and the `deleteUnsafe` method does the same, but it doesn't return an `IOResult` object.
 
 The `BlockHeaderRockDBStorage` class is a concrete implementation of the `BlockHeaderStorage` trait that uses RocksDB as the underlying storage engine. It takes a `RocksDBSource` object, a column family, and read and write options as parameters, and it passes them to the `RocksDBKeyValueStorage` constructor. The `BlockHeaderRockDBStorage` object provides a factory method that creates a new instance of the class.
 
-This code is used in the Alephium project to store and retrieve block headers in a persistent and efficient way. Block headers are an essential component of the blockchain, and they contain metadata about each block, such as its hash, timestamp, and difficulty. By storing block headers in a key-value storage, the Alephium project can quickly access them when needed, without having to read the entire blockchain from disk. The use of RocksDB as the underlying storage engine provides high performance and scalability, making it suitable for large-scale blockchain applications. 
+This code is used in the Oxygenium project to store and retrieve block headers in a persistent and efficient way. Block headers are an essential component of the blockchain, and they contain metadata about each block, such as its hash, timestamp, and difficulty. By storing block headers in a key-value storage, the Oxygenium project can quickly access them when needed, without having to read the entire blockchain from disk. The use of RocksDB as the underlying storage engine provides high performance and scalability, making it suitable for large-scale blockchain applications. 
 
 Example usage:
 
@@ -32,4 +32,4 @@ val retrievedBlockHeader = blockHeaderStorage.get(blockHash) // retrieves the bl
    - This code is licensed under the GNU Lesser General Public License version 3 or later.
 
 3. What other dependencies does this code have?
-   - This code depends on `org.rocksdb` and `org.alephium.io` packages, which are imported at the beginning of the file.
+   - This code depends on `org.rocksdb` and `org.oxygenium.io` packages, which are imported at the beginning of the file.

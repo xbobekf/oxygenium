@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api
+package org.oxygenium.api
 
 import java.math.BigInteger
 import java.net.{InetAddress, InetSocketAddress}
@@ -23,12 +23,12 @@ import akka.util.ByteString
 import sttp.tapir.{FieldName, Schema, Validator}
 import sttp.tapir.SchemaType.{SArray, SInteger, SProduct, SProductField, SString}
 
-import org.alephium.api.model.{Amount, ApiKey, BuildTxCommon, MinerAction, Script}
-import org.alephium.crypto.wallet.Mnemonic
-import org.alephium.protocol.{Hash, PublicKey, Signature}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.{GasBox, GasPrice, LockupScript, StatefulContract}
-import org.alephium.util.{AVector, TimeStamp, U256}
+import org.oxygenium.api.model.{Amount, ApiKey, BuildTxCommon, MinerAction, Script}
+import org.oxygenium.crypto.wallet.Mnemonic
+import org.oxygenium.protocol.{Hash, PublicKey, Signature}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.{GasBox, GasPrice, LockupScript, StatefulContract}
+import org.oxygenium.util.{AVector, TimeStamp, U256}
 
 trait TapirSchemasLike {
   implicit def avectorSchema[T: Schema]: Schema[AVector[T]] = Schema(

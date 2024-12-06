@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import akka.actor.Props
 import io.prometheus.client.{Counter, Gauge, Histogram}
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.model.DataOrigin
-import org.alephium.flow.validation._
-import org.alephium.io.IOResult
-import org.alephium.protocol.config.{BrokerConfig, ConsensusConfigs, NetworkConfig}
-import org.alephium.protocol.model.{BlockHash, BlockHeader, ChainIndex}
-import org.alephium.util.ActorRefT
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.model.DataOrigin
+import org.oxygenium.flow.validation._
+import org.oxygenium.io.IOResult
+import org.oxygenium.protocol.config.{BrokerConfig, ConsensusConfigs, NetworkConfig}
+import org.oxygenium.protocol.model.{BlockHash, BlockHeader, ChainIndex}
+import org.oxygenium.util.ActorRefT
 
 object HeaderChainHandler {
   def props(
@@ -52,7 +52,7 @@ object HeaderChainHandler {
 
   val headersTotal: Gauge = Gauge
     .build(
-      "alephium_headers_total",
+      "oxygenium_headers_total",
       "Total number of headers"
     )
     .labelNames("chain_from", "chain_to")
@@ -60,7 +60,7 @@ object HeaderChainHandler {
 
   val headersReceivedTotal: Counter = Counter
     .build(
-      "alephium_headers_received_total",
+      "oxygenium_headers_received_total",
       "Total number of headers received"
     )
     .labelNames("chain_from", "chain_to")

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.broker
+package org.oxygenium.flow.network.broker
 
 import akka.actor.Props
 
-import org.alephium.flow.AlephiumFlowActorSpec
-import org.alephium.protocol.Generators.socketAddressGen
+import org.oxygenium.flow.OxygeniumFlowActorSpec
+import org.oxygenium.protocol.Generators.socketAddressGen
 
-class BaseHandlerSpec extends AlephiumFlowActorSpec {
+class BaseHandlerSpec extends OxygeniumFlowActorSpec {
   it should "stop the actor when deal with critical misbehaviors" in new Fixture {
     val message = MisbehaviorManager.InvalidPoW(socketAddressGen.sample.get)
     handler ! message

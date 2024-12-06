@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/RocksDBColumn.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/RocksDBColumn.scala)
 
 This file contains code for interacting with a RocksDB database. RocksDB is an embedded key-value store that is optimized for fast storage and retrieval of data. The code defines a trait called `RocksDBColumn` that provides methods for reading, writing, and deleting key-value pairs in a RocksDB database. 
 
@@ -25,8 +25,8 @@ The `RocksDBColumn` object provides several factory methods for creating instanc
 Overall, this code provides a simple and efficient way to interact with a RocksDB database. It can be used in any project that requires fast and reliable storage and retrieval of key-value pairs. Here is an example of how to use this code to create a new `RocksDBColumn` instance:
 
 ```scala
-import org.alephium.io.RocksDBColumn
-import org.alephium.io.RocksDBSource
+import org.oxygenium.io.RocksDBColumn
+import org.oxygenium.io.RocksDBSource
 
 val source = new RocksDBSource("/path/to/database")
 val columnFamily = source.columnFamily("myColumnFamily")

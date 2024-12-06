@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mempool
+package org.oxygenium.flow.mempool
 
 import scala.collection.mutable
 
 import io.prometheus.client.Gauge
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.core.FlowUtils.AssetOutputInfo
-import org.alephium.flow.setting.MemPoolSetting
-import org.alephium.protocol.Hash
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util.{AVector, RWLock, SimpleMap, TimeStamp, U256, ValueSortedMap}
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.core.FlowUtils.AssetOutputInfo
+import org.oxygenium.flow.setting.MemPoolSetting
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util.{AVector, RWLock, SimpleMap, TimeStamp, U256, ValueSortedMap}
 
 /*
  * MemPool is the class to store all the unconfirmed transactions
@@ -398,7 +398,7 @@ object MemPool {
 
   val sharedPoolTransactionsTotal: Gauge = Gauge
     .build(
-      "alephium_mempool_shared_pool_transactions_total",
+      "oxygenium_mempool_shared_pool_transactions_total",
       "Number of transactions in shared pool"
     )
     .labelNames("group_index", "chain_index")

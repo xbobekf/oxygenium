@@ -1,12 +1,12 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/BlockAndEvents.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/BlockAndEvents.scala)
 
-This file contains a case class called `BlockAndEvents` which is a part of the `org.alephium.api.model` package. The purpose of this class is to represent a block and its associated contract events. 
+This file contains a case class called `BlockAndEvents` which is a part of the `org.oxygenium.api.model` package. The purpose of this class is to represent a block and its associated contract events. 
 
 The `BlockAndEvents` class has two fields: `block` and `events`. The `block` field is of type `BlockEntry` and represents the block itself. The `events` field is of type `AVector[ContractEventByBlockHash]` and represents the contract events associated with the block. 
 
-The `BlockEntry` class represents a block in the Alephium blockchain. It contains information such as the block's hash, height, timestamp, and transactions. The `ContractEventByBlockHash` class represents a contract event that occurred in a specific block. It contains information such as the contract address, event name, and event data. 
+The `BlockEntry` class represents a block in the Oxygenium blockchain. It contains information such as the block's hash, height, timestamp, and transactions. The `ContractEventByBlockHash` class represents a contract event that occurred in a specific block. It contains information such as the contract address, event name, and event data. 
 
-By combining these two classes into the `BlockAndEvents` class, the code allows for easy retrieval of both the block and its associated contract events. This can be useful for various purposes such as analyzing the behavior of smart contracts on the Alephium blockchain or tracking the flow of funds through the blockchain. 
+By combining these two classes into the `BlockAndEvents` class, the code allows for easy retrieval of both the block and its associated contract events. This can be useful for various purposes such as analyzing the behavior of smart contracts on the Oxygenium blockchain or tracking the flow of funds through the blockchain. 
 
 Here is an example of how this class could be used:
 

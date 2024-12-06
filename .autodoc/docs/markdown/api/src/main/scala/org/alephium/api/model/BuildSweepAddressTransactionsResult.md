@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/BuildSweepAddressTransactionsResult.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/BuildSweepAddressTransactionsResult.scala)
 
 This code defines a case class called `BuildSweepAddressTransactionsResult` and an object with the same name. The case class has three fields: `unsignedTxs`, which is a vector of `SweepAddressTransaction` objects, `fromGroup`, which is an integer representing the index of the group from which the transaction is being sent, and `toGroup`, which is an integer representing the index of the group to which the transaction is being sent. The object has two methods: `from` and `from`. 
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mempool
+package org.oxygenium.flow.mempool
 
-import org.alephium.flow.AlephiumFlowSpec
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model._
-import org.alephium.util.{AlephiumFixture, LockFixture}
+import org.oxygenium.flow.OxygeniumFlowSpec
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{OxygeniumFixture, LockFixture}
 
 class TxIndexesSpec
-    extends AlephiumFlowSpec
+    extends OxygeniumFlowSpec
     with TxIndexesSpec.Fixture
     with LockFixture
     with NoIndexModelGeneratorsLike {
@@ -61,7 +61,7 @@ class TxIndexesSpec
 }
 
 object TxIndexesSpec {
-  trait Fixture extends AlephiumFixture {
+  trait Fixture extends OxygeniumFixture {
     def checkTx(indexes: TxIndexes, tx: TransactionTemplate)(implicit
         groupConfig: GroupConfig
     ): Unit = {

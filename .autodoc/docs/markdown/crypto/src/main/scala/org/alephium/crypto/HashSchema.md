@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/crypto/src/main/scala/org/alephium/crypto/HashSchema.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/crypto/src/main/scala/org/oxygenium/crypto/HashSchema.scala)
 
-This file contains code related to cryptographic hash functions used in the Alephium project. The code is licensed under the GNU Lesser General Public License and is free software. 
+This file contains code related to cryptographic hash functions used in the Oxygenium project. The code is licensed under the GNU Lesser General Public License and is free software. 
 
 The `HashSchema` object contains methods for creating instances of various hash functions, including Blake2b, Blake3, Keccak256, Sha256, Sha3, and Byte32. These methods take a `ByteString` as input and return an instance of the corresponding hash function. The `unsafe` prefix on these methods indicates that they assume the input `ByteString` has the correct length for the hash function being used. 
 
@@ -10,7 +10,7 @@ The `HashSchema` abstract class extends `RandomBytes.Companion` and `HashUtils` 
 
 The `BCHashSchema` abstract class extends `HashSchema` to provide a common interface for working with hash functions that use the Bouncy Castle library. It defines a `provider` method that returns a `Digest` instance for the hash function being used. It also includes methods for hashing a sequence of bytes and double-hashing a sequence of bytes using the `Digest` instance. 
 
-Overall, this code provides a set of tools for working with cryptographic hash functions in the Alephium project. It allows for the creation of instances of various hash functions and provides a common interface for working with them. This code can be used throughout the project to perform hashing operations on data. 
+Overall, this code provides a set of tools for working with cryptographic hash functions in the Oxygenium project. It allows for the creation of instances of various hash functions and provides a common interface for working with them. This code can be used throughout the project to perform hashing operations on data. 
 
 Example usage: 
 

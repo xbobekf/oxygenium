@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.math.BigInteger
 import java.net.{InetAddress, InetSocketAddress}
@@ -30,30 +30,30 @@ import org.scalatest.compatible.Assertion
 import sttp.client3.Response
 import sttp.model.StatusCode
 
-import org.alephium.api.{ApiError, ApiModel, OpenAPIWriters}
-import org.alephium.api.UtilJson.avectorReadWriter
-import org.alephium.api.model._
-import org.alephium.app.ServerFixture.NodeDummy
-import org.alephium.crypto.Blake2b
-import org.alephium.flow.handler.{TestUtils, ViewHandler}
-import org.alephium.flow.mining.Miner
-import org.alephium.flow.network.{CliqueManager, InterCliqueManager}
-import org.alephium.flow.network.bootstrap._
-import org.alephium.flow.network.broker.MisbehaviorManager
-import org.alephium.http.HttpFixture._
-import org.alephium.http.HttpRouteFixture
-import org.alephium.json.Json._
-import org.alephium.protocol.{ALPH, Hash}
-import org.alephium.protocol.mining.HashRate
-import org.alephium.protocol.model.{Transaction => _, _}
-import org.alephium.protocol.model.UnsignedTransaction.TxOutputInfo
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.ralph.Compiler
-import org.alephium.serde.serialize
-import org.alephium.util._
-import org.alephium.util.Hex.HexStringSyntax
-import org.alephium.wallet.WalletApp
-import org.alephium.wallet.config.WalletConfig
+import org.oxygenium.api.{ApiError, ApiModel, OpenAPIWriters}
+import org.oxygenium.api.UtilJson.avectorReadWriter
+import org.oxygenium.api.model._
+import org.oxygenium.app.ServerFixture.NodeDummy
+import org.oxygenium.crypto.Blake2b
+import org.oxygenium.flow.handler.{TestUtils, ViewHandler}
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.flow.network.{CliqueManager, InterCliqueManager}
+import org.oxygenium.flow.network.bootstrap._
+import org.oxygenium.flow.network.broker.MisbehaviorManager
+import org.oxygenium.http.HttpFixture._
+import org.oxygenium.http.HttpRouteFixture
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.mining.HashRate
+import org.oxygenium.protocol.model.{Transaction => _, _}
+import org.oxygenium.protocol.model.UnsignedTransaction.TxOutputInfo
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.ralph.Compiler
+import org.oxygenium.serde.serialize
+import org.oxygenium.util._
+import org.oxygenium.util.Hex.HexStringSyntax
+import org.oxygenium.wallet.WalletApp
+import org.oxygenium.wallet.config.WalletConfig
 
 //scalastyle:off file.size.limit
 abstract class RestServerSpec(
@@ -1449,7 +1449,7 @@ abstract class RestServerApiKeyDisableSpec(
 trait RestServerFixture
     extends ServerFixture
     with HttpRouteFixture
-    with AlephiumFutureSpec
+    with OxygeniumFutureSpec
     with TxGenerators
     with EitherValues
     with NumericHelpers
@@ -1482,14 +1482,14 @@ trait RestServerFixture
 
   override val configValues = {
     Map[String, Any](
-      ("alephium.broker.broker-num", nbOfNodes),
-      ("alephium.api.api-key-enabled", apiKeyEnabled),
-      ("alephium.api.default-utxos-limit", utxosLimit),
-      ("alephium.api.max-form-buffered-bytes", maxFormBufferedBytes),
-      ("alephium.node.indexes.tx-output-ref-index", true),
-      ("alephium.node.indexes.subcontract-index", true)
+      ("oxygenium.broker.broker-num", nbOfNodes),
+      ("oxygenium.api.api-key-enabled", apiKeyEnabled),
+      ("oxygenium.api.default-utxos-limit", utxosLimit),
+      ("oxygenium.api.max-form-buffered-bytes", maxFormBufferedBytes),
+      ("oxygenium.node.indexes.tx-output-ref-index", true),
+      ("oxygenium.node.indexes.subcontract-index", true)
     ) ++ apiKeys.headOption
-      .map(_ => Map(("alephium.api.api-key", apiKeys.map(_.value))))
+      .map(_ => Map(("oxygenium.api.api-key", apiKeys.map(_.value))))
       .getOrElse(Map.empty)
   }
 

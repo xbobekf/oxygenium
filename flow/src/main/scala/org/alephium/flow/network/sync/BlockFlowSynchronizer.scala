@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.sync
+package org.oxygenium.flow.network.sync
 
 import java.net.InetSocketAddress
 
 import akka.actor.{Props, Terminated}
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.handler.{AllHandlers, FlowHandler, IOBaseActor}
-import org.alephium.flow.network._
-import org.alephium.flow.network.broker.BrokerHandler
-import org.alephium.flow.setting.NetworkSetting
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.BlockHash
-import org.alephium.util.{ActorRefT, AVector}
-import org.alephium.util.EventStream.Subscriber
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.handler.{AllHandlers, FlowHandler, IOBaseActor}
+import org.oxygenium.flow.network._
+import org.oxygenium.flow.network.broker.BrokerHandler
+import org.oxygenium.flow.setting.NetworkSetting
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.BlockHash
+import org.oxygenium.util.{ActorRefT, AVector}
+import org.oxygenium.util.EventStream.Subscriber
 
 object BlockFlowSynchronizer {
   def props(blockflow: BlockFlow, allHandlers: AllHandlers)(implicit

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.ralph.error
+package org.oxygenium.ralph.error
 
 import fastparse._
 
-import org.alephium.ralph.Lexer
-import org.alephium.util.AlephiumSpec
+import org.oxygenium.ralph.Lexer
+import org.oxygenium.util.OxygeniumSpec
 
-class FastParseErrorUtilSpec extends AlephiumSpec {
+class FastParseErrorUtilSpec extends OxygeniumSpec {
 
   it should "drop only the head and tail quotes" in {
     FastParseErrorUtil.dropQuotes("\"test\"") is "test"

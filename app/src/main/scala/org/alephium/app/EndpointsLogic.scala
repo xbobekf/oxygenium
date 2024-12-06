@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.io.{StringWriter, Writer}
 import java.net.InetAddress
@@ -28,24 +28,24 @@ import io.prometheus.client.exporter.common.TextFormat
 import sttp.model.{StatusCode, Uri}
 import sttp.tapir.server.ServerEndpoint
 
-import org.alephium.api.{badRequest, notFound, ApiError, Endpoints, Try}
-import org.alephium.api.model.{TransactionTemplate => _, _}
-import org.alephium.app.FutureTry
-import org.alephium.flow.client.Node
-import org.alephium.flow.core.{BlockFlow, ExtraUtxosInfo}
-import org.alephium.flow.handler.{TxHandler, ViewHandler}
-import org.alephium.flow.mining.Miner
-import org.alephium.flow.network.{Bootstrapper, CliqueManager, DiscoveryServer, InterCliqueManager}
-import org.alephium.flow.network.bootstrap.IntraCliqueInfo
-import org.alephium.flow.network.broker.MisbehaviorManager
-import org.alephium.flow.network.broker.MisbehaviorManager.Peers
-import org.alephium.flow.setting.{ConsensusSettings, NetworkSetting}
-import org.alephium.http.EndpointSender
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig}
-import org.alephium.protocol.mining.HashRate
-import org.alephium.protocol.model.{Transaction => _, _}
-import org.alephium.protocol.vm.{LockupScript, LogConfig}
-import org.alephium.util._
+import org.oxygenium.api.{badRequest, notFound, ApiError, Endpoints, Try}
+import org.oxygenium.api.model.{TransactionTemplate => _, _}
+import org.oxygenium.app.FutureTry
+import org.oxygenium.flow.client.Node
+import org.oxygenium.flow.core.{BlockFlow, ExtraUtxosInfo}
+import org.oxygenium.flow.handler.{TxHandler, ViewHandler}
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.flow.network.{Bootstrapper, CliqueManager, DiscoveryServer, InterCliqueManager}
+import org.oxygenium.flow.network.bootstrap.IntraCliqueInfo
+import org.oxygenium.flow.network.broker.MisbehaviorManager
+import org.oxygenium.flow.network.broker.MisbehaviorManager.Peers
+import org.oxygenium.flow.setting.{ConsensusSettings, NetworkSetting}
+import org.oxygenium.http.EndpointSender
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig}
+import org.oxygenium.protocol.mining.HashRate
+import org.oxygenium.protocol.model.{Transaction => _, _}
+import org.oxygenium.protocol.vm.{LockupScript, LogConfig}
+import org.oxygenium.util._
 
 // scalastyle:off file.size.limit
 // scalastyle:off method.length

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,34 +14,34 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import akka.actor.ActorSystem
 import akka.testkit.{EventFilter, TestActorRef, TestProbe}
 import akka.util.Timeout
 import org.scalacheck.Gen
 
-import org.alephium.flow.{AlephiumFlowActorSpec, FlowFixture}
-import org.alephium.flow.core.BlockFlowState
-import org.alephium.flow.core.BlockFlowState.MemPooled
-import org.alephium.flow.model.PersistedTxId
-import org.alephium.flow.network.{InterCliqueManager, IntraCliqueManager}
-import org.alephium.flow.network.broker.BrokerHandler
-import org.alephium.flow.validation.NonExistInput
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.GasPrice
-import org.alephium.serde.serialize
-import org.alephium.util._
+import org.oxygenium.flow.{OxygeniumFlowActorSpec, FlowFixture}
+import org.oxygenium.flow.core.BlockFlowState
+import org.oxygenium.flow.core.BlockFlowState.MemPooled
+import org.oxygenium.flow.model.PersistedTxId
+import org.oxygenium.flow.network.{InterCliqueManager, IntraCliqueManager}
+import org.oxygenium.flow.network.broker.BrokerHandler
+import org.oxygenium.flow.validation.NonExistInput
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.GasPrice
+import org.oxygenium.serde.serialize
+import org.oxygenium.util._
 
-class TxHandlerSpec extends AlephiumFlowActorSpec {
+class TxHandlerSpec extends OxygeniumFlowActorSpec {
 
   it should "add intra-clique transactions to mempool" in new Fixture {
     brokerConfig.brokerNum is 3
     brokerConfig.brokerId is 0
     override lazy val chainIndex = ChainIndex.unsafe(1, 0)
     val tx = (new FlowFixture {
-      override val configValues: Map[String, Any] = Map(("alephium.broker.broker-id", 1))
+      override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-id", 1))
       val block                                   = transfer(blockFlow, chainIndex)
       val tx                                      = block.nonCoinbase.head
     }).tx
@@ -65,10 +65,10 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "broadcast valid transactions for single-broker clique" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.mempool.batch-broadcast-txs-frequency", "500 ms"),
-      ("alephium.broker.groups", 4),
-      ("alephium.broker.broker-num", 1),
-      ("alephium.broker.broker-id", 0)
+      ("oxygenium.mempool.batch-broadcast-txs-frequency", "500 ms"),
+      ("oxygenium.broker.groups", 4),
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.broker.broker-id", 0)
     )
 
     setSynced()
@@ -125,7 +125,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "rebroadcast tx" in new Fixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mempool.batch-broadcast-txs-frequency", "500 ms"))
+      Map(("oxygenium.mempool.batch-broadcast-txs-frequency", "500 ms"))
     setSynced()
     val tx = transactionGen(chainIndexGen = Gen.const(chainIndex)).sample.get.toTemplate
     txHandler ! TxHandler.Rebroadcast(tx)
@@ -138,8 +138,8 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "temporarily cache orphan tx" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.mempool.batch-broadcast-txs-frequency", "500 ms"),
-      ("alephium.mempool.clean-orphan-tx-frequency", "500 ms")
+      ("oxygenium.mempool.batch-broadcast-txs-frequency", "500 ms"),
+      ("oxygenium.mempool.clean-orphan-tx-frequency", "500 ms")
     )
 
     val tx = transactionGen(chainIndexGen = Gen.const(chainIndex)).sample.get
@@ -153,7 +153,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "broadcast ready txs from orphan pool" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.mempool.batch-broadcast-txs-frequency", "500 ms")
+      ("oxygenium.mempool.batch-broadcast-txs-frequency", "500 ms")
     )
 
     val tx = transfer(blockFlow, chainIndex).nonCoinbase.head.toTemplate
@@ -171,7 +171,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   it should "load persisted pending txs only once when node synced" in new FlowFixture {
-    implicit lazy val system: ActorSystem = createSystem(Some(AlephiumActorSpec.infoConfig))
+    implicit lazy val system: ActorSystem = createSystem(Some(OxygeniumActorSpec.infoConfig))
     val txHandler = TestActorRef[TxHandler](
       TxHandler.props(blockFlow, storages.pendingTxStorage, ActorRefT(TestProbe().ref))
     )
@@ -191,7 +191,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   trait StorageFixture extends Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val txNum   = 4
     val txs     = prepareRandomSequentialTxs(txNum)
@@ -231,8 +231,8 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   it should "persist all of the pending txs once the handler is stopped" in new Fixture {
-    implicit lazy val system: ActorSystem       = createSystem(Some(AlephiumActorSpec.infoConfig))
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    implicit lazy val system: ActorSystem       = createSystem(Some(OxygeniumActorSpec.infoConfig))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val txs = prepareRandomSequentialTxs(4)
     txs.foreach(tx => blockFlow.getGrandPool().add(tx.chainIndex, tx.toTemplate, TimeStamp.now()))
@@ -246,7 +246,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "fail in case of duplicate txs" in new Fixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mempool.batch-broadcast-txs-frequency", "200 ms"))
+      Map(("oxygenium.mempool.batch-broadcast-txs-frequency", "200 ms"))
 
     val tx = transferTxs(blockFlow, chainIndex, ALPH.alph(1), 1, None, true, None).head
 
@@ -266,7 +266,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "fail in double-spending" in new Fixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mempool.batch-broadcast-txs-frequency", "200 ms"))
+      Map(("oxygenium.mempool.batch-broadcast-txs-frequency", "200 ms"))
 
     val tx0 = transferTxs(blockFlow, chainIndex, ALPH.alph(1), 1, None, true, None).head
     val tx1 = transferTxs(blockFlow, chainIndex, ALPH.alph(2), 1, None, true, None).head
@@ -290,10 +290,10 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "download txs" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.mempool.batch-broadcast-txs-frequency", "200 ms"),
-      ("alephium.broker.groups", 4),
-      ("alephium.broker.broker-num", 1),
-      ("alephium.broker.broker-id", 0)
+      ("oxygenium.mempool.batch-broadcast-txs-frequency", "200 ms"),
+      ("oxygenium.broker.groups", 4),
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.broker.broker-id", 0)
     )
 
     def sendAnnouncement(
@@ -363,7 +363,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   trait PeriodicTaskFixture extends FlowFixture {
-    implicit lazy val system: ActorSystem = createSystem(Some(AlephiumActorSpec.debugConfig))
+    implicit lazy val system: ActorSystem = createSystem(Some(OxygeniumActorSpec.debugConfig))
 
     def test(message: String) = {
       EventFilter.debug(message, occurrences = 5).intercept {
@@ -377,27 +377,27 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "broadcast txs regularly" in new PeriodicTaskFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mempool.batch-broadcast-txs-frequency", "300 ms"))
+      Map(("oxygenium.mempool.batch-broadcast-txs-frequency", "300 ms"))
 
     test("Start to broadcast txs")
   }
 
   it should "download txs regularly" in new PeriodicTaskFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mempool.batch-download-txs-frequency", "300 ms"))
+      Map(("oxygenium.mempool.batch-download-txs-frequency", "300 ms"))
 
     test("Start to download txs")
   }
 
   it should "clean mempools regularly" in new PeriodicTaskFixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.mempool.clean-mempool-frequency", "300 ms"))
+      Map(("oxygenium.mempool.clean-mempool-frequency", "300 ms"))
 
     test("Start to clean mempools")
   }
 
   it should "reject tx with low gas price" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val tx            = transactionGen().sample.get
     val lowGasPriceTx = tx.copy(unsigned = tx.unsigned.copy(gasPrice = coinbaseGasPrice))
@@ -409,7 +409,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   it should "mine new block if auto-mine is enabled" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.mempool.auto-mine-for-dev", true))
+    override val configValues: Map[String, Any] = Map(("oxygenium.mempool.auto-mine-for-dev", true))
     config.mempool.autoMineForDev is true
 
     val block = transfer(blockFlow, chainIndex)
@@ -429,7 +429,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   it should "report validation error when auto-mine is enabled" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.mempool.auto-mine-for-dev", true))
+    override val configValues: Map[String, Any] = Map(("oxygenium.mempool.auto-mine-for-dev", true))
     config.mempool.autoMineForDev is true
     val tx = transactionGen(chainIndexGen = Gen.const(chainIndex)).sample.get
     txHandler ! addTx(tx)
@@ -438,7 +438,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   it should "auto mine new blocks if auto-mine is enabled" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.mempool.auto-mine-for-dev", true))
+    override val configValues: Map[String, Any] = Map(("oxygenium.mempool.auto-mine-for-dev", true))
     config.mempool.autoMineForDev is true
     val old = blockFlow.getBlockChain(chainIndex).maxHeightByWeight.rightValue
     TxHandler.forceMineForDev(blockFlow, chainIndex, Env.Prod, _ => ()) is Right(())
@@ -450,18 +450,18 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
   }
 
   it should "auto mine new blocks if env is not PROD" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.mempool.auto-mine-for-dev", false))
+    override val configValues: Map[String, Any] = Map(("oxygenium.mempool.auto-mine-for-dev", false))
     config.mempool.autoMineForDev is false
     TxHandler.forceMineForDev(blockFlow, chainIndex, Env.Test, _ => ()) isE ()
     TxHandler.forceMineForDev(blockFlow, chainIndex, Env.Prod, _ => ()).isLeft is true
   }
 
   it should "check force mine block for dev if auto-mine is disabled" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.mempool.auto-mine-for-dev", false))
+    override val configValues: Map[String, Any] = Map(("oxygenium.mempool.auto-mine-for-dev", false))
     config.mempool.autoMineForDev is false
     val old = blockFlow.getBlockChain(chainIndex).maxHeightByWeight.rightValue
     TxHandler.forceMineForDev(blockFlow, chainIndex, Env.Prod, _ => ()) is Left(
-      "CPU mining for dev is not enabled, please turn it on in config:\n alephium.mempool.auto-mine-for-dev = true"
+      "CPU mining for dev is not enabled, please turn it on in config:\n oxygenium.mempool.auto-mine-for-dev = true"
     )
     old is blockFlow.getBlockChain(chainIndex).maxHeightByWeight.rightValue
     txHandler ! TxHandler.MineOneBlock(chainIndex)
@@ -472,7 +472,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "mine new block for inter-group chain if auto-mine is enabled" in new Fixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.broker.broker-num", 1), ("alephium.mempool.auto-mine-for-dev", true))
+      Map(("oxygenium.broker.broker-num", 1), ("oxygenium.mempool.auto-mine-for-dev", true))
     config.mempool.autoMineForDev is true
 
     val index            = ChainIndex.unsafe(0, 1)
@@ -517,7 +517,7 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "remove tx from the orphan pool after tx is added to mempool" in new Fixture {
     override val configValues: Map[String, Any] =
-      Map(("alephium.broker.broker-num", 1), ("alephium.broker.groups", 1))
+      Map(("oxygenium.broker.broker-num", 1), ("oxygenium.broker.groups", 1))
     val Seq(tx1, tx2, tx3, tx4) = prepareRandomSequentialTxs(4).toSeq
     txHandler ! addTx(tx2, isLocalTx = false)
     txHandler ! addTx(tx3, isLocalTx = false)
@@ -543,9 +543,9 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "handle orphan txs properly" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.broker.groups", 1),
-      ("alephium.mempool.clean-orphan-tx-frequency", "500 ms")
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.broker.groups", 1),
+      ("oxygenium.mempool.clean-orphan-tx-frequency", "500 ms")
     )
     val sequentialTxs                     = prepareRandomSequentialTxs(6)
     val Seq(tx1, tx2, tx3, tx4, tx5, tx6) = sequentialTxs.toSeq
@@ -573,9 +573,9 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "remove unconfirmed txs based on expiry duration" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.broker.groups", 1),
-      ("alephium.mempool.unconfirmed-tx-expiry-duration", "500 ms")
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.broker.groups", 1),
+      ("oxygenium.mempool.unconfirmed-tx-expiry-duration", "500 ms")
     )
 
     val txs                = prepareRandomSequentialTxs(3).toSeq
@@ -597,8 +597,8 @@ class TxHandlerSpec extends AlephiumFlowActorSpec {
 
   it should "return an error if the mempool is full" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.mempool.mempool-capacity-per-chain", 1)
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.mempool.mempool-capacity-per-chain", 1)
     )
 
     val mempool        = blockFlow.getGrandPool().getMemPool(chainIndex.from)

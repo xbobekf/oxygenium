@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api.model
+package org.oxygenium.api.model
 
 import akka.util.ByteString
 
-import org.alephium.protocol.{model => protocol}
-import org.alephium.protocol.Signature
-import org.alephium.protocol.config.NetworkConfig
-import org.alephium.serde._
-import org.alephium.util.AVector
-import org.alephium.util.TimeStamp
+import org.oxygenium.protocol.{model => protocol}
+import org.oxygenium.protocol.Signature
+import org.oxygenium.protocol.config.NetworkConfig
+import org.oxygenium.serde._
+import org.oxygenium.util.AVector
+import org.oxygenium.util.TimeStamp
 
 final case class TransactionTemplate(
     unsigned: UnsignedTx,

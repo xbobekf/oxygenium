@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,22 +14,22 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import scala.collection.mutable
 import scala.reflect.ClassTag
 
-import org.alephium.flow.core.BlockChain.TxIndex
-import org.alephium.flow.mempool.MemPool
-import org.alephium.flow.setting.ConsensusSettings
-import org.alephium.io.{IOError, IOResult, KeyValueStorage}
-import org.alephium.protocol.Hash
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig, NetworkConfig}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm._
-import org.alephium.protocol.vm.event.LogStorage
-import org.alephium.protocol.vm.subcontractindex.SubContractIndexStorage
-import org.alephium.util._
+import org.oxygenium.flow.core.BlockChain.TxIndex
+import org.oxygenium.flow.mempool.MemPool
+import org.oxygenium.flow.setting.ConsensusSettings
+import org.oxygenium.io.{IOError, IOResult, KeyValueStorage}
+import org.oxygenium.protocol.Hash
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm._
+import org.oxygenium.protocol.vm.event.LogStorage
+import org.oxygenium.protocol.vm.subcontractindex.SubContractIndexStorage
+import org.oxygenium.util._
 
 // scalastyle:off number.of.methods
 trait BlockFlowState extends FlowTipsUtil {
@@ -86,7 +86,7 @@ trait BlockFlowState extends FlowTipsUtil {
       case None =>
         Left(
           IOError.configError(
-            "Please set `alephium.node.indexes.tx-output-ref-index = true` to query transaction id from transaction output reference"
+            "Please set `oxygenium.node.indexes.tx-output-ref-index = true` to query transaction id from transaction output reference"
           )
         )
     }
@@ -100,7 +100,7 @@ trait BlockFlowState extends FlowTipsUtil {
       case None =>
         Left(
           IOError.configError(
-            "Please set `alephium.node.indexes.subcontract-index = true` to query parent contract or subcontracts"
+            "Please set `oxygenium.node.indexes.subcontract-index = true` to query parent contract or subcontracts"
           )
         )
     }

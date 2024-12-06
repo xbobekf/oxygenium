@@ -1,8 +1,8 @@
-# Contributing to Alephium
+# Contributing to Oxygenium
 
-As an open source project, everyone is invited to contribute to Alephium.
+As an open source project, everyone is invited to contribute to Oxygenium.
 
-Nevertheless, following Alephium's good practices regarding coding, styling, git committing etc
+Nevertheless, following Oxygenium's good practices regarding coding, styling, git committing etc
 will give you higher chance to get reviewed and merged.
 
 ## Getting Started

@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/json/src/main/scala/org/alephium/json)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/json/src/main/scala/org/oxygenium/json)
 
-The `Json.scala` file in the `org.alephium.json` package provides a set of utility functions for working with JSON data in the Alephium project. It is implemented using the `upickle` library, which is a lightweight JSON serialization library for Scala. This file is essential for serializing and deserializing JSON data, as well as manipulating JSON objects within the Alephium project.
+The `Json.scala` file in the `org.oxygenium.json` package provides a set of utility functions for working with JSON data in the Oxygenium project. It is implemented using the `upickle` library, which is a lightweight JSON serialization library for Scala. This file is essential for serializing and deserializing JSON data, as well as manipulating JSON objects within the Oxygenium project.
 
 The `Json` object provides several implicit conversions for working with JSON data:
 
@@ -12,4 +12,4 @@ The `Json` object provides several implicit conversions for working with JSON da
 
 The `dropNullValues` method is a utility method that removes null values from a JSON object. It recursively traverses the JSON object and removes any null values it encounters. If the entire object is null, the method returns `ujson.Null`. For example, if you have a JSON object with null values like `val jsonObjectWithNulls = ujson.Obj("id" -> 1, "name" -> null)`, you can remove the null values using `val jsonObjectWithoutNulls = Json.dropNullValues(jsonObjectWithNulls)`.
 
-In summary, the `Json.scala` file provides essential utility functions for working with JSON data in the Alephium project. These functions can be used to serialize and deserialize JSON data, as well as manipulate JSON objects. This file is crucial for handling JSON data within the Alephium project and works in conjunction with other parts of the project that require JSON processing.
+In summary, the `Json.scala` file provides essential utility functions for working with JSON data in the Oxygenium project. These functions can be used to serialize and deserialize JSON data, as well as manipulate JSON objects. This file is crucial for handling JSON data within the Oxygenium project and works in conjunction with other parts of the project that require JSON processing.

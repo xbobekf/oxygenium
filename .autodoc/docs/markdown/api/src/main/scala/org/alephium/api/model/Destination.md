@@ -1,21 +1,21 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/Destination.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/Destination.scala)
 
-The code above defines a case class called `Destination` which is used to represent a destination for a transaction in the Alephium project. 
+The code above defines a case class called `Destination` which is used to represent a destination for a transaction in the Oxygenium project. 
 
 The `Destination` class has five fields:
 - `address`: an `Address.Asset` object representing the destination address for the transaction.
-- `attoAlphAmount`: an `Amount` object representing the amount of Alephium to be sent to the destination address.
-- `tokens`: an optional `AVector[Token]` object representing any tokens to be sent along with the Alephium. If no tokens are being sent, this field is set to `None`.
+- `attoAlphAmount`: an `Amount` object representing the amount of Oxygenium to be sent to the destination address.
+- `tokens`: an optional `AVector[Token]` object representing any tokens to be sent along with the Oxygenium. If no tokens are being sent, this field is set to `None`.
 - `lockTime`: an optional `TimeStamp` object representing the time at which the transaction should be locked until. If no lock time is specified, this field is set to `None`.
 - `message`: an optional `ByteString` object representing a message to be included with the transaction. If no message is specified, this field is set to `None`.
 
-This class is used in various parts of the Alephium project where transactions are being created or processed. For example, when a user wants to send Alephium and/or tokens to another address, they would create a `Destination` object with the appropriate fields and include it in the transaction. 
+This class is used in various parts of the Oxygenium project where transactions are being created or processed. For example, when a user wants to send Oxygenium and/or tokens to another address, they would create a `Destination` object with the appropriate fields and include it in the transaction. 
 
 Here is an example of how a `Destination` object might be created and used in a transaction:
 ```
-import org.alephium.api.model.Destination
-import org.alephium.protocol.model.Address
-import org.alephium.util.Amount
+import org.oxygenium.api.model.Destination
+import org.oxygenium.protocol.model.Address
+import org.oxygenium.util.Amount
 
 val destAddress = Address.fromString("ALPH-abc123")
 val alphAmount = Amount.fromAlph(10)
@@ -34,7 +34,7 @@ val dest = Destination(
 ```
 ## Questions: 
  1. What is the purpose of the `Destination` case class?
-   - The `Destination` case class represents a destination for a transaction in the Alephium protocol, including the address, amount, optional tokens, lock time, and message.
+   - The `Destination` case class represents a destination for a transaction in the Oxygenium protocol, including the address, amount, optional tokens, lock time, and message.
 2. What is the `Amount` type used in the `Destination` case class?
    - It is unclear from this code what the `Amount` type is or where it is defined. A smart developer might need to look for additional code or documentation to understand this type.
 3. What is the significance of the `SuppressWarnings` annotation?

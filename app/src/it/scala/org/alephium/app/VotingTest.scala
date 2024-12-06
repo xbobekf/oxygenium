@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
-import org.alephium.api.model._
-import org.alephium.json.Json._
-import org.alephium.protocol.{ALPH, PublicKey}
-import org.alephium.protocol.model.{
+import org.oxygenium.api.model._
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{ALPH, PublicKey}
+import org.oxygenium.protocol.model.{
   dustUtxoAmount,
   Address,
   BlockHash,
@@ -27,11 +27,11 @@ import org.alephium.protocol.model.{
   TokenId,
   TransactionId
 }
-import org.alephium.protocol.vm
-import org.alephium.util._
-import org.alephium.wallet.api.model._
+import org.oxygenium.protocol.vm
+import org.oxygenium.util._
+import org.oxygenium.wallet.api.model._
 
-class VotingTest extends AlephiumActorSpec {
+class VotingTest extends OxygeniumActorSpec {
   it should "test the voting pipeline" in new VotingFixture {
 
     val admin  = wallets.head
@@ -326,7 +326,7 @@ trait VotingFixture extends WalletFixture {
 }
 
 trait WalletFixture extends CliqueFixture {
-  override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+  override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
   val clique                                  = bootClique(1)
   val activeAddressesGroup                    = 0
   val genesisWalletName                       = "genesis-wallet"
@@ -415,7 +415,7 @@ trait WalletFixture extends CliqueFixture {
       )
     walletsCreation.zip(walletsCreationResult).map {
       case (walletCreation, walletCreationResult) => {
-        import org.alephium.api.UtilJson._
+        import org.oxygenium.api.UtilJson._
         unitRequest(unlockWallet(walletCreation.password, walletCreation.walletName), restPort)
         val addresses = request[AVector[MinerAddressesInfo]](
           getMinerAddresses(walletCreation.walletName),

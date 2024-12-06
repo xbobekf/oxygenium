@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.network.broker
+package org.oxygenium.flow.network.broker
 
 import akka.io.Tcp
 import akka.testkit.TestProbe
 
-import org.alephium.flow.AlephiumFlowActorSpec
-import org.alephium.flow.network.DiscoveryServer
-import org.alephium.flow.network.TcpController
-import org.alephium.flow.network.broker.MisbehaviorManager._
-import org.alephium.protocol.Generators
-import org.alephium.protocol.model.BrokerInfo
-import org.alephium.util.{AVector, Duration, TimeStamp}
+import org.oxygenium.flow.OxygeniumFlowActorSpec
+import org.oxygenium.flow.network.DiscoveryServer
+import org.oxygenium.flow.network.TcpController
+import org.oxygenium.flow.network.broker.MisbehaviorManager._
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.model.BrokerInfo
+import org.oxygenium.util.{AVector, Duration, TimeStamp}
 
-class MisbehaviorManagerSpec extends AlephiumFlowActorSpec {
+class MisbehaviorManagerSpec extends OxygeniumFlowActorSpec {
   it should "start without peers" in new Fixture {
     misbehaviorManager ! GetPeers
     expectMsg(Peers(AVector.empty))

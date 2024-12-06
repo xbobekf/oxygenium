@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol
+package org.oxygenium.protocol
 
 import scala.util.Random
 
-import org.alephium.protocol.config.GroupConfigFixture
-import org.alephium.protocol.model.{Address, ChainIndex, HardFork}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util.{AlephiumSpec, AVector, NumericHelpers, U256}
+import org.oxygenium.protocol.config.GroupConfigFixture
+import org.oxygenium.protocol.model.{Address, ChainIndex, HardFork}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util.{OxygeniumSpec, AVector, NumericHelpers, U256}
 
-class ALPHSpec extends AlephiumSpec {
+class ALPHSpec extends OxygeniumSpec {
   import ALPH._
 
   it should "use correct unit" in {

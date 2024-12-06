@@ -2,14 +2,14 @@ FROM eclipse-temurin:17-jre
 
 ARG RELEASE=0.0.0
 
-RUN curl -L --proto "=https" https://github.com/alephium/alephium/releases/download/v${RELEASE}/alephium-tools-${RELEASE}.jar -o /alephium-tools.jar && \
-  mkdir -p /alephium-home && usermod -d /alephium-home nobody && chown nobody /alephium-home && \
-  mkdir -p ~nobody/.alephium && chown nobody ~nobody/.alephium
+RUN curl -L --proto "=https" https://github.com/oxygenium/oxygenium/releases/download/v${RELEASE}/oxygenium-tools-${RELEASE}.jar -o /oxygenium-tools.jar && \
+  mkdir -p /oxygenium-home && usermod -d /oxygenium-home nobody && chown nobody /oxygenium-home && \
+  mkdir -p ~nobody/.oxygenium && chown nobody ~nobody/.oxygenium
 
-COPY user-mainnet-release.conf /alephium-home/.alephium/user.conf
+COPY user-mainnet-release.conf /oxygenium-home/.oxygenium/user.conf
 
-VOLUME /alephium-home/.alephium
+VOLUME /oxygenium-home/.oxygenium
 
 USER nobody
 
-ENTRYPOINT ["java", "-cp", "/alephium-tools.jar"]
+ENTRYPOINT ["java", "-cp", "/oxygenium-tools.jar"]

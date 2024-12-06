@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/FlowCache.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/FlowCache.scala)
 
-This file contains the implementation of a cache for various types of data related to the Alephium blockchain. The purpose of this cache is to store frequently accessed data in memory to improve the performance of the system. 
+This file contains the implementation of a cache for various types of data related to the Oxygenium blockchain. The purpose of this cache is to store frequently accessed data in memory to improve the performance of the system. 
 
 The `FlowCache` class is a generic implementation of a cache that uses a `ValueSortedMap` to store key-value pairs. The cache has a fixed capacity, and when the capacity is exceeded, the least recently used items are evicted from the cache. The `FlowCache` class provides methods for adding, retrieving, and checking the existence of items in the cache. 
 
@@ -12,10 +12,10 @@ The `headers` method creates a cache for `BlockHeader` objects, which contain me
 
 The `states` method creates a cache for `BlockState` objects, which contain the state of the blockchain at a specific block height. The cache is ordered by block height, and the capacity is specified by the caller. 
 
-Overall, this code provides a generic caching mechanism for frequently accessed data related to the Alephium blockchain. The cache is implemented using a `ValueSortedMap` and provides methods for adding, retrieving, and checking the existence of items in the cache. The `FlowCache` object provides factory methods for creating caches for specific types of data, each with a specific ordering for the keys and values.
+Overall, this code provides a generic caching mechanism for frequently accessed data related to the Oxygenium blockchain. The cache is implemented using a `ValueSortedMap` and provides methods for adding, retrieving, and checking the existence of items in the cache. The `FlowCache` object provides factory methods for creating caches for specific types of data, each with a specific ordering for the keys and values.
 ## Questions: 
  1. What is the purpose of this code?
-   - This code defines a cache implementation for storing and managing blocks, block headers, and block states in the Alephium project.
+   - This code defines a cache implementation for storing and managing blocks, block headers, and block states in the Oxygenium project.
 
 2. What is the capacity of the cache and how is it determined?
    - The capacity of the cache is determined based on the `capacityPerChain` parameter and the number of `groups` specified in the `BrokerConfig`. The capacity is calculated as `(2 * groups - 1) * capacityPerChain`.

@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/benchmark/src/main/scala/org/alephium/benchmark/CollectionBench.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/benchmark/src/main/scala/org/oxygenium/benchmark/CollectionBench.scala)
 
 The `CollectionBench` class is a benchmarking tool that measures the performance of various operations on two different collection types: `Vector` and `AVector`. The purpose of this benchmark is to compare the performance of these two collections and determine which one is faster for different operations.
 
@@ -18,7 +18,7 @@ Overall, this benchmark is useful for comparing the performance of the `Vector` 
 - This code is a benchmark for comparing the performance of Vector and AVector collections in Scala.
 
 2. What libraries are being used in this code?
-- This code imports `java.util.concurrent.TimeUnit`, `scala.util.Random`, `org.openjdk.jmh.annotations`, and `org.alephium.util.AVector`.
+- This code imports `java.util.concurrent.TimeUnit`, `scala.util.Random`, `org.openjdk.jmh.annotations`, and `org.oxygenium.util.AVector`.
 
 3. What is the difference between Vector and AVector in this code?
-- Vector and AVector are two different collection types being compared in this benchmark. Vector is a standard Scala collection, while AVector is a custom collection provided by the `org.alephium.util` library.
+- Vector and AVector are two different collection types being compared in this benchmark. Vector is a standard Scala collection, while AVector is a custom collection provided by the `org.oxygenium.util` library.

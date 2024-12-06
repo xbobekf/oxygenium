@@ -114,7 +114,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "up{app=\"alephium\"}",
+          "expr": "up{app=\"oxygenium\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -216,7 +216,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "time() - process_start_time_seconds{app=\"alephium\"}",
+          "expr": "time() - process_start_time_seconds{app=\"oxygenium\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -301,7 +301,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "alephium_peers_total{app=\"alephium\"}",
+          "expr": "oxygenium_peers_total{app=\"oxygenium\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -382,7 +382,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_join(jvm_info{app=\"alephium\"}, \"jdk\", \", \", \"vendor\", \"version\")",
+          "expr": "label_join(jvm_info{app=\"oxygenium\"}, \"jdk\", \", \", \"vendor\", \"version\")",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -455,7 +455,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "alephium_discovered_broker_size{app=\"alephium\"}",
+          "expr": "oxygenium_discovered_broker_size{app=\"oxygenium\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -538,7 +538,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "process_start_time_seconds{app=\"alephium\"}*1000",
+          "expr": "process_start_time_seconds{app=\"oxygenium\"}*1000",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -562,7 +562,7 @@
     },
     {
       "datasource": "Prometheus",
-      "description": "Alephium Version",
+      "description": "Oxygenium Version",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -607,7 +607,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "alephium_build_info{app=\"alephium\"}",
+          "expr": "oxygenium_build_info{app=\"oxygenium\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -618,7 +618,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Alephium Version",
+      "title": "Oxygenium Version",
       "type": "stat"
     },
     {
@@ -697,7 +697,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (group_index, chain_index)(alephium_mempool_shared_pool_transactions_total{app=\"alephium\"})",
+          "expr": "sum by (group_index, chain_index)(oxygenium_mempool_shared_pool_transactions_total{app=\"oxygenium\"})",
           "interval": "",
           "legendFormat": "group {{group_index}}, chain {{chain_index}}",
           "refId": "A"
@@ -796,7 +796,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (alephium_mempool_shared_pool_transactions_total{app=\"alephium\"})",
+          "expr": "sum (oxygenium_mempool_shared_pool_transactions_total{app=\"oxygenium\"})",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "A"
@@ -896,7 +896,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (group_index)(alephium_mempool_pending_pool_transactions_total{app=\"alephium\"})",
+          "expr": "sum by (group_index)(oxygenium_mempool_pending_pool_transactions_total{app=\"oxygenium\"})",
           "interval": "",
           "legendFormat": "Group index: {{group_index}}",
           "refId": "A"
@@ -996,7 +996,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(alephium_mempool_pending_pool_transactions_total{app=\"alephium\"})",
+          "expr": "sum(oxygenium_mempool_pending_pool_transactions_total{app=\"oxygenium\"})",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "A"
@@ -1123,7 +1123,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_download_bytes_total{app=\"alephium\"}[2m])) by (remote_address) != 0",
+          "expr": "sum(irate(oxygenium_download_bytes_total{app=\"oxygenium\"}[2m])) by (remote_address) != 0",
           "interval": "",
           "legendFormat": "remote_address: {{remote_address}}",
           "refId": "A"
@@ -1222,7 +1222,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_download_bytes_total{app=\"alephium\"}[2m]))",
+          "expr": "sum(irate(oxygenium_download_bytes_total{app=\"oxygenium\"}[2m]))",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "A"
@@ -1321,7 +1321,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_upload_bytes_total{app=\"alephium\"}[1m])) by (remote_address) != 0",
+          "expr": "sum(irate(oxygenium_upload_bytes_total{app=\"oxygenium\"}[1m])) by (remote_address) != 0",
           "interval": "",
           "legendFormat": "{{remote_address}}",
           "refId": "A"
@@ -1418,7 +1418,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_upload_bytes_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(irate(oxygenium_upload_bytes_total{app=\"oxygenium\"}[1m]))",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "A"
@@ -1545,7 +1545,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_payload_total{app=\"alephium\"}[1m])) by (payload_type)",
+          "expr": "sum(irate(oxygenium_payload_total{app=\"oxygenium\"}[1m])) by (payload_type)",
           "interval": "",
           "legendFormat": "{{payload_type}}",
           "refId": "A"
@@ -1645,7 +1645,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_payload_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(irate(oxygenium_payload_total{app=\"oxygenium\"}[1m]))",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "B"
@@ -1745,7 +1745,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_chain_validation_total{app=\"alephium\"}[1m])) by (validation_type)",
+          "expr": "sum(irate(oxygenium_chain_validation_total{app=\"oxygenium\"}[1m])) by (validation_type)",
           "interval": "",
           "legendFormat": "{{validation_type}}",
           "refId": "B"
@@ -1844,19 +1844,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.50, sum(irate(alephium_chain_validation_duration_milliseconds_bucket{app=\"alephium\"}[1m])) by (le))",
+          "expr": "histogram_quantile(0.50, sum(irate(oxygenium_chain_validation_duration_milliseconds_bucket{app=\"oxygenium\"}[1m])) by (le))",
           "interval": "",
           "legendFormat": "P50",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.90, sum(irate(alephium_chain_validation_duration_milliseconds_bucket{app=\"alephium\"}[1m])) by (le))",
+          "expr": "histogram_quantile(0.90, sum(irate(oxygenium_chain_validation_duration_milliseconds_bucket{app=\"oxygenium\"}[1m])) by (le))",
           "interval": "",
           "legendFormat": "P90",
           "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.99, sum(irate(alephium_chain_validation_duration_milliseconds_bucket{app=\"alephium\"}[1m])) by (le))",
+          "expr": "histogram_quantile(0.99, sum(irate(oxygenium_chain_validation_duration_milliseconds_bucket{app=\"oxygenium\"}[1m])) by (le))",
           "interval": "",
           "legendFormat": "P99",
           "refId": "C"
@@ -1971,7 +1971,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_chain_validation_failed{app=\"alephium\"}[1m])) by (validation_type, invalid_status)",
+          "expr": "sum(irate(oxygenium_chain_validation_failed{app=\"oxygenium\"}[1m])) by (validation_type, invalid_status)",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -2115,7 +2115,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "sum(alephium_block_current_height) by (chain_from, chain_to)",
+          "expr": "sum(oxygenium_block_current_height) by (chain_from, chain_to)",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -2180,7 +2180,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "sum(alephium_block_current_height)",
+          "expr": "sum(oxygenium_block_current_height)",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -2240,7 +2240,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "sum(alephium_blocks_total{app=\"alephium\"}) by (chain_from, chain_to)",
+          "expr": "sum(oxygenium_blocks_total{app=\"oxygenium\"}) by (chain_from, chain_to)",
           "interval": "",
           "legendFormat": "Chain ({{chain_from}}, {{chain_to}})",
           "refId": "B"
@@ -2299,7 +2299,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "sum(alephium_blocks_total{app=\"alephium\"})",
+          "expr": "sum(oxygenium_blocks_total{app=\"oxygenium\"})",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "B"
@@ -2362,7 +2362,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_blocks_received_total{app=\"alephium\"}[1m])) by (chain_from, chain_to)",
+          "expr": "sum(irate(oxygenium_blocks_received_total{app=\"oxygenium\"}[1m])) by (chain_from, chain_to)",
           "interval": "",
           "legendFormat": "Chain ({{chain_from}}, {{chain_to}})",
           "refId": "B"
@@ -2464,7 +2464,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_blocks_received_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(irate(oxygenium_blocks_received_total{app=\"oxygenium\"}[1m]))",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "B"
@@ -2566,7 +2566,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_transactions_received_total{app=\"alephium\"}[1m])) by (chain_from, chain_to)",
+          "expr": "sum(irate(oxygenium_transactions_received_total{app=\"oxygenium\"}[1m])) by (chain_from, chain_to)",
           "interval": "",
           "legendFormat": "Chain ({{chain_from}}, {{chain_to}})",
           "refId": "B"
@@ -2668,7 +2668,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_transactions_received_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(irate(oxygenium_transactions_received_total{app=\"oxygenium\"}[1m]))",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "B"
@@ -2770,25 +2770,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.5, sum(rate(alephium_block_duration_milliseconds_bucket[1m])) by (le))",
+          "expr": "histogram_quantile(0.5, sum(rate(oxygenium_block_duration_milliseconds_bucket[1m])) by (le))",
           "interval": "",
           "legendFormat": "P50",
           "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.9, sum(rate(alephium_block_duration_milliseconds_bucket[1m])) by (le))",
+          "expr": "histogram_quantile(0.9, sum(rate(oxygenium_block_duration_milliseconds_bucket[1m])) by (le))",
           "interval": "",
           "legendFormat": "P90",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.99, sum(rate(alephium_block_duration_milliseconds_bucket[1m])) by (le))",
+          "expr": "histogram_quantile(0.99, sum(rate(oxygenium_block_duration_milliseconds_bucket[1m])) by (le))",
           "interval": "",
           "legendFormat": "P99",
           "refId": "C"
         },
         {
-          "expr": "sum(rate(alephium_block_duration_milliseconds_sum[30m])) / sum(rate(alephium_block_duration_milliseconds_count[30m]))",
+          "expr": "sum(rate(oxygenium_block_duration_milliseconds_sum[30m])) / sum(rate(oxygenium_block_duration_milliseconds_count[30m]))",
           "interval": "",
           "legendFormat": "Average",
           "refId": "D"
@@ -2884,7 +2884,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "alephium_headers_total{app=\"alephium\"}",
+          "expr": "oxygenium_headers_total{app=\"oxygenium\"}",
           "interval": "",
           "legendFormat": "Chain ({{chain_from}}, {{chain_to}})",
           "refId": "B"
@@ -2943,7 +2943,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "sum(alephium_headers_total{app=\"alephium\"})",
+          "expr": "sum(oxygenium_headers_total{app=\"oxygenium\"})",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "B"
@@ -3018,7 +3018,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_headers_received_total{app=\"alephium\"}[1m])) by (chain_from, chain_to)",
+          "expr": "sum(irate(oxygenium_headers_received_total{app=\"oxygenium\"}[1m])) by (chain_from, chain_to)",
           "interval": "",
           "legendFormat": "Chain ({{chain_from}}, {{chain_to}})",
           "refId": "B"
@@ -3119,7 +3119,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(alephium_headers_received_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(irate(oxygenium_headers_received_total{app=\"oxygenium\"}[1m]))",
           "interval": "",
           "legendFormat": "Overall",
           "refId": "B"
@@ -3219,7 +3219,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(sum_over_time(alephium_target_hash_rate_hertz[10m])) / sum(count_over_time(alephium_target_hash_rate_hertz[10m]))",
+          "expr": "sum(sum_over_time(oxygenium_target_hash_rate_hertz[10m])) / sum(count_over_time(oxygenium_target_hash_rate_hertz[10m]))",
           "interval": "",
           "legendFormat": "HashRate",
           "refId": "A"
@@ -3318,7 +3318,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "alephium_target_hash_rate_hertz{app=\"alephium\"}",
+          "expr": "oxygenium_target_hash_rate_hertz{app=\"oxygenium\"}",
           "interval": "",
           "legendFormat": "Chain ({{chain_from}}, {{chain_to}})",
           "refId": "A"
@@ -3400,7 +3400,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Alephium Overview",
+  "title": "Oxygenium Overview",
   "uid": "S3eJTo3Mk",
   "version": 21
 }

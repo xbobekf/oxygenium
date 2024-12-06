@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api
+package org.oxygenium.api
 
 import java.io.File
 import java.nio.charset.StandardCharsets
@@ -23,15 +23,15 @@ import java.nio.file.Files
 import akka.util.ByteString
 import org.scalatest.{Assertion, EitherValues}
 
-import org.alephium.api.model._
-import org.alephium.json.Json._
-import org.alephium.protocol.{model => protocol, ALPH}
-import org.alephium.protocol.config.NetworkConfigFixture
-import org.alephium.protocol.vm
-import org.alephium.serde.deserialize
-import org.alephium.util._
+import org.oxygenium.api.model._
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{model => protocol, ALPH}
+import org.oxygenium.protocol.config.NetworkConfigFixture
+import org.oxygenium.protocol.vm
+import org.oxygenium.serde.deserialize
+import org.oxygenium.util._
 
-class ProtocolConversionSpec extends AlephiumSpec with EitherValues with NumericHelpers {
+class ProtocolConversionSpec extends OxygeniumSpec with EitherValues with NumericHelpers {
   it should "convert Script" in new Fixture {
     checkData[Script, vm.StatefulScript](script, Script.fromProtocol, _.toProtocol().rightValue)
   }

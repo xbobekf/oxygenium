@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import scala.annotation.tailrec
 import scala.collection.mutable
@@ -22,20 +22,20 @@ import scala.reflect.ClassTag
 
 import com.typesafe.scalalogging.LazyLogging
 
-import org.alephium.flow.Utils
-import org.alephium.flow.mempool._
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.flow.setting.{ConsensusSettings, MemPoolSetting}
-import org.alephium.flow.validation._
-import org.alephium.io.{IOError, IOResult, IOUtils}
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.NetworkConfig
-import org.alephium.protocol.mining.Emission
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm._
-import org.alephium.protocol.vm.StatefulVM.TxScriptExecution
-import org.alephium.serde.serialize
-import org.alephium.util.{AVector, Hex, TimeStamp, U256}
+import org.oxygenium.flow.Utils
+import org.oxygenium.flow.mempool._
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.flow.setting.{ConsensusSettings, MemPoolSetting}
+import org.oxygenium.flow.validation._
+import org.oxygenium.io.{IOError, IOResult, IOUtils}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.NetworkConfig
+import org.oxygenium.protocol.mining.Emission
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm._
+import org.oxygenium.protocol.vm.StatefulVM.TxScriptExecution
+import org.oxygenium.serde.serialize
+import org.oxygenium.util.{AVector, Hex, TimeStamp, U256}
 
 // scalastyle:off number.of.methods
 trait FlowUtils

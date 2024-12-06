@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm.event
+package org.oxygenium.protocol.vm.event
 
-import org.alephium.crypto.Byte32
-import org.alephium.io.{IOResult, MutableKV}
-import org.alephium.protocol.model.{BlockHash, ContractId, TransactionId}
-import org.alephium.protocol.vm.{LogState, LogStateRef, LogStates, LogStatesId, Val}
-import org.alephium.protocol.vm.nodeindexes.PageCounter
-import org.alephium.util.AVector
+import org.oxygenium.crypto.Byte32
+import org.oxygenium.io.{IOResult, MutableKV}
+import org.oxygenium.protocol.model.{BlockHash, ContractId, TransactionId}
+import org.oxygenium.protocol.vm.{LogState, LogStateRef, LogStates, LogStatesId, Val}
+import org.oxygenium.protocol.vm.nodeindexes.PageCounter
+import org.oxygenium.util.AVector
 
 trait MutableLog {
   def eventLog: MutableKV[LogStatesId, LogStates, Unit]

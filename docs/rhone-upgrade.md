@@ -20,4 +20,4 @@
 - **New Built-In Functions**: Introduced `minimalContractDeposit`, `mapEntryDeposit`, and other built-in functions.
 - **Increased Limits**: Transaction gas limit and contract bytecode size limit have been increased for greater flexibility.
 
-Code: https://github.com/alephium/alephium/pull/1084
+Code: https://github.com/oxygenium/oxygenium/pull/1084

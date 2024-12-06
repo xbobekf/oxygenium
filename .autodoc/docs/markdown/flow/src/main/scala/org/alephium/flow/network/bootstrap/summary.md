@@ -1,12 +1,12 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/flow/src/main/scala/org/alephium/flow/network/bootstrap)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/flow/src/main/scala/org/oxygenium/flow/network/bootstrap)
 
-The `.autodoc/docs/json/flow/src/main/scala/org/alephium/flow/network/bootstrap` folder contains code related to the bootstrap process of the Alephium network. The bootstrap process is responsible for establishing the initial network topology and exchanging information about the network's nodes.
+The `.autodoc/docs/json/flow/src/main/scala/org/oxygenium/flow/network/bootstrap` folder contains code related to the bootstrap process of the Oxygenium network. The bootstrap process is responsible for establishing the initial network topology and exchanging information about the network's nodes.
 
 The `Broker` class is an Akka actor that connects to the master node and receives clique information. The `BrokerConnector` class is responsible for connecting to a broker and sending/receiving messages during the bootstrap phase. The `CliqueCoordinator` class coordinates the connection of brokers in the network and broadcasts clique information to all brokers once they are ready.
 
-The `CliqueCoordinatorState` trait provides a common interface for different implementations of clique coordinators, while the `IntraCliqueInfo` class represents the information required to establish a clique within the Alephium network. The `Message` trait defines the set of message types that can be sent during the bootstrap process and provides methods for serializing and deserializing these messages.
+The `CliqueCoordinatorState` trait provides a common interface for different implementations of clique coordinators, while the `IntraCliqueInfo` class represents the information required to establish a clique within the Oxygenium network. The `Message` trait defines the set of message types that can be sent during the bootstrap process and provides methods for serializing and deserializing these messages.
 
-The `PeerInfo` class represents information about a peer in the Alephium network, and the `SerdeUtils` trait provides implicit `Serde` instances for `PeerInfo` and `IntraCliqueInfo`. The `SimpleSerde` trait provides a simple serialization and deserialization interface for a given type.
+The `PeerInfo` class represents information about a peer in the Oxygenium network, and the `SerdeUtils` trait provides implicit `Serde` instances for `PeerInfo` and `IntraCliqueInfo`. The `SimpleSerde` trait provides a simple serialization and deserialization interface for a given type.
 
 Here's an example of how these classes might be used together:
 

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
-import org.alephium.protocol.BuildInfo
-import org.alephium.protocol.config.NetworkConfig
-import org.alephium.serde.{intSerde, Serde}
-import org.alephium.util.TimeStamp
+import org.oxygenium.protocol.BuildInfo
+import org.oxygenium.protocol.config.NetworkConfig
+import org.oxygenium.serde.{intSerde, Serde}
+import org.oxygenium.util.TimeStamp
 
 final case class ReleaseVersion(major: Int, minor: Int, patch: Int)
     extends Ordered[ReleaseVersion] {
@@ -39,9 +39,9 @@ final case class ReleaseVersion(major: Int, minor: Int, patch: Int)
   // scalastyle:off magic.number
   def checkRhoneUpgrade()(implicit networkConfig: NetworkConfig): Boolean = {
     if (networkConfig.getHardFork(TimeStamp.now()).isRhoneEnabled()) {
-      if (networkConfig.networkId == NetworkId.AlephiumMainNet) {
+      if (networkConfig.networkId == NetworkId.OxygeniumMainNet) {
         this >= ReleaseVersion(3, 0, 0)
-      } else if (networkConfig.networkId == NetworkId.AlephiumTestNet) {
+      } else if (networkConfig.networkId == NetworkId.OxygeniumTestNet) {
         this >= ReleaseVersion(2, 14, 6)
       } else {
         true
@@ -59,7 +59,7 @@ object ReleaseVersion {
     )
   )
 
-  val clientId: String = s"scala-alephium/$current/${System.getProperty("os.name")}"
+  val clientId: String = s"scala-oxygenium/$current/${System.getProperty("os.name")}"
 
   def checkClientId(clientId: String)(implicit networkConfig: NetworkConfig): Boolean = {
     ReleaseVersion.fromClientId(clientId).exists(_.checkRhoneUpgrade())

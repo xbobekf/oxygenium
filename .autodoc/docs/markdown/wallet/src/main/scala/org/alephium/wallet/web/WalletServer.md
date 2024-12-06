@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/wallet/src/main/scala/org/alephium/wallet/web/WalletServer.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/wallet/src/main/scala/org/oxygenium/wallet/web/WalletServer.scala)
 
 This file defines a `WalletServer` class and an `object` that converts `WalletError` to `ApiError`. The `WalletServer` class extends `WalletEndpointsLogic` and `WalletDocumentation` and uses `VertxFutureServerInterpreter` to define routes for various wallet-related operations. 
 
@@ -6,7 +6,7 @@ The `WalletServer` class takes in a `WalletService` instance, a `Duration` objec
 
 The `WalletServer` class defines a `routes` `AVector` that maps each defined method to a `Route` object using the `route` method provided by `VertxFutureServerInterpreter`. It also defines a `docsRoute` that provides Swagger UI documentation for the defined routes.
 
-The `WalletServer` class is used to define the wallet-related routes for the Alephium project. The `WalletError` to `ApiError` conversion provided by the `WalletServer` object is used to convert wallet-related errors to API errors that can be returned to the user. 
+The `WalletServer` class is used to define the wallet-related routes for the Oxygenium project. The `WalletError` to `ApiError` conversion provided by the `WalletServer` object is used to convert wallet-related errors to API errors that can be returned to the user. 
 
 Example usage:
 ```scala
@@ -26,6 +26,6 @@ walletServer.routes.foreach(_.apply(router))
  1. What is the purpose of this code?
    - This code defines a `WalletServer` class that extends `WalletEndpointsLogic` and `WalletDocumentation`, and contains a list of routes for various wallet-related operations. It also includes a `toApiError` function that maps `WalletError` instances to `ApiError` instances.
 2. What external libraries or dependencies does this code use?
-   - This code uses several external libraries, including `io.vertx.ext.web`, `sttp`, and `sttp.tapir.server.vertx.VertxFutureServerInterpreter`. It also imports several classes and objects from the `org.alephium` package.
+   - This code uses several external libraries, including `io.vertx.ext.web`, `sttp`, and `sttp.tapir.server.vertx.VertxFutureServerInterpreter`. It also imports several classes and objects from the `org.oxygenium` package.
 3. What license is this code released under?
    - This code is released under the GNU Lesser General Public License, version 3 or later.

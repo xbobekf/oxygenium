@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.tools
+package org.oxygenium.tools
 
-import org.alephium.api.OpenAPIWriters.openApiJson
-import org.alephium.api.model.ApiKey
-import org.alephium.app.Documentation
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.util.AVector
-import org.alephium.wallet.WalletDocumentation
+import org.oxygenium.api.OpenAPIWriters.openApiJson
+import org.oxygenium.api.model.ApiKey
+import org.oxygenium.app.Documentation
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.util.AVector
+import org.oxygenium.wallet.WalletDocumentation
 
 @SuppressWarnings(Array("org.wartremover.warts.GlobalExecutionContext"))
 object OpenApiUpdate extends App {

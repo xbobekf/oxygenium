@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,22 +14,22 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.web
+package org.oxygenium.wallet.web
 
 import scala.concurrent.ExecutionContext
 
 import org.scalatest.Inside
 import sttp.client3._
 
-import org.alephium.api.Endpoints
-import org.alephium.api.model.{Amount, ApiKey, BuildTransferTx, Destination}
-import org.alephium.http.EndpointSender
-import org.alephium.json.Json._
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model._
-import org.alephium.util.{AlephiumSpec, AVector, Duration, U256}
+import org.oxygenium.api.Endpoints
+import org.oxygenium.api.model.{Amount, ApiKey, BuildTransferTx, Destination}
+import org.oxygenium.http.EndpointSender
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{OxygeniumSpec, AVector, Duration, U256}
 
-class BlockFlowClientSpec() extends AlephiumSpec with Inside {
+class BlockFlowClientSpec() extends OxygeniumSpec with Inside {
   it should "correclty create an sttp request" in new Fixture {
     val destinations = AVector(Destination(toAddress, value, None, None))
     val buildTransferTransactionIn =

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.ralph
+package org.oxygenium.ralph
 
 import java.nio.charset.StandardCharsets
 
@@ -23,11 +23,11 @@ import scala.collection.mutable
 
 import akka.util.ByteString
 
-import org.alephium.protocol.vm
-import org.alephium.protocol.vm.{ALPHTokenId => ALPHTokenIdInstr, Contract => VmContract, _}
-import org.alephium.ralph.LogicalOperator.Not
-import org.alephium.ralph.Parser.FunctionUsingAnnotation
-import org.alephium.util.{AVector, DjbHash, Hex, I256, U256}
+import org.oxygenium.protocol.vm
+import org.oxygenium.protocol.vm.{ALPHTokenId => ALPHTokenIdInstr, Contract => VmContract, _}
+import org.oxygenium.ralph.LogicalOperator.Not
+import org.oxygenium.ralph.Parser.FunctionUsingAnnotation
+import org.oxygenium.util.{AVector, DjbHash, Hex, I256, U256}
 
 // scalastyle:off number.of.methods number.of.types file.size.limit
 object Ast {

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.handler
+package org.oxygenium.flow.handler
 
 import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.{ExecutionContext, Future}
@@ -22,17 +22,17 @@ import scala.concurrent.{ExecutionContext, Future}
 import akka.actor.{ActorRef, Cancellable, Props}
 import akka.pattern.pipe
 
-import org.alephium.flow.core.BlockFlow
-import org.alephium.flow.mining.Miner
-import org.alephium.flow.model.BlockFlowTemplate
-import org.alephium.flow.network.InterCliqueManager
-import org.alephium.flow.setting.MiningSetting
-import org.alephium.io.{IOResult, IOUtils}
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.{Address, ChainIndex}
-import org.alephium.protocol.vm.LockupScript
-import org.alephium.util._
-import org.alephium.util.EventStream.{Publisher, Subscriber}
+import org.oxygenium.flow.core.BlockFlow
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.flow.model.BlockFlowTemplate
+import org.oxygenium.flow.network.InterCliqueManager
+import org.oxygenium.flow.setting.MiningSetting
+import org.oxygenium.io.{IOResult, IOUtils}
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.{Address, ChainIndex}
+import org.oxygenium.protocol.vm.LockupScript
+import org.oxygenium.util._
+import org.oxygenium.util.EventStream.{Publisher, Subscriber}
 
 object ViewHandler {
   def props(

@@ -36,10 +36,10 @@ run:
 update: update-openapi update-builtin-doc
 
 update-openapi:
-	ALEPHIUM_ENV=test sbt "tools/runMain org.alephium.tools.OpenApiUpdate"
+	ALEPHIUM_ENV=test sbt "tools/runMain org.oxygenium.tools.OpenApiUpdate"
 
 update-builtin-doc:
-	sbt "tools/runMain org.alephium.tools.BuiltInFunctions"
+	sbt "tools/runMain org.oxygenium.tools.BuiltInFunctions"
 
 benchmark:
 	sbt "benchmark/jmh:run -i 3 -wi 3 -f1 -t1 .*Bench.*"

@@ -9,7 +9,7 @@
  * @author fraser@google.com (Neil Fraser)
  */
 
-package org.alephium.util;
+package org.oxygenium.util;
 
 import java.io.*;
 

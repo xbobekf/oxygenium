@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import java.math.BigInteger
 
-import org.alephium.flow.setting.ConsensusSetting
-import org.alephium.io.IOResult
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.config.NetworkConfig
-import org.alephium.protocol.model.{BlockHash, Target}
-import org.alephium.util.{AVector, Duration, TimeStamp}
+import org.oxygenium.flow.setting.ConsensusSetting
+import org.oxygenium.io.IOResult
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.config.NetworkConfig
+import org.oxygenium.protocol.model.{BlockHash, Target}
+import org.oxygenium.util.{AVector, Duration, TimeStamp}
 
 trait ChainDifficultyAdjustment {
   implicit def networkConfig: NetworkConfig

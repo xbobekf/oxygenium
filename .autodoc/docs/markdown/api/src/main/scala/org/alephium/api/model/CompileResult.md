@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/CompileResult.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/CompileResult.scala)
 
-This file contains code related to compiling Alephium smart contracts and scripts. The code defines several case classes that represent the results of compiling a script or contract, as well as a case class that represents the result of compiling an entire project. 
+This file contains code related to compiling Oxygenium smart contracts and scripts. The code defines several case classes that represent the results of compiling a script or contract, as well as a case class that represents the result of compiling an entire project. 
 
 The `CompileScriptResult` case class represents the result of compiling a script. It contains information such as the version of the script, the script's name, the bytecode template, the bytecode debug patch, the script's fields, functions, and warnings. The `CompileContractResult` case class represents the result of compiling a contract. It contains similar information to `CompileScriptResult`, but also includes the contract's code hash and debug code hash, as well as information about the contract's events and standard interface ID. 
 
@@ -10,7 +10,7 @@ The `CompileProjectResult` object also defines several helper methods. The `diff
 
 The `CompileResult` object defines several case classes that represent the signatures of a contract's or script's fields, functions, and events. These case classes are used in the `CompileScriptResult` and `CompileContractResult` case classes. 
 
-Overall, this file provides functionality for compiling Alephium smart contracts and scripts, and represents the results of that compilation. It also provides helper methods for working with bytecode patches.
+Overall, this file provides functionality for compiling Oxygenium smart contracts and scripts, and represents the results of that compilation. It also provides helper methods for working with bytecode patches.
 ## Questions: 
  1. What is the purpose of the `CompileProjectResult` class?
 - `CompileProjectResult` is a case class that holds the results of compiling a project, including a vector of `CompileContractResult` and a vector of `CompileScriptResult`.

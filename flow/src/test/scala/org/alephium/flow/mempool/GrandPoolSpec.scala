@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mempool
+package org.oxygenium.flow.mempool
 
 import scala.util.Random
 
-import org.alephium.flow.FlowFixture
-import org.alephium.flow.validation.{NonExistInput, TxValidation}
-import org.alephium.protocol.model.{ChainIndex, GroupIndex, ModelGenerators, Transaction}
-import org.alephium.util.{AlephiumSpec, AVector, Duration, TimeStamp}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.flow.validation.{NonExistInput, TxValidation}
+import org.oxygenium.protocol.model.{ChainIndex, GroupIndex, ModelGenerators, Transaction}
+import org.oxygenium.util.{OxygeniumSpec, AVector, Duration, TimeStamp}
 
-class GrandPoolSpec extends AlephiumSpec {
+class GrandPoolSpec extends OxygeniumSpec {
   behavior of "Single Broker"
 
   trait SingleBrokerFixture extends Fixture with ModelGenerators {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     pool.mempools.foreach(_.size is 0)
   }
@@ -105,7 +105,7 @@ class GrandPoolSpec extends AlephiumSpec {
   }
 
   it should "validate and add txs to mempool" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val txValidation = TxValidation.build
     def addTx(tx: Transaction, cacheOrphanTx: Boolean) = {
@@ -129,9 +129,9 @@ class GrandPoolSpec extends AlephiumSpec {
 
   it should "clean mempool" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.mempool.clean-mempool-frequency", "3 s"),
-      ("alephium.mempool.unconfirmed-tx-expiry-duration", "1 s")
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.mempool.clean-mempool-frequency", "3 s"),
+      ("oxygenium.mempool.unconfirmed-tx-expiry-duration", "1 s")
     )
     val chainIndex0 = ChainIndex.unsafe(0, 0)
     val block       = transfer(blockFlow, chainIndex0)

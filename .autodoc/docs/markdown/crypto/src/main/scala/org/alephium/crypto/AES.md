@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/crypto/src/main/scala/org/alephium/crypto/AES.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/crypto/src/main/scala/org/oxygenium/crypto/AES.scala)
 
-The `AES` object in the `org.alephium.crypto` package provides methods for encrypting and decrypting data using the Advanced Encryption Standard (AES) algorithm. The purpose of this code is to provide a secure way to encrypt and decrypt data using a password. 
+The `AES` object in the `org.oxygenium.crypto` package provides methods for encrypting and decrypting data using the Advanced Encryption Standard (AES) algorithm. The purpose of this code is to provide a secure way to encrypt and decrypt data using a password. 
 
 The `AES` object contains two methods: `encrypt` and `decrypt`. The `encrypt` method takes a `ByteString` of data and a password as input, and returns an `Encrypted` object containing the encrypted data, a salt, and an initialization vector (IV). The `decrypt` method takes an `Encrypted` object and a password as input, and returns a `Try[ByteString]` containing the decrypted data if the decryption was successful, or a `Failure` if the decryption failed.
 
@@ -11,7 +11,7 @@ The `decrypt` method initializes a cipher using the salt and IV from the `Encryp
 Overall, this code provides a secure way to encrypt and decrypt data using a password, which can be useful in a variety of applications. For example, it could be used to encrypt sensitive user data in a database or to encrypt data being transmitted over a network. Here is an example of how to use the `AES` object to encrypt and decrypt data:
 
 ```scala
-import org.alephium.crypto.AES
+import org.oxygenium.crypto.AES
 import akka.util.ByteString
 
 val data = ByteString("Hello, world!")

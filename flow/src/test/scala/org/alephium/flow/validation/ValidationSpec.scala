@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.validation
+package org.oxygenium.flow.validation
 
-import org.alephium.flow.AlephiumFlowSpec
-import org.alephium.protocol.config.{ConsensusConfig, ConsensusConfigs}
-import org.alephium.protocol.mining.Emission
-import org.alephium.protocol.model.*
-import org.alephium.util.{AVector, Duration}
+import org.oxygenium.flow.OxygeniumFlowSpec
+import org.oxygenium.protocol.config.{ConsensusConfig, ConsensusConfigs}
+import org.oxygenium.protocol.mining.Emission
+import org.oxygenium.protocol.model.*
+import org.oxygenium.util.{AVector, Duration}
 
-class ValidationSpec extends AlephiumFlowSpec with NoIndexModelGeneratorsLike {
+class ValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike {
   override val configValues: Map[String, Any] = Map(
-    ("alephium.consensus.num-zeros-at-least-in-hash", 1)
+    ("oxygenium.consensus.num-zeros-at-least-in-hash", 1)
   )
 
   it should "pre-validate blocks" in {

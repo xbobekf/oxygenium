@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/DiscoveryAction.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/DiscoveryAction.scala)
 
 This code defines a sealed trait called `DiscoveryAction` and two case classes that extend it: `Unreachable` and `Reachable`. The purpose of this code is to provide a way to represent actions related to discovering peers in a network. 
 
@@ -11,7 +11,7 @@ This code is likely used in a larger project that involves peer-to-peer networki
 Here is an example of how this code might be used:
 
 ```
-import org.alephium.api.model._
+import org.oxygenium.api.model._
 
 val unreachablePeers = AVector(InetAddress.getByName("192.168.0.1"), InetAddress.getByName("192.168.0.2"))
 val unreachableAction = DiscoveryAction.Unreachable(unreachablePeers)
@@ -29,7 +29,7 @@ unreachableAction match {
 This would output "Marking peers Vector(/192.168.0.1, /192.168.0.2) as unreachable", since we are matching on the `unreachableAction` variable.
 ## Questions: 
  1. What is the purpose of this code file?
-   - This code file defines a sealed trait and two case classes related to network discovery for the Alephium project's API.
+   - This code file defines a sealed trait and two case classes related to network discovery for the Oxygenium project's API.
 
 2. What is the significance of the `sealed` keyword before the `trait DiscoveryAction`?
    - The `sealed` keyword restricts the inheritance of `DiscoveryAction` to this file, allowing exhaustive pattern matching on its subclasses.

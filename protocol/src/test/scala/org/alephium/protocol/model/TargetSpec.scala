@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import java.math.BigInteger
 
@@ -23,11 +23,11 @@ import scala.math.BigInt.javaBigInteger2bigInt
 import akka.util.ByteString
 import org.scalatest.Assertion
 
-import org.alephium.protocol.config.{GroupConfig, GroupConfigFixture}
-import org.alephium.protocol.mining.HashRate
-import org.alephium.util.{AlephiumSpec, AVector, Duration, Hex}
+import org.oxygenium.protocol.config.{GroupConfig, GroupConfigFixture}
+import org.oxygenium.protocol.mining.HashRate
+import org.oxygenium.util.{OxygeniumSpec, AVector, Duration, Hex}
 
-class TargetSpec extends AlephiumSpec with GroupConfigFixture {
+class TargetSpec extends OxygeniumSpec with GroupConfigFixture {
   val groups: Int = 1
 
   it should "check special values" in {

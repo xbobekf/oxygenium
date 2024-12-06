@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/Bits.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/Bits.scala)
 
-The `Bits` object in the `org.alephium.util` package provides two methods for working with bits. The `from` method takes a byte and returns a vector of booleans representing the bits in the byte. The `toIint` method takes a vector of booleans representing bits and returns an integer value.
+The `Bits` object in the `org.oxygenium.util` package provides two methods for working with bits. The `from` method takes a byte and returns a vector of booleans representing the bits in the byte. The `toIint` method takes a vector of booleans representing bits and returns an integer value.
 
 The `from` method uses the `AVector` class to create a vector of booleans. The `tabulate` method is called on the `AVector` object to create a vector of length 8. The `tabulate` method takes a function that is called for each index in the vector. The function takes an index `k` and returns a boolean value representing the `k`th bit in the byte. The `byte` is shifted right by `7 - k` bits and the least significant bit is extracted using a bitwise AND operation with 1. If the result is 1, the `k`th bit is set to true, otherwise it is set to false.
 

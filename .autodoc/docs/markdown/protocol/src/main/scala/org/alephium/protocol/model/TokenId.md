@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/protocol/src/main/scala/org/alephium/protocol/model/TokenId.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/protocol/src/main/scala/org/oxygenium/protocol/model/TokenId.scala)
 
 The code defines a class called `TokenId` and an object with the same name. The `TokenId` class is a wrapper around a `Hash` value and is defined as a `final case class`. The `TokenId` object provides various utility methods for working with `TokenId` instances.
 
@@ -14,11 +14,11 @@ The `generate` method generates a new `TokenId` instance with a random `Hash` va
 
 The `hash` methods provide a way to create a `TokenId` instance from a `Seq[Byte]` or a `String` value. The `unsafe` method creates a new `TokenId` instance from a given `Hash` value.
 
-Overall, the `TokenId` class and object provide a way to work with `TokenId` instances, which are used in the larger `alephium` project to represent unique identifiers for tokens. The `TokenId` instances are created from `Hash` values and provide various utility methods for working with them.
+Overall, the `TokenId` class and object provide a way to work with `TokenId` instances, which are used in the larger `oxygenium` project to represent unique identifiers for tokens. The `TokenId` instances are created from `Hash` values and provide various utility methods for working with them.
 ## Questions: 
- 1. What is the purpose of the `TokenId` class and how is it used in the `alephium` project?
+ 1. What is the purpose of the `TokenId` class and how is it used in the `oxygenium` project?
    
-   The `TokenId` class represents a unique identifier for a token in the `alephium` project. It is used to identify tokens in various parts of the project, such as contracts and transactions.
+   The `TokenId` class represents a unique identifier for a token in the `oxygenium` project. It is used to identify tokens in various parts of the project, such as contracts and transactions.
 
 2. What is the `generate` method used for and how does it work?
    

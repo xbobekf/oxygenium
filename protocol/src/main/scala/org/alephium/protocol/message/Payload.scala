@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.message
+package org.oxygenium.protocol.message
 
 import akka.util.ByteString
 import io.prometheus.client.Counter
 
-import org.alephium.protocol._
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model._
-import org.alephium.serde.{_deserialize => _decode, serialize => encode, _}
-import org.alephium.util.{AVector, TimeStamp}
+import org.oxygenium.protocol._
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model._
+import org.oxygenium.serde.{_deserialize => _decode, serialize => encode, _}
+import org.oxygenium.util.{AVector, TimeStamp}
 
 //scalastyle:off number.of.types
 
@@ -159,7 +159,7 @@ object Payload {
 
   val payloadTotal: Counter = Counter
     .build(
-      "alephium_payload_total",
+      "oxygenium_payload_total",
       "Total number of payloads"
     )
     .labelNames("payload_type")

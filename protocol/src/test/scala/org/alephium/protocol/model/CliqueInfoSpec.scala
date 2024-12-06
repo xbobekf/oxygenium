@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import scala.util.Random
 
 import org.scalacheck.Gen
 
-import org.alephium.protocol.Generators
-import org.alephium.protocol.config.{BrokerConfig, GroupConfig}
-import org.alephium.util.AlephiumSpec
+import org.oxygenium.protocol.Generators
+import org.oxygenium.protocol.config.{BrokerConfig, GroupConfig}
+import org.oxygenium.util.OxygeniumSpec
 
-class CliqueInfoSpec extends AlephiumSpec with Generators {
+class CliqueInfoSpec extends OxygeniumSpec with Generators {
   it should "work" in {
     forAll(Gen.chooseNum(1, 16)) { g =>
       implicit val groupConfig = new GroupConfig {

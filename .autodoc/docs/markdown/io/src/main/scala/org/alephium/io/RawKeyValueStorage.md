@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/RawKeyValueStorage.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/RawKeyValueStorage.scala)
 
 This code defines a trait called `RawKeyValueStorage` which provides a set of methods for interacting with a key-value storage system. The purpose of this trait is to define a common interface for different implementations of key-value storage, allowing them to be used interchangeably in the larger project.
 
@@ -16,13 +16,13 @@ The `existsRawUnsafe` method takes a `ByteString` key and returns a boolean indi
 
 The `deleteRawUnsafe` method takes a `ByteString` key and deletes the corresponding key-value pair from the storage system.
 
-Overall, this trait provides a flexible and extensible interface for interacting with key-value storage systems in the Alephium project. Different implementations of this trait can be used depending on the specific requirements of the project, allowing for easy swapping of storage systems if needed.
+Overall, this trait provides a flexible and extensible interface for interacting with key-value storage systems in the Oxygenium project. Different implementations of this trait can be used depending on the specific requirements of the project, allowing for easy swapping of storage systems if needed.
 ## Questions: 
  1. What is the purpose of the `RawKeyValueStorage` trait?
    - The `RawKeyValueStorage` trait defines a set of methods for interacting with a key-value storage system, allowing for getting, putting, and deleting raw byte strings associated with specific keys.
 
 2. What is the significance of the GNU Lesser General Public License mentioned in the comments?
-   - The GNU Lesser General Public License is the license under which the `alephium` project is distributed, allowing for free use, modification, and distribution of the code while requiring that any derivative works also be licensed under the same terms.
+   - The GNU Lesser General Public License is the license under which the `oxygenium` project is distributed, allowing for free use, modification, and distribution of the code while requiring that any derivative works also be licensed under the same terms.
 
 3. What is the purpose of the `ByteString` type used in the method signatures?
    - The `ByteString` type is used to represent a sequence of bytes, which is a common way to represent binary data in Scala. It is used here to represent the keys and values stored in the key-value storage system.

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.api
+package org.oxygenium.api
 
 import java.math.BigInteger
 import java.net.{InetAddress, InetSocketAddress}
@@ -23,17 +23,17 @@ import akka.util.ByteString
 import org.scalacheck.Gen
 import org.scalatest.EitherValues
 
-import org.alephium.api.{model => api}
-import org.alephium.api.UtilJson._
-import org.alephium.api.model._
-import org.alephium.json.Json._
-import org.alephium.protocol._
-import org.alephium.protocol.model.{AssetOutput => _, ContractOutput => _, _}
-import org.alephium.protocol.vm.{GasBox, GasPrice, LockupScript, StatefulContract}
-import org.alephium.ralph.TypeSignatureFixture
-import org.alephium.serde.serialize
-import org.alephium.util._
-import org.alephium.util.Hex.HexStringSyntax
+import org.oxygenium.api.{model => api}
+import org.oxygenium.api.UtilJson._
+import org.oxygenium.api.model._
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol._
+import org.oxygenium.protocol.model.{AssetOutput => _, ContractOutput => _, _}
+import org.oxygenium.protocol.vm.{GasBox, GasPrice, LockupScript, StatefulContract}
+import org.oxygenium.ralph.TypeSignatureFixture
+import org.oxygenium.serde.serialize
+import org.oxygenium.util._
+import org.oxygenium.util.Hex.HexStringSyntax
 
 //scalastyle:off file.size.limit
 class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues with NumericHelpers {
@@ -188,7 +188,7 @@ class ApiModelSpec extends JsonFixture with ApiModelFixture with EitherValues wi
   }
 
   it should "encode/decode ChainParams" in {
-    val chainParams = ChainParams(NetworkId.AlephiumMainNet, 18, 1, 2)
+    val chainParams = ChainParams(NetworkId.OxygeniumMainNet, 18, 1, 2)
     val jsonRaw =
       s"""
          |{

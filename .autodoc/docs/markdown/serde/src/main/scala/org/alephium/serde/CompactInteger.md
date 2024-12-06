@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/serde/src/main/scala/org/alephium/serde/CompactInteger.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/serde/src/main/scala/org/oxygenium/serde/CompactInteger.scala)
 
-The code in this file is part of the Alephium project and provides a compact integer encoding and decoding mechanism for both signed and unsigned integers. The encoding is heavily influenced by Polkadot's SCALE Codec and is designed to be space-efficient for small integers while still supporting large integers up to 2^536.
+The code in this file is part of the Oxygenium project and provides a compact integer encoding and decoding mechanism for both signed and unsigned integers. The encoding is heavily influenced by Polkadot's SCALE Codec and is designed to be space-efficient for small integers while still supporting large integers up to 2^536.
 
 The `CompactInteger` object is divided into two sub-objects: `Unsigned` and `Signed`. Each sub-object provides methods for encoding and decoding integers in their respective formats. The encoding uses the first two most significant bits to denote the mode, which determines the number of bytes used to represent the integer. There are four modes: single-byte, two-byte, four-byte, and multi-byte.
 
@@ -11,7 +11,7 @@ The `Mode` trait and its implementations (`SingleByte`, `TwoByte`, `FourByte`, a
 Here's an example of encoding and decoding an unsigned integer:
 
 ```scala
-import org.alephium.serde.CompactInteger.Unsigned
+import org.oxygenium.serde.CompactInteger.Unsigned
 import akka.util.ByteString
 
 val number = 42
@@ -19,7 +19,7 @@ val encoded = Unsigned.encode(number) // ByteString(0x2a)
 val decoded = Unsigned.decodeU32(encoded) // Right(Staging(42, ByteString()))
 ```
 
-This compact integer encoding and decoding mechanism can be used throughout the Alephium project to efficiently store and transmit integer values, especially when dealing with small integers that are common in blockchain applications.
+This compact integer encoding and decoding mechanism can be used throughout the Oxygenium project to efficiently store and transmit integer values, especially when dealing with small integers that are common in blockchain applications.
 ## Questions: 
  1. **Question**: What is the purpose of the `CompactInteger` object and its sub-objects `Unsigned` and `Signed`?
    **Answer**: The `CompactInteger` object is designed to encode and decode compact representations of integers, both signed and unsigned. The sub-objects `Unsigned` and `Signed` handle the encoding and decoding of unsigned and signed integers, respectively.

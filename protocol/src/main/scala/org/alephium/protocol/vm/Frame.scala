@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import scala.annotation.{switch, tailrec}
 
 import akka.util.ByteString
 
-import org.alephium.protocol.model.{Address, ContractId, TokenId}
-import org.alephium.protocol.vm.{createContractEventIndex, destroyContractEventIndex}
-import org.alephium.protocol.vm.TokenIssuance
-import org.alephium.serde.{avectorSerde, deserialize}
-import org.alephium.util.{AVector, Bytes}
+import org.oxygenium.protocol.model.{Address, ContractId, TokenId}
+import org.oxygenium.protocol.vm.{createContractEventIndex, destroyContractEventIndex}
+import org.oxygenium.protocol.vm.TokenIssuance
+import org.oxygenium.serde.{avectorSerde, deserialize}
+import org.oxygenium.util.{AVector, Bytes}
 
 // scalastyle:off number.of.methods
 abstract class Frame[Ctx <: StatelessContext] {

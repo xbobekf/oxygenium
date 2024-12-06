@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.mempool
+package org.oxygenium.flow.mempool
 
 import scala.collection.mutable
 import scala.language.implicitConversions
 import scala.util.Random
 
-import org.alephium.util.{AlephiumSpec, AVector, ConcurrentHashMap, SimpleMap}
+import org.oxygenium.util.{OxygeniumSpec, AVector, ConcurrentHashMap, SimpleMap}
 
-class KeyedFlowSpec extends AlephiumSpec {
+class KeyedFlowSpec extends OxygeniumSpec {
   import KeyedFlowSpec._
 
   trait PathFixture {
@@ -230,7 +230,7 @@ class KeyedFlowSpec extends AlephiumSpec {
   }
 }
 
-object KeyedFlowSpec extends AlephiumSpec {
+object KeyedFlowSpec extends OxygeniumSpec {
   final case class K(value: Int)
   final case class N(
       value: Int,

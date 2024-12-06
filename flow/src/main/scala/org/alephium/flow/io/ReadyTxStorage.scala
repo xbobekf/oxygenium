@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.io
+package org.oxygenium.flow.io
 
 import org.rocksdb.{ReadOptions, WriteOptions}
 
-import org.alephium.flow.model.ReadyTxInfo
-import org.alephium.io._
-import org.alephium.io.RocksDBSource.ColumnFamily
-import org.alephium.protocol.model.TransactionId
+import org.oxygenium.flow.model.ReadyTxInfo
+import org.oxygenium.io._
+import org.oxygenium.io.RocksDBSource.ColumnFamily
+import org.oxygenium.protocol.model.TransactionId
 
 trait ReadyTxStorage extends KeyValueStorage[TransactionId, ReadyTxInfo] {
   def iterateE(f: (TransactionId, ReadyTxInfo) => IOResult[Unit]): IOResult[Unit]

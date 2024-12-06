@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/macros/src/main/scala/org/alephium/macros/Gas.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/macros/src/main/scala/org/oxygenium/macros/Gas.scala)
 
 The code defines a Scala macro annotation called `Gas`. This annotation is used to add a `gas()` method to a trait and its companion object. The `gas()` method returns a `GasBox` object. 
 

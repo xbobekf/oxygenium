@@ -49,13 +49,13 @@ Other blockchains, such as [Avalanche](https://docs.avax.network/quickstart/tran
 
 As of today, and based on other chain’s examples (see bitcoin’s halvings, ethereum’s EIP1559, etc…), it's still an open question  whether the tx fee is sufficient to guarantee the security of a blockchain over the long run.
 
-As the Alephium protocol has coinbase rewards planned for over more than 80 years, it is expected that Alephium will have enough time to consider, compare & adopt the best solutions over time.
+As the Oxygenium protocol has coinbase rewards planned for over more than 80 years, it is expected that Oxygenium will have enough time to consider, compare & adopt the best solutions over time.
 
 Right now, the core devs' main focuses are on the virtual machine, smart contract language, SDK, infrastructures, etc…
 
 **Q**: Will there be more research on fee mechanism design?
 
-Yes. Transaction fee mechanism design is a fascinating topic and Alephium's protocol design always embraces solid innovations.
+Yes. Transaction fee mechanism design is a fascinating topic and Oxygenium's protocol design always embraces solid innovations.
 
 There is a lot of research in this field that is worth tracking. As an example, this is a great paper:
 `Chung, Hao, and Elaine Shi. "Foundations of transaction fee mechanism design." arXiv preprint arXiv:2111.03151 (2021).`

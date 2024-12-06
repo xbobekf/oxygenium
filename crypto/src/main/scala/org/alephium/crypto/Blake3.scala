@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.crypto
+package org.oxygenium.crypto
 
 import akka.util.ByteString
 import org.bouncycastle.crypto.digests.Blake3Digest
 
-import org.alephium.serde.RandomBytes
+import org.oxygenium.serde.RandomBytes
 
 class Blake3(val bytes: ByteString) extends RandomBytes {
   def length: Int = Blake3.length

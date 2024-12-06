@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.model.{coinbaseGasPrice, nonCoinbaseMinGasPrice, HardFork}
-import org.alephium.util.{AlephiumSpec, AVector, NumericHelpers}
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.model.{coinbaseGasPrice, nonCoinbaseMinGasPrice, HardFork}
+import org.oxygenium.util.{OxygeniumSpec, AVector, NumericHelpers}
 
-class GasPriceSpec extends AlephiumSpec with NumericHelpers {
+class GasPriceSpec extends OxygeniumSpec with NumericHelpers {
   it should "validate gas price bounds deprecated" in {
     val (isCoinbase, hardfork) =
       AVector(

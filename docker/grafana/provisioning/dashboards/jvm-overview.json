@@ -89,7 +89,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "up{app=\"alephium\"}",
+          "expr": "up{app=\"oxygenium\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -191,7 +191,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "time() - process_start_time_seconds{app=\"alephium\"}",
+          "expr": "time() - process_start_time_seconds{app=\"oxygenium\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -282,7 +282,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "process_start_time_seconds{app=\"alephium\"}*1000",
+          "expr": "process_start_time_seconds{app=\"oxygenium\"}*1000",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -373,7 +373,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "label_join(jvm_info{app=\"alephium\"}, \"jdk\", \", \", \"vendor\", \"runtime\", \"version\")",
+          "expr": "label_join(jvm_info{app=\"oxygenium\"}, \"jdk\", \", \", \"vendor\", \"runtime\", \"version\")",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -456,8 +456,8 @@
       "scopedVars": {
         "service": {
           "selected": true,
-          "text": "alephium",
-          "value": "alephium"
+          "text": "oxygenium",
+          "value": "oxygenium"
         }
       },
       "sparkline": {
@@ -469,7 +469,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(process_cpu_seconds_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(rate(process_cpu_seconds_total{app=\"oxygenium\"}[1m]))",
           "format": "time_series",
           "groupBy": [],
           "instant": true,
@@ -582,8 +582,8 @@
       "scopedVars": {
         "service": {
           "selected": true,
-          "text": "alephium",
-          "value": "alephium"
+          "text": "oxygenium",
+          "value": "oxygenium"
         }
       },
       "seriesOverrides": [],
@@ -592,7 +592,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(process_cpu_seconds_total{app=\"alephium\"}[1m]))",
+          "expr": "sum(rate(process_cpu_seconds_total{app=\"oxygenium\"}[1m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -711,7 +711,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "increase(jvm_gc_collection_seconds_sum{app=\"alephium\"}[$__rate_interval])",
+          "expr": "increase(jvm_gc_collection_seconds_sum{app=\"oxygenium\"}[$__rate_interval])",
           "format": "time_series",
           "interval": "60s",
           "intervalFactor": 1,
@@ -814,7 +814,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_gc_collection_seconds_count{app=~\"alephium\"}",
+          "expr": "jvm_gc_collection_seconds_count{app=~\"oxygenium\"}",
           "format": "time_series",
           "interval": "60s",
           "intervalFactor": 1,
@@ -933,7 +933,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_memory_bytes_used{app=\"alephium\"}",
+          "expr": "jvm_memory_bytes_used{app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1033,7 +1033,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_classes_loaded{ app=\"alephium\"}",
+          "expr": "jvm_classes_loaded{ app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
@@ -1044,7 +1044,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_classes_unloaded_total{ app=\"alephium\"}",
+          "expr": "jvm_classes_unloaded_total{ app=\"oxygenium\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "unloaded",
@@ -1151,7 +1151,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_max{pool=\"Survivor Space\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_max{pool=\"Survivor Space\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1162,7 +1162,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_used{pool=\"Survivor Space\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_used{pool=\"Survivor Space\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1173,7 +1173,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_committed{pool=\"Survivor Space\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_committed{pool=\"Survivor Space\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1281,7 +1281,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_max{pool=\"Eden Space\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_max{pool=\"Eden Space\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1292,7 +1292,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_used{pool=\"Eden Space\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_used{pool=\"Eden Space\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1303,7 +1303,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_committed{pool=\"Eden Space\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_committed{pool=\"Eden Space\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1411,7 +1411,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_max{pool=\"Tenured Gen\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_max{pool=\"Tenured Gen\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1422,7 +1422,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_used{pool=\"Tenured Gen\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_used{pool=\"Tenured Gen\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1433,7 +1433,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_memory_pool_bytes_committed{pool=\"Tenured Gen\", app=\"alephium\"}",
+          "expr": "jvm_memory_pool_bytes_committed{pool=\"Tenured Gen\", app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1547,14 +1547,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_threads_state{app=\"alephium\",state=\"RUNNABLE\"}",
+          "expr": "jvm_threads_state{app=\"oxygenium\",state=\"RUNNABLE\"}",
           "interval": "",
           "legendFormat": "{{ state }}",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_state{app=\"alephium\",state=\"BLOCKED\"}",
+          "expr": "jvm_threads_state{app=\"oxygenium\",state=\"BLOCKED\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "{{ state }}",
@@ -1562,7 +1562,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_state{app=\"alephium\",state=\"NEW\"}",
+          "expr": "jvm_threads_state{app=\"oxygenium\",state=\"NEW\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "{{ state }}",
@@ -1570,7 +1570,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_state{app=\"alephium\",state=\"TERMINATED\"}",
+          "expr": "jvm_threads_state{app=\"oxygenium\",state=\"TERMINATED\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "{{ state }}",
@@ -1578,7 +1578,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_state{app=\"alephium\",state=\"TIMED_WAITING\"}",
+          "expr": "jvm_threads_state{app=\"oxygenium\",state=\"TIMED_WAITING\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "{{ state }}",
@@ -1586,7 +1586,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_state{app=\"alephium\",state=\"WAITING\"}",
+          "expr": "jvm_threads_state{app=\"oxygenium\",state=\"WAITING\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "{{ state }}",
@@ -1688,7 +1688,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jvm_threads_current{app=\"alephium\"}",
+          "expr": "jvm_threads_current{app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
@@ -1699,7 +1699,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_daemon{app=\"alephium\"}",
+          "expr": "jvm_threads_daemon{app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
@@ -1710,7 +1710,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jvm_threads_deadlocked{app=\"alephium\"}",
+          "expr": "jvm_threads_deadlocked{app=\"oxygenium\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,

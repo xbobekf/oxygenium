@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
 import java.net.InetSocketAddress
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -27,16 +27,16 @@ import akka.actor.{Actor, ActorRef, Props}
 import akka.io.Tcp
 import akka.util.ByteString
 
-import org.alephium.api.model._
-import org.alephium.flow.mining.{ClientMessage, SubmitBlock}
-import org.alephium.flow.mining.{ExternalMinerMock, Miner}
-import org.alephium.flow.network.broker.{ConnectionHandler, MisbehaviorManager}
-import org.alephium.protocol.WireVersion
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig}
-import org.alephium.protocol.message.{Header, Hello, Message, Payload, Pong, RequestId}
-import org.alephium.protocol.model.{Block, BlockHash, BrokerInfo, NetworkId}
-import org.alephium.serde.serialize
-import org.alephium.util._
+import org.oxygenium.api.model._
+import org.oxygenium.flow.mining.{ClientMessage, SubmitBlock}
+import org.oxygenium.flow.mining.{ExternalMinerMock, Miner}
+import org.oxygenium.flow.network.broker.{ConnectionHandler, MisbehaviorManager}
+import org.oxygenium.protocol.WireVersion
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.message.{Header, Hello, Message, Payload, Pong, RequestId}
+import org.oxygenium.protocol.model.{Block, BlockHash, BrokerInfo, NetworkId}
+import org.oxygenium.serde.serialize
+import org.oxygenium.util._
 
 class Injected[T](injection: ByteString => ByteString, ref: ActorRef) extends ActorRefT[T](ref) {
   override def !(message: T)(implicit sender: ActorRef = Actor.noSender): Unit = {
@@ -84,7 +84,7 @@ object Injected {
 
 }
 
-class InterCliqueSyncTest extends AlephiumActorSpec {
+class InterCliqueSyncTest extends OxygeniumActorSpec {
   it should "boot and sync two cliques of 2 nodes" in new Fixture {
     test(2, 2)
   }
@@ -191,11 +191,11 @@ class InterCliqueSyncTest extends AlephiumActorSpec {
     server0.start().futureValue is ()
 
     val currentNetworkId = config.network.networkId
-    currentNetworkId isnot NetworkId.AlephiumMainNet
+    currentNetworkId isnot NetworkId.OxygeniumMainNet
     val modifier: ByteString => ByteString = { data =>
       val message = Message.deserialize(data).rightValue
       Message.serialize(message.payload)(new NetworkConfig {
-        val networkId: NetworkId              = NetworkId.AlephiumMainNet
+        val networkId: NetworkId              = NetworkId.OxygeniumMainNet
         val noPreMineProof: ByteString        = ByteString.empty
         val lemanHardForkTimestamp: TimeStamp = TimeStamp.now()
         val rhoneHardForkTimestamp: TimeStamp = TimeStamp.now()
@@ -235,8 +235,8 @@ class InterCliqueSyncTest extends AlephiumActorSpec {
     val server0 = bootClique(
       1,
       configOverrides = Map(
-        ("alephium.network.ping-frequency", "1 seconds"),
-        ("alephium.network.penalty-frequency", "1 seconds")
+        ("oxygenium.network.ping-frequency", "1 seconds"),
+        ("oxygenium.network.penalty-frequency", "1 seconds")
       )
     ).servers.head
     server0.start().futureValue is ()
@@ -352,8 +352,8 @@ class InterCliqueSyncTest extends AlephiumActorSpec {
     }
 
     val configOverrides = Map[String, Any](
-      ("alephium.mining.job-cache-size-per-chain", 100),
-      ("alephium.consensus.num-zeros-at-least-in-hash", 10)
+      ("oxygenium.mining.job-cache-size-per-chain", 100),
+      ("oxygenium.consensus.num-zeros-at-least-in-hash", 10)
     )
     val clique0 = bootClique(1, configOverrides = configOverrides)
     clique0.start()

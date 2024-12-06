@@ -1,8 +1,8 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/setting/Configs.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/setting/Configs.scala)
 
-The `Configs` object provides utility methods for loading and parsing configuration files for the Alephium project. The object is responsible for loading configuration files for the system, network, and user. It also provides methods for validating and parsing the configuration files.
+The `Configs` object provides utility methods for loading and parsing configuration files for the Oxygenium project. The object is responsible for loading configuration files for the system, network, and user. It also provides methods for validating and parsing the configuration files.
 
-The `Configs` object is implemented as a Scala object, which means that it is a singleton object that can be accessed from anywhere in the codebase. The object is defined in the `org.alephium.flow.setting` package.
+The `Configs` object is implemented as a Scala object, which means that it is a singleton object that can be accessed from anywhere in the codebase. The object is defined in the `org.oxygenium.flow.setting` package.
 
 The `Configs` object provides the following methods:
 
@@ -28,7 +28,7 @@ The `Configs` object provides the following methods:
 
 - `getNodePath(rootPath: Path, networkId: NetworkId): Path`: This method takes a root path and a network ID and returns a `Path` object that represents the node path for the given network ID.
 
-- `updateGenesis(networkId: NetworkId, networkConfig: Config): Config`: This method takes a network ID and a `Config` object that represents a parsed network configuration file. The method updates the network configuration file with the genesis block information if the network ID is AlephiumMainNet.
+- `updateGenesis(networkId: NetworkId, networkConfig: Config): Config`: This method takes a network ID and a `Config` object that represents a parsed network configuration file. The method updates the network configuration file with the genesis block information if the network ID is OxygeniumMainNet.
 
 - `parseConfig(env: Env, rootPath: Path, overwrite: Boolean, predefined: Config): Config`: This method takes an environment object, a root path, a boolean flag indicating whether to overwrite existing files, and a predefined `Config` object. The method parses the configuration files and returns a `Config` object that represents the merged configuration.
 
@@ -38,13 +38,13 @@ The `Configs` object provides the following methods:
 
 - `loadBlockFlow(balances: AVector[Allocation])(implicit groupConfig: GroupConfig, consensusConfig: ConsensusConfig, networkConfig: NetworkConfig): AVector[AVector[Block]]`: This method takes a vector of allocations and returns a vector of blocks. The method generates the genesis block for each group and returns a vector of blocks.
 
-Overall, the `Configs` object provides a set of utility methods for loading and parsing configuration files for the Alephium project. The object is used throughout the project to load and validate configuration files.
+Overall, the `Configs` object provides a set of utility methods for loading and parsing configuration files for the Oxygenium project. The object is used throughout the project to load and validate configuration files.
 ## Questions: 
  1. What is the purpose of this code file?
-- This code file contains the implementation of various functions related to configuration management for the Alephium project.
+- This code file contains the implementation of various functions related to configuration management for the Oxygenium project.
 
 2. What external libraries or dependencies does this code use?
-- This code uses the com.typesafe.config library for parsing and managing configuration files, as well as the org.alephium library for various Alephium-specific functionality.
+- This code uses the com.typesafe.config library for parsing and managing configuration files, as well as the org.oxygenium library for various Oxygenium-specific functionality.
 
 3. What is the purpose of the `loadBlockFlow` function?
-- The `loadBlockFlow` function generates the initial block flow for the Alephium network, including the genesis block and any necessary transactions to allocate balances to initial addresses.
+- The `loadBlockFlow` function generates the initial block flow for the Oxygenium network, including the genesis block and any necessary transactions to allocate balances to initial addresses.

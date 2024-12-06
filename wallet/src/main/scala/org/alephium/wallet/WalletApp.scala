@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet
+package org.oxygenium.wallet
 
 import java.nio.file.Paths
 
@@ -28,12 +28,12 @@ import io.vertx.ext.web._
 import io.vertx.ext.web.handler.CorsHandler
 import sttp.tapir.server.vertx.VertxFutureServerInterpreter._
 
-import org.alephium.http.EndpointSender
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.util.{AVector, Service}
-import org.alephium.wallet.config.WalletConfig
-import org.alephium.wallet.service.WalletService
-import org.alephium.wallet.web._
+import org.oxygenium.http.EndpointSender
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.util.{AVector, Service}
+import org.oxygenium.wallet.config.WalletConfig
+import org.oxygenium.wallet.service.WalletService
+import org.oxygenium.wallet.web._
 
 class WalletApp(config: WalletConfig)(implicit
     val executionContext: ExecutionContext

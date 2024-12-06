@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/macros/src/main/scala/org/alephium/macros/ByteCode.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/macros/src/main/scala/org/oxygenium/macros/ByteCode.scala)
 
 The code defines a Scala macro annotation called `ByteCode`. This annotation can be used to add a `code` method to case classes that return a `Byte` value. The `code` method is added to the case class and returns the `Byte` value of the companion object of the case class. 
 

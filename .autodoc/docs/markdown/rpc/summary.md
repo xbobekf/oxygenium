@@ -1,8 +1,8 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/rpc)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/rpc)
 
-The `.autodoc/docs/json/rpc` folder contains the documentation for the JSON-RPC 2.0 implementation in the Alephium project. JSON-RPC is a remote procedure call (RPC) protocol encoded in JSON, providing a standardized way for clients to interact with the Alephium node.
+The `.autodoc/docs/json/rpc` folder contains the documentation for the JSON-RPC 2.0 implementation in the Oxygenium project. JSON-RPC is a remote procedure call (RPC) protocol encoded in JSON, providing a standardized way for clients to interact with the Oxygenium node.
 
-The implementation is located in the `src` subfolder, within the `org.alephium.rpc.model` package. The `JsonRPC` object defines several case classes and traits that represent JSON-RPC requests, notifications, and responses:
+The implementation is located in the `src` subfolder, within the `org.oxygenium.rpc.model` package. The `JsonRPC` object defines several case classes and traits that represent JSON-RPC requests, notifications, and responses:
 
 - `Request`: Represents a JSON-RPC request containing the method name, parameters, and an ID.
 - `Response`: Represents a JSON-RPC response, which can be either a `Success` or a `Failure`, containing either a result or an error, respectively.
@@ -10,10 +10,10 @@ The implementation is located in the `src` subfolder, within the `org.alephium.r
 
 The `JsonRPC` object also provides helper methods for working with JSON objects, such as `paramsCheck` for validating parameter objects and `versionSet` for adding the JSON-RPC version to a JSON object.
 
-Here's an example of how the `JsonRPC` object might be used in the Alephium project:
+Here's an example of how the `JsonRPC` object might be used in the Oxygenium project:
 
 ```scala
-import org.alephium.rpc.model.JsonRPC
+import org.oxygenium.rpc.model.JsonRPC
 
 // Define a handler function for the "echo" method
 val handler: JsonRPC.Handler = Map(
@@ -37,4 +37,4 @@ val responseJson = upickle.default.write(response)
 
 In this example, we define a handler function for the "echo" method, which simply returns the input string. We then parse a JSON-RPC request, run it with the handler, and serialize the response to JSON.
 
-This implementation of JSON-RPC allows the Alephium project to provide a consistent and standardized interface for clients to interact with the Alephium node. Clients can send JSON-RPC requests to the node, which are then handled by the `Handler` functions defined in the `JsonRPC` object. The `JsonRPC` object is responsible for parsing the requests, validating them, and returning the appropriate response.
+This implementation of JSON-RPC allows the Oxygenium project to provide a consistent and standardized interface for clients to interact with the Oxygenium node. Clients can send JSON-RPC requests to the node, which are then handled by the `Handler` functions defined in the `JsonRPC` object. The `JsonRPC` object is responsible for parsing the requests, validating them, and returning the appropriate response.

@@ -1,15 +1,15 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/protocol)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/protocol)
 
-The `.autodoc/docs/json/protocol` folder is a crucial part of the Alephium project, providing essential functionality for various aspects such as managing the Alephium cryptocurrency, handling message serialization and deserialization, and managing the mining process. The code is organized into the `org.alephium.protocol` package, which includes several files and subfolders, each with a specific purpose.
+The `.autodoc/docs/json/protocol` folder is a crucial part of the Oxygenium project, providing essential functionality for various aspects such as managing the Oxygenium cryptocurrency, handling message serialization and deserialization, and managing the mining process. The code is organized into the `org.oxygenium.protocol` package, which includes several files and subfolders, each with a specific purpose.
 
-For instance, the `ALPH.scala` file contains constants and utility functions related to the Alephium cryptocurrency, allowing for easy maintenance and updates. It can be used throughout the project for currency conversions and accessing important constants:
+For instance, the `ALPH.scala` file contains constants and utility functions related to the Oxygenium cryptocurrency, allowing for easy maintenance and updates. It can be used throughout the project for currency conversions and accessing important constants:
 
 ```scala
 val amountInWei = ALPH.alph(10)
 val amountInNanoAlph = ALPH.nanoAlph(1000)
 ```
 
-The `DiscoveryVersion.scala` and `WireVersion.scala` files define case classes and objects for representing the version numbers of the discovery and wire protocols used by the Alephium network, ensuring compatibility between nodes:
+The `DiscoveryVersion.scala` and `WireVersion.scala` files define case classes and objects for representing the version numbers of the discovery and wire protocols used by the Oxygenium network, ensuring compatibility between nodes:
 
 ```scala
 val discoveryVersion = DiscoveryVersion(1)
@@ -36,10 +36,10 @@ object MyObject {
 }
 ```
 
-The `message` subfolder contains code for defining the message format and handling the serialization and deserialization of messages exchanged between nodes in the Alephium network, which is essential for node communication:
+The `message` subfolder contains code for defining the message format and handling the serialization and deserialization of messages exchanged between nodes in the Oxygenium network, which is essential for node communication:
 
 ```scala
-import org.alephium.protocol.message.{Message, Payload}
+import org.oxygenium.protocol.message.{Message, Payload}
 
 case class MyPayload(data: String) extends Payload
 
@@ -65,4 +65,4 @@ val isValid = PoW.checkWork(flowData, target)
 val isMined = PoW.checkMined(flowData, chainIndex)
 ```
 
-In summary, the code in the `org.alephium.protocol` package plays a vital role in the Alephium project by providing essential functionality for managing the cryptocurrency, handling message serialization and deserialization, and managing the mining process.
+In summary, the code in the `org.oxygenium.protocol` package plays a vital role in the Oxygenium project by providing essential functionality for managing the cryptocurrency, handling message serialization and deserialization, and managing the mining process.

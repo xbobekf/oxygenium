@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import java.math.BigInteger
 
 import akka.util.ByteString
 
-import org.alephium.io.IOError
-import org.alephium.protocol.ALPH
-import org.alephium.protocol.model._
-import org.alephium.serde.SerdeError
-import org.alephium.util.{Bytes, Hex, TimeStamp, U256}
+import org.oxygenium.io.IOError
+import org.oxygenium.protocol.ALPH
+import org.oxygenium.protocol.model._
+import org.oxygenium.serde.SerdeError
+import org.oxygenium.util.{Bytes, Hex, TimeStamp, U256}
 
 // scalastyle:off number.of.types
 trait ExeFailure extends Product {

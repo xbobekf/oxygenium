@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/TimeStamp.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/TimeStamp.scala)
 
-The code defines a TimeStamp class and a companion object in the `org.alephium.util` package. The TimeStamp class is a value class that takes a Long value representing the number of milliseconds since the Unix epoch (January 1, 1970, 00:00:00 UTC) and provides methods to perform arithmetic operations on it. The companion object provides factory methods to create TimeStamp instances and a few utility methods.
+The code defines a TimeStamp class and a companion object in the `org.oxygenium.util` package. The TimeStamp class is a value class that takes a Long value representing the number of milliseconds since the Unix epoch (January 1, 1970, 00:00:00 UTC) and provides methods to perform arithmetic operations on it. The companion object provides factory methods to create TimeStamp instances and a few utility methods.
 
 The TimeStamp class provides methods to add or subtract a given number of milliseconds, seconds, minutes, or hours to the current timestamp. These methods return an Option[TimeStamp] which is None if the resulting timestamp is negative, or Some[TimeStamp] otherwise. There are also corresponding methods with the suffix "Unsafe" that return a TimeStamp instance directly, assuming that the resulting timestamp is non-negative.
 
@@ -12,10 +12,10 @@ The TimeStamp class also provides methods to calculate the difference between tw
 
 The companion object provides a factory method to create a TimeStamp instance from a Long value representing the number of milliseconds since the Unix epoch. This method returns an Option[TimeStamp] which is None if the input value is negative, or Some[TimeStamp] otherwise. There is also a corresponding "unsafe" method that creates a TimeStamp instance directly, assuming that the input value is non-negative. The companion object also provides a zero timestamp and a maximum timestamp value.
 
-Overall, this code provides a convenient way to perform arithmetic operations on timestamps and durations, and to compare timestamps. It can be used in any part of the Alephium project that requires timestamp manipulation, such as the consensus algorithm or the transaction pool. Here is an example of how to use the TimeStamp class:
+Overall, this code provides a convenient way to perform arithmetic operations on timestamps and durations, and to compare timestamps. It can be used in any part of the Oxygenium project that requires timestamp manipulation, such as the consensus algorithm or the transaction pool. Here is an example of how to use the TimeStamp class:
 
 ```
-import org.alephium.util._
+import org.oxygenium.util._
 
 val ts1 = TimeStamp.now()
 val ts2 = ts1.plusSeconds(10).getOrElse(ts1)

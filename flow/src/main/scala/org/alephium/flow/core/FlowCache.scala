@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
-import org.alephium.flow.core.BlockFlowState.BlockCache
-import org.alephium.flow.model.BlockState
-import org.alephium.protocol.config.BrokerConfig
-import org.alephium.protocol.model.{Block, BlockHash, BlockHeader}
-import org.alephium.util.{RWLock, ValueSortedMap}
+import org.oxygenium.flow.core.BlockFlowState.BlockCache
+import org.oxygenium.flow.model.BlockState
+import org.oxygenium.protocol.config.BrokerConfig
+import org.oxygenium.protocol.model.{Block, BlockHash, BlockHeader}
+import org.oxygenium.util.{RWLock, ValueSortedMap}
 
 object FlowCache {
-  import org.alephium.util.Bytes.byteStringOrdering
+  import org.oxygenium.util.Bytes.byteStringOrdering
   implicit val hashOrdering: Ordering[BlockHash] = Ordering.by(_.bytes)
 
   implicit val blockCacheOrdering: Ordering[BlockCache] = Ordering.by(_.blockTime)

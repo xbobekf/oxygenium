@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/network/TcpController.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/network/TcpController.scala)
 
-The `TcpController` class is part of the Alephium project and is responsible for managing TCP connections between nodes in the network. It is an Akka actor that listens for incoming connections and manages outbound connections to other nodes. 
+The `TcpController` class is part of the Oxygenium project and is responsible for managing TCP connections between nodes in the network. It is an Akka actor that listens for incoming connections and manages outbound connections to other nodes. 
 
 The `TcpController` class has several commands that it can receive. The `Start` command is used to start the TCP listener and takes an `ActorRef` to a bootstrapper. The `ConnectTo` command is used to initiate an outbound connection to a remote node and takes the remote node's address and an `ActorRefT[Tcp.Event]` to forward events to. The `ConnectionConfirmed` and `ConnectionDenied` commands are used to confirm or deny a connection request, respectively. The `WorkFor` command is used to switch the `TcpController` to work for another actor.
 
@@ -16,10 +16,10 @@ When the `TcpController` receives a `Tcp.Connected` event, it checks if the conn
 
 When the `TcpController` receives a `MisbehaviorManager.PeerBanned` event, it removes any connections to the banned peer.
 
-Overall, the `TcpController` class is an important part of the Alephium project's networking infrastructure. It manages TCP connections between nodes in the network and ensures that connections are properly confirmed and denied.
+Overall, the `TcpController` class is an important part of the Oxygenium project's networking infrastructure. It manages TCP connections between nodes in the network and ensures that connections are properly confirmed and denied.
 ## Questions: 
  1. What is the purpose of this code?
-- This code is a part of the alephium project and it is responsible for managing TCP connections between nodes in the network.
+- This code is a part of the oxygenium project and it is responsible for managing TCP connections between nodes in the network.
 
 2. What external libraries or dependencies does this code use?
 - This code uses Akka and Scala standard libraries.

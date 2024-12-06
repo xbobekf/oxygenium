@@ -1,14 +1,14 @@
-[View code on GitHub](https://github.com/alephium/alephium/io/src/main/scala/org/alephium/io/Cache.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/io/src/main/scala/org/oxygenium/io/Cache.scala)
 
-This file contains code for a cache implementation used in the Alephium project. The cache is defined as a sealed trait, which means that it can only be extended within the same file. The cache has three possible states: Cached, Modified, and Removed. 
+This file contains code for a cache implementation used in the Oxygenium project. The cache is defined as a sealed trait, which means that it can only be extended within the same file. The cache has three possible states: Cached, Modified, and Removed. 
 
 The Cached state represents a value that has been retrieved from the cache and exists in the underlying data structure. The Modified state represents a value that has been inserted, updated, or removed from the cache. The Inserted state represents a value that has been added to the cache, the Removed state represents a value that has been removed from the cache, and the Updated state represents a value that has been updated in the cache. 
 
 Each state has its own properties. The Cached state extends the Cache trait and the KeyExistedInUnderlying and ValueExists traits. The KeyExistedInUnderlying trait indicates that the key exists in the underlying data structure, and the ValueExists trait provides access to the value. The Modified state extends the Cache trait and either the ValueExists or KeyExistedInUnderlying trait, depending on the type of modification. 
 
-This cache implementation can be used to store and retrieve data in the Alephium project. For example, it could be used to cache frequently accessed data to improve performance. The cache could be implemented using a variety of data structures, such as a hash table or a binary search tree, depending on the specific needs of the project. 
+This cache implementation can be used to store and retrieve data in the Oxygenium project. For example, it could be used to cache frequently accessed data to improve performance. The cache could be implemented using a variety of data structures, such as a hash table or a binary search tree, depending on the specific needs of the project. 
 
-Here is an example of how the cache could be used in the Alephium project:
+Here is an example of how the cache could be used in the Oxygenium project:
 
 ```
 val cache = new Cache[String]()

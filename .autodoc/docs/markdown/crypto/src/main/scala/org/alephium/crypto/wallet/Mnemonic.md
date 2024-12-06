@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/crypto/src/main/scala/org/alephium/crypto/wallet/Mnemonic.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/crypto/src/main/scala/org/oxygenium/crypto/wallet/Mnemonic.scala)
 
 The `Mnemonic` object and its accompanying `Mnemonic` case class provide functionality for generating and validating mnemonic phrases, which are used to generate cryptographic keys for wallets. 
 

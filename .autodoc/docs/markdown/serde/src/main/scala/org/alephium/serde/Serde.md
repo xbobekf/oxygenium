@@ -1,13 +1,13 @@
-[View code on GitHub](https://github.com/alephium/alephium/serde/src/main/scala/org/alephium/serde/Serde.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/serde/src/main/scala/org/oxygenium/serde/Serde.scala)
 
-This code defines a serialization and deserialization library for the Alephium project. The library is designed to convert data structures into a binary format (ByteString) and vice versa. It provides a set of predefined serializers and deserializers for common data types, such as Int, Long, Boolean, ByteString, and more. Additionally, it supports more complex data structures like Option, Either, and AVector.
+This code defines a serialization and deserialization library for the Oxygenium project. The library is designed to convert data structures into a binary format (ByteString) and vice versa. It provides a set of predefined serializers and deserializers for common data types, such as Int, Long, Boolean, ByteString, and more. Additionally, it supports more complex data structures like Option, Either, and AVector.
 
 The main trait `Serde[T]` is a combination of `Serializer[T]` and `Deserializer[T]`. It provides methods for transforming data between its original type `T` and its serialized form `ByteString`. The library also includes a set of utility methods for composing and transforming serializers and deserializers, such as `xmap`, `xfmap`, `xomap`, and `validate`.
 
 Here's an example of how to use the library:
 
 ```scala
-import org.alephium.serde._
+import org.oxygenium.serde._
 import akka.util.ByteString
 
 // Define a custom data type
@@ -31,7 +31,7 @@ val serialized: ByteString = Serde.serialize(person)
 val deserialized: SerdeResult[Person] = Serde.deserialize[Person](serialized)
 ```
 
-This library is essential for data exchange and storage in the Alephium project, as it allows for efficient and consistent serialization and deserialization of data structures.
+This library is essential for data exchange and storage in the Oxygenium project, as it allows for efficient and consistent serialization and deserialization of data structures.
 ## Questions: 
  1. **Question**: What is the purpose of the `Serde` trait and how is it used in this code?
    **Answer**: The `Serde` trait is a combination of the `Serializer` and `Deserializer` traits, providing methods for both serialization and deserialization of data. It is used to define various serialization and deserialization implementations for different data types, such as `Boolean`, `Byte`, `Int`, `Long`, `I256`, `U256`, `U32`, and `ByteString`.

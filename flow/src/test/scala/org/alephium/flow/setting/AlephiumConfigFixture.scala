@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.setting
+package org.oxygenium.flow.setting
 
 import scala.jdk.CollectionConverters._
 
 import com.typesafe.config.{ConfigFactory, ConfigValueFactory}
 
-import org.alephium.flow.setting._
-import org.alephium.protocol.{ALPH, PrivateKey, PublicKey}
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{Address, GroupIndex}
-import org.alephium.protocol.vm.{LogConfig, NodeIndexesConfig}
-import org.alephium.util.{AVector, Duration, Env, Number, U256}
+import org.oxygenium.flow.setting._
+import org.oxygenium.protocol.{ALPH, PrivateKey, PublicKey}
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{Address, GroupIndex}
+import org.oxygenium.protocol.vm.{LogConfig, NodeIndexesConfig}
+import org.oxygenium.util.{AVector, Duration, Env, Number, U256}
 
-trait AlephiumConfigFixture extends RandomPortsConfigFixture {
+trait OxygeniumConfigFixture extends RandomPortsConfigFixture {
 
   val configValues: Map[String, Any] = Map.empty
 
@@ -53,7 +53,7 @@ trait AlephiumConfigFixture extends RandomPortsConfigFixture {
   }
   lazy val newConfig = buildNewConfig()
 
-  lazy val groups0 = newConfig.getInt("alephium.broker.groups")
+  lazy val groups0 = newConfig.getInt("oxygenium.broker.groups")
 
   lazy val groupConfig: GroupConfig = new GroupConfig { override def groups: Int = groups0 }
 
@@ -64,8 +64,8 @@ trait AlephiumConfigFixture extends RandomPortsConfigFixture {
       (privateKey, publicKey, genesisBalance)
     }
 
-  implicit lazy val config: AlephiumConfig = {
-    val tmp = AlephiumConfig
+  implicit lazy val config: OxygeniumConfig = {
+    val tmp = OxygeniumConfig
       .load(newConfig)
 
     val allocations = genesisKeys.map { case (_, pubKey, amount) =>

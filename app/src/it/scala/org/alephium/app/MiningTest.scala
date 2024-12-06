@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
-import org.alephium.api.model._
-import org.alephium.flow.mining.Miner
-import org.alephium.protocol.model.nonCoinbaseMinGasFee
-import org.alephium.util._
+import org.oxygenium.api.model._
+import org.oxygenium.flow.mining.Miner
+import org.oxygenium.protocol.model.nonCoinbaseMinGasFee
+import org.oxygenium.util._
 
-class MiningTest extends AlephiumActorSpec {
+class MiningTest extends OxygeniumActorSpec {
   class Fixture(numNodes: Int) extends CliqueFixture {
     val clique = bootClique(nbOfNodes = numNodes)
     clique.start()

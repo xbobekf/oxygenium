@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
-import org.alephium.flow.FlowFixture
-import org.alephium.io.IOError
-import org.alephium.protocol.model._
-import org.alephium.util.{AlephiumSpec, AVector, Bytes, Duration, TimeStamp}
+import org.oxygenium.flow.FlowFixture
+import org.oxygenium.io.IOError
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{OxygeniumSpec, AVector, Bytes, Duration, TimeStamp}
 
-class BlockFlowStateSpec extends AlephiumSpec {
+class BlockFlowStateSpec extends OxygeniumSpec {
   trait Fixture extends FlowFixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
   }
 
   it should "calculate all the hashes for state update" in new Fixture {

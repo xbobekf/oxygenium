@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.app
+package org.oxygenium.app
 
-import org.alephium.api.ApiError
-import org.alephium.api.model.{TransactionTemplate => _, _}
-import org.alephium.flow.gasestimation._
-import org.alephium.flow.validation.{InvalidSignature, NotEnoughSignature}
-import org.alephium.json.Json._
-import org.alephium.protocol.{Hash, PrivateKey, Signature, SignatureSchema}
-import org.alephium.protocol.model._
-import org.alephium.protocol.vm.GasBox
-import org.alephium.serde.{deserialize, serialize}
-import org.alephium.util._
-import org.alephium.wallet.api.model._
+import org.oxygenium.api.ApiError
+import org.oxygenium.api.model.{TransactionTemplate => _, _}
+import org.oxygenium.flow.gasestimation._
+import org.oxygenium.flow.validation.{InvalidSignature, NotEnoughSignature}
+import org.oxygenium.json.Json._
+import org.oxygenium.protocol.{Hash, PrivateKey, Signature, SignatureSchema}
+import org.oxygenium.protocol.model._
+import org.oxygenium.protocol.vm.GasBox
+import org.oxygenium.serde.{deserialize, serialize}
+import org.oxygenium.util._
+import org.oxygenium.wallet.api.model._
 
-class MultisigTest extends AlephiumActorSpec {
+class MultisigTest extends OxygeniumActorSpec {
 
   it should "handle multisig with private keys" in new MultisigFixture {
 

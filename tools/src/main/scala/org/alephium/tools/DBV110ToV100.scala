@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,20 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.tools
+package org.oxygenium.tools
 
 import java.nio.charset.StandardCharsets
 
 import akka.util.ByteString
 
-import org.alephium.flow.io.{DatabaseVersion, Storages}
-import org.alephium.io.RocksDBSource.ColumnFamily
-import org.alephium.protocol.Hash
-import org.alephium.serde.serialize
-import org.alephium.util.{Bytes, Files}
+import org.oxygenium.flow.io.{DatabaseVersion, Storages}
+import org.oxygenium.io.RocksDBSource.ColumnFamily
+import org.oxygenium.protocol.Hash
+import org.oxygenium.serde.serialize
+import org.oxygenium.util.{Bytes, Files}
 
 object DBV110ToV100 extends App {
-  private val rootPath      = Files.homeDir.resolve(".alephium/mainnet")
+  private val rootPath      = Files.homeDir.resolve(".oxygenium/mainnet")
   private val brokerCfBytes = ColumnFamily.Broker.name.getBytes(StandardCharsets.UTF_8)
   private val allCfBytes    = ColumnFamily.All.name.getBytes(StandardCharsets.UTF_8)
 

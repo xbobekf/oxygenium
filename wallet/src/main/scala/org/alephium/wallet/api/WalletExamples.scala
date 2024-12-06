@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.wallet.api
+package org.oxygenium.wallet.api
 
 import sttp.tapir.EndpointIO.Example
 
-import org.alephium.api.EndpointsExamples
-import org.alephium.api.model.Amount
-import org.alephium.crypto.wallet.Mnemonic
-import org.alephium.protocol.PublicKey
-import org.alephium.protocol.config.GroupConfig
-import org.alephium.protocol.model.{minimalGas, nonCoinbaseMinGasPrice, GroupIndex}
-import org.alephium.util.{AVector, Hex}
-import org.alephium.wallet.api.model._
+import org.oxygenium.api.EndpointsExamples
+import org.oxygenium.api.model.Amount
+import org.oxygenium.crypto.wallet.Mnemonic
+import org.oxygenium.protocol.PublicKey
+import org.oxygenium.protocol.config.GroupConfig
+import org.oxygenium.protocol.model.{minimalGas, nonCoinbaseMinGasPrice, GroupIndex}
+import org.oxygenium.util.{AVector, Hex}
+import org.oxygenium.wallet.api.model._
 
 @SuppressWarnings(Array("org.wartremover.warts.OptionPartial"))
 trait WalletExamples extends EndpointsExamples {

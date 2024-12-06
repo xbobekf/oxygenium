@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/core/BlockHashPool.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/core/BlockHashPool.scala)
 
 This file defines a trait called `BlockHashPool` and an object called `BlockHashPool` that provides some utility functions. The `BlockHashPool` trait defines a set of methods that can be used to interact with a pool of block hashes. 
 
@@ -6,7 +6,7 @@ The `BlockHashPool` trait provides methods to retrieve information about a block
 
 The `BlockHashPool` object provides two utility functions that are used to compare block hashes based on their weight and height. These functions are used to order block hashes in a consistent way.
 
-This code is likely used in the larger Alephium project to manage a pool of block hashes. It provides a set of methods that can be used to retrieve information about block hashes and compare them. This information can be used to validate blocks and determine the best chain. 
+This code is likely used in the larger Oxygenium project to manage a pool of block hashes. It provides a set of methods that can be used to retrieve information about block hashes and compare them. This information can be used to validate blocks and determine the best chain. 
 
 Here is an example of how this code might be used:
 

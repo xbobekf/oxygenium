@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
 import akka.util.ByteString
 
-import org.alephium.protocol.model.ContractId
-import org.alephium.serde.{_deserialize => decode, serialize => encode, _}
-import org.alephium.util
-import org.alephium.util._
+import org.oxygenium.protocol.model.ContractId
+import org.oxygenium.serde.{_deserialize => decode, serialize => encode, _}
+import org.oxygenium.util
+import org.oxygenium.util._
 
 sealed trait Val extends Any {
   def tpe: Val.Type

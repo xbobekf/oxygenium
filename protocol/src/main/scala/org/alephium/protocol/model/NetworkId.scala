@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
-import org.alephium.serde._
+import org.oxygenium.serde._
 
 final case class NetworkId(id: Byte) extends AnyVal {
   // network type will only be used to load the correct config file
@@ -36,9 +36,9 @@ final case class NetworkId(id: Byte) extends AnyVal {
 }
 
 object NetworkId {
-  val AlephiumMainNet: NetworkId = NetworkId(0)
-  val AlephiumTestNet: NetworkId = NetworkId(1)
-  val AlephiumDevNet: NetworkId  = NetworkId(2)
+  val OxygeniumMainNet: NetworkId = NetworkId(0)
+  val OxygeniumTestNet: NetworkId = NetworkId(1)
+  val OxygeniumDevNet: NetworkId  = NetworkId(2)
 
   implicit val serde: Serde[NetworkId] = byteSerde.xmap(NetworkId.apply, _.id)
 

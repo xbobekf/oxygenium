@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/OpenApiWriters.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/OpenApiWriters.scala)
 
-The code in this file is part of the Alephium project and provides functionality for generating OpenAPI documentation from the Alephium API. OpenAPI is a widely used standard for describing RESTful APIs, which allows developers to understand and interact with the API more easily.
+The code in this file is part of the Oxygenium project and provides functionality for generating OpenAPI documentation from the Oxygenium API. OpenAPI is a widely used standard for describing RESTful APIs, which allows developers to understand and interact with the API more easily.
 
 The main function in this file is `openApiJson`, which takes an `OpenAPI` object and a `dropAuth` boolean flag as input. It generates a JSON string representing the OpenAPI documentation. If `dropAuth` is set to true, the security fields in the OpenAPI object are removed before generating the JSON string.
 
@@ -11,16 +11,16 @@ Additionally, the file defines a number of implicit `Writer` instances for vario
 Here's an example of how this code might be used in the larger project:
 
 ```scala
-import org.alephium.api.OpenAPIWriters._
+import org.oxygenium.api.OpenAPIWriters._
 
-// Assume we have an OpenAPI object representing the Alephium API
+// Assume we have an OpenAPI object representing the Oxygenium API
 val openAPI: OpenAPI = ...
 
 // Generate the OpenAPI JSON documentation without security fields
 val openApiJsonString: String = openApiJson(openAPI, dropAuth = true)
 ```
 
-This code would generate a JSON string representing the OpenAPI documentation for the Alephium API, with the security fields removed.
+This code would generate a JSON string representing the OpenAPI documentation for the Oxygenium API, with the security fields removed.
 ## Questions: 
  1. **Question:** What is the purpose of the `openApiJson` function and what does the `dropAuth` parameter do?
 

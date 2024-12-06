@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/util/src/main/scala/org/alephium/util/OptionF.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/util/src/main/scala/org/oxygenium/util/OptionF.scala)
 
 The code above is a Scala object called `OptionF` that provides two functions for working with `Option` types. The first function, `fold`, takes an `IterableOnce` collection of elements of type `E`, an initial value of type `R`, and a function `op` that takes a value of type `R` and an element of type `E` and returns an `Option` of type `R`. The function applies `op` to each element of the collection, starting with the initial value, and accumulates the results. If any of the intermediate results is `None`, the function returns `None`. Otherwise, it returns `Some(result)`, where `result` is the final accumulated value.
 

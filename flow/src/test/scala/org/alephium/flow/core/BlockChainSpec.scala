@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.core
+package org.oxygenium.flow.core
 
 import java.math.BigInteger
 
@@ -24,17 +24,17 @@ import scala.util.Random
 import org.scalatest.BeforeAndAfter
 import org.scalatest.EitherValues._
 
-import org.alephium.flow.core.BlockChain.{TxIndex, TxIndexes, TxStatus}
-import org.alephium.flow.io.StoragesFixture
-import org.alephium.flow.setting.AlephiumConfigFixture
-import org.alephium.io.IOError
-import org.alephium.protocol.{ALPH, Hash}
-import org.alephium.protocol.model._
-import org.alephium.util.{AlephiumSpec, AVector, Bytes, Duration, TimeStamp}
+import org.oxygenium.flow.core.BlockChain.{TxIndex, TxIndexes, TxStatus}
+import org.oxygenium.flow.io.StoragesFixture
+import org.oxygenium.flow.setting.OxygeniumConfigFixture
+import org.oxygenium.io.IOError
+import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{OxygeniumSpec, AVector, Bytes, Duration, TimeStamp}
 
 // scalastyle:off file.size.limit
-class BlockChainSpec extends AlephiumSpec with BeforeAndAfter {
-  trait Fixture extends AlephiumConfigFixture with NoIndexModelGeneratorsLike {
+class BlockChainSpec extends OxygeniumSpec with BeforeAndAfter {
+  trait Fixture extends OxygeniumConfigFixture with NoIndexModelGeneratorsLike {
     lazy val genesis =
       Block.genesis(ChainIndex.unsafe(0, 0), AVector.empty)(brokerConfig, consensusConfigs.mainnet)
     lazy val blockGen0 = blockGenOf(AVector.fill(brokerConfig.depsNum)(genesis.hash), Hash.zero)
@@ -172,7 +172,7 @@ class BlockChainSpec extends AlephiumSpec with BeforeAndAfter {
   }
 
   it should "return correct tx status for forks 0" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val shortChain = chainGenOf(2, genesis).sample.get
     val longChain  = chainGenOf(4, genesis).sample.get
@@ -217,7 +217,7 @@ class BlockChainSpec extends AlephiumSpec with BeforeAndAfter {
   }
 
   it should "return correct tx status for forks 1" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val longChain = chainGenOf(4, genesis).sample.get
     val shortChain = chainGenOf(2, genesis).sample.get.mapWithIndex { case (block, index) =>
@@ -398,7 +398,7 @@ class BlockChainSpec extends AlephiumSpec with BeforeAndAfter {
 
   it should "update mainchain hash based on heights instead of weight" in new Fixture {
     override val configValues: Map[String, Any] = Map(
-      ("alephium.consensus.num-zeros-at-least-in-hash", 10)
+      ("oxygenium.consensus.num-zeros-at-least-in-hash", 10)
     )
 
     val longChain   = chainGenOf(3, genesis).sample.get
@@ -644,7 +644,7 @@ class BlockChainSpec extends AlephiumSpec with BeforeAndAfter {
   }
 
   it should "fix hash indexing" in new Fixture {
-    override val configValues: Map[String, Any] = Map(("alephium.broker.broker-num", 1))
+    override val configValues: Map[String, Any] = Map(("oxygenium.broker.broker-num", 1))
 
     val shortChain = chainGenOf(2, genesis).sample.get
     val longChain  = chainGenOf(4, genesis).sample.get

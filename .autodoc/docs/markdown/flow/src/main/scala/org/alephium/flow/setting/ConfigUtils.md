@@ -1,6 +1,6 @@
-[View code on GitHub](https://github.com/alephium/alephium/flow/src/main/scala/org/alephium/flow/setting/ConfigUtils.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/flow/src/main/scala/org/oxygenium/flow/setting/ConfigUtils.scala)
 
-The `ConfigUtils` object provides utility functions for parsing and reading configuration values used in the Alephium project. The object contains several implicit value readers that allow for the conversion of configuration values to their corresponding types. 
+The `ConfigUtils` object provides utility functions for parsing and reading configuration values used in the Oxygenium project. The object contains several implicit value readers that allow for the conversion of configuration values to their corresponding types. 
 
 The `parseMiners` function takes an optional sequence of miner addresses as input and returns an `Either` object containing either a `ConfigException` or an optional `AVector` of `Address.Asset` objects. The function first checks if the input sequence is defined and then calls the `parseAddresses` function to parse the addresses. If the parsing is successful, the function returns an `Option` containing the parsed addresses. Otherwise, it returns a `ConfigException` with an error message.
 
@@ -16,10 +16,10 @@ The `allocationAmountReader` implicit value reader allows for the conversion of 
 
 The `timeStampReader` implicit value reader allows for the conversion of a long integer to a `TimeStamp` object. The function first attempts to create a `TimeStamp` object using the `TimeStamp.from` function. If the creation is successful, the function returns the `TimeStamp` object. Otherwise, it throws a `ConfigException` with an error message. 
 
-Overall, the `ConfigUtils` object provides a set of utility functions for parsing and reading configuration values used in the Alephium project. These functions are used throughout the project to ensure that configuration values are properly formatted and validated.
+Overall, the `ConfigUtils` object provides a set of utility functions for parsing and reading configuration values used in the Oxygenium project. These functions are used throughout the project to ensure that configuration values are properly formatted and validated.
 ## Questions: 
  1. What is the purpose of this code file?
-- This code file contains utility functions and implicit value readers for parsing configuration values related to mining and network settings in the Alephium project.
+- This code file contains utility functions and implicit value readers for parsing configuration values related to mining and network settings in the Oxygenium project.
 
 2. What is the significance of the `ConfigException` type used in this code?
 - The `ConfigException` type is used to represent errors that can occur during the parsing of configuration values. It is thrown when there is an issue with the format or content of a configuration value.

@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.model
+package org.oxygenium.protocol.model
 
 import scala.annotation.tailrec
 
-import org.alephium.protocol.{ALPH, Hash}
-import org.alephium.protocol.config.{ConsensusConfig, GroupConfig}
-import org.alephium.protocol.mining.PoW
-import org.alephium.protocol.model.BlockHash
-import org.alephium.serde.{u256Serde => _, _}
-import org.alephium.util.{AVector, TimeStamp, U256}
+import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.config.{ConsensusConfig, GroupConfig}
+import org.oxygenium.protocol.mining.PoW
+import org.oxygenium.protocol.model.BlockHash
+import org.oxygenium.serde.{u256Serde => _, _}
+import org.oxygenium.util.{AVector, TimeStamp, U256}
 
 final case class BlockHeader(
     nonce: Nonce,

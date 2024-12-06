@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.flow.validation
+package org.oxygenium.flow.validation
 
 import java.math.BigInteger
 
@@ -22,15 +22,15 @@ import org.scalacheck.Gen
 import org.scalatest.Assertion
 import org.scalatest.EitherValues._
 
-import org.alephium.crypto.Blake3
-import org.alephium.flow.{AlephiumFlowSpec, FlowFixture}
-import org.alephium.flow.setting.ConsensusSetting
-import org.alephium.protocol.{ALPH, Hash}
-import org.alephium.protocol.model._
-import org.alephium.serde.intSerde
-import org.alephium.util.{AVector, Duration, TimeStamp}
+import org.oxygenium.crypto.Blake3
+import org.oxygenium.flow.{OxygeniumFlowSpec, FlowFixture}
+import org.oxygenium.flow.setting.ConsensusSetting
+import org.oxygenium.protocol.{ALPH, Hash}
+import org.oxygenium.protocol.model._
+import org.oxygenium.serde.intSerde
+import org.oxygenium.util.{AVector, Duration, TimeStamp}
 
-class HeaderValidationSpec extends AlephiumFlowSpec with NoIndexModelGeneratorsLike {
+class HeaderValidationSpec extends OxygeniumFlowSpec with NoIndexModelGeneratorsLike {
   trait Fixture {
     def passCheck[T](result: HeaderValidationResult[T]): Assertion = {
       result.isRight is true
@@ -141,9 +141,9 @@ class HeaderValidationSpec extends AlephiumFlowSpec with NoIndexModelGeneratorsL
     def rhoneHardForkTimestamp: TimeStamp = TimeStamp.now()
 
     override val configValues: Map[String, Any] = Map(
-      ("alephium.broker.broker-num", 1),
-      ("alephium.consensus.num-zeros-at-least-in-hash", 1),
-      ("alephium.network.rhone-hard-fork-timestamp", rhoneHardForkTimestamp.millis)
+      ("oxygenium.broker.broker-num", 1),
+      ("oxygenium.consensus.num-zeros-at-least-in-hash", 1),
+      ("oxygenium.network.rhone-hard-fork-timestamp", rhoneHardForkTimestamp.millis)
     )
 
     val chainIndex = ChainIndex.unsafe(1, 2)

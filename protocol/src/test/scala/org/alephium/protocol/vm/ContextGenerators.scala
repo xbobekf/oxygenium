@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.protocol.vm
+package org.oxygenium.protocol.vm
 
-import org.alephium.protocol.Signature
-import org.alephium.protocol.config.{GroupConfig, NetworkConfig}
-import org.alephium.protocol.model._
-import org.alephium.util.{AVector, TimeStamp}
+import org.oxygenium.protocol.Signature
+import org.oxygenium.protocol.config.{GroupConfig, NetworkConfig}
+import org.oxygenium.protocol.model._
+import org.oxygenium.util.{AVector, TimeStamp}
 
 trait ContextGenerators extends VMFactory with NoIndexModelGenerators {
   def genBlockEnv()(implicit networkConfig: NetworkConfig): BlockEnv = {
@@ -27,7 +27,7 @@ trait ContextGenerators extends VMFactory with NoIndexModelGenerators {
     val chainIndex = ChainIndex(groupIndex, groupIndex)
     BlockEnv(
       chainIndex,
-      NetworkId.AlephiumDevNet,
+      NetworkId.OxygeniumDevNet,
       TimeStamp.now(),
       Target.Max,
       Some(BlockHash.generate)

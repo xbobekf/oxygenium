@@ -1,4 +1,4 @@
-[View code on GitHub](https://github.com/alephium/alephium/api/src/main/scala/org/alephium/api/model/CounterRange.scala)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/api/src/main/scala/org/oxygenium/api/model/CounterRange.scala)
 
 This file contains a Scala case class called `CounterRange` and a companion object with a custom `Validator` for validating instances of the case class. 
 
@@ -8,7 +8,7 @@ The companion object contains a `MaxCounterRange` constant, which is set to 100.
 
 The `validator` field is a custom `Validator` for validating instances of the `CounterRange` case class. It checks that the `start` field is not negative, and if `limitOpt` is present, it checks that it is larger than 0 and not larger than `MaxCounterRange`. If `limitOpt` is not present, it checks that `start` is smaller than `Int.MaxValue - MaxCounterRange`. 
 
-This code is likely used in the larger Alephium project to validate user input related to counters, such as when querying a database for a range of values. The `CounterRange` case class provides a convenient way to represent a range of counter values, while the custom `Validator` ensures that the input is valid and within acceptable limits. 
+This code is likely used in the larger Oxygenium project to validate user input related to counters, such as when querying a database for a range of values. The `CounterRange` case class provides a convenient way to represent a range of counter values, while the custom `Validator` ensures that the input is valid and within acceptable limits. 
 
 Example usage:
 

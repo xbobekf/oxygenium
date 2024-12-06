@@ -1,5 +1,5 @@
-// Copyright 2018 The Alephium Authors
-// This file is part of the alephium project.
+// Copyright 2018 The Oxygenium Authors
+// This file is part of the oxygenium project.
 //
 // The library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the library. If not, see <http://www.gnu.org/licenses/>.
 
-package org.alephium.util
+package org.oxygenium.util
 
 import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.duration.Duration
@@ -29,10 +29,10 @@ import org.scalactic.source.Position
 import org.scalatest.{Assertion, BeforeAndAfterEach}
 import org.scalatest.matchers.dsl.ResultOfATypeInvocation
 
-trait AlephiumActorSpec extends AlephiumFutureSpec with BeforeAndAfterEach with ActorKit {
-  implicit def actorSpec: AlephiumActorSpec = this
+trait OxygeniumActorSpec extends OxygeniumFutureSpec with BeforeAndAfterEach with ActorKit {
+  implicit def actorSpec: OxygeniumActorSpec = this
 
-  def actorSystemConfig: Config = AlephiumActorSpec.warningConfig
+  def actorSystemConfig: Config = OxygeniumActorSpec.warningConfig
 
   val systems: ArrayBuffer[ActorSystem] = ArrayBuffer.empty[ActorSystem]
   implicit def system: ActorSystem      = systems.synchronized(systems.head)
@@ -85,7 +85,7 @@ trait AlephiumActorSpec extends AlephiumFutureSpec with BeforeAndAfterEach with 
   }
 }
 
-object AlephiumActorSpec {
+object OxygeniumActorSpec {
   lazy val warningConfig: Config = config("WARNING")
   lazy val infoConfig: Config    = config("INFO")
   lazy val debugConfig: Config   = config("DEBUG")
@@ -105,7 +105,7 @@ object AlephiumActorSpec {
          |      unhandled = on
          |    }
          |
-         |    guardian-supervisor-strategy = "org.alephium.util.DefaultStrategy"
+         |    guardian-supervisor-strategy = "org.oxygenium.util.DefaultStrategy"
          |
          |    default-dispatcher {
          |      executor = "fork-join-executor"

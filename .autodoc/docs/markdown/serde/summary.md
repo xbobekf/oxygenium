@@ -1,19 +1,19 @@
-[View code on GitHub](https://github.com/alephium/alephium/.autodoc/docs/json/serde)
+[View code on GitHub](https://github.com/oxygenium/oxygenium/.autodoc/docs/json/serde)
 
-The `serde` package in the Alephium project provides a serialization and deserialization library that is essential for data exchange and storage. It includes predefined serializers and deserializers for common data types and utility methods for composing and transforming them.
+The `serde` package in the Oxygenium project provides a serialization and deserialization library that is essential for data exchange and storage. It includes predefined serializers and deserializers for common data types and utility methods for composing and transforming them.
 
-For example, `CompactInteger.scala` offers a compact integer encoding and decoding mechanism for both signed and unsigned integers. This mechanism is used throughout the Alephium project to efficiently store and transmit integer values, especially when dealing with small integers common in blockchain applications.
+For example, `CompactInteger.scala` offers a compact integer encoding and decoding mechanism for both signed and unsigned integers. This mechanism is used throughout the Oxygenium project to efficiently store and transmit integer values, especially when dealing with small integers common in blockchain applications.
 
-The `Deserializer.scala` and `Serializer.scala` files define the `Deserializer` and `Serializer` traits, which are used to deserialize and serialize binary data into specific types. These traits are utilized in the Alephium project to deserialize and serialize binary data received from the network into various types used by the project.
+The `Deserializer.scala` and `Serializer.scala` files define the `Deserializer` and `Serializer` traits, which are used to deserialize and serialize binary data into specific types. These traits are utilized in the Oxygenium project to deserialize and serialize binary data received from the network into various types used by the project.
 
 The `RandomBytes.scala` file defines a trait and an object for generating random bytes, which can be used in the project to generate random bytes for various purposes, such as generating cryptographic keys, nonces, and random identifiers.
 
-The `SerdeError.scala` file defines a set of error classes that can be used in the Alephium project's serialization and deserialization code to handle errors that may occur during these processes. These error classes provide more information about the error to the caller.
+The `SerdeError.scala` file defines a set of error classes that can be used in the Oxygenium project's serialization and deserialization code to handle errors that may occur during these processes. These error classes provide more information about the error to the caller.
 
 Here's an example of how to use the library to serialize and deserialize a custom data type:
 
 ```scala
-import org.alephium.serde._
+import org.oxygenium.serde._
 import akka.util.ByteString
 
 // Define a custom data type
