@@ -29,7 +29,7 @@ object Env {
   lazy val currentEnv = this.resolve()
 
   def resolve(): Env =
-    resolve(sys.env.getOrElse("ALEPHIUM_ENV", "prod"))
+    resolve(sys.env.getOrElse("OXYGENIUM_ENV", "prod"))
 
   def resolve(env: String): Env = {
     env match {

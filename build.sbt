@@ -506,9 +506,9 @@ val commonSettings = publishSettings ++ Seq(
   fork                                       := true,
   javaOptions += "-Xss2m",
   Test / scalacOptions ++= Seq("-Xcheckinit"),
-  Test / envVars += "ALEPHIUM_ENV" -> "test",
+  Test / envVars += "OXYGENIUM_ENV" -> "test",
   Test / testOptions += Tests.Argument("-oD"),
-  IntegrationTest / envVars += "ALEPHIUM_ENV" -> "it",
+  IntegrationTest / envVars += "OXYGENIUM_ENV" -> "it",
   libraryDependencies ++= Seq(
     `akka-test`,
     scalacheck,

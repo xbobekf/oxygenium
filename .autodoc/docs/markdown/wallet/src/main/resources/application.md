@@ -4,7 +4,7 @@ The code above defines the configuration settings for the Oxygenium wallet. The 
 
 The configuration settings are defined using the HOCON format, which is a human-friendly configuration file format. The settings are organized into different sections, each with its own set of properties.
 
-The `home-dir` property specifies the directory where the wallet data is stored. By default, it is set to the user's home directory. However, it can be overridden by setting the `ALEPHIUM_WALLET_HOME` environment variable.
+The `home-dir` property specifies the directory where the wallet data is stored. By default, it is set to the user's home directory. However, it can be overridden by setting the `OXYGENIUM_WALLET_HOME` environment variable.
 
 The `port` property specifies the port number used by the wallet to communicate with other nodes on the network.
 
@@ -22,7 +22,7 @@ The `groups` property specifies the number of blockflow groups that the wallet s
 
 The `blockflow-fetch-max-age` property specifies the maximum age of a block that the wallet will fetch from the network.
 
-The `api-key` property specifies an API key that can be used to access the blockflow API. By default, it is set to null. However, it can be overridden by setting the `ALEPHIUM_API_KEY` environment variable.
+The `api-key` property specifies an API key that can be used to access the blockflow API. By default, it is set to null. However, it can be overridden by setting the `OXYGENIUM_API_KEY` environment variable.
 
 Overall, this code defines the configuration settings for the Oxygenium wallet, which is a key component of the Oxygenium blockchain platform. These settings determine how the wallet interacts with the network and how it stores and manages user data. By modifying these settings, developers can customize the behavior of the wallet to suit their needs. For example, they can change the port number used by the wallet or specify a custom directory for storing wallet data.
 ## Questions: 

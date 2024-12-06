@@ -102,7 +102,7 @@ oxygenium {
     ask-timeout = 5 seconds
     api-key-enabled = true
     api-key = null
-    api-key = ${?ALEPHIUM_API_KEY}
+    api-key = ${?OXYGENIUM_API_KEY}
     gas-fee-cap = "1000000000000000000"// 1 ALPH
     default-utxos-limit = 5000
     max-form-buffered-bytes = 131072 // 128 * 1024
@@ -110,9 +110,9 @@ oxygenium {
 
   wallet {
     enabled = true
-    enabled = ${?ALEPHIUM_WALLET_ENABLE}
+    enabled = ${?OXYGENIUM_WALLET_ENABLE}
     home-dir = ${user.home}
-    home-dir = ${?ALEPHIUM_WALLET_HOME}
+    home-dir = ${?OXYGENIUM_WALLET_HOME}
 
     secret-dir = ${oxygenium.wallet.home-dir}"/.oxygenium-wallets"
     locking-timeout = 10 minutes

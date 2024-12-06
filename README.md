@@ -72,7 +72,7 @@ Use the following command to build a docker image:
 
 ## Configuration
 
-You can define user specific settings in the file `$ALEPHIUM_HOME/user.conf`, where by default `$ALEPHIUM_HOME` points to `~/.oxygenium`.
+You can define user specific settings in the file `$OXYGENIUM_HOME/user.conf`, where by default `$OXYGENIUM_HOME` points to `~/.oxygenium`.
 
 ## Testing
 

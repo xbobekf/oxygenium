@@ -2,7 +2,7 @@
 <configuration>
     <property name="defaultPattern" value="%-63(%yellow(%date{ISO8601}) %green([%.13thread])) %highlight(%-5level) %-50(%cyan(%logger{20})) - %msg%n"/>
     <appender name="ERRFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${ALEPHIUM_HOME:-${user.home}/.oxygenium}/logs/oxygenium-errors.log</file>
+        <file>${OXYGENIUM_HOME:-${user.home}/.oxygenium}/logs/oxygenium-errors.log</file>
         <append>true</append>
         <encoder>
             <pattern>${defaultPattern}</pattern>
@@ -19,7 +19,7 @@
     </appender>
 
     <appender name="DEBUGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${ALEPHIUM_HOME:-${user.home}/.oxygenium}/logs/oxygenium-debug.log</file>
+        <file>${OXYGENIUM_HOME:-${user.home}/.oxygenium}/logs/oxygenium-debug.log</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
@@ -28,7 +28,7 @@
             <pattern>${defaultPattern}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${ALEPHIUM_HOME:-${user.home}/.oxygenium}/logs/oxygenium-debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${OXYGENIUM_HOME:-${user.home}/.oxygenium}/logs/oxygenium-debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>100MB</maxFileSize>
             <maxHistory>60</maxHistory>
             <totalSizeCap>1GB</totalSizeCap>

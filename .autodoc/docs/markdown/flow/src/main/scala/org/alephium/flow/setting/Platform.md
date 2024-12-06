@@ -4,7 +4,7 @@ The code defines a Scala object called `Platform` that provides functionality fo
 
 The `Platform` object has two methods: `getRootPath()` and `getRootPath(env: Env)`. The first method returns the root path of the Oxygenium project based on the current environment. The second method returns the root path of the Oxygenium project based on the environment passed as an argument.
 
-The `getRootPath()` method uses the `Env.currentEnv` variable to determine the current environment. It then checks if the `ALEPHIUM_HOME` environment variable is set. If it is set, it returns the path specified by the variable. If it is not set, it returns the path to the `.oxygenium` directory in the user's home directory. If the current environment is not `Env.Prod`, it returns the path to the `.oxygenium` directory with the environment name appended to it.
+The `getRootPath()` method uses the `Env.currentEnv` variable to determine the current environment. It then checks if the `OXYGENIUM_HOME` environment variable is set. If it is set, it returns the path specified by the variable. If it is not set, it returns the path to the `.oxygenium` directory in the user's home directory. If the current environment is not `Env.Prod`, it returns the path to the `.oxygenium` directory with the environment name appended to it.
 
 The `getRootPath(env: Env)` method works similarly to the `getRootPath()` method, but it uses the environment passed as an argument instead of the current environment.
 

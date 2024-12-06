@@ -4,7 +4,7 @@ This code is a configuration file for the logging system used in the Oxygenium p
 
 The code defines three different appenders: ERRFILE, INFOFILE, and CONSOLE. ERRFILE and INFOFILE are both instances of the RollingFileAppender class, which writes log messages to a file. The file paths are specified using environment variables, falling back to a default location if the variables are not set. The appenders use a pattern defined in the defaultPattern property to format the log messages. The pattern includes the date, thread ID, log level, logger name, and message. The appenders also use a FixedWindowRollingPolicy to rotate log files and a SizeBasedTriggeringPolicy to limit the size of each file. 
 
-The CONSOLE appender writes log messages to the console. It uses the same pattern as the file appenders and filters messages based on the ALEPHIUM_CONSOLE_LOG_LEVEL environment variable. 
+The CONSOLE appender writes log messages to the console. It uses the same pattern as the file appenders and filters messages based on the OXYGENIUM_CONSOLE_LOG_LEVEL environment variable. 
 
 The code also sets the log level for the io.netty logger to WARN, which means that only messages with a log level of WARN or higher will be logged for that logger. 
 
@@ -14,16 +14,16 @@ This code is important for the Oxygenium project because it allows developers to
 
 Example usage:
 
-To change the console log level to DEBUG, set the ALEPHIUM_CONSOLE_LOG_LEVEL environment variable to DEBUG:
+To change the console log level to DEBUG, set the OXYGENIUM_CONSOLE_LOG_LEVEL environment variable to DEBUG:
 
 ```
-export ALEPHIUM_CONSOLE_LOG_LEVEL=DEBUG
+export OXYGENIUM_CONSOLE_LOG_LEVEL=DEBUG
 ```
 
-To change the error log file location, set the ALEPHIUM_HOME environment variable:
+To change the error log file location, set the OXYGENIUM_HOME environment variable:
 
 ```
-export ALEPHIUM_HOME=/var/log/oxygenium
+export OXYGENIUM_HOME=/var/log/oxygenium
 ```
 ## Questions: 
  1. What is the purpose of this code?

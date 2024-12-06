@@ -36,7 +36,7 @@ run:
 update: update-openapi update-builtin-doc
 
 update-openapi:
-	ALEPHIUM_ENV=test sbt "tools/runMain org.oxygenium.tools.OpenApiUpdate"
+	OXYGENIUM_ENV=test sbt "tools/runMain org.oxygenium.tools.OpenApiUpdate"
 
 update-builtin-doc:
 	sbt "tools/runMain org.oxygenium.tools.BuiltInFunctions"

@@ -4,7 +4,7 @@ This code defines an enumeration called `Env` and an object called `Env` that co
 
 The `Env` enumeration defines four possible environments: `Prod`, `Debug`, `Test`, and `Integration`. Each environment has a `name` property that returns a string representation of the environment. 
 
-The `Env` object contains a `currentEnv` property that resolves the current environment based on the value of the `ALEPHIUM_ENV` environment variable. If the variable is not set, the default environment is `Prod`. 
+The `Env` object contains a `currentEnv` property that resolves the current environment based on the value of the `OXYGENIUM_ENV` environment variable. If the variable is not set, the default environment is `Prod`. 
 
 The `resolve` method takes an optional `env` parameter and returns the corresponding `Env` value based on the input string. If the input string does not match any of the defined environments, the default environment is `Prod`. 
 
