@@ -1,0 +1,185 @@
+alephium {
+  consensus {
+    block-cache-capacity-per-chain = 32
+  }
+
+  mining {
+    api-interface = "127.0.0.1"
+    nonce-step = 20000
+    batch-delay = 0 milli
+
+    # the polling interval for block templates, when there is no new blocks generated
+    polling-interval = 2 seconds
+
+    # the size of the cache that stores the latest mining jobs
+    job-cache-size-per-chain = 100
+  }
+
+  network {
+    max-outbound-connections-per-group = 16
+    max-inbound-connections-per-group = 64
+    max-clique-from-same-ip = 2
+
+    # The frequency at which peers will ping each other to check for liveness.
+    ping-frequency = 300 second
+
+    # Timeout for establish a connection with peers
+    retry-timeout = 30 second
+
+    # When a node is banned, it will last for 1 day
+    ban-duration = 1 day
+    # When a node operates properly for a certain period of time, its past penalty will be removed
+    penalty-forgiveness = 1 hour
+    # When non-critical misbehavior detected, only one penalty applied for a given period
+    penalty-frequency = 60 second
+
+    backoff-base-delay = 500 milli
+    backoff-max-delay = 8 second
+    backoff-reset-delay = 30 second
+
+    # Size of the outbound TCP buffer (in bytes).
+    connection-buffer-capacity-in-byte = 100000000
+
+    fast-sync-frequency = 1 second
+    stable-sync-frequency = 20 second
+    sync-peer-sample-size = 5
+    sync-cleanup-frequency = 10 second
+    sync-expiry-period = 10 second
+    dependency-expiry-period = 2 minute
+    update-synced-frequency = 5 second
+
+    txs-broadcast-delay = 5 second
+
+    upnp {
+      # Enable UPNnP port forwarding (only works with UPnP compatible routers).
+      # Not helpful when you run the node in cloud
+      enabled = true
+    }
+
+    # The interface to which the TCP and UPD servers will be bound. (use 0.0.0.0 for all interfaces)
+    bind-address = "0.0.0.0:9973"
+
+    # Optional public address for the other nodes to find you
+    # If the external address is not set and UPnP works, you will get your external address via your IGD
+    # If the external address is set and UPnP is enable, UPnP will be ignored
+    external-address = null
+
+    # This is the address for the other nodes of your clique to connect to you
+    # For example, your clique has 2 nodes in a same LAN, then your 2 nodes can use private addresses to connect to each other
+    internal-address  = "127.0.0.1:9973"
+
+    # Each clique has a master node with brokerId == 0, of which the internal-address is the coordinator-address
+    coordinator-address    = "127.0.0.1:9973"
+
+    rest-port = 12973
+    ws-port = 11973
+    miner-api-port = 10973
+  }
+
+  discovery {
+    scan-frequency = 10 minutes
+    scan-fast-frequency = 2.seconds
+    fast-scan-period = 1 minute
+    initial-discovery-period = 30 seconds
+    neighbors-per-group = 100
+    max-clique-from-same-ip = 2
+  }
+
+  mempool {
+    mempool-capacity-per-chain = 2000
+    tx-max-number-per-block = 1000
+    clean-mempool-frequency = 10 minutes
+    unconfirmed-tx-expiry-duration = 120 minutes
+    clean-orphan-tx-frequency = 1 minute
+    batch-broadcast-txs-frequency = 500 milli
+    batch-download-txs-frequency = 500 milli
+    auto-mine-for-dev = false
+  }
+
+  api {
+    network-interface = "127.0.0.1"
+    blockflow-fetch-max-age = 30 minutes
+    ask-timeout = 5 seconds
+    api-key-enabled = true
+    api-key = null
+    api-key = ${?ALEPHIUM_API_KEY}
+    gas-fee-cap = "1000000000000000000"// 1 ALPH
+    default-utxos-limit = 5000
+    max-form-buffered-bytes = 131072 // 128 * 1024
+  }
+
+  wallet {
+    enabled = true
+    enabled = ${?ALEPHIUM_WALLET_ENABLE}
+    home-dir = ${user.home}
+    home-dir = ${?ALEPHIUM_WALLET_HOME}
+
+    secret-dir = ${alephium.wallet.home-dir}"/.alephium-wallets"
+    locking-timeout = 10 minutes
+  }
+
+  node {
+    # a boolean flag to indicate whether a write with rocksdb should be synchronized
+    # Note that if it is just the process that crashes (i.e., the machine does not reboot), no writes will be lost even if sync==false
+    db-sync-write = false
+
+    asset-trie-cache-max-byte-size = 200000000
+    contract-trie-cache-max-byte-size = 20000000
+
+    event-log {
+      enabled = false
+      index-by-tx-id = false
+      index-by-block-hash = false
+    }
+
+    indexes {
+      tx-output-ref-index = false
+      subcontract-index = false
+    }
+  }
+}
+
+akka {
+  loglevel = "DEBUG"
+  loggers = ["akka.event.slf4j.Slf4jLogger"]
+  logging-filter = "akka.event.slf4j.Slf4jLoggingFilter"
+
+  jvm-shutdown-hooks = off
+
+  io.tcp.register-timeout = 1m
+
+  actor {
+    mining-dispatcher {
+      type = Dispatcher
+      executor = "fork-join-executor"
+      fork-join-executor {
+        parallelism-min = 4
+        parallelism-max = 4
+        parallelism-factor = 1
+      }
+      throughput = 1
+    }
+
+    default-dispatcher {
+      fork-join-executor {
+        parallelism-min = 16
+        parallelism-factor = 1.0
+      }
+    }
+
+    guardian-supervisor-strategy = "org.alephium.util.DefaultStrategy"
+  }
+
+  http {
+    server {
+      websocket {
+        periodic-keep-alive-mode = pong
+        periodic-keep-alive-max-idle = 30 seconds
+      }
+
+      socket-options {
+        so-reuse-address = true
+      }
+    }
+  }
+}

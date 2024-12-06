@@ -1,0 +1,41 @@
+alephium {
+  broker {
+    broker-id = 0
+    broker-num = 1
+    groups = 4
+  }
+
+  consensus {
+    mainnet {
+      block-target-time = 64 seconds
+      uncle-dependency-gap-time = 16 seconds
+    }
+    rhone {
+      block-target-time = 16 seconds
+      uncle-dependency-gap-time = 8 seconds
+    }
+    num-zeros-at-least-in-hash = 37
+  }
+
+  network {
+    network-id = 0
+    no-pre-mine-proof = [
+      "0000000000000000000ccf523e4fdd7bb414eee8d70bd993df317691302313df", # BTC 708794 block hash
+      "a7f069215d1390b7f6af3f961030bb0957a31f7ad2315b35334841794d0c329d"  # ETH 13576188 block hash
+    ]
+
+    leman-hard-fork-timestamp = 1680170400000 // Tue Mar 30 2023 12:00:00 GMT+0200
+    rhone-hard-fork-timestamp = 1718186400000 // Wed Jun 12 2024 12:00:00 GMT+0200
+  }
+
+  discovery {
+    bootstrap = [
+      "bootstrap0.alephium.org:9973",
+      "bootstrap1.alephium.org:9973",
+      "bootstrap2.alephium.org:9973",
+      "bootstrap3.alephium.org:9973",
+      "bootstrap4.alephium.org:9973",
+      "bootstrap5.alephium.org:9973"
+    ]
+  }
+}

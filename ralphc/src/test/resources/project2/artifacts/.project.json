@@ -1,0 +1,44 @@
+{
+  "compilerOptionsUsed": {
+    "ignoreUnusedConstantsWarnings": false,
+    "ignoreUnusedVariablesWarnings": false,
+    "ignoreUnusedFieldsWarnings": false,
+    "ignoreUnusedPrivateFunctionsWarnings": false,
+    "ignoreUpdateFieldsCheckWarnings": false,
+    "ignoreCheckExternalCallerWarnings": false,
+    "ignoreUnusedFunctionReturnWarnings": false,
+    "skipAbstractContractCheck": false
+  },
+  "infos": {
+    "Action": {
+      "sourceFile": "action.ral",
+      "sourceCodeHash": "422dedf65e0f287e36425e6b4884978fc39f84cd97ac80ede278cf1662b0f00f",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "507b758f752fd5c9035ac329cf137305992af88d30aeb60b5c9c20f8b2bf4b12",
+      "warnings": [
+        "Function \"Action.action\" updates fields. Please use \"@using(updateFields = true)\" for the function."
+      ]
+    },
+    "Foo": {
+      "sourceFile": "foo.ral",
+      "sourceCodeHash": "31c215eef9b9bb6faeeb0b6de689cabe4097716a15470ed0766b1bf5e4174b24",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "5e770de7380fd93ffc4f3a02462d4fd3ac4e624252421e25041c113381a1e175",
+      "warnings": []
+    },
+    "Main": {
+      "sourceFile": "main.ral",
+      "sourceCodeHash": "82cadbfc4cf9576d2ce5814fe7041a56430741a2b8e0f149558617911f0c1494",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "",
+      "warnings": []
+    },
+    "Math": {
+      "sourceFile": "math.ral",
+      "sourceCodeHash": "bf6305b5f82a1267b36f72b25c4f01d5fe27b3be0edff7b16200951bc0ab3c20",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "f5773744dafc81efaf82b27f1fe6bad1292d88a7f33ee053835c68ad77c787f3",
+      "warnings": []
+    }
+  }
+}

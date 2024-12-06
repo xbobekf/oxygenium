@@ -1,0 +1,54 @@
+{
+  "compilerOptionsUsed": {
+    "ignoreUnusedConstantsWarnings": false,
+    "ignoreUnusedVariablesWarnings": false,
+    "ignoreUnusedFieldsWarnings": false,
+    "ignoreUnusedPrivateFunctionsWarnings": false,
+    "ignoreUpdateFieldsCheckWarnings": false,
+    "ignoreCheckExternalCallerWarnings": false,
+    "ignoreUnusedFunctionReturnWarnings": false,
+    "skipAbstractContractCheck": false
+  },
+  "infos": {
+    "Add": {
+      "sourceFile": "add/add.ral",
+      "sourceCodeHash": "6089a405f7c0596fb72ec2bd0cea578422be360371c4c5d3e5a72e1acb8d4751",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "ced886ef883695e3fef889195680afbffbd2cf7eba7fb3c018e1b4e58a59b61b",
+      "warnings": [
+        "No external caller check for function \"Add.add\". Please use \"checkCaller!(...)\" in the function or its callees, or disable it with \"@using(checkExternalCaller = false)\".",
+        "Function \"Add.addPrivate\" updates fields. Please use \"@using(updateFields = true)\" for the function."
+      ]
+    },
+    "Greeter": {
+      "sourceFile": "greeter/greeter.ral",
+      "sourceCodeHash": "3cf9e5898ff728b03630bf457ef96cbd21d345e2256f30d2ce4f6a102de51b14",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "ac8324a46b81e7efded004fd52d851fbb9dfc2da88bcc8c7a9a73c3fce2635f2",
+      "warnings": []
+    },
+    "GreeterInterface": {
+      "sourceFile": "greeter/greeter_interface.ral",
+      "sourceCodeHash": "4d907712f36c242fc160513fc9d94d96e5c848ae865b89b39eaff8f9c3d48c1f",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "",
+      "warnings": []
+    },
+    "Main": {
+      "sourceFile": "main.ral",
+      "sourceCodeHash": "8cc5c1a2de002650a5904078f91005932982e700f7b0a393cbe4e3a64cfdf842",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "",
+      "warnings": [
+        "The return values of the function \"Add.add\" are not used. Please add `let _ = ` before the function call to explicitly ignore its return value."
+      ]
+    },
+    "Sub": {
+      "sourceFile": "sub/sub.ral",
+      "sourceCodeHash": "c8b669babea2f36bdb8f92afb17747bfb9eecb13ac17c5a02388426c91a4434e",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "3461ebfaca02ad0a3f587a5b67a461c0cbd82d14261407b1d9277ed4ad129234",
+      "warnings": []
+    }
+  }
+}

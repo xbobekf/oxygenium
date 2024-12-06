@@ -1,0 +1,44 @@
+alephium {
+
+  consensus {
+    mainnet {
+      block-target-time = 64 seconds
+      uncle-dependency-gap-time = 0 seconds
+    }
+    rhone {
+      block-target-time = 16 seconds
+      uncle-dependency-gap-time = 0 seconds
+    }
+    num-zeros-at-least-in-hash = 0
+  }
+
+  network {
+    no-pre-mine-proof = [
+      "00000000000000000001b3a4df896d60492f0041a1cfe3b9dccd4e6b83ff57f3", # BTC 697677 block hash
+      "cf874fe2276967ab4d514a4e59b2d2a60b9fc810a3763b188f0b122368004deb"  # ETH 13100948 block hash
+    ]
+
+    leman-hard-fork-timestamp = 1643500800000 // GMT: 30 January 2022 00:00:00
+    rhone-hard-fork-timestamp = 1695571200000
+  }
+
+  genesis {
+    allocations = [
+      {
+        address = "17Ey9PHogBdGS5361s6WQeTXNG2KNFoEtdkJVJvM7KKwU",
+        amount = "1000000000000000000000000",
+        lock-duration = 0 seconds
+      },
+      {
+        address = "1GtpWTB3QEfHZg6Rfr5TCaxRRkLTXhDT1Dtk4Rm8kCPoc",
+        amount = "1000000000000000000000000",
+        lock-duration = 0 seconds
+      },
+      {
+        address = "17Tyyh8iG5JQkF7DFPeUXzPbK6JG4FW4erCmXHNA6a9qP",
+        amount = "1000000000000000000000000",
+        lock-duration = 0 seconds
+      }
+    ]
+  }
+}
