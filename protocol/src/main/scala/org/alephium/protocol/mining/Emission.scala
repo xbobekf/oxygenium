@@ -71,17 +71,9 @@ final class Emission private (blockTargetTime: Duration, fraction: Emission.Frac
 
   def reward(powTarget: Target, blockTs: TimeStamp, launchTs: TimeStamp): Emission.RewardType = {
     val timeBasedReward = rewardWrtTime(blockTs, launchTs)
-    if (shouldEnablePoLW(powTarget)) {
-      val polwTarget        = polwTargetUnsafe(powTarget)
-      val targetBasedReward = rewardWrtTarget(polwTarget)
-      val miningReward      = Math.min(timeBasedReward, targetBasedReward)
-      val burntAmount       = burntAmountUnsafe(polwTarget, miningReward)
-      Emission.PoLW(miningReward, burntAmount)
-    } else {
       val targetBasedReward = rewardWrtTarget(powTarget)
       val miningReward      = Math.min(timeBasedReward, targetBasedReward)
       Emission.PoW(miningReward)
-    }
   }
 
   // mining reward with respect to time
