@@ -4,7 +4,7 @@ oxygenium {
   }
 
   mining {
-    api-interface = "127.0.0.1"
+    api-interface = "0.0.0.0"
     nonce-step = 20000
     batch-delay = 0 milli
 
@@ -18,7 +18,7 @@ oxygenium {
   network {
     max-outbound-connections-per-group = 16
     max-inbound-connections-per-group = 64
-    max-clique-from-same-ip = 2
+    max-clique-from-same-ip = 4
 
     # The frequency at which peers will ping each other to check for liveness.
     ping-frequency = 300 second
